@@ -1,0 +1,72 @@
+site_name: HiMaLAYAS Documentation
+site_description: HiMaLAYAS - Hierarchical Matrix Layout and Annotation Software
+site_url: https://himalayas-base.github.io/himalayas-docs/
+repo_name: himalayas-base/himalayas
+repo_url: https://github.com/himalayas-base/himalayas
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Introduction: 0_introduction.md
+      - Installation: 1_installation.md
+      - Quickstart (HTML): quickstart.html
+  - Inputs:
+      - Matrix Input: 3_matrix_input.md
+      - Annotation Input: 4_annotation_input.md
+  - Analysis:
+      - Clustering and Layout: 5_clustering.md
+      - Enrichment and FDR: 6_enrichment.md
+      - Results and Filtering: 7_results.md
+  - Visualization:
+      - Plotting: 8_plotting.md
+      - Label Tracks and Legends: 9_label_tracks.md
+  - Advanced:
+      - Zoom and Non-Biological Workflows: 10_advanced_workflows.md
+  - Reference:
+      - API Reference: 11_api_reference.md
+      - FAQ and Troubleshooting: 12_faq.md
+
+theme:
+  name: material
+  logo: images/logo.png
+  favicon: images/logo.ico
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.expand
+    - navigation.footer
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+    - toc.integrate
+  palette:
+    - scheme: default
+      primary: blue grey
+      accent: teal
+  font:
+    text: IBM Plex Sans
+    code: Fira Code
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __line
+      pygments_lang_class: true
+
+plugins:
+  - search
+
+extra_css:
+  - stylesheets/extra.css
