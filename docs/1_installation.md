@@ -1,0 +1,34 @@
+# Installation
+
+HiMaLAYAS is a Python package distributed under the BSD 3-Clause License. You can install from PyPI or from source.
+
+## Install From PyPI
+
+```bash
+pip install himalayas
+```
+
+## Install From Source
+
+```bash
+git clone https://github.com/himalayas-base/himalayas.git
+cd himalayas
+pip install .
+# editable install
+pip install -e .
+```
+
+## Verify Installation
+
+```python
+import himalayas
+print(himalayas.__version__)
+```
+
+## Optional Dependencies
+
+- `matplotlib` is required for plotting.
+- `scipy` is required for hierarchical clustering and enrichment.
+- `nltk` improves term summarization quality (optional, with fallback behavior).
+
+Next: [Quickstart (HTML)](quickstart.html)
