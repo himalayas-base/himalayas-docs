@@ -21,7 +21,7 @@ Manuscript in preparation.
 We apply HiMaLAYAS to a hierarchically clustered _Saccharomyces cerevisiae_ genetic interaction profile similarity matrix (Costanzo et al., 2016), focusing on genes with high profile variance. Dendrogram-defined clusters are evaluated for Gene Ontology Biological Process (GO BP) enrichment, revealing hierarchical organization of biological processes.
 
 [![HiMaLAYAS workflow overview](https://i.imgur.com/mninW8a.jpeg)](https://i.imgur.com/mninW8a.jpeg)
-**HiMaLAYAS workflow and application to a hierarchically clustered yeast genetic interaction profile similarity matrix (Costanzo et al., 2016).** A real-valued matrix and categorical annotations serve as inputs; the matrix is hierarchically clustered to produce a dendrogram, which is cut at a user-defined depth to identify clusters. Each dendrogram-defined cluster is evaluated for GO Biological Process enrichment, and significant enrichments are mapped onto the clustered matrix. The application focuses on ~1,100 genes with high profile variance, where each entry represents Pearson-correlation similarity between genetic interaction profiles, and the condensed dendrogram summarizes the same hierarchy.
+**HiMaLAYAS workflow and application to a hierarchically clustered yeast genetic interaction profile similarity matrix (Costanzo et al., 2016).** A real-valued matrix and categorical annotations serve as inputs. The matrix is hierarchically clustered, cut at a user-defined depth, and clusters are evaluated for GO Biological Process enrichment. The application focuses on ~1,100 genes with high profile variance, and each entry represents Pearson-correlation similarity between genetic interaction profiles.
 
 ## Quickstart
 

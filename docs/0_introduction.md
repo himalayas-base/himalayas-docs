@@ -24,6 +24,6 @@ Hierarchical clustering is often used for visualization rather than statistical 
 - `Annotations`: term-to-label mapping aligned to the matrix label universe.
 - `Analysis`: orchestrates clustering, enrichment, and layout.
 - `Results`: stores enrichment output and attached context for plotting.
-- `Plotter`: builds layered, publication-ready figures.
+- `Plotter`: builds layered figures.
 
 If you are new, continue to [Installation](1_installation.md) or jump straight to [Quickstart (HTML)](quickstart.html).
