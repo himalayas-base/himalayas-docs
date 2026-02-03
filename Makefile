@@ -1,6 +1,6 @@
 # HiMaLAYAS Docs Makefile
 
-.PHONY: format clean help deploy-docs
+.PHONY: format clean help deploy-docs quickstart-html
 
 format: ## Format Python files using Black
 	black --line-length=100 .
@@ -14,3 +14,6 @@ clean: ## Remove build artifacts and caches
 
 deploy-docs: ## Deploy docs using mkdocs to GitHub Pages
 	mkdocs gh-deploy --clean
+
+quickstart-html: ## Convert quickstart.ipynb to quickstart.html
+	python -m nbconvert --to html docs/quickstart.ipynb --output quickstart.html --output-dir docs
