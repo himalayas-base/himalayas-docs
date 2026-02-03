@@ -16,4 +16,4 @@ deploy-docs: ## Deploy docs using mkdocs to GitHub Pages
 	mkdocs gh-deploy --clean
 
 quickstart-html: ## Convert quickstart.ipynb to quickstart.html
-	python -m nbconvert --to html docs/quickstart.ipynb --output quickstart.html --output-dir docs
+	python -m nbconvert --to html notebooks/quickstart.ipynb --output quickstart.html --output-dir docs
