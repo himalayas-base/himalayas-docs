@@ -9,7 +9,6 @@ nav:
   - Getting Started:
       - Introduction: 0_introduction.md
       - Installation: 1_installation.md
-      - Quickstart (HTML): quickstart.html
   - Inputs:
       - Matrix Input: 3_matrix_input.md
       - Annotation Input: 4_annotation_input.md
