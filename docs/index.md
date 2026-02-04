@@ -8,6 +8,9 @@ Use this documentation to get set up, run an analysis, and build visualizations.
 
 - [Introduction](0_introduction.md)
 - [Installation](1_installation.md)
+
+## Notebook Walkthrough
+
 - [Quickstart (HTML)](quickstart.html)
 
 ## Core Workflow
@@ -23,5 +26,3 @@ Use this documentation to get set up, run an analysis, and build visualizations.
 - Enrichment-annotated clustered matrices for gene interaction or expression data.
 - Cluster-specific zoom analyses that re-run enrichment on a subset.
 - Non-biological analyses (for example, recipes by ingredient similarity).
-
-If you want a full walkthrough, start with [Quickstart (HTML)](quickstart.html). The source notebook lives at `notebooks/quickstart.ipynb` in the repository.

@@ -10,13 +10,14 @@ A common pattern is to zoom into a single cluster, re-run clustering and enrichm
 2. Rebuild annotations for the subset.
 3. Re-run `Analysis` with a background matrix.
 
+To explore depth directly, repeat the analysis at a few dendrogram cut thresholds and compare the enriched labels that emerge.
+
 ```python
 def run_zoom_analysis(
     *,
     results,
     cluster_id,
     go_bp,
-    go_id_to_name,
     linkage_threshold,
     min_cluster_size=6,
     min_overlap=2,
@@ -40,22 +41,17 @@ def run_zoom_analysis(
     )
 
     zoom_results = zoom_analysis.results
-    zoom_results.df["term_name"] = (
-        zoom_results.df["term"].map(go_id_to_name).fillna(zoom_results.df["term"])
-    )
-
     zoom_results_sig = zoom_results.filter(f"qval <= {qval_cutoff}")
     zoom_cluster_labels = summarize_clusters(
         zoom_results_sig.df,
         label_mode="top_term",
-        label_col="term_name",
     )
     return zoom_matrix, zoom_results, zoom_results_sig, zoom_cluster_labels
 ```
 
 ## Non-Biological Example (Recipes)
 
-HiMaLAYAS is domain agnostic. The recipe example builds an ingredient by recipe matrix and annotates clusters by country of origin (world-wide recipe dataset).
+HiMaLAYAS is domain-agnostic. The recipe example builds an ingredient by recipe matrix and annotates clusters by country of origin (worldwide recipe dataset).
 
 Key steps:
 
@@ -87,12 +83,12 @@ cluster_labels = summarize_clusters(results_sig.df, label_mode="top_term")
 
 ## Contracted Dendrogram View
 
-For a cluster level overview, use `plot_term_hierarchy_contracted` to render a condensed dendrogram from the master linkage.
+For a cluster-level overview, use `plot_dendrogram_condensed` to render a condensed dendrogram from the master linkage.
 
 ```python
-from himalayas.plot import plot_term_hierarchy_contracted
+from himalayas.plot import plot_dendrogram_condensed
 
-plot_term_hierarchy_contracted(
+plot_dendrogram_condensed(
     results,
     cluster_labels,
     fontsize=9,
@@ -100,5 +96,3 @@ plot_term_hierarchy_contracted(
     sigbar_max_logp=10.0,
 )
 ```
-
-Next: [API Reference](11_api_reference.md)

@@ -98,5 +98,3 @@ plotter.plot_colorbars(ncols=2, height=0.045, gap=0.05)
 
 - `Plotter` expects `Results` with an attached layout from `Analysis.finalize()`.
 - Use percentile scaling for robust heatmaps.
-
-Next: [Label Tracks and Legends](9_label_tracks.md)

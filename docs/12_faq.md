@@ -6,11 +6,11 @@ Your DataFrame index has duplicate labels. Ensure the row labels are unique befo
 
 ## I get "Matrix values must be numeric"
 
-The DataFrame contains non numeric values. Convert columns to numeric or filter invalid rows.
+The DataFrame contains non-numeric values. Convert columns to numeric or filter invalid rows.
 
 ## I get "No annotation terms overlap matrix labels"
 
-None of the annotation labels are present in the matrix. Double check your identifier system and ensure labels match exactly.
+None of the annotation labels are present in the matrix. Double-check your identifier system and ensure labels match exactly.
 
 ## I get "min_cluster_size exceeds N"
 

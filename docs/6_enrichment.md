@@ -1,6 +1,6 @@
 # Enrichment and FDR
 
-HiMaLAYAS performs one sided hypergeometric enrichment for each cluster and term. P values are computed as P(X >= k), and multiple testing is controlled with Benjamini-Hochberg FDR.
+HiMaLAYAS performs one-sided hypergeometric enrichment for each cluster and term. P-values are computed as P(X >= k), and multiple testing is controlled with Benjamini-Hochberg FDR.
 
 ## Signature
 
@@ -44,5 +44,3 @@ results_sig = results.filter("qval <= 0.05")
 
 - If no terms pass filtering, the results table is empty.
 - Use `background=` for zoom workflows to keep a consistent universe.
-
-Next: [Results and Filtering](7_results.md)

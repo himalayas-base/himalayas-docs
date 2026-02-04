@@ -1,6 +1,6 @@
 # Label Tracks and Legends
 
-Label panel tracks let you add cluster level bars and row level annotations.
+Label panel tracks let you add cluster-level bars and row-level annotations.
 
 ## `plot_cluster_bar` (Significance)
 
@@ -47,5 +47,3 @@ plotter.set_label_track_order(("sigbar", "essentiality", "characterization"))
 ```python
 plotter.plot_bar_labels(font="Helvetica", fontsize=14, color="black", pad=4, rotation=90)
 ```
-
-Next: [Zoom and Non-Biological Workflows](10_advanced_workflows.md)

@@ -30,5 +30,3 @@ print(himalayas.__version__)
 - `matplotlib` is required for plotting.
 - `scipy` is required for hierarchical clustering and enrichment.
 - `nltk` improves term summarization quality (optional, with fallback behavior).
-
-Next: [Quickstart (HTML)](quickstart.html)

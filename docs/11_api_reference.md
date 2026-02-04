@@ -38,12 +38,10 @@ Parameters:
   - `.set_label_track_order(...)`, `.set_background(...)`
   - `.show()` and `.save(path)`
 
-- `himalayas.plot.plot_term_hierarchy_contracted(results, cluster_labels, ...)`
+- `himalayas.plot.plot_dendrogram_condensed(results, cluster_labels, ...)`
   - Condensed dendrogram view aligned to cluster labels.
 
 ## Text Helpers
 
 - `himalayas.text.summarize_terms(words, weights=None, max_words=6)`
 - `himalayas.text.summarize_clusters(df, label_mode="compressed", label_col="term_name")`
-
-Next: [FAQ and Troubleshooting](12_faq.md)

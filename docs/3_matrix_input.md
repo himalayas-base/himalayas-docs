@@ -37,6 +37,5 @@ print(matrix.labels[:5])
 ## Notes
 
 - Missing values should be handled before creating `Matrix`.
-- Column clustering is visual only and is enabled in `Analysis.finalize(col_cluster=True)`.
-
-Next: [Annotation Input](4_annotation_input.md)
+- Column clustering can be enabled with `Analysis.finalize(col_cluster=True)`.
+- Matrix symmetry and normalization are user-defined; HiMaLAYAS does not enforce them.

@@ -47,5 +47,3 @@ annotations = Annotations(country_to_recipes, matrix)
 
 - Terms with no overlap are dropped with a warning.
 - You can pre-filter terms by size before loading.
-
-Next: [Clustering and Layout](5_clustering.md)

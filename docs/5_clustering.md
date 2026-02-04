@@ -38,5 +38,3 @@ analysis = Analysis(matrix, annotations).cluster(
 
 - Any method or metric supported by SciPy `linkage` is valid.
 - `min_cluster_size` preserves hierarchy by merging undersized clusters into their parent cluster.
-
-Next: [Enrichment and FDR](6_enrichment.md)
