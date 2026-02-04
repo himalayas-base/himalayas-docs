@@ -18,11 +18,10 @@ Use this documentation to get set up, run an analysis, and build visualizations.
 1. Load a real-valued matrix into `Matrix`.
 2. Load term-to-label annotations into `Annotations`.
 3. Run `Analysis.cluster()` and `Analysis.enrich()`.
-4. Call `Analysis.finalize()` to attach layout and optional q-values.
+4. Call `Analysis.finalize()` to attach layout and optional q-values (Benjamini-Hochberg FDR-adjusted p-values).
 5. Summarize clusters and plot with `Plotter`.
 
-## What You Can Build
+## Use Cases
 
-- Enrichment-annotated clustered matrices for gene interaction or expression data.
-- Cluster-specific zoom analyses that re-run enrichment on a subset.
-- Non-biological analyses (for example, recipes by ingredient similarity).
+- Annotate clustered matrices for biological or non-biological data.
+- Zoom into a cluster and rerun enrichment on the subset.

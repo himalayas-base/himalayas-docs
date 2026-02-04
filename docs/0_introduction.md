@@ -1,8 +1,6 @@
 # Introduction
 
-HiMaLAYAS is a general-purpose framework for post hoc enrichment-based annotation of hierarchically clustered matrices. It separates clustering from enrichment, treats dendrogram-defined clusters as statistical units, and maps significant terms back onto the matrix for visualization.
-
-Hierarchical clustering is often used for visualization rather than statistical inference. HiMaLAYAS turns dendrogram-defined clusters into statistical units and evaluates term enrichment directly on those clusters.
+HiMaLAYAS is a general framework for post hoc enrichment-based annotation of hierarchically clustered matrices. It treats dendrogram-defined clusters as statistical units and maps significant terms back onto the matrix for visualization.
 
 ## Core Ideas
 

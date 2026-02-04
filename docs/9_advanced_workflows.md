@@ -12,6 +12,8 @@ A common pattern is to zoom into a single cluster, re-run clustering and enrichm
 
 To explore depth directly, repeat the analysis at a few dendrogram cut thresholds and compare the enriched labels that emerge.
 
+For a cluster-level summary of either the full analysis or a zoomed result, see [Condensed Dendrogram](8_condensed_dendrogram.md).
+
 ```python
 def run_zoom_analysis(
     *,
@@ -79,20 +81,4 @@ analysis = (
 results = analysis.results
 results_sig = results.filter("qval <= 0.05")
 cluster_labels = summarize_clusters(results_sig.df, label_mode="top_term")
-```
-
-## Contracted Dendrogram View
-
-For a cluster-level overview, use `plot_dendrogram_condensed` to render a condensed dendrogram from the master linkage.
-
-```python
-from himalayas.plot import plot_dendrogram_condensed
-
-plot_dendrogram_condensed(
-    results,
-    cluster_labels,
-    fontsize=9,
-    sigbar_min_logp=2.0,
-    sigbar_max_logp=10.0,
-)
 ```

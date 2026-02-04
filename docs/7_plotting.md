@@ -80,6 +80,43 @@ plotter.plot_cluster_bar(
 
 Key params: `norm`, `width`, `left_pad`, `right_pad`, `title`.
 
+### `plot_gene_bar`
+
+```python
+plotter.plot_gene_bar(
+    values=gene_essential_map,
+    mode="categorical",
+    colors=gene_essential_colors,
+    left_pad=0.03,
+    width=0.06,
+    right_pad=0.00,
+    name="essentiality",
+    title="Essential",
+)
+```
+
+Key params: `mode`, `colors`, `left_pad`, `width`, `right_pad`, `title`.
+
+### Track Order
+
+```python
+plotter.set_label_track_order(("sigbar", "essentiality"))
+```
+
+### Track Labels
+
+```python
+plotter.plot_bar_labels(font="Helvetica", fontsize=14, color="black", pad=4, rotation=90)
+```
+
+### Label Panel Spacing
+
+Use these when you want to move label text or re-balance the label panel:
+
+- `label_text_pad` (in `plot_cluster_labels`) adds space between tracks and text.
+- `label_gutter_width` and `label_gutter_color` control the gutter at the panel start.
+- `label_x` shifts the label-panel tracks; `axes` moves the entire label panel.
+
 ### Colorbars
 
 ```python
