@@ -10,20 +10,20 @@ nav:
       - Introduction: 0_introduction.md
       - Installation: 1_installation.md
   - Inputs:
-      - Matrix Input: 3_matrix_input.md
-      - Annotation Input: 4_annotation_input.md
+      - Matrix Input: 2_matrix_input.md
+      - Annotation Input: 3_annotation_input.md
   - Analysis:
-      - Clustering and Layout: 5_clustering.md
-      - Enrichment and FDR: 6_enrichment.md
-      - Results and Filtering: 7_results.md
+      - Clustering and Layout: 4_clustering.md
+      - Enrichment and FDR: 5_enrichment.md
+      - Results and Filtering: 6_results.md
   - Visualization:
-      - Plotting: 8_plotting.md
-      - Label Tracks and Legends: 9_label_tracks.md
+      - Plotting: 7_plotting.md
+      - Condensed Dendrogram: 8_condensed_dendrogram.md
   - Advanced:
-      - Zoom and Non-Biological Workflows: 10_advanced_workflows.md
+      - Zoom and Non-Biological Workflows: 9_advanced_workflows.md
   - Reference:
-      - API Reference: 11_api_reference.md
-      - FAQ and Troubleshooting: 12_faq.md
+      - API Reference: 10_api_reference.md
+      - FAQ and Troubleshooting: 11_faq.md
 
 theme:
   name: material
