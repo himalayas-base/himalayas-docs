@@ -26,16 +26,15 @@ plotter.plot_gene_bar(
     values=gene_essential_map,
     mode="categorical",
     colors=gene_essential_colors,
-    placement="label_panel",
-    gene_bar_left_pad=0.03,
-    gene_bar_width=0.06,
-    gene_bar_right_pad=0.00,
+    left_pad=0.03,
+    width=0.06,
+    right_pad=0.00,
     name="essentiality",
     title="Essential",
 )
 ```
 
-Key params: `mode`, `colors`, `placement`, `gene_bar_left_pad`, `gene_bar_width`, `gene_bar_right_pad`.
+Key params: `mode`, `colors`, `left_pad`, `width`, `right_pad`.
 
 ## Track Order
 

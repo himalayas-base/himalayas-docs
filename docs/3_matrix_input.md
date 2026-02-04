@@ -21,7 +21,7 @@ Matrix(df: pd.DataFrame, *, axis: str = "rows")
 import pandas as pd
 from himalayas import Matrix
 
-DF = pd.read_csv("data/yeast/gi_score_sampled.tsv", sep="\t", index_col=0)
+DF = pd.read_csv("data/gi_pcc_sampled.tsv", sep="\t", index_col=0)
 
 matrix = Matrix(DF)
 print(matrix.values.shape)

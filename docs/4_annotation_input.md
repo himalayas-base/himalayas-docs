@@ -21,7 +21,7 @@ Annotations(term_to_labels: dict[str, Iterable[str]], matrix: Matrix)
 import json
 from himalayas import Annotations
 
-with open("data/yeast/go_bp_term_to_orfs.json", "r", encoding="utf-8") as fh:
+with open("data/go_bp_term_to_orfs.json", "r", encoding="utf-8") as fh:
     go_bp = json.load(fh)
 
 annotations = Annotations(go_bp, matrix)
