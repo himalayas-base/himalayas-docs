@@ -15,7 +15,7 @@ Matrix(df: pd.DataFrame, *, axis: str = "rows")
 | `df` | `pd.DataFrame` | required | Numeric matrix with labeled rows. Row labels become the matrix label universe. |
 | `axis` | `str` | `"rows"` | Orientation of labels. Use `"rows"` for standard usage. Reserved for column-labeled use cases. |
 
-## Quick Example
+## Example
 
 ```python
 import pandas as pd
@@ -37,5 +37,4 @@ print(matrix.labels[:5])
 ## Notes
 
 - Missing values should be handled before creating `Matrix`.
-- Column clustering can be enabled with `Analysis.finalize(col_cluster=True)`.
 - Matrix symmetry and normalization are user-defined; HiMaLAYAS does not enforce them.

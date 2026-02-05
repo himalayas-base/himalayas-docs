@@ -23,7 +23,7 @@ Analysis.cluster(
 | `linkage_threshold` | `float` | `0.7` | Dendrogram cut threshold (depth). Lower gives more clusters, higher gives fewer. |
 | `min_cluster_size` | `int` | `1` | Merge small clusters upward until size is met. Values <= 1 disable. |
 
-## Quick Example
+## Example
 
 ```python
 analysis = Analysis(matrix, annotations).cluster(
@@ -36,5 +36,5 @@ analysis = Analysis(matrix, annotations).cluster(
 
 ## Notes
 
-- Any method or metric supported by SciPy `linkage` is valid.
+- Any method or metric supported by SciPy `linkage` is valid (see the [SciPy linkage docs](https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html)).
 - `min_cluster_size` preserves hierarchy by merging undersized clusters into their parent cluster.

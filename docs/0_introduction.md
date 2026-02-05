@@ -12,14 +12,14 @@ HiMaLAYAS is a general framework for post hoc enrichment-based annotation of hie
 
 ## Typical Use Cases
 
-- Yeast genetic interaction matrices (Costanzo et al., 2016) with GO Biological Process enrichment.
+- _Saccharomyces cerevisiae_ genetic interaction matrices (Costanzo _et al_., 2016) with GO Biological Process enrichment.
 - Expression similarity matrices with pathway enrichment.
 - Non-biological matrices such as recipe by ingredient similarity with country of origin enrichment.
 
-## The Minimal Object Graph
+## The Basic Object Graph
 
-- `Matrix`: validated, labeled numeric matrix used for clustering and plotting.
-- `Annotations`: term-to-label mapping aligned to the matrix label universe.
+- `Matrix`: labeled numeric matrix used for clustering and plotting.
+- `Annotations`: term-to-label mapping aligned to the matrix label background.
 - `Analysis`: orchestrates clustering, enrichment, and layout.
-- `Results`: stores enrichment output and attached context for plotting.
+- `Results`: stores enrichment output and context for plotting.
 - `Plotter`: builds layered figures.

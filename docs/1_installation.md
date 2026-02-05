@@ -24,9 +24,3 @@ pip install -e .
 import himalayas
 print(himalayas.__version__)
 ```
-
-## Optional Dependencies
-
-- `matplotlib` is required for plotting.
-- `scipy` is required for hierarchical clustering and enrichment.
-- `nltk` improves term summarization quality (optional, with fallback behavior).

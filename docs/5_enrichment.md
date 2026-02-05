@@ -19,7 +19,7 @@ Analysis.enrich(
 | `min_overlap` | `int` | `1` | Minimum overlap k to report. Increase to reduce weak hits. |
 | `background` | `Matrix | None` | `None` | Optional background universe. If provided, must contain all matrix labels. |
 
-## Quick Example
+## Example
 
 ```python
 analysis = (
@@ -34,13 +34,8 @@ analysis = (
 
 HiMaLAYAS uses Benjamini-Hochberg (BH) FDR across cluster-term tests.
 
-```python
-results = analysis.results
-results = results.with_qvalues()
-results_sig = results.filter("qval <= 0.05")
-```
+See [Results and Filtering](6_results.md) for examples of filtering on q-values.
 
 ## Notes
 
 - If no terms pass filtering, the results table is empty.
-- Use `background=` for zoom workflows to keep a consistent universe.

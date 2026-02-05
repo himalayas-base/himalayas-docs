@@ -10,7 +10,7 @@ Results.subset(cluster: int) -> Results
 Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
 ```
 
-## Quick Examples
+## Examples
 
 Filter to significant terms:
 
@@ -40,4 +40,4 @@ results = results.with_qvalues()
 - `n` cluster size
 - `N` background size
 - `pval` hypergeometric p-value
-- `qval` BH-FDR q-value (only present after `with_qvalues()` or `finalize(add_qvalues=True)`)
+- `qval` adjusted p-value used for significance filtering (if present)
