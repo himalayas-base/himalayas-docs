@@ -45,25 +45,25 @@ plot_dendrogram_condensed(
 | `sigbar_cmap` | `str / Colormap` | `"YlOrBr"` | Colormap for the significance bar. |
 | `sigbar_min_logp` | `float` | `2.0` | Minimum `-log10(p)` for scaling. |
 | `sigbar_max_logp` | `float` | `10.0` | Maximum `-log10(p)` for scaling. |
-| `sigbar_norm` | `Normalize` | `None` | Optional normalization; overrides min/max scaling. |
+| `sigbar_norm` | `Normalize | None` | `None` | Optional normalization; overrides min/max scaling. |
 | `sigbar_width` | `float` | `0.06` | Significance bar width (axes fraction). |
 | `sigbar_alpha` | `float` | `0.9` | Significance bar alpha. |
 | `font` | `str` | `"Helvetica"` | Label font family. |
 | `fontsize` | `float` | `9` | Label font size. |
-| `max_words` | `int` | `None` | Truncate labels to this word count. |
+| `max_words` | `int | None` | `None` | Truncate labels to this word count. |
 | `wrap_text` | `bool` | `True` | Wrap long labels. |
-| `wrap_width` | `int` | `None` | Characters per line when wrapping. |
+| `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
-| `omit_words` | `Sequence[str]` | `None` | Words to omit from label text. |
+| `omit_words` | `Sequence[str] | None` | `None` | Words to omit from label text. |
 | `label_fields` | `Sequence[str]` | `("label", "n", "p")` | Label fields to include. |
-| `label_overrides` | `dict[int, str]` | `None` | Mapping `cluster_id -> label` for custom names. |
+| `label_overrides` | `dict[int, str] | None` | `None` | Mapping `cluster_id -> label` for custom names. |
 | `label_color` | `str` | `"black"` | Label text color. |
 | `label_alpha` | `float` | `1.0` | Label text alpha. |
 | `label_fontweight` | `str` | `"normal"` | Label font weight. |
 | `dendrogram_color` | `str` | `"black"` | Dendrogram line color. |
 | `dendrogram_lw` | `float` | `1.0` | Dendrogram line width. |
 | `label_left_pad` | `float` | `0.02` | Left padding for labels (axes fraction). |
-| `background_color` | `str` | `None` | Figure and axes background color. |
+| `background_color` | `str | None` | `None` | Figure and axes background color. |
 
 ## Example
 

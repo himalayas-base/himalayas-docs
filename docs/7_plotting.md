@@ -80,25 +80,25 @@ Plotter.plot_matrix(
     outer_color: str = "black",
     gutter_color: str | None = None,
     figsize: tuple[float, float] | None = None,
-    subplots_adjust: dict | None = None,
+    subplots_adjust: dict[str, float] | None = None,
 ) -> Plotter
 ```
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `cmap` | `str` | `"viridis"` | Colormap name. |
-| `center` | `float` | `None` | Center value for diverging normalization. |
-| `vmin` | `float` | `None` | Minimum value override. |
-| `vmax` | `float` | `None` | Maximum value override. |
+| `center` | `float | None` | `None` | Center value for diverging normalization. |
+| `vmin` | `float | None` | `None` | Minimum value override. |
+| `vmax` | `float | None` | `None` | Maximum value override. |
 | `show_minor_rows` | `bool` | `True` | Draw thin row gridlines. |
 | `minor_row_step` | `int` | `1` | Spacing for minor row lines. |
 | `minor_row_lw` | `float` | `0.15` | Minor row line width. |
 | `minor_row_alpha` | `float` | `0.15` | Minor row line alpha. |
 | `outer_lw` | `float` | `1.2` | Outer border width. |
 | `outer_color` | `str` | `"black"` | Outer border color. |
-| `gutter_color` | `str` | `None` | Mask color for edge artifacts in the matrix panel. |
-| `figsize` | `tuple[float, float]` | `None` | Override figure size (defaults to `(9, 7)`). |
-| `subplots_adjust` | `dict` | `None` | Figure margins (defaults to `left=0.15`, `right=0.70`, `bottom=0.05`, `top=0.95`). |
+| `gutter_color` | `str | None` | `None` | Mask color for edge artifacts in the matrix panel. |
+| `figsize` | `tuple[float, float] | None` | `None` | Override figure size (defaults to `(9, 7)`). |
+| `subplots_adjust` | `dict[str, float] | None` | `None` | Figure margins (defaults to `left=0.15`, `right=0.70`, `bottom=0.05`, `top=0.95`). |
 
 Use `center` for diverging color scales and `vmin`/`vmax` for explicit limits.
 
@@ -107,21 +107,24 @@ Use `center` for diverging color scales and `vmin`/`vmax` for explicit limits.
 ```python
 Plotter.plot_dendrogram(
     *,
-    axes: list[float] | None = None,
+    axes: Sequence[float] | None = None,
     color: str | None = None,
     linewidth: float | None = None,
-    data_pad: float = 0.0,
+    data_pad: float = 0.25,
 ) -> Plotter
 ```
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `axes` | `list[float]` | `None` | Dendrogram panel box (defaults to `[0.06, 0.05, 0.09, 0.90]`). |
-| `color` | `str` | `None` | Dendrogram line color (defaults to `"#888888"`). |
-| `linewidth` | `float` | `None` | Dendrogram line width (defaults to `1.0`). |
-| `data_pad` | `float` | `0.0` | Expands y-limits to avoid top/bottom clipping. |
+| `axes` | `Sequence[float] | None` | `None` | Dendrogram panel box (defaults to `[0.06, 0.05, 0.09, 0.90]`). |
+| `color` | `str | None` | `None` | Dendrogram line color (defaults to `"#888888"`). |
+| `linewidth` | `float | None` | `None` | Dendrogram line width (defaults to `1.0`). |
+| `data_pad` | `float` | `0.25` | Expands y-limits to avoid top/bottom clipping. |
 
 ### `plot_cluster_labels`
+
+The implementation signature is `Plotter.plot_cluster_labels(cluster_labels, **kwargs)`.
+The list below documents the supported keyword arguments and effective defaults.
 
 ```python
 Plotter.plot_cluster_labels(
@@ -136,8 +139,8 @@ Plotter.plot_cluster_labels(
     fontsize: float | None = None,
     color: str | None = None,
     alpha: float | None = None,
-    axes: list[float] | None = None,
-    overrides: dict | None = None,
+    axes: Sequence[float] | None = None,
+    overrides: dict[int, str | dict[str, Any]] | None = None,
     skip_unlabeled: bool = False,
     placeholder_text: str | None = None,
     placeholder_color: str | None = None,
@@ -161,38 +164,45 @@ Plotter.plot_cluster_labels(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `cluster_labels` | `pd.DataFrame` | required | Must include `cluster` and `label`; optional `pval`, `n`. |
-| `label_fields` | `tuple[str, ...]` | `("label", "n", "p")` | Fields shown in each label. |
-| `max_words` | `int` | `None` | Truncate labels to this word count. |
-| `wrap_text` | `bool` | `True` | Wrap long labels. |
-| `wrap_width` | `int` | `None` | Characters per line when wrapping. |
+| `cluster_labels` | `pd.DataFrame` | required | Must include `cluster` and `label`; optional `pval`. |
+| `label_fields` | `tuple[str, ...]` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`. |
+| `max_words` | `int | None` | `None` | Truncate labels to this word count. |
+| `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
+| `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
 | `font` | `str` | `"Helvetica"` | Label font family. |
-| `fontsize` | `float` | `9` | Label font size. |
-| `color` | `str` | `"black"` | Label text color. |
-| `alpha` | `float` | `0.9` | Label text alpha (`0.6` for placeholders). |
-| `axes` | `list[float]` | `None` | Label panel box (defaults to `[0.70, 0.05, 0.29, 0.90]`). |
-| `overrides` | `dict` | `None` | Per-cluster overrides: `label`, `pval`, `hide_stats`. |
+| `fontsize` | `float | None` | `9` | Label font size. |
+| `color` | `str | None` | `"black"` | Label text color. |
+| `alpha` | `float | None` | `0.9` | Label text alpha (`0.6` for placeholders). |
+| `axes` | `Sequence[float] | None` | `None` | Label panel box (defaults to `[0.70, 0.05, 0.29, 0.90]`). |
+| `overrides` | `dict[int, str | dict[str, Any]] | None` | `None` | Per-cluster overrides. Values may be a label string, or a dict with `label` (required), optional `pval`, and optional `hide_stats`. |
 | `skip_unlabeled` | `bool` | `False` | Skip clusters with no label. |
-| `placeholder_text` | `str` | `None` | Placeholder label (defaults to `"\\u2014"`). |
-| `placeholder_color` | `str` | `None` | Placeholder color (defaults to `"#b22222"`). |
-| `label_text_pad` | `float` | `None` | Padding between tracks and text (defaults to `0.01`). |
-| `label_x` | `float` | `None` | Left offset for label tracks (defaults to `0.02`). |
-| `label_gutter_width` | `float` | `None` | Gutter width between matrix and labels (defaults to `0.01`). |
-| `label_gutter_color` | `str` | `None` | Gutter color (defaults to `"white"`). |
-| `label_sep_color` | `str` | `None` | Separator line color (defaults to `"gray"`). |
-| `label_sep_lw` | `float` | `None` | Separator line width (defaults to `0.5`). |
-| `label_sep_alpha` | `float` | `None` | Separator line alpha (defaults to `0.3`). |
-| `label_sep_xmin` | `float` | `None` | Separator start x position (auto if `None`). |
-| `label_sep_xmax` | `float` | `None` | Separator end x position (auto if `None`). |
-| `boundary_color` | `str` | `None` | Cluster boundary color in matrix (defaults to `"black"`). |
-| `boundary_lw` | `float` | `None` | Cluster boundary line width in matrix (defaults to `0.5`). |
-| `boundary_alpha` | `float` | `None` | Cluster boundary alpha in matrix (defaults to `0.6`). |
-| `dendro_boundary_color` | `str` | `None` | Cluster boundary color in dendrogram (defaults to `"white"`). |
-| `dendro_boundary_lw` | `float` | `None` | Dendrogram boundary line width (defaults to `0.5`). |
-| `dendro_boundary_alpha` | `float` | `None` | Dendrogram boundary alpha (defaults to `0.3`). |
+| `placeholder_text` | `str | None` | `None` | Placeholder label (defaults to `"\\u2014"`). |
+| `placeholder_color` | `str | None` | `None` | Placeholder color (defaults to `"#b22222"`). |
+| `label_text_pad` | `float | None` | `None` | Padding between tracks and text (defaults to `0.01`). |
+| `label_x` | `float | None` | `None` | Left offset for label tracks (defaults to `0.02`). |
+| `label_gutter_width` | `float | None` | `None` | Gutter width between matrix and labels (defaults to `0.01`). |
+| `label_gutter_color` | `str | None` | `None` | Gutter color (defaults to `"white"`). |
+| `label_sep_color` | `str | None` | `None` | Separator line color (defaults to `"gray"`). |
+| `label_sep_lw` | `float | None` | `None` | Separator line width (defaults to `0.5`). |
+| `label_sep_alpha` | `float | None` | `None` | Separator line alpha (defaults to `0.3`). |
+| `label_sep_xmin` | `float | None` | `None` | Separator start x position (auto if `None`). |
+| `label_sep_xmax` | `float | None` | `None` | Separator end x position (auto if `None`). |
+| `boundary_color` | `str | None` | `None` | Cluster boundary color in matrix (defaults to `"black"`). |
+| `boundary_lw` | `float | None` | `None` | Cluster boundary line width in matrix (defaults to `0.5`). |
+| `boundary_alpha` | `float | None` | `None` | Cluster boundary alpha in matrix (defaults to `0.6`). |
+| `dendro_boundary_color` | `str | None` | `None` | Cluster boundary color in dendrogram (defaults to `"white"`). |
+| `dendro_boundary_lw` | `float | None` | `None` | Dendrogram boundary line width (defaults to `0.5`). |
+| `dendro_boundary_alpha` | `float | None` | `None` | Dendrogram boundary alpha (defaults to `0.3`). |
 
 Use `overrides` to edit or hide labels per cluster and the `label_*` options to tune gutter and spacing.
+
+Behavior notes:
+
+- `n` is derived from cluster sizes in the attached layout (not from `cluster_labels` input columns).
+- `label_fields` values outside `{ "label", "n", "p" }` raise `ValueError`.
+- Dict-style `overrides` entries require a non-empty `label`.
+- If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 
 ## Label Panel Tracks
 
@@ -201,13 +211,13 @@ Use `overrides` to edit or hide labels per cluster and the `label_*` options to 
 ```python
 Plotter.plot_cluster_bar(
     name: str,
-    values: dict | pd.Series | pd.DataFrame,
+    values: dict[int, float | None] | pd.Series | pd.DataFrame,
     *,
     kind: str = "pvalue",
     width: float | None = None,
     left_pad: float = 0.0,
     right_pad: float = 0.0,
-    cmap: str = "YlOrBr",
+    cmap: str | Colormap = "YlOrBr",
     norm: Normalize | None = None,
     alpha: float = 0.9,
     enabled: bool = True,
@@ -220,16 +230,16 @@ Plotter.plot_cluster_bar(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `name` | `str` | required | Track name used for ordering. |
-| `values` | `dict` / `pd.Series` / `pd.DataFrame` | required | Cluster values; DataFrame uses `cluster_col`/`pval_col`. |
+| `values` | `dict[int, float | None]` / `pd.Series` / `pd.DataFrame` | required | Cluster values; DataFrame uses `cluster_col`/`pval_col`. |
 | `kind` | `str` | `"pvalue"` | Only `"pvalue"` is supported. |
-| `width` | `float` | `None` | Track width (defaults to `0.015`). |
+| `width` | `float | None` | `None` | Track width (defaults to `0.015`). |
 | `left_pad` | `float` | `0.0` | Left padding in the label panel. |
 | `right_pad` | `float` | `0.0` | Right padding in the label panel. |
-| `cmap` | `str` | `"YlOrBr"` | Colormap name. |
-| `norm` | `Normalize` | `None` | Normalization for `-log10(p)`. |
+| `cmap` | `str | Colormap` | `"YlOrBr"` | Colormap name or instance. |
+| `norm` | `Normalize | None` | `None` | Normalization for `-log10(p)`. |
 | `alpha` | `float` | `0.9` | Bar alpha. |
 | `enabled` | `bool` | `True` | Register the track. |
-| `title` | `str` | `None` | Optional track title. |
+| `title` | `str | None` | `None` | Optional track title. |
 | `cluster_col` | `str` | `"cluster"` | Cluster id column name for DataFrame input. |
 | `pval_col` | `str` | `"pval"` | Value column name for DataFrame input. |
 
@@ -240,7 +250,7 @@ Plotter.plot_gene_bar(
     values: Mapping[Hashable, Any],
     *,
     mode: str = "categorical",
-    colors: dict | None = None,
+    colors: dict[Any, Any] | None = None,
     cmap: str = "viridis",
     vmin: float | None = None,
     vmax: float | None = None,
@@ -258,16 +268,16 @@ Plotter.plot_gene_bar(
 | --- | --- | --- | --- |
 | `values` | `Mapping[Hashable, Any]` | required | Row label to category or numeric value. |
 | `mode` | `str` | `"categorical"` | `"categorical"` or `"continuous"`. |
-| `colors` | `dict` | `None` | Category to color mapping for categorical mode. |
+| `colors` | `dict[Any, Any] | None` | `None` | Category to color mapping for categorical mode. |
 | `cmap` | `str` | `"viridis"` | Colormap for continuous mode. |
-| `vmin` | `float` | `None` | Minimum for continuous mode normalization. |
-| `vmax` | `float` | `None` | Maximum for continuous mode normalization. |
-| `missing_color` | `str` | `None` | Missing-value color (defaults to `"#eeeeee"`). |
+| `vmin` | `float | None` | `None` | Minimum for continuous mode normalization. |
+| `vmax` | `float | None` | `None` | Maximum for continuous mode normalization. |
+| `missing_color` | `str | None` | `None` | Missing-value color (defaults to `"#eeeeee"`). |
 | `left_pad` | `float` | `0.0` | Left padding in the label panel. |
-| `width` | `float` | `None` | Track width (defaults to `0.012`). |
+| `width` | `float | None` | `None` | Track width (defaults to `0.012`). |
 | `right_pad` | `float` | `0.0` | Right padding in the label panel. |
 | `name` | `str` | `"gene_bar"` | Track name used for ordering. |
-| `title` | `str` | `None` | Optional track title. |
+| `title` | `str | None` | `None` | Optional track title. |
 | `enabled` | `bool` | `True` | Register the track. |
 
 ### Track Order
@@ -278,7 +288,7 @@ Plotter.set_label_track_order(order: Sequence[str] | None = None) -> Plotter
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `order` | `Sequence[str]` | `None` | Explicit track order. Use `None` for default order. |
+| `order` | `Sequence[str] | None` | `None` | Explicit track order. Use `None` for default order. |
 
 ### Track Titles
 
@@ -298,7 +308,7 @@ Plotter.plot_bar_labels(
 | --- | --- | --- | --- |
 | `font` | `str` | `"Helvetica"` | Font family for track titles. |
 | `fontsize` | `float` | `10` | Font size for track titles. |
-| `color` | `str` | `"black"` | Text color. |
+| `color` | `str | None` | `"black"` | Text color. |
 | `alpha` | `float` | `1.0` | Text alpha. |
 | `pad` | `float` | `2` | Padding in points below the tracks. |
 | `rotation` | `float` | `0` | Text rotation in degrees. |
@@ -320,9 +330,9 @@ Plotter.plot_title(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `title` | `str` | required | Title text. |
-| `fontsize` | `float` | `14` | Title font size. |
-| `pad` | `float` | `15` | Padding above the plot. |
-| `color` | `str` | `"black"` | Title color. |
+| `fontsize` | `float | None` | `14` | Title font size. |
+| `pad` | `float | None` | `15` | Padding above the plot. |
+| `color` | `str | None` | `"black"` | Title color. |
 
 ### `plot_matrix_axis_labels`
 
@@ -348,9 +358,9 @@ Plotter.plot_matrix_axis_labels(
 | `fontsize` | `float` | `12` | Axis label font size. |
 | `fontweight` | `str` | `"normal"` | Axis label font weight. |
 | `xlabel_pad` | `float` | `8` | Padding for the x-axis label. |
-| `ylabel_pad` | `float` | `None` | Padding between matrix and y-axis label (defaults to `0.015`). |
-| `font` | `str` | `None` | Font family for axis labels. |
-| `color` | `str` | `"black"` | Axis label color. |
+| `ylabel_pad` | `float | None` | `None` | Padding between matrix and y-axis label (defaults to `0.015`). |
+| `font` | `str | None` | `None` | Font family for axis labels. |
+| `color` | `str | None` | `"black"` | Axis label color. |
 | `alpha` | `float` | `1.0` | Axis label alpha. |
 
 ### `plot_row_ticks`
@@ -367,10 +377,10 @@ Plotter.plot_row_ticks(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `labels` | `Sequence[str]` | `None` | Row labels; defaults to matrix index. |
+| `labels` | `Sequence[str] | None` | `None` | Row labels; defaults to matrix index. |
 | `position` | `str` | `"right"` | Tick side: `"left"` or `"right"`. |
 | `fontsize` | `float` | `9` | Tick label font size. |
-| `max_labels` | `int` | `None` | Show at most this many labels. |
+| `max_labels` | `int | None` | `None` | Show at most this many labels. |
 
 ### `plot_col_ticks`
 
@@ -387,11 +397,11 @@ Plotter.plot_col_ticks(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `labels` | `Sequence[str] | `None` | Column labels; defaults to matrix columns. |
+| `labels` | `Sequence[str] | None` | `None` | Column labels; defaults to matrix columns. |
 | `position` | `str` | `"top"` | Tick side: `"top"` or `"bottom"`. |
 | `fontsize` | `float` | `9` | Tick label font size. |
 | `rotation` | `float` | `90` | Tick label rotation in degrees. |
-| `max_labels` | `int` | `None` | Show at most this many labels. |
+| `max_labels` | `int | None` | `None` | Show at most this many labels. |
 
 ## Colorbars
 
@@ -401,8 +411,8 @@ Plotter.plot_col_ticks(
 Plotter.add_colorbar(
     *,
     name: str,
-    cmap,
-    norm,
+    cmap: str | Colormap,
+    norm: Normalize,
     label: str | None = None,
     ticks: Sequence[float] | None = None,
     color: str | None = None,
@@ -414,9 +424,9 @@ Plotter.add_colorbar(
 | `name` | `str` | required | Colorbar name. |
 | `cmap` | `str` / `Colormap` | required | Colormap name or instance. |
 | `norm` | `Normalize` | required | Matplotlib normalization. |
-| `label` | `str` | `None` | Colorbar label. |
-| `ticks` | `Sequence[float]` | `None` | Tick locations. |
-| `color` | `str` | `None` | Tick and label color. |
+| `label` | `str | None` | `None` | Colorbar label. |
+| `ticks` | `Sequence[float] | None` | `None` | Tick locations. |
+| `color` | `str | None` | `None` | Tick and label color. |
 
 ### `plot_colorbars`
 
@@ -441,18 +451,18 @@ Plotter.plot_colorbars(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `nrows` | `int` | `None` | Grid rows; inferred if `None`. |
-| `ncols` | `int` | `None` | Grid columns; inferred if `None`. |
+| `nrows` | `int | None` | `None` | Grid rows; inferred if `None`. |
+| `ncols` | `int | None` | `None` | Grid columns; inferred if `None`. |
 | `height` | `float` | `0.05` | Total colorbar strip height. |
 | `hpad` | `float` | `0.01` | Horizontal spacing between colorbars. |
 | `vpad` | `float` | `0.01` | Vertical spacing between colorbars. |
 | `gap` | `float` | `0.02` | Gap between matrix and strip. |
-| `border_color` | `str` | `None` | Border color (defaults to `"black"`). |
+| `border_color` | `str | None` | `None` | Border color (defaults to `"black"`). |
 | `border_width` | `float` | `0.8` | Border line width. |
 | `border_alpha` | `float` | `1.0` | Border alpha. |
-| `fontsize` | `float` | `None` | Tick and label font size (defaults to `9`). |
-| `font` | `str` | `None` | Tick and label font family. |
-| `color` | `str` | `None` | Tick and label color (defaults to `"black"`). |
+| `fontsize` | `float | None` | `None` | Tick and label font size (defaults to `9`). |
+| `font` | `str | None` | `None` | Tick and label font family. |
+| `color` | `str | None` | `None` | Tick and label color (defaults to `"black"`). |
 | `label_position` | `str` | `"below"` | Label placement: `"below"` or `"above"`. |
 
 ## Legends
@@ -462,7 +472,7 @@ Plotter.plot_colorbars(
 ```python
 Plotter.plot_sigbar_legend(
     *,
-    axes: list[float] = [0.92, 0.20, 0.015, 0.25],
+    axes: Sequence[float] = [0.92, 0.20, 0.015, 0.25],
     sigbar_cmap: str | None = None,
     norm: Normalize | None = None,
     sigbar_min_logp: float | None = None,
@@ -472,11 +482,11 @@ Plotter.plot_sigbar_legend(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `axes` | `list[float]` | `[0.92, 0.20, 0.015, 0.25]` | Legend box `[x0, y0, w, h]`. |
-| `sigbar_cmap` | `str` | `None` | Colormap for the legend (defaults to `"YlOrBr"`). |
-| `norm` | `Normalize` | `None` | Normalization for `-log10(p)`. |
-| `sigbar_min_logp` | `float` | `None` | Lower bound for legend scale (defaults to `2.0`). |
-| `sigbar_max_logp` | `float` | `None` | Upper bound for legend scale (defaults to `10.0`). |
+| `axes` | `Sequence[float]` | `[0.92, 0.20, 0.015, 0.25]` | Legend box `[x0, y0, w, h]`. |
+| `sigbar_cmap` | `str | None` | `None` | Colormap for the legend (defaults to `"YlOrBr"`). |
+| `norm` | `Normalize | None` | `None` | Normalization for `-log10(p)`. |
+| `sigbar_min_logp` | `float | None` | `None` | Lower bound for legend scale (defaults to `2.0`). |
+| `sigbar_max_logp` | `float | None` | `None` | Upper bound for legend scale (defaults to `10.0`). |
 
 ## Rendering
 
