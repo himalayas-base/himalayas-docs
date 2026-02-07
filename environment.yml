@@ -8,4 +8,4 @@ dependencies:
   - matplotlib
   - pip
   - pip:
-      - git+https://github.com/himalayas-base/himalayas.git
+      - himalayas
