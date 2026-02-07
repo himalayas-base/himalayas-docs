@@ -17,7 +17,7 @@ Analysis.enrich(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `min_overlap` | `int` | `1` | Minimum overlap k to report. Increase to reduce weak hits. |
-| `background` | `Matrix | None` | `None` | Optional background universe. If provided, must contain all matrix labels. |
+| `background` | `Matrix | `None` | Optional background universe. If provided, must contain all matrix labels. |
 
 ## Example
 

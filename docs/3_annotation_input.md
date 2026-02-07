@@ -5,14 +5,14 @@ Annotations map categorical terms to the labels present in your matrix. HiMaLAYA
 ## Signature
 
 ```python
-Annotations(term_to_labels: Dict[str, Iterable[str]], matrix: Matrix)
+Annotations(term_to_labels: dict[str, Iterable[str]], matrix: Matrix)
 ```
 
 ## Parameters
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `term_to_labels` | `Dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, recipes, proteins). |
+| `term_to_labels` | `dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, recipes, proteins). |
 | `matrix` | `Matrix` | required | Provides the label universe. |
 
 ## Example (GO Biological Process)
