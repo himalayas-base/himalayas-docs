@@ -2,17 +2,16 @@
 
 This page collects two advanced patterns used in the example notebooks.
 
-## Cluster Specific Zoom Analysis
+## Cluster-Specific Zoom Analysis
 
-A common pattern is to zoom into a single cluster, re-run clustering and enrichment, and then plot a higher resolution view. The key steps are:
+A common pattern is to zoom into a single cluster, re-run clustering and enrichment, and then plot a higher-resolution view. The key steps are:
 
 1. Subset the results to a single cluster.
 2. Rebuild annotations for the subset.
-3. Re-run `Analysis` with a background matrix.
+3. Cut the subset dendrogram at a lower depth.
+4. Re-run enrichment with a background (parent) matrix.
 
-To explore depth directly, repeat the analysis at a few dendrogram cut thresholds and compare the enriched labels that emerge.
-
-For a cluster-level summary of either the full analysis or a zoomed result, see [Condensed Dendrogram](8_condensed_dendrogram.md).
+Repeat the analysis at different dendrogram depths to explore depth-dependent enrichment.
 
 ```python
 def run_zoom_analysis(
@@ -25,11 +24,10 @@ def run_zoom_analysis(
     min_overlap=2,
     qval_cutoff=0.05,
 ):
+    """Recluster a single cluster, re-run enrichment, and return zoomed results."""
     zoom_view = results.subset(cluster=cluster_id)
     zoom_matrix = zoom_view.matrix
-
     zoom_annotations = Annotations(go_bp, zoom_matrix)
-
     zoom_analysis = (
         Analysis(zoom_matrix, zoom_annotations)
         .cluster(
@@ -41,7 +39,6 @@ def run_zoom_analysis(
         .enrich(min_overlap=min_overlap, background=results.matrix)
         .finalize(col_cluster=True, add_qvalues=True)
     )
-
     zoom_results = zoom_analysis.results
     zoom_results_sig = zoom_results.filter(f"qval <= {qval_cutoff}")
     zoom_cluster_labels = summarize_clusters(
@@ -51,18 +48,57 @@ def run_zoom_analysis(
     return zoom_matrix, zoom_results, zoom_results_sig, zoom_cluster_labels
 ```
 
+**Why `background=results.matrix`?** It keeps the enrichment universe fixed so zoomed p-values remain comparable to the full analysis.
+
+### Example
+
+Choose a cluster and a tighter cut, then run the zoom:
+
+```python
+example_cluster = int(results.clusters.unique_clusters[0])
+zoom_threshold = 6
+
+zoom_matrix, zoom_results, zoom_results_sig, zoom_cluster_labels = run_zoom_analysis(
+    results=results,
+    cluster_id=example_cluster,
+    go_bp=go_bp,
+    linkage_threshold=zoom_threshold,
+)
+```
+
+Then plot the zoomed matrix with the same `Plotter` pipeline:
+
+```python
+plotter = (
+    Plotter(zoom_results)
+    .plot_dendrogram()
+    .plot_matrix(cmap="RdBu_r", center=0)
+    .plot_cluster_labels(zoom_cluster_labels)
+)
+
+plotter.show()
+```
+
+For a cluster-level summary of the zoomed result, see [Condensed Dendrogram](8_condensed_dendrogram.md).
+
 ## Non-Biological Example (Recipes)
 
-HiMaLAYAS is domain-agnostic. The recipe example builds an ingredient by recipe matrix and annotates clusters by country of origin (worldwide recipe dataset).
+HiMaLAYAS is domain-agnostic. The recipe example builds an ingredient-by-recipe matrix and annotates clusters by country of origin (worldwide recipe dataset).
 
 Key steps:
 
 - Clean and canonicalize ingredient tokens.
 - Build a sparse binary matrix.
-- Filter low frequency ingredients and very small recipes.
+- Filter low-frequency ingredients and very small recipes.
 - Map countries to recipe IDs and run enrichment.
 
 ```python
+country_to_recipes = {
+    "India": ["r_001", "r_003"],
+    "Nigeria": ["r_002"],
+    "Mexico": ["r_004", "r_005"],
+}
+
 matrix = Matrix(ingredient_matrix)
 annotations = Annotations(country_to_recipes, matrix)
 
