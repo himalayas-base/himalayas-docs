@@ -41,6 +41,9 @@ def run_zoom_analysis(
     )
     zoom_results = zoom_analysis.results
     zoom_results_sig = zoom_results.filter(f"qval <= {qval_cutoff}")
+    # label_mode options:
+    # - "top_term": one row per cluster (smallest p-value), prefer term_name then term.
+    # - "compressed": summarize multiple enriched rows into one weighted label.
     zoom_cluster_labels = summarize_clusters(
         zoom_results_sig.df,
         label_mode="top_term",
@@ -116,5 +119,8 @@ analysis = (
 
 results = analysis.results
 results_sig = results.filter("qval <= 0.05")
+# label_mode options:
+# - "top_term": one row per cluster (smallest p-value), prefer term_name then term.
+# - "compressed": summarize multiple enriched rows into one weighted label.
 cluster_labels = summarize_clusters(results_sig.df, label_mode="top_term")
 ```

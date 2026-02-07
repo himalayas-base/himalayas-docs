@@ -5,14 +5,59 @@
 ## Common Methods
 
 ```python
-Results.filter(expr: str, **kwargs) -> Results
+Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
+Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
+Results.cluster_layout(*, strict: bool = True) -> ClusterLayout
+Results.cluster_spans(*, strict: bool = True) -> list[tuple[int, int, int]]
+```
+
+## `filter`
+
+```python
+Results.filter(expr: str, **kwargs: Any) -> Results
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `expr` | `str` | required | `pandas.DataFrame.query` expression applied to `results.df`. |
+| `**kwargs` | `Any` | `{}` | Additional keyword arguments forwarded to `DataFrame.query`. |
+
+## `subset`
+
+```python
+Results.subset(cluster: int) -> Results
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `cluster` | `int` | required | Cluster id to subset. Returns a new `Results` view with a subset matrix attached. |
+
+## `with_qvalues`
+
+```python
 Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
 ```
 
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `pval_col` | `str` | `"pval"` | Column containing p-values in `results.df`. |
+| `qval_col` | `str` | `"qval"` | Name for the added BH-adjusted q-value column. |
+
+## `cluster_layout` and `cluster_spans`
+
+```python
+Results.cluster_layout(*, strict: bool = True) -> ClusterLayout
+Results.cluster_spans(*, strict: bool = True) -> list[tuple[int, int, int]]
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `strict` | `bool` | `True` | Requires contiguous cluster spans in the attached layout. |
+
 ## Examples
 
-Filter to significant terms:
+Filter to significant annotation terms:
 
 ```python
 results_sig = results.filter("qval <= 0.05")

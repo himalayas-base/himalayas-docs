@@ -19,7 +19,7 @@ Use this documentation to get set up, run an analysis, and build visualizations.
 2. Load term-to-label annotations into `Annotations`.
 3. Run `Analysis.cluster()` and `Analysis.enrich()`.
 4. Call `Analysis.finalize()` to attach layout and optional q-values (Benjamini-Hochberg FDR-adjusted p-values).
-5. Summarize clusters and plot with `Plotter`.
+5. Plot with `Plotter` and summarize clusters.
 
 ## Use Cases
 

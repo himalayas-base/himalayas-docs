@@ -1,47 +1,31 @@
 # API Reference
 
-This page is a concise reference to the public API used in the documentation and notebooks.
+This page is a compact map of the public API. Detailed behavior and examples live in the topic pages.
 
-## Core
+## Core Objects
 
-### Matrix
+- `himalayas.Matrix(df: pd.DataFrame, *, axis: str = "rows")`
+  - Numeric matrix container with validated labels.
+  - See: [Matrix Input](2_matrix_input.md)
 
-```python
-Matrix(df: pd.DataFrame, *, axis: str = "rows")
-```
+- `himalayas.Annotations(term_to_labels: dict[str, Iterable[str]], matrix: Matrix)`
+  - Annotation mapping aligned to matrix labels.
+  - See: [Annotation Input](3_annotation_input.md)
 
-Parameters:
+- `himalayas.Analysis(matrix: Matrix, annotations: Annotations)`
+  - Pipeline methods: `.cluster(linkage_method: str = "ward", linkage_metric: str = "euclidean", linkage_threshold: float = 0.7, *, min_cluster_size: int = 1)`, `.enrich(*, min_overlap: int = 1, background: Matrix | None = None)`, `.finalize(*, add_qvalues: bool = True, col_cluster: bool = False, **kwargs)`.
+  - See: [Clustering and Layout](4_clustering.md), [Enrichment and FDR](5_enrichment.md)
 
-- `df`: numeric `pd.DataFrame` with unique row labels.
-- `axis`: `"rows"` by default; reserved for column-labeled workflows.
+- `himalayas.Results(df: pd.DataFrame, method: str, ...)`
+  - Result utilities: `.filter(expr: str, **kwargs: Any) -> Results`, `.subset(cluster: int) -> Results`, `.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results`, `.cluster_layout(*, strict: bool = True) -> ClusterLayout`, `.cluster_spans(*, strict: bool = True) -> list[tuple[int, int, int]]`.
+  - See: [Results and Filtering](6_results.md)
 
-- `himalayas.Matrix(df, axis="rows")`
-  - Validates numeric matrix and unique row labels.
-- `himalayas.Annotations(term_to_labels, matrix)`
-  - Filters terms to labels present in `matrix`.
-- `himalayas.Analysis(matrix, annotations)`
-  - `.cluster(...)` hierarchical clustering.
-  - `.enrich(...)` hypergeometric enrichment.
-  - `.finalize(...)` compute layout and optional q values.
-- `himalayas.Results(df, method, ...)`
-  - `.filter(expr)` filter rows by pandas query expression.
-  - `.subset(cluster)` subset to a cluster and return a new view.
-  - `.with_qvalues(pval_col="pval", qval_col="qval")` add BH FDR.
-  - `.cluster_layout()` and `.cluster_spans()`
+## Plotting API
 
-## Plotting
+- `himalayas.plot.Plotter(results: Results)`
+  - Main layered plotting interface.
+  - See: [Plotting](7_plotting.md)
 
-- `himalayas.plot.Plotter(results)`
-  - `.plot_matrix(...)`, `.plot_dendrogram(...)`, `.plot_cluster_labels(...)`
-  - `.plot_cluster_bar(...)`, `.plot_gene_bar(...)`
-  - `.add_colorbar(...)`, `.plot_colorbars(...)`
-  - `.set_label_track_order(...)`, `.set_background(...)`
-  - `.show()` and `.save(path)`
-
-- `himalayas.plot.plot_dendrogram_condensed(results, cluster_labels, ...)`
-  - Condensed dendrogram view aligned to cluster labels.
-
-## Text Helpers
-
-- `himalayas.text.summarize_terms(words, weights=None, max_words=6)`
-- `himalayas.text.summarize_clusters(df, label_mode="compressed", label_col="term_name")`
+- `himalayas.plot.plot_dendrogram_condensed(results: Results, cluster_labels: pd.DataFrame, ...)`
+  - Condensed cluster-level dendrogram view.
+  - See: [Condensed Dendrogram](8_condensed_dendrogram.md)
