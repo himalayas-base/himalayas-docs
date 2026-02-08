@@ -13,7 +13,8 @@ Use this documentation to get set up, run an analysis, and build visualizations.
 
 ## Notebook Walkthrough
 
-- [Quickstart (HTML)](quickstart.html)
+- [Quickstart Notebook (HTML)](quickstart.html)
+- [Run Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/HEAD?filepath=notebooks/quickstart.ipynb)
 
 ## Core Workflow
 

@@ -1,5 +1,11 @@
 # FAQ and Troubleshooting
 
+## Where can I find a full end-to-end example?
+
+See [Quickstart Notebook (HTML)](quickstart.html) for a full workflow from input loading through plotting.
+<br>
+Run [Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/HEAD?filepath=notebooks/quickstart.ipynb) to run this workflow in the browser without local setup.
+
 ## I get "Matrix labels must be unique"
 
 Your DataFrame index has duplicate labels. Ensure the row labels are unique before creating a `Matrix`.
