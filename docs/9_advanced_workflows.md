@@ -41,8 +41,7 @@ def run_zoom_analysis(
     )
     zoom_results = zoom_analysis.results
     zoom_results_sig = zoom_results.filter(f"qval <= {qval_cutoff}")
-    zoom_cluster_labels = zoom_results_sig.cluster_labels(label_mode="top_term")
-    return zoom_matrix, zoom_results, zoom_results_sig, zoom_cluster_labels
+    return zoom_matrix, zoom_results, zoom_results_sig
 ```
 
 **Why `background=results.matrix`?** It keeps the enrichment universe fixed so zoomed p-values remain comparable to the full analysis.
@@ -55,7 +54,7 @@ Choose a cluster and a tighter cut, then run the zoom:
 example_cluster = int(results.clusters.unique_clusters[0])
 zoom_threshold = 6
 
-zoom_matrix, zoom_results, zoom_results_sig, zoom_cluster_labels = run_zoom_analysis(
+zoom_matrix, zoom_results, zoom_results_sig = run_zoom_analysis(
     results=results,
     cluster_id=example_cluster,
     go_bp=go_bp,
