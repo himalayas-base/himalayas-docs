@@ -1,6 +1,6 @@
 # Enrichment and FDR
 
-HiMaLAYAS performs one-sided hypergeometric enrichment for each cluster and categorical term. P-values are computed as P(X >= k), and multiple testing is controlled with Benjamini-Hochberg FDR.
+HiMaLAYAS performs one-sided hypergeometric enrichment for each cluster and categorical term. Multiple testing is controlled with Benjamini-Hochberg FDR.
 
 ## Signature
 
