@@ -93,7 +93,7 @@ plot_dendrogram_condensed(
 
 ## Example (Zoom Results)
 
-After a zoom analysis, you can summarize the zoomed hierarchy with the same plotter:
+After a zoom analysis, you can summarize the zoomed hierarchy with the same function:
 
 ```python
 plot_dendrogram_condensed(

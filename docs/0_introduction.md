@@ -22,7 +22,7 @@ for GO BP enrichment.
 
 - _Saccharomyces cerevisiae_ genetic interaction matrices (Costanzo _et al_., 2016) with GO Biological Process enrichment.
 - Expression similarity matrices with pathway enrichment.
-- Non-biological matrices such as recipe by ingredient similarity with country of origin enrichment.
+- Non-biological matrices such as recipe-by-ingredient similarity with country-of-origin enrichment.
 
 ## The Basic Object Graph
 

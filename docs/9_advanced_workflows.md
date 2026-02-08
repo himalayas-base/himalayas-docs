@@ -79,7 +79,7 @@ For a cluster-level summary of the zoomed result, see [Condensed Dendrogram](8_c
 
 ## Non-Biological Example (Recipes)
 
-HiMaLAYAS is domain-agnostic. The recipe example builds an ingredient-by-recipe matrix and annotates clusters by country of origin (worldwide recipe dataset).
+HiMaLAYAS is domain-agnostic. The recipe example builds an ingredient-by-recipe matrix and annotates clusters by country of origin using a worldwide recipe dataset.
 
 Key steps:
 

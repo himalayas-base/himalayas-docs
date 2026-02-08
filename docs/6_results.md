@@ -89,11 +89,11 @@ cluster_labels = results.cluster_labels(label_mode="top_term")
 
 ## Key Columns in `results.df`
 
-- `cluster` cluster id
-- `term` term id
-- `k` overlap between cluster and term
-- `K` term size in background
-- `n` cluster size
-- `N` background size
-- `pval` hypergeometric p-value
-- `qval` adjusted p-value used for significance filtering (if present)
+- `cluster`: Cluster id.
+- `term`: Term id.
+- `k`: Overlap between cluster and term.
+- `K`: Term size in background.
+- `n`: Cluster size.
+- `N`: Background size.
+- `pval`: Hypergeometric p-value.
+- `qval`: Adjusted p-value used for significance filtering (if present).

@@ -166,7 +166,7 @@ Plotter.plot_cluster_labels(
 ) -> Plotter
 ```
 
-Defaults shown here are effective user-facing defaults resolved from internal style config.
+Defaults shown here are effective user-facing defaults resolved from internal style configuration.
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
