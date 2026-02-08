@@ -7,9 +7,15 @@
 ```python
 Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
-Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
-Results.cluster_layout(*, strict: bool = True) -> ClusterLayout
-Results.cluster_spans(*, strict: bool = True) -> list[tuple[int, int, int]]
+Results.cluster_labels(
+    term_col: str = "term",
+    cluster_col: str = "cluster",
+    weight_col: str = "pval",
+    *,
+    label_mode: str = "top_term",
+    label_col: str | None = "term_name",
+    max_words: int = 6,
+) -> pd.DataFrame
 ```
 
 ## `filter`
@@ -33,27 +39,32 @@ Results.subset(cluster: int) -> Results
 | --- | --- | --- | --- |
 | `cluster` | `int` | required | Cluster id to subset. Returns a new `Results` view with a subset matrix attached. |
 
-## `with_qvalues`
+## `cluster_labels`
 
 ```python
-Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
+Results.cluster_labels(
+    term_col: str = "term",
+    cluster_col: str = "cluster",
+    weight_col: str = "pval",
+    *,
+    label_mode: str = "top_term",
+    label_col: str | None = "term_name",
+    max_words: int = 6,
+) -> pd.DataFrame
 ```
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `pval_col` | `str` | `"pval"` | Column containing p-values in `results.df`. |
-| `qval_col` | `str` | `"qval"` | Name for the added BH-adjusted q-value column. |
+| `term_col` | `str` | `"term"` | Stable term identifier column. |
+| `cluster_col` | `str` | `"cluster"` | Cluster id column. |
+| `weight_col` | `str` | `"pval"` | Weight/p-value column used for ranking/summarization. |
+| `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"`. |
+| `label_col` | `str | None` | `"term_name"` | Optional display-name column; falls back to `term_col` when unavailable. |
+| `max_words` | `int` | `6` | Maximum words for compressed labels. |
 
-## `cluster_layout` and `cluster_spans`
+Returns one row per cluster with columns `["cluster", "label", "pval", "n", "term"]`.
 
-```python
-Results.cluster_layout(*, strict: bool = True) -> ClusterLayout
-Results.cluster_spans(*, strict: bool = True) -> list[tuple[int, int, int]]
-```
-
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `strict` | `bool` | `True` | Requires contiguous cluster spans in the attached layout. |
+`Results.cluster_labels(...)` is an optional post-hoc helper for inspecting, exporting, or reusing one-label-per-cluster summaries. You do not need to pass its output into `Plotter.plot_cluster_labels(...)` or `plot_dendrogram_condensed(...)`; both generate labels internally from the attached `Results`.
 
 ## Examples
 
@@ -70,10 +81,10 @@ zoom_view = results.subset(cluster=7)
 zoom_matrix = zoom_view.matrix
 ```
 
-Add q-values after the fact:
+Build cluster labels for plotting:
 
 ```python
-results = results.with_qvalues()
+cluster_labels = results.cluster_labels(label_mode="top_term")
 ```
 
 ## Key Columns in `results.df`

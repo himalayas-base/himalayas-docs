@@ -17,7 +17,7 @@ This page is a compact map of the public API. Detailed behavior and examples liv
   - See: [Clustering and Layout](4_clustering.md), [Enrichment and FDR](5_enrichment.md)
 
 - `himalayas.Results(df: pd.DataFrame, method: str, ...)`
-  - Result utilities: `.filter(expr: str, **kwargs: Any) -> Results`, `.subset(cluster: int) -> Results`, `.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results`, `.cluster_layout(*, strict: bool = True) -> ClusterLayout`, `.cluster_spans(*, strict: bool = True) -> list[tuple[int, int, int]]`.
+  - Result utilities: `.filter(expr: str, **kwargs: Any) -> Results`, `.subset(cluster: int) -> Results`, `.cluster_labels(term_col: str = "term", cluster_col: str = "cluster", weight_col: str = "pval", *, label_mode: str = "top_term", label_col: str | None = "term_name", max_words: int = 6) -> pd.DataFrame`.
   - See: [Results and Filtering](6_results.md)
 
 ## Plotting API
@@ -26,6 +26,6 @@ This page is a compact map of the public API. Detailed behavior and examples liv
   - Main layered plotting interface.
   - See: [Plotting](7_plotting.md)
 
-- `himalayas.plot.plot_dendrogram_condensed(results: Results, cluster_labels: pd.DataFrame, ...)`
+- `himalayas.plot.plot_dendrogram_condensed(results: Results, *, term_col: str = "term", cluster_col: str = "cluster", weight_col: str = "pval", label_mode: str = "top_term", label_col: str | None = "term_name", ...)`
   - Condensed cluster-level dendrogram view.
   - See: [Condensed Dendrogram](8_condensed_dendrogram.md)

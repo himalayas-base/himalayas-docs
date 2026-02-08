@@ -1,14 +1,19 @@
 # Condensed Dendrogram
 
-The condensed dendrogram summarizes clusters while preserving the original dendrogram order and branch heights.
+The condensed dendrogram summarizes clusters while preserving the original dendrogram order and branch heights. Labels are generated internally from `Results.cluster_labels(...)`.
 
 ## Signature
 
 ```python
 plot_dendrogram_condensed(
     results: Results,
-    cluster_labels: pd.DataFrame,
     *,
+    term_col: str = "term",
+    cluster_col: str = "cluster",
+    weight_col: str = "pval",
+    label_mode: str = "top_term",
+    label_col: str | None = "term_name",
+    summary_max_words: int = 6,
     figsize: Sequence[float] = (10, 10),
     sigbar_cmap: str | Colormap = "YlOrBr",
     sigbar_min_logp: float = 2.0,
@@ -40,7 +45,12 @@ plot_dendrogram_condensed(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `results` | `Results` | required | Results exposing `cluster_layout()` and `clusters`. |
-| `cluster_labels` | `pd.DataFrame` | required | DataFrame with `cluster`, `label`, and `pval`. |
+| `term_col` | `str` | `"term"` | Term id column used during internal label generation. |
+| `cluster_col` | `str` | `"cluster"` | Cluster id column used during internal label generation. |
+| `weight_col` | `str` | `"pval"` | Weight/p-value column used during internal label generation. |
+| `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
+| `label_col` | `str | None` | `"term_name"` | Optional display-name column for internal label generation. |
+| `summary_max_words` | `int` | `6` | Max words used by internal `"compressed"` label summarization. |
 | `figsize` | `Sequence[float]` | `(10, 10)` | Figure size (width, height). |
 | `sigbar_cmap` | `str / Colormap` | `"YlOrBr"` | Colormap for the significance bar. |
 | `sigbar_min_logp` | `float` | `2.0` | Minimum `-log10(p)` for scaling. |
@@ -72,7 +82,6 @@ from himalayas.plot import plot_dendrogram_condensed
 
 plot_dendrogram_condensed(
     results,
-    cluster_labels,
     figsize=(6, 10),
     sigbar_min_logp=2.0,
     sigbar_max_logp=10.0,
@@ -89,7 +98,6 @@ After a zoom analysis, you can summarize the zoomed hierarchy with the same plot
 ```python
 plot_dendrogram_condensed(
     zoom_results,
-    zoom_cluster_labels,
     figsize=(4, 8),
     sigbar_min_logp=0.0,
     sigbar_max_logp=30.0,
