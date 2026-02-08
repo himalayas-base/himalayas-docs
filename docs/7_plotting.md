@@ -20,6 +20,8 @@ Plotter(results: Results) -> Plotter
 from matplotlib.colors import Normalize
 from himalayas.plot import Plotter
 
+# Assumes `vlim`, `gene_essential_map`, and `gene_essential_colors` are prepared upstream.
+# See `quickstart.html` for a complete example showing where these are defined.
 plotter = (
     Plotter(results)
     .set_background(color="white")
@@ -250,6 +252,29 @@ Plotter.plot_cluster_bar(
 | `title` | `str | None` | `None` | Optional track title. |
 
 ### `plot_label_bar`
+
+`values` is a mapping from matrix row id to either a category label or a numeric value.
+
+```python
+# Categorical example: row_id -> category, plus category -> color.
+characterization_map = {
+    "YLR088W": "characterized",
+    "YBR004C": "characterized",
+    "YNL127W": "uncharacterized",
+}
+characterization_colors = {
+    "uncharacterized": "#1e90ff",
+    "characterized": "#ffffff",
+}
+
+# Continuous example: row_id -> numeric value (e.g., row variance).
+row_variance = {
+    "YLR088W": 0.82,
+    "YBR004C": 0.15,
+    "YNL127W": 0.67,
+}
+# Continuous mode uses `cmap` (and optional `vmin`/`vmax`) instead of `colors`.
+```
 
 ```python
 Plotter.plot_label_bar(

@@ -81,7 +81,7 @@ zoom_view = results.subset(cluster=7)
 zoom_matrix = zoom_view.matrix
 ```
 
-Build cluster labels for plotting:
+Build optional cluster labels for inspection/export:
 
 ```python
 cluster_labels = results.cluster_labels(label_mode="top_term")
