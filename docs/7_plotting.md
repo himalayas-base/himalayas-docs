@@ -477,6 +477,7 @@ Plotter.plot_colorbars(
     font: str | None = None,
     color: str | None = None,
     label_position: str = "below",
+    tick_decimals: int | None = None,
 ) -> Plotter
 ```
 
@@ -495,6 +496,7 @@ Plotter.plot_colorbars(
 | `font` | `str | None` | `None` | Tick and label font family. |
 | `color` | `str | None` | `"black"` | Tick and label color. |
 | `label_position` | `str` | `"below"` | Label placement: `"below"` or `"above"`. |
+| `tick_decimals` | `int | None` | `None` | Maximum decimal places for colorbar ticks; trailing zeros are trimmed. |
 
 ## Legends
 
