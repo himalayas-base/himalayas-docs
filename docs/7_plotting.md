@@ -39,7 +39,7 @@ plotter = (
         width=0.04,
         left_pad=0.02,
     )
-    .plot_gene_bar(
+    .plot_label_bar(
         name="essentiality",
         values=gene_essential_map,
         mode="categorical",
@@ -217,6 +217,9 @@ Behavior notes:
 
 ### `plot_cluster_bar`
 
+Requires `plot_cluster_labels(...)` in the same plotting chain. Rendering raises
+`ValueError` if an enabled cluster bar track is declared without a cluster-label layer.
+
 ```python
 Plotter.plot_cluster_bar(
     name: str,
@@ -246,10 +249,10 @@ Plotter.plot_cluster_bar(
 | `enabled` | `bool` | `True` | Register the track. |
 | `title` | `str | None` | `None` | Optional track title. |
 
-### `plot_gene_bar`
+### `plot_label_bar`
 
 ```python
-Plotter.plot_gene_bar(
+Plotter.plot_label_bar(
     values: Mapping[Hashable, Any],
     *,
     mode: str = "categorical",
@@ -261,7 +264,7 @@ Plotter.plot_gene_bar(
     left_pad: float = 0.0,
     width: float | None = None,
     right_pad: float = 0.0,
-    name: str = "gene_bar",
+    name: str = "label_bar",
     title: str | None = None,
     enabled: bool = True,
 ) -> Plotter
@@ -279,7 +282,7 @@ Plotter.plot_gene_bar(
 | `left_pad` | `float` | `0.0` | Left padding in the label panel. |
 | `width` | `float | None` | `0.012` | Track width. |
 | `right_pad` | `float` | `0.0` | Right padding in the label panel. |
-| `name` | `str` | `"gene_bar"` | Track name used for ordering. |
+| `name` | `str` | `"label_bar"` | Track name used for ordering. |
 | `title` | `str | None` | `None` | Optional track title. |
 | `enabled` | `bool` | `True` | Register the track. |
 
