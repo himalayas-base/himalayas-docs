@@ -20,8 +20,6 @@ Plotter(results: Results) -> Plotter
 from matplotlib.colors import Normalize
 from himalayas.plot import Plotter
 
-cluster_labels = results.cluster_labels(label_mode="top_term")
-
 plotter = (
     Plotter(results)
     .set_background(color="white")
@@ -37,8 +35,6 @@ plotter = (
     )
     .plot_cluster_bar(
         name="sigbar",
-        values=cluster_labels,
-        pval_col="pval",
         norm=Normalize(0, 30),
         width=0.04,
         left_pad=0.02,
@@ -224,7 +220,6 @@ Behavior notes:
 ```python
 Plotter.plot_cluster_bar(
     name: str,
-    values: dict[int, float | None] | pd.Series | pd.DataFrame,
     *,
     kind: str = "pvalue",
     width: float | None = None,
@@ -235,15 +230,12 @@ Plotter.plot_cluster_bar(
     alpha: float = 0.9,
     enabled: bool = True,
     title: str | None = None,
-    cluster_col: str = "cluster",
-    pval_col: str = "pval",
 ) -> Plotter
 ```
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `name` | `str` | required | Track name used for ordering. |
-| `values` | `dict[int, float | None]` / `pd.Series` / `pd.DataFrame` | required | Cluster values; DataFrame uses `cluster_col`/`pval_col`. |
 | `kind` | `str` | `"pvalue"` | Only `"pvalue"` is supported. |
 | `width` | `float | None` | `0.015` | Track width. |
 | `left_pad` | `float` | `0.0` | Left padding in the label panel. |
@@ -253,8 +245,6 @@ Plotter.plot_cluster_bar(
 | `alpha` | `float` | `0.9` | Bar alpha. |
 | `enabled` | `bool` | `True` | Register the track. |
 | `title` | `str | None` | `None` | Optional track title. |
-| `cluster_col` | `str` | `"cluster"` | Cluster id column name for DataFrame input. |
-| `pval_col` | `str` | `"pval"` | Value column name for DataFrame input. |
 
 ### `plot_gene_bar`
 
