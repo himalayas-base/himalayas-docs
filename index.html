@@ -317,6 +317,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#notebook-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebook Walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#core-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -328,10 +339,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-build" class="md-nav__link">
+  <a href="#use-cases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What You Can Build
+        Use Cases
       
     </span>
   </a>
@@ -456,34 +467,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="quickstart.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Quickstart (HTML)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -552,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="3_matrix_input/" class="md-nav__link">
+      <a href="2_matrix_input/" class="md-nav__link">
         
   
   
@@ -580,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="4_annotation_input/" class="md-nav__link">
+      <a href="3_annotation_input/" class="md-nav__link">
         
   
   
@@ -669,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="5_clustering/" class="md-nav__link">
+      <a href="4_clustering/" class="md-nav__link">
         
   
   
@@ -697,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="6_enrichment/" class="md-nav__link">
+      <a href="5_enrichment/" class="md-nav__link">
         
   
   
@@ -725,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="7_results/" class="md-nav__link">
+      <a href="6_results/" class="md-nav__link">
         
   
   
@@ -814,7 +797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="8_plotting/" class="md-nav__link">
+      <a href="7_plotting/" class="md-nav__link">
         
   
   
@@ -842,14 +825,14 @@
   
   
     <li class="md-nav__item">
-      <a href="9_label_tracks/" class="md-nav__link">
+      <a href="8_condensed_dendrogram/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Label Tracks and Legends
+    Condensed Dendrogram
   
 
     
@@ -931,7 +914,7 @@
   
   
     <li class="md-nav__item">
-      <a href="10_advanced_workflows/" class="md-nav__link">
+      <a href="9_advanced_workflows/" class="md-nav__link">
         
   
   
@@ -1020,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="11_api_reference/" class="md-nav__link">
+      <a href="10_api_reference/" class="md-nav__link">
         
   
   
@@ -1048,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="12_faq/" class="md-nav__link">
+      <a href="11_faq/" class="md-nav__link">
         
   
   
@@ -1097,12 +1080,16 @@
 
 
 <h1 id="himalayas-documentation">HiMaLAYAS Documentation<a class="headerlink" href="#himalayas-documentation" title="Permanent link">&para;</a></h1>
-<p>HiMaLAYAS (Hierarchical Matrix Layout and Annotation Software) is a framework for post hoc enrichment-based annotation of hierarchically clustered matrices. It treats dendrogram-defined clusters as statistical units, tests enrichment against categorical annotations, and renders significant labels alongside the matrix.</p>
-<p>Use this documentation to get set up, run an analysis, and build publication-ready visualizations.</p>
+<p><img src="https://i.imgur.com/zEIr4gB.png" width="25%" align="left" style="margin-right: 1.5em;"></p>
+<p>Hierarchical Matrix Layout and Annotation Software (HiMaLAYAS) is a framework for post hoc enrichment-based annotation of hierarchically clustered matrices. It treats dendrogram-defined clusters as statistical units, tests enrichment against categorical annotations, and renders significant labels alongside the matrix.</p>
+<p>Use this documentation to get set up, run an analysis, and build visualizations.</p>
 <h2 id="start-here">Start Here<a class="headerlink" href="#start-here" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="0_introduction/">Introduction</a></li>
 <li><a href="1_installation/">Installation</a></li>
+</ul>
+<h2 id="notebook-walkthrough">Notebook Walkthrough<a class="headerlink" href="#notebook-walkthrough" title="Permanent link">&para;</a></h2>
+<ul>
 <li><a href="quickstart.html">Quickstart (HTML)</a></li>
 </ul>
 <h2 id="core-workflow">Core Workflow<a class="headerlink" href="#core-workflow" title="Permanent link">&para;</a></h2>
@@ -1110,16 +1097,14 @@
 <li>Load a real-valued matrix into <code>Matrix</code>.</li>
 <li>Load term-to-label annotations into <code>Annotations</code>.</li>
 <li>Run <code>Analysis.cluster()</code> and <code>Analysis.enrich()</code>.</li>
-<li>Call <code>Analysis.finalize()</code> to attach layout and optional q-values.</li>
-<li>Summarize clusters and plot with <code>Plotter</code>.</li>
+<li>Call <code>Analysis.finalize()</code> to attach layout and optional q-values (Benjamini-Hochberg FDR-adjusted p-values).</li>
+<li>Plot with <code>Plotter</code> and summarize clusters.</li>
 </ol>
-<h2 id="what-you-can-build">What You Can Build<a class="headerlink" href="#what-you-can-build" title="Permanent link">&para;</a></h2>
+<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Enrichment-annotated clustered matrices for gene interaction or expression data.</li>
-<li>Cluster-specific zoom analyses that re-run enrichment on a subset.</li>
-<li>Non-biological analyses (for example, recipes by ingredient similarity).</li>
+<li>Annotate clustered matrices for biological or non-biological data.</li>
+<li>Zoom into a cluster and rerun enrichment on the subset.</li>
 </ul>
-<p>If you want a full walkthrough, start with <a href="quickstart.html">Quickstart (HTML)</a>. The source notebook lives at <code>notebooks/quickstart.ipynb</code> in the repository.</p>
 
 
 

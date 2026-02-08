@@ -411,10 +411,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-minimal-object-graph" class="md-nav__link">
+  <a href="#the-basic-object-graph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Minimal Object Graph
+        The Basic Object Graph
       
     </span>
   </a>
@@ -445,34 +445,6 @@
     
   
     Installation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../quickstart.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Quickstart (HTML)
   
 
     
@@ -554,7 +526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../3_matrix_input/" class="md-nav__link">
+      <a href="../2_matrix_input/" class="md-nav__link">
         
   
   
@@ -582,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../4_annotation_input/" class="md-nav__link">
+      <a href="../3_annotation_input/" class="md-nav__link">
         
   
   
@@ -671,7 +643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../5_clustering/" class="md-nav__link">
+      <a href="../4_clustering/" class="md-nav__link">
         
   
   
@@ -699,7 +671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../6_enrichment/" class="md-nav__link">
+      <a href="../5_enrichment/" class="md-nav__link">
         
   
   
@@ -727,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../7_results/" class="md-nav__link">
+      <a href="../6_results/" class="md-nav__link">
         
   
   
@@ -816,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../8_plotting/" class="md-nav__link">
+      <a href="../7_plotting/" class="md-nav__link">
         
   
   
@@ -844,14 +816,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../9_label_tracks/" class="md-nav__link">
+      <a href="../8_condensed_dendrogram/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Label Tracks and Legends
+    Condensed Dendrogram
   
 
     
@@ -933,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10_advanced_workflows/" class="md-nav__link">
+      <a href="../9_advanced_workflows/" class="md-nav__link">
         
   
   
@@ -1022,7 +994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11_api_reference/" class="md-nav__link">
+      <a href="../10_api_reference/" class="md-nav__link">
         
   
   
@@ -1050,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12_faq/" class="md-nav__link">
+      <a href="../11_faq/" class="md-nav__link">
         
   
   
@@ -1099,31 +1071,36 @@
 
 
 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
-<p>HiMaLAYAS is a general purpose framework for post hoc enrichment-based annotation of hierarchically clustered matrices. It separates clustering from enrichment, treats dendrogram-defined clusters as statistical units, and maps significant terms back onto the matrix for visualization.</p>
-<p>Hierarchical clustering is often used for visualization rather than statistical inference. HiMaLAYAS turns dendrogram-defined clusters into statistical units and evaluates term enrichment directly on those clusters.</p>
+<p>HiMaLAYAS is a general framework for post hoc enrichment-based annotation of hierarchically clustered matrices. It treats dendrogram-defined clusters as statistical units, supports enrichment across dendrogram depths, and renders significant annotations alongside their matrix regions.</p>
+<p><a href="https://i.imgur.com/mninW8a.jpeg"><img alt="HiMaLAYAS workflow overview" src="https://i.imgur.com/mninW8a.jpeg" /></a>
+<strong>HiMaLAYAS workflow and application to a hierarchically clustered yeast
+genetic interaction profile similarity matrix (Costanzo <em>et al</em>., 2016).</strong>
+A real-valued matrix and categorical annotations serve as inputs. The matrix is
+cut at a user-defined depth, and each dendrogram-defined cluster is evaluated
+for GO BP enrichment.</p>
 <h2 id="core-ideas">Core Ideas<a class="headerlink" href="#core-ideas" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Hierarchical clustering organizes rows into contiguous regions that can be treated as clusters.</li>
-<li>Enrichment is tested on those clusters, not on the full dendrogram alone.</li>
-<li>Significant terms are rendered alongside their cluster spans for interpretation.</li>
-<li>The workflow is domain agnostic as long as you have a matrix and categorical annotations.</li>
+<li>Hierarchical clustering organizes rows and columns into contiguous regions that can be treated as clusters.</li>
+<li>Clusters are produced by cutting the dendrogram.</li>
+<li>Enrichment is tested across dendrogram-defined clusters and categorical annotations.</li>
+<li>Significant annotations are rendered alongside their matrix regions for interpretation.</li>
+<li>The workflow is domain-agnostic as long as you have a matrix and categorical annotations.</li>
 <li>Enrichment can be evaluated at different dendrogram depths by changing the cut threshold.</li>
 </ul>
 <h2 id="typical-use-cases">Typical Use Cases<a class="headerlink" href="#typical-use-cases" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Yeast genetic interaction matrices (Costanzo et al., 2016) with GO Biological Process enrichment.</li>
+<li><em>Saccharomyces cerevisiae</em> genetic interaction matrices (Costanzo <em>et al</em>., 2016) with GO Biological Process enrichment.</li>
 <li>Expression similarity matrices with pathway enrichment.</li>
 <li>Non-biological matrices such as recipe by ingredient similarity with country of origin enrichment.</li>
 </ul>
-<h2 id="the-minimal-object-graph">The Minimal Object Graph<a class="headerlink" href="#the-minimal-object-graph" title="Permanent link">&para;</a></h2>
+<h2 id="the-basic-object-graph">The Basic Object Graph<a class="headerlink" href="#the-basic-object-graph" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>Matrix</code>: validated, labeled numeric matrix used for clustering and plotting.</li>
-<li><code>Annotations</code>: term-to-label mapping aligned to the matrix label universe.</li>
+<li><code>Matrix</code>: labeled numeric matrix used for clustering and plotting.</li>
+<li><code>Annotations</code>: term-to-label mapping aligned to the matrix label background.</li>
 <li><code>Analysis</code>: orchestrates clustering, enrichment, and layout.</li>
-<li><code>Results</code>: stores enrichment output and attached context for plotting.</li>
-<li><code>Plotter</code>: builds layered, publication-ready figures.</li>
+<li><code>Results</code>: stores enrichment output and context for plotting.</li>
+<li><code>Plotter</code>: builds layered figures.</li>
 </ul>
-<p>If you are new, continue to <a href="../1_installation/">Installation</a> or jump straight to <a href="../quickstart.html">Quickstart (HTML)</a>.</p>
 
 
 

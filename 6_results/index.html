@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://himalayas-base.github.io/himalayas-docs/4_annotation_input/">
+        <link rel="canonical" href="https://himalayas-base.github.io/himalayas-docs/6_results/">
       
       
-        <link rel="prev" href="../3_matrix_input/">
+        <link rel="prev" href="../5_enrichment/">
       
       
-        <link rel="next" href="../5_clustering/">
+        <link rel="next" href="../7_plotting/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Annotation Input - HiMaLAYAS Documentation</title>
+        <title>Results and Filtering - HiMaLAYAS Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#annotation-input" class="md-skip">
+        <a href="#results-and-filtering" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Annotation Input
+              Results and Filtering
             
           </span>
         </div>
@@ -378,6 +378,67 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inputs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inputs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -385,14 +446,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../quickstart.html" class="md-nav__link">
+      <a href="../2_matrix_input/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Quickstart (HTML)
+    Matrix Input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_annotation_input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation Input
   
 
     
@@ -435,17 +524,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Inputs
+    Analysis
   
 
     
@@ -456,12 +545,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Inputs
+    Analysis
   
 
           </label>
@@ -474,14 +563,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../3_matrix_input/" class="md-nav__link">
+      <a href="../4_clustering/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Matrix Input
+    Clustering and Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_enrichment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrichment and FDR
   
 
     
@@ -518,7 +635,7 @@
   <span class="md-ellipsis">
     
   
-    Annotation Input
+    Results and Filtering
   
 
     
@@ -536,7 +653,7 @@
   <span class="md-ellipsis">
     
   
-    Annotation Input
+    Results and Filtering
   
 
     
@@ -562,10 +679,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#signature" class="md-nav__link">
+  <a href="#common-methods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Signature
+        Common Methods
       
     </span>
   </a>
@@ -573,10 +690,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
+  <a href="#filter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Parameters
+        filter
       
     </span>
   </a>
@@ -584,10 +701,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-example-go-biological-process" class="md-nav__link">
+  <a href="#subset" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Example (GO Biological Process)
+        subset
       
     </span>
   </a>
@@ -595,10 +712,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-example-country-to-recipes" class="md-nav__link">
+  <a href="#cluster_labels" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Example (Country to Recipes)
+        cluster_labels
       
     </span>
   </a>
@@ -606,10 +723,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-errors" class="md-nav__link">
+  <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Errors
+        Examples
       
     </span>
   </a>
@@ -617,10 +734,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#key-columns-in-resultsdf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Key Columns in results.df
       
     </span>
   </a>
@@ -631,151 +748,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Analysis
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Analysis
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../5_clustering/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Clustering and Layout
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../6_enrichment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Enrichment and FDR
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../7_results/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Results and Filtering
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -849,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../8_plotting/" class="md-nav__link">
+      <a href="../7_plotting/" class="md-nav__link">
         
   
   
@@ -877,14 +849,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../9_label_tracks/" class="md-nav__link">
+      <a href="../8_condensed_dendrogram/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Label Tracks and Legends
+    Condensed Dendrogram
   
 
     
@@ -966,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10_advanced_workflows/" class="md-nav__link">
+      <a href="../9_advanced_workflows/" class="md-nav__link">
         
   
   
@@ -1055,7 +1027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11_api_reference/" class="md-nav__link">
+      <a href="../10_api_reference/" class="md-nav__link">
         
   
   
@@ -1083,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12_faq/" class="md-nav__link">
+      <a href="../11_faq/" class="md-nav__link">
         
   
   
@@ -1131,12 +1103,24 @@
   
 
 
-<h1 id="annotation-input">Annotation Input<a class="headerlink" href="#annotation-input" title="Permanent link">&para;</a></h1>
-<p>Annotations map categorical terms to the labels present in your matrix. HiMaLAYAS filters out labels not present in the matrix and drops terms with no overlap.</p>
-<h2 id="signature">Signature<a class="headerlink" href="#signature" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Annotations</span><span class="p">(</span><span class="n">term_to_labels</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">)</span>
+<h1 id="results-and-filtering">Results and Filtering<a class="headerlink" href="#results-and-filtering" title="Permanent link">&para;</a></h1>
+<p><code>Results</code> holds the enrichment table and attached context (matrix, clusters, layout). It is passed to <code>Plotter</code> for visualization.</p>
+<h2 id="common-methods">Common Methods<a class="headerlink" href="#common-methods" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">expr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
+</span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
+</span><span id="__line-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span>
+</span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">term_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span>
+</span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">cluster_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
+</span><span id="__line-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">weight_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span>
+</span><span id="__line-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
+</span><span id="__line-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">label_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;term_name&quot;</span><span class="p">,</span>
+</span><span id="__line-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
 </span></code></pre></div>
-<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<h2 id="filter"><code>filter</code><a class="headerlink" href="#filter" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">expr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
+</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1148,47 +1132,123 @@
 </thead>
 <tbody>
 <tr>
-<td><code>term_to_labels</code></td>
-<td><code>dict[str, Iterable[str]]</code></td>
+<td><code>expr</code></td>
+<td><code>str</code></td>
 <td>required</td>
-<td>Mapping from term to labels (genes, recipes, proteins).</td>
+<td><code>pandas.DataFrame.query</code> expression applied to <code>results.df</code>.</td>
 </tr>
 <tr>
-<td><code>matrix</code></td>
-<td><code>Matrix</code></td>
-<td>required</td>
-<td>Provides the label universe.</td>
+<td><code>**kwargs</code></td>
+<td><code>Any</code></td>
+<td><code>{}</code></td>
+<td>Additional keyword arguments forwarded to <code>DataFrame.query</code>.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="quick-example-go-biological-process">Quick Example (GO Biological Process)<a class="headerlink" href="#quick-example-go-biological-process" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-</span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">himalayas</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotations</span>
-</span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/yeast/go_bp_term_to_orfs.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
-</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">go_bp</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
-</span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">go_bp</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+<h2 id="subset"><code>subset</code><a class="headerlink" href="#subset" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
 </span></code></pre></div>
-<h2 id="quick-example-country-to-recipes">Quick Example (Country to Recipes)<a class="headerlink" href="#quick-example-country-to-recipes" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">country_to_recipes</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__line-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="s2">&quot;Italy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_001&quot;</span><span class="p">,</span> <span class="s2">&quot;r_105&quot;</span><span class="p">,</span> <span class="s2">&quot;r_214&quot;</span><span class="p">],</span>
-</span><span id="__line-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="s2">&quot;India&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_002&quot;</span><span class="p">,</span> <span class="s2">&quot;r_003&quot;</span><span class="p">],</span>
-</span><span id="__line-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
-</span><span id="__line-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__line-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">country_to_recipes</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cluster</code></td>
+<td><code>int</code></td>
+<td>required</td>
+<td>Cluster id to subset. Returns a new <code>Results</code> view with a subset matrix attached.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cluster_labels"><code>cluster_labels</code><a class="headerlink" href="#cluster_labels" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span>
+</span><span id="__line-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">term_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span>
+</span><span id="__line-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">cluster_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
+</span><span id="__line-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">weight_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span>
+</span><span id="__line-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
+</span><span id="__line-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">label_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;term_name&quot;</span><span class="p">,</span>
+</span><span id="__line-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
 </span></code></pre></div>
-<h2 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>term_col</code></td>
+<td><code>str</code></td>
+<td><code>"term"</code></td>
+<td>Stable term identifier column.</td>
+</tr>
+<tr>
+<td><code>cluster_col</code></td>
+<td><code>str</code></td>
+<td><code>"cluster"</code></td>
+<td>Cluster id column.</td>
+</tr>
+<tr>
+<td><code>weight_col</code></td>
+<td><code>str</code></td>
+<td><code>"pval"</code></td>
+<td>Weight/p-value column used for ranking/summarization.</td>
+</tr>
+<tr>
+<td><code>label_mode</code></td>
+<td><code>str</code></td>
+<td><code>"top_term"</code></td>
+<td>One of <code>"top_term"</code> or <code>"compressed"</code>.</td>
+</tr>
+<tr>
+<td><code>label_col</code></td>
+<td><code>str | None</code></td>
+<td><code>"term_name"</code></td>
+<td>Optional display-name column; falls back to <code>term_col</code> when unavailable.</td>
+</tr>
+<tr>
+<td><code>max_words</code></td>
+<td><code>int</code></td>
+<td><code>6</code></td>
+<td>Maximum words for compressed labels.</td>
+</tr>
+</tbody>
+</table>
+<p>Returns one row per cluster with columns <code>["cluster", "label", "pval", "n", "term"]</code>.</p>
+<p><code>Results.cluster_labels(...)</code> is an optional post-hoc helper for inspecting, exporting, or reusing one-label-per-cluster summaries. You do not need to pass its output into <code>Plotter.plot_cluster_labels(...)</code> or <code>plot_dendrogram_condensed(...)</code>; both generate labels internally from the attached <code>Results</code>.</p>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<p>Filter to significant annotation terms:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">results_sig</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;qval &lt;= 0.05&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Subset to a single cluster (for zoom analysis):</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
+</span></code></pre></div>
+<p>Build optional cluster labels for inspection/export:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="key-columns-in-resultsdf">Key Columns in <code>results.df</code><a class="headerlink" href="#key-columns-in-resultsdf" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>Labels for term ... must be an iterable of labels</code> if a term maps to a string.</li>
-<li><code>No annotation terms overlap matrix labels</code> if none of the labels match the matrix.</li>
+<li><code>cluster</code> cluster id</li>
+<li><code>term</code> term id</li>
+<li><code>k</code> overlap between cluster and term</li>
+<li><code>K</code> term size in background</li>
+<li><code>n</code> cluster size</li>
+<li><code>N</code> background size</li>
+<li><code>pval</code> hypergeometric p-value</li>
+<li><code>qval</code> adjusted p-value used for significance filtering (if present)</li>
 </ul>
-<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Terms with no overlap are dropped with a warning.</li>
-<li>You can pre-filter terms by size before loading.</li>
-</ul>
-<p>Next: <a href="../5_clustering/">Clustering and Layout</a></p>
 
 
 
@@ -1226,7 +1286,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../3_matrix_input/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Matrix Input">
+          <a href="../5_enrichment/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Enrichment and FDR">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1236,20 +1296,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Matrix Input
+                Enrichment and FDR
               </div>
             </div>
           </a>
         
         
           
-          <a href="../5_clustering/" class="md-footer__link md-footer__link--next" aria-label="Next: Clustering and Layout">
+          <a href="../7_plotting/" class="md-footer__link md-footer__link--next" aria-label="Next: Plotting">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Clustering and Layout
+                Plotting
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -1,0 +1,2746 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="HiMaLAYAS - Hierarchical Matrix Layout and Annotation Software">
+      
+      
+      
+        <link rel="canonical" href="https://himalayas-base.github.io/himalayas-docs/7_plotting/">
+      
+      
+        <link rel="prev" href="../6_results/">
+      
+      
+        <link rel="next" href="../8_condensed_dendrogram/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/logo.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Plotting - HiMaLAYAS Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plotting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HiMaLAYAS Documentation" class="md-header__button md-logo" aria-label="HiMaLAYAS Documentation" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HiMaLAYAS Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plotting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/himalayas-base/himalayas" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    himalayas-base/himalayas
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HiMaLAYAS Documentation" class="md-nav__button md-logo" aria-label="HiMaLAYAS Documentation" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    HiMaLAYAS Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/himalayas-base/himalayas" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    himalayas-base/himalayas
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inputs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inputs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_matrix_input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrix Input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_annotation_input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation Input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_clustering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clustering and Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_enrichment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrichment and FDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results and Filtering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Visualization
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plotting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plotting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signature
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Layers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plot_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_dendrogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_dendrogram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_cluster_labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_cluster_labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#label-panel-tracks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label Panel Tracks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Label Panel Tracks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plot_cluster_bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_cluster_bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_label_bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_label_bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track-titles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track Titles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#axes-and-titles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axes and Titles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Axes and Titles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plot_title" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_title
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_matrix_axis_labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_matrix_axis_labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_row_ticks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_row_ticks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_col_ticks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_col_ticks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colorbars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Colorbars
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Colorbars">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_colorbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_colorbar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_colorbars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_colorbars
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legends
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legends">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plot_sigbar_legend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_sigbar_legend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rendering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rendering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set_background
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        save
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_condensed_dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Condensed Dendrogram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_advanced_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zoom and Non-Biological Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_api_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ and Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h1>
+<p>HiMaLAYAS uses a layered plotting system. Declare layers in order, then render with <code>show()</code> or <code>save()</code>.</p>
+<h2 id="signature">Signature<a class="headerlink" href="#signature" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Plotter</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">Results</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>results</code></td>
+<td><code>Results</code></td>
+<td>Results with a matrix and layout from <code>Analysis.finalize()</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Normalize</span>
+</span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">himalayas.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">Plotter</span>
+</span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Assumes `vlim`, `gene_essential_map`, and `gene_essential_colors` are prepared upstream.</span>
+</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># See `quickstart.html` for a complete example showing where these are defined.</span>
+</span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">plotter</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">Plotter</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</span><span id="__line-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="o">.</span><span class="n">set_background</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+</span><span id="__line-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="o">.</span><span class="n">plot_title</span><span class="p">(</span><span class="s2">&quot;HiMaLAYAS - Yeast GI Matrix&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+</span><span id="__line-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="o">.</span><span class="n">plot_dendrogram</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>
+</span><span id="__line-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlim</span><span class="p">,</span> <span class="n">outer_lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__line-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="o">.</span><span class="n">plot_matrix_axis_labels</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Gene&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Gene&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</span><span id="__line-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="o">.</span><span class="n">plot_cluster_labels</span><span class="p">(</span>
+</span><span id="__line-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="n">label_fields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">),</span>
+</span><span id="__line-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="n">wrap_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">wrap_width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+</span><span id="__line-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">],</span>
+</span><span id="__line-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="p">)</span>
+</span><span id="__line-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="o">.</span><span class="n">plot_cluster_bar</span><span class="p">(</span>
+</span><span id="__line-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span>
+</span><span id="__line-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+</span><span id="__line-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+</span><span id="__line-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+</span><span id="__line-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="p">)</span>
+</span><span id="__line-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="o">.</span><span class="n">plot_label_bar</span><span class="p">(</span>
+</span><span id="__line-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;essentiality&quot;</span><span class="p">,</span>
+</span><span id="__line-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">values</span><span class="o">=</span><span class="n">gene_essential_map</span><span class="p">,</span>
+</span><span id="__line-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+</span><span id="__line-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="n">colors</span><span class="o">=</span><span class="n">gene_essential_colors</span><span class="p">,</span>
+</span><span id="__line-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+</span><span id="__line-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
+</span><span id="__line-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    <span class="p">)</span>
+</span><span id="__line-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="o">.</span><span class="n">plot_bar_labels</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</span><span id="__line-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="o">.</span><span class="n">set_label_track_order</span><span class="p">((</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span> <span class="s2">&quot;essentiality&quot;</span><span class="p">))</span>
+</span><span id="__line-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="o">.</span><span class="n">add_colorbar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;matrix&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="o">-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vlim</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Similarity&quot;</span><span class="p">)</span>
+</span><span id="__line-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="o">.</span><span class="n">plot_colorbars</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.045</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</span><span id="__line-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="p">)</span>
+</span><span id="__line-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+</span><span id="__line-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="core-layers">Core Layers<a class="headerlink" href="#core-layers" title="Permanent link">&para;</a></h2>
+<p>Layers render in declaration order. Later layers draw on top of earlier ones.</p>
+<h3 id="plot_matrix"><code>plot_matrix</code><a class="headerlink" href="#plot_matrix" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span>
+</span><span id="__line-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+</span><span id="__line-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">center</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">vmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">vmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">show_minor_rows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">minor_row_step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span><span id="__line-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">minor_row_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span>
+</span><span id="__line-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">minor_row_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span>
+</span><span id="__line-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">outer_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">,</span>
+</span><span id="__line-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">outer_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+</span><span id="__line-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">gutter_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">figsize</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="n">subplots_adjust</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cmap</code></td>
+<td><code>str</code></td>
+<td><code>"viridis"</code></td>
+<td>Colormap name.</td>
+</tr>
+<tr>
+<td><code>center</code></td>
+<td><code>float | None</code></td>
+<td><code>None</code></td>
+<td>Center value for diverging normalization.</td>
+</tr>
+<tr>
+<td><code>vmin</code></td>
+<td><code>float | None</code></td>
+<td><code>None</code></td>
+<td>Minimum value override.</td>
+</tr>
+<tr>
+<td><code>vmax</code></td>
+<td><code>float | None</code></td>
+<td><code>None</code></td>
+<td>Maximum value override.</td>
+</tr>
+<tr>
+<td><code>show_minor_rows</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>Draw thin row gridlines.</td>
+</tr>
+<tr>
+<td><code>minor_row_step</code></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Spacing for minor row lines.</td>
+</tr>
+<tr>
+<td><code>minor_row_lw</code></td>
+<td><code>float</code></td>
+<td><code>0.15</code></td>
+<td>Minor row line width.</td>
+</tr>
+<tr>
+<td><code>minor_row_alpha</code></td>
+<td><code>float</code></td>
+<td><code>0.15</code></td>
+<td>Minor row line alpha.</td>
+</tr>
+<tr>
+<td><code>outer_lw</code></td>
+<td><code>float</code></td>
+<td><code>1.2</code></td>
+<td>Outer border width.</td>
+</tr>
+<tr>
+<td><code>outer_color</code></td>
+<td><code>str</code></td>
+<td><code>"black"</code></td>
+<td>Outer border color.</td>
+</tr>
+<tr>
+<td><code>gutter_color</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Mask color for edge artifacts in the matrix panel.</td>
+</tr>
+<tr>
+<td><code>figsize</code></td>
+<td><code>tuple[float, float] | None</code></td>
+<td><code>(9, 7)</code></td>
+<td>Figure size override.</td>
+</tr>
+<tr>
+<td><code>subplots_adjust</code></td>
+<td><code>dict[str, float] | None</code></td>
+<td><code>{"left": 0.15, "right": 0.70, "bottom": 0.05, "top": 0.95}</code></td>
+<td>Figure margins override.</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>center</code> for diverging color scales and <code>vmin</code>/<code>vmax</code> for explicit limits.</p>
+<h3 id="plot_dendrogram"><code>plot_dendrogram</code><a class="headerlink" href="#plot_dendrogram" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_dendrogram</span><span class="p">(</span>
+</span><span id="__line-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">axes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">linewidth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">data_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>
+</span><span id="__line-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>axes</code></td>
+<td><code>Sequence[float] | None</code></td>
+<td><code>[0.06, 0.05, 0.09, 0.90]</code></td>
+<td>Dendrogram panel box.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str | None</code></td>
+<td><code>"#888888"</code></td>
+<td>Dendrogram line color.</td>
+</tr>
+<tr>
+<td><code>linewidth</code></td>
+<td><code>float | None</code></td>
+<td><code>1.0</code></td>
+<td>Dendrogram line width.</td>
+</tr>
+<tr>
+<td><code>data_pad</code></td>
+<td><code>float</code></td>
+<td><code>0.25</code></td>
+<td>Expands y-limits to avoid top/bottom clipping.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="plot_cluster_labels"><code>plot_cluster_labels</code><a class="headerlink" href="#plot_cluster_labels" title="Permanent link">&para;</a></h3>
+<p>Labels are generated internally from attached <code>Results</code> via <code>Results.cluster_labels(...)</code>.
+Use <code>Results.cluster_labels(...)</code> when you want an explicit post-hoc label table (inspection/export/custom side workflows), not as a required input to this method.
+The list below documents the supported keyword arguments and effective defaults.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_cluster_labels</span><span class="p">(</span>
+</span><span id="__line-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">overrides</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">term_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span>
+</span><span id="__line-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">cluster_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
+</span><span id="__line-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">weight_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span>
+</span><span id="__line-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
+</span><span id="__line-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">label_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;term_name&quot;</span><span class="p">,</span>
+</span><span id="__line-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">label_fields</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">),</span>
+</span><span id="__line-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">wrap_text</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="n">wrap_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="n">overflow</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;wrap&quot;</span><span class="p">,</span>
+</span><span id="__line-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span>
+</span><span id="__line-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+</span><span id="__line-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+</span><span id="__line-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+</span><span id="__line-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    <span class="n">axes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.70</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">0.90</span><span class="p">],</span>
+</span><span id="__line-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    <span class="n">skip_unlabeled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="__line-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    <span class="n">placeholder_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">u2014&quot;</span><span class="p">,</span>
+</span><span id="__line-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>    <span class="n">placeholder_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;#b22222&quot;</span><span class="p">,</span>
+</span><span id="__line-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>    <span class="n">label_text_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+</span><span id="__line-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>    <span class="n">label_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span>
+</span><span id="__line-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>    <span class="n">label_gutter_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+</span><span id="__line-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>    <span class="n">label_gutter_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
+</span><span id="__line-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>    <span class="n">label_sep_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+</span><span id="__line-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>    <span class="n">label_sep_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span id="__line-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>    <span class="n">label_sep_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+</span><span id="__line-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>    <span class="n">label_sep_xmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>    <span class="n">label_sep_xmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span id="__line-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>    <span class="n">boundary_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+</span><span id="__line-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>    <span class="n">boundary_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span id="__line-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>    <span class="n">boundary_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+</span><span id="__line-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>    <span class="n">dendro_boundary_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
+</span><span id="__line-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>    <span class="n">dendro_boundary_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span id="__line-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>    <span class="n">dendro_boundary_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+</span><span id="__line-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<p>Defaults shown here are effective user-facing defaults resolved from internal style config.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>overrides</code></td>
+<td><code>dict[int, str | dict[str, Any]] | None</code></td>
+<td><code>None</code></td>
+<td>Per-cluster overrides. Values may be a label string, or a dict with <code>label</code> (required), optional <code>pval</code>, and optional <code>hide_stats</code>.</td>
+</tr>
+<tr>
+<td><code>term_col</code></td>
+<td><code>str</code></td>
+<td><code>"term"</code></td>
+<td>Term id column used during internal label generation.</td>
+</tr>
+<tr>
+<td><code>cluster_col</code></td>
+<td><code>str</code></td>
+<td><code>"cluster"</code></td>
+<td>Cluster id column used during internal label generation.</td>
+</tr>
+<tr>
+<td><code>weight_col</code></td>
+<td><code>str</code></td>
+<td><code>"pval"</code></td>
+<td>Weight/p-value column used during internal label generation.</td>
+</tr>
+<tr>
+<td><code>label_mode</code></td>
+<td><code>str</code></td>
+<td><code>"top_term"</code></td>
+<td>One of <code>"top_term"</code> or <code>"compressed"</code> for internal label generation.</td>
+</tr>
+<tr>
+<td><code>label_col</code></td>
+<td><code>str | None</code></td>
+<td><code>"term_name"</code></td>
+<td>Optional display-name column for internal label generation.</td>
+</tr>
+<tr>
+<td><code>max_words</code></td>
+<td><code>int</code></td>
+<td><code>6</code></td>
+<td>Max words used by internal <code>"compressed"</code> label generation.</td>
+</tr>
+<tr>
+<td><code>label_fields</code></td>
+<td><code>tuple[str, ...]</code></td>
+<td><code>("label", "n", "p")</code></td>
+<td>Fields shown in each label; allowed values are <code>"label"</code>, <code>"n"</code>, <code>"p"</code>.</td>
+</tr>
+<tr>
+<td><code>wrap_text</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>Enables wrapping logic; wrapping is applied only when <code>wrap_width</code> is set.</td>
+</tr>
+<tr>
+<td><code>wrap_width</code></td>
+<td><code>int | None</code></td>
+<td><code>None</code></td>
+<td>Characters per line when wrapping.</td>
+</tr>
+<tr>
+<td><code>overflow</code></td>
+<td><code>str</code></td>
+<td><code>"wrap"</code></td>
+<td>Overflow behavior: <code>"wrap"</code> or <code>"ellipsis"</code>.</td>
+</tr>
+<tr>
+<td><code>font</code></td>
+<td><code>str</code></td>
+<td><code>"Helvetica"</code></td>
+<td>Label font family.</td>
+</tr>
+<tr>
+<td><code>fontsize</code></td>
+<td><code>float | None</code></td>
+<td><code>9</code></td>
+<td>Label font size.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Label text color.</td>
+</tr>
+<tr>
+<td><code>alpha</code></td>
+<td><code>float | None</code></td>
+<td><code>0.9</code></td>
+<td>Label text alpha (<code>0.6</code> for placeholders).</td>
+</tr>
+<tr>
+<td><code>axes</code></td>
+<td><code>Sequence[float] | None</code></td>
+<td><code>[0.70, 0.05, 0.29, 0.90]</code></td>
+<td>Label panel box.</td>
+</tr>
+<tr>
+<td><code>skip_unlabeled</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>Skip clusters with no label.</td>
+</tr>
+<tr>
+<td><code>placeholder_text</code></td>
+<td><code>str | None</code></td>
+<td><code>"\\u2014"</code></td>
+<td>Placeholder label for unlabeled clusters.</td>
+</tr>
+<tr>
+<td><code>placeholder_color</code></td>
+<td><code>str | None</code></td>
+<td><code>"#b22222"</code></td>
+<td>Placeholder text color.</td>
+</tr>
+<tr>
+<td><code>label_text_pad</code></td>
+<td><code>float | None</code></td>
+<td><code>0.01</code></td>
+<td>Padding between tracks and text.</td>
+</tr>
+<tr>
+<td><code>label_x</code></td>
+<td><code>float | None</code></td>
+<td><code>0.02</code></td>
+<td>Left offset for label tracks.</td>
+</tr>
+<tr>
+<td><code>label_gutter_width</code></td>
+<td><code>float | None</code></td>
+<td><code>0.01</code></td>
+<td>Gutter width between matrix and labels.</td>
+</tr>
+<tr>
+<td><code>label_gutter_color</code></td>
+<td><code>str | None</code></td>
+<td><code>"white"</code></td>
+<td>Gutter color.</td>
+</tr>
+<tr>
+<td><code>label_sep_color</code></td>
+<td><code>str | None</code></td>
+<td><code>"gray"</code></td>
+<td>Separator line color.</td>
+</tr>
+<tr>
+<td><code>label_sep_lw</code></td>
+<td><code>float | None</code></td>
+<td><code>0.5</code></td>
+<td>Separator line width.</td>
+</tr>
+<tr>
+<td><code>label_sep_alpha</code></td>
+<td><code>float | None</code></td>
+<td><code>0.3</code></td>
+<td>Separator line alpha.</td>
+</tr>
+<tr>
+<td><code>label_sep_xmin</code></td>
+<td><code>float | None</code></td>
+<td><code>auto (label_text_x)</code></td>
+<td>Separator start x position.</td>
+</tr>
+<tr>
+<td><code>label_sep_xmax</code></td>
+<td><code>float | None</code></td>
+<td><code>1.0</code></td>
+<td>Separator end x position.</td>
+</tr>
+<tr>
+<td><code>boundary_color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Cluster boundary color in matrix.</td>
+</tr>
+<tr>
+<td><code>boundary_lw</code></td>
+<td><code>float | None</code></td>
+<td><code>0.5</code></td>
+<td>Cluster boundary line width in matrix.</td>
+</tr>
+<tr>
+<td><code>boundary_alpha</code></td>
+<td><code>float | None</code></td>
+<td><code>0.6</code></td>
+<td>Cluster boundary alpha in matrix.</td>
+</tr>
+<tr>
+<td><code>dendro_boundary_color</code></td>
+<td><code>str | None</code></td>
+<td><code>"white"</code></td>
+<td>Cluster boundary color in dendrogram.</td>
+</tr>
+<tr>
+<td><code>dendro_boundary_lw</code></td>
+<td><code>float | None</code></td>
+<td><code>0.5</code></td>
+<td>Dendrogram boundary line width.</td>
+</tr>
+<tr>
+<td><code>dendro_boundary_alpha</code></td>
+<td><code>float | None</code></td>
+<td><code>0.3</code></td>
+<td>Dendrogram boundary alpha.</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>overrides</code> to edit or hide labels per cluster and the <code>label_*</code> options to tune gutter and spacing.</p>
+<p>Behavior notes:</p>
+<ul>
+<li>Labels are always generated from the attached <code>Results</code> object.</li>
+<li><code>n</code> is derived from cluster sizes in the attached layout.</li>
+<li><code>label_fields</code> values outside <code>{ "label", "n", "p" }</code> raise <code>ValueError</code>.</li>
+<li>Dict-style <code>overrides</code> entries require a non-empty <code>label</code>.</li>
+<li>If <code>skip_unlabeled=True</code>, clusters without labels are omitted instead of receiving placeholder text.</li>
+</ul>
+<h2 id="label-panel-tracks">Label Panel Tracks<a class="headerlink" href="#label-panel-tracks" title="Permanent link">&para;</a></h2>
+<h3 id="plot_cluster_bar"><code>plot_cluster_bar</code><a class="headerlink" href="#plot_cluster_bar" title="Permanent link">&para;</a></h3>
+<p>Requires <code>plot_cluster_labels(...)</code> in the same plotting chain. Rendering raises
+<code>ValueError</code> if an enabled cluster bar track is declared without a cluster-label layer.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_cluster_bar</span><span class="p">(</span>
+</span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__line-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span>
+</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">left_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__line-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">right_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__line-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Colormap</span> <span class="o">=</span> <span class="s2">&quot;YlOrBr&quot;</span><span class="p">,</span>
+</span><span id="__line-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">norm</span><span class="p">:</span> <span class="n">Normalize</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+</span><span id="__line-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>required</td>
+<td>Track name used for ordering.</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>str</code></td>
+<td><code>"pvalue"</code></td>
+<td>Only <code>"pvalue"</code> is supported.</td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td><code>float | None</code></td>
+<td><code>0.015</code></td>
+<td>Track width.</td>
+</tr>
+<tr>
+<td><code>left_pad</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>Left padding in the label panel.</td>
+</tr>
+<tr>
+<td><code>right_pad</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>Right padding in the label panel.</td>
+</tr>
+<tr>
+<td><code>cmap</code></td>
+<td><code>str | Colormap</code></td>
+<td><code>"YlOrBr"</code></td>
+<td>Colormap name or instance.</td>
+</tr>
+<tr>
+<td><code>norm</code></td>
+<td><code>Normalize | None</code></td>
+<td><code>None</code></td>
+<td>Normalization for <code>-log10(p)</code>.</td>
+</tr>
+<tr>
+<td><code>alpha</code></td>
+<td><code>float</code></td>
+<td><code>0.9</code></td>
+<td>Bar alpha.</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>Register the track.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Optional track title.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="plot_label_bar"><code>plot_label_bar</code><a class="headerlink" href="#plot_label_bar" title="Permanent link">&para;</a></h3>
+<p><code>values</code> is a mapping from matrix row id to either a category label or a numeric value.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Categorical example: row_id -&gt; category, plus category -&gt; color.</span>
+</span><span id="__line-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">characterization_map</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__line-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="s2">&quot;YLR088W&quot;</span><span class="p">:</span> <span class="s2">&quot;characterized&quot;</span><span class="p">,</span>
+</span><span id="__line-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="s2">&quot;YBR004C&quot;</span><span class="p">:</span> <span class="s2">&quot;characterized&quot;</span><span class="p">,</span>
+</span><span id="__line-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="s2">&quot;YNL127W&quot;</span><span class="p">:</span> <span class="s2">&quot;uncharacterized&quot;</span><span class="p">,</span>
+</span><span id="__line-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
+</span><span id="__line-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">characterization_colors</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__line-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="s2">&quot;uncharacterized&quot;</span><span class="p">:</span> <span class="s2">&quot;#1e90ff&quot;</span><span class="p">,</span>
+</span><span id="__line-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="s2">&quot;characterized&quot;</span><span class="p">:</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span>
+</span><span id="__line-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span>
+</span><span id="__line-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__line-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># Continuous example: row_id -&gt; numeric value (e.g., row variance).</span>
+</span><span id="__line-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="n">row_variance</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__line-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="s2">&quot;YLR088W&quot;</span><span class="p">:</span> <span class="mf">0.82</span><span class="p">,</span>
+</span><span id="__line-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="s2">&quot;YBR004C&quot;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+</span><span id="__line-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    <span class="s2">&quot;YNL127W&quot;</span><span class="p">:</span> <span class="mf">0.67</span><span class="p">,</span>
+</span><span id="__line-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="p">}</span>
+</span><span id="__line-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="c1"># Continuous mode uses `cmap` (and optional `vmin`/`vmax`) instead of `colors`.</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_label_bar</span><span class="p">(</span>
+</span><span id="__line-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">values</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="__line-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+</span><span id="__line-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">colors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+</span><span id="__line-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">vmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">vmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">missing_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="n">left_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__line-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="n">right_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__line-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;label_bar&quot;</span><span class="p">,</span>
+</span><span id="__line-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>values</code></td>
+<td><code>Mapping[Hashable, Any]</code></td>
+<td>required</td>
+<td>Row label to category or numeric value.</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td><code>str</code></td>
+<td><code>"categorical"</code></td>
+<td><code>"categorical"</code> or <code>"continuous"</code>.</td>
+</tr>
+<tr>
+<td><code>colors</code></td>
+<td><code>dict[Any, Any] | None</code></td>
+<td><code>None</code></td>
+<td>Category to color mapping for categorical mode.</td>
+</tr>
+<tr>
+<td><code>cmap</code></td>
+<td><code>str</code></td>
+<td><code>"viridis"</code></td>
+<td>Colormap for continuous mode.</td>
+</tr>
+<tr>
+<td><code>vmin</code></td>
+<td><code>float | None</code></td>
+<td><code>None</code></td>
+<td>Minimum for continuous mode normalization.</td>
+</tr>
+<tr>
+<td><code>vmax</code></td>
+<td><code>float | None</code></td>
+<td><code>None</code></td>
+<td>Maximum for continuous mode normalization.</td>
+</tr>
+<tr>
+<td><code>missing_color</code></td>
+<td><code>str | None</code></td>
+<td><code>"#eeeeee"</code></td>
+<td>Missing-value color.</td>
+</tr>
+<tr>
+<td><code>left_pad</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>Left padding in the label panel.</td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td><code>float | None</code></td>
+<td><code>0.012</code></td>
+<td>Track width.</td>
+</tr>
+<tr>
+<td><code>right_pad</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>Right padding in the label panel.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td><code>"label_bar"</code></td>
+<td>Track name used for ordering.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Optional track title.</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>Register the track.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="track-order">Track Order<a class="headerlink" href="#track-order" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">set_label_track_order</span><span class="p">(</span><span class="n">order</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>order</code></td>
+<td><code>Sequence[str] | None</code></td>
+<td><code>declaration order</code></td>
+<td>Explicit track order.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="track-titles">Track Titles<a class="headerlink" href="#track-titles" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_bar_labels</span><span class="p">(</span>
+</span><span id="__line-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span>
+</span><span id="__line-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+</span><span id="__line-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span id="__line-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+</span><span id="__line-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__line-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>font</code></td>
+<td><code>str</code></td>
+<td><code>"Helvetica"</code></td>
+<td>Font family for track titles.</td>
+</tr>
+<tr>
+<td><code>fontsize</code></td>
+<td><code>float</code></td>
+<td><code>10</code></td>
+<td>Font size for track titles.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Text color.</td>
+</tr>
+<tr>
+<td><code>alpha</code></td>
+<td><code>float</code></td>
+<td><code>1.0</code></td>
+<td>Text alpha.</td>
+</tr>
+<tr>
+<td><code>pad</code></td>
+<td><code>float</code></td>
+<td><code>2</code></td>
+<td>Padding in points below the tracks.</td>
+</tr>
+<tr>
+<td><code>rotation</code></td>
+<td><code>float</code></td>
+<td><code>0</code></td>
+<td>Text rotation in degrees.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="axes-and-titles">Axes and Titles<a class="headerlink" href="#axes-and-titles" title="Permanent link">&para;</a></h2>
+<h3 id="plot_title"><code>plot_title</code><a class="headerlink" href="#plot_title" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_title</span><span class="p">(</span>
+</span><span id="__line-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__line-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="n">pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td><code>str</code></td>
+<td>required</td>
+<td>Title text.</td>
+</tr>
+<tr>
+<td><code>fontsize</code></td>
+<td><code>float | None</code></td>
+<td><code>14</code></td>
+<td>Title font size.</td>
+</tr>
+<tr>
+<td><code>pad</code></td>
+<td><code>float | None</code></td>
+<td><code>15</code></td>
+<td>Padding above the plot.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Title color.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="plot_matrix_axis_labels"><code>plot_matrix_axis_labels</code><a class="headerlink" href="#plot_matrix_axis_labels" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_matrix_axis_labels</span><span class="p">(</span>
+</span><span id="__line-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">xlabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__line-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">ylabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__line-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+</span><span id="__line-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">fontweight</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+</span><span id="__line-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="n">xlabel_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+</span><span id="__line-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="n">ylabel_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span id="__line-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>xlabel</code></td>
+<td><code>str</code></td>
+<td><code>""</code></td>
+<td>X-axis label text.</td>
+</tr>
+<tr>
+<td><code>ylabel</code></td>
+<td><code>str</code></td>
+<td><code>""</code></td>
+<td>Y-axis label text.</td>
+</tr>
+<tr>
+<td><code>fontsize</code></td>
+<td><code>float</code></td>
+<td><code>12</code></td>
+<td>Axis label font size.</td>
+</tr>
+<tr>
+<td><code>fontweight</code></td>
+<td><code>str</code></td>
+<td><code>"normal"</code></td>
+<td>Axis label font weight.</td>
+</tr>
+<tr>
+<td><code>xlabel_pad</code></td>
+<td><code>float</code></td>
+<td><code>8</code></td>
+<td>Padding for the x-axis label.</td>
+</tr>
+<tr>
+<td><code>ylabel_pad</code></td>
+<td><code>float | None</code></td>
+<td><code>0.015</code></td>
+<td>Padding between matrix and y-axis label.</td>
+</tr>
+<tr>
+<td><code>font</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Font family for axis labels.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Axis label color.</td>
+</tr>
+<tr>
+<td><code>alpha</code></td>
+<td><code>float</code></td>
+<td><code>1.0</code></td>
+<td>Axis label alpha.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="plot_row_ticks"><code>plot_row_ticks</code><a class="headerlink" href="#plot_row_ticks" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_row_ticks</span><span class="p">(</span>
+</span><span id="__line-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="n">labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">position</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span><span class="p">,</span>
+</span><span id="__line-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+</span><span id="__line-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="n">max_labels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>labels</code></td>
+<td><code>Sequence[str] | None</code></td>
+<td><code>matrix.df.index (ordered)</code></td>
+<td>Row labels.</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td><code>str</code></td>
+<td><code>"right"</code></td>
+<td>Tick side: <code>"left"</code> or <code>"right"</code>.</td>
+</tr>
+<tr>
+<td><code>fontsize</code></td>
+<td><code>float</code></td>
+<td><code>9</code></td>
+<td>Tick label font size.</td>
+</tr>
+<tr>
+<td><code>max_labels</code></td>
+<td><code>int | None</code></td>
+<td><code>all labels</code></td>
+<td>Show at most this many labels.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="plot_col_ticks"><code>plot_col_ticks</code><a class="headerlink" href="#plot_col_ticks" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_col_ticks</span><span class="p">(</span>
+</span><span id="__line-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">position</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top&quot;</span><span class="p">,</span>
+</span><span id="__line-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+</span><span id="__line-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span>
+</span><span id="__line-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="n">max_labels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>labels</code></td>
+<td><code>Sequence[str] | None</code></td>
+<td><code>matrix.df.columns (ordered)</code></td>
+<td>Column labels.</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td><code>str</code></td>
+<td><code>"top"</code></td>
+<td>Tick side: <code>"top"</code> or <code>"bottom"</code>.</td>
+</tr>
+<tr>
+<td><code>fontsize</code></td>
+<td><code>float</code></td>
+<td><code>9</code></td>
+<td>Tick label font size.</td>
+</tr>
+<tr>
+<td><code>rotation</code></td>
+<td><code>float</code></td>
+<td><code>90</code></td>
+<td>Tick label rotation in degrees.</td>
+</tr>
+<tr>
+<td><code>max_labels</code></td>
+<td><code>int | None</code></td>
+<td><code>all labels</code></td>
+<td>Show at most this many labels.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="colorbars">Colorbars<a class="headerlink" href="#colorbars" title="Permanent link">&para;</a></h2>
+<h3 id="add_colorbar"><code>add_colorbar</code><a class="headerlink" href="#add_colorbar" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">add_colorbar</span><span class="p">(</span>
+</span><span id="__line-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__line-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="n">cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Colormap</span><span class="p">,</span>
+</span><span id="__line-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">norm</span><span class="p">:</span> <span class="n">Normalize</span><span class="p">,</span>
+</span><span id="__line-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="n">ticks</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>required</td>
+<td>Colorbar name.</td>
+</tr>
+<tr>
+<td><code>cmap</code></td>
+<td><code>str</code> / <code>Colormap</code></td>
+<td>required</td>
+<td>Colormap name or instance.</td>
+</tr>
+<tr>
+<td><code>norm</code></td>
+<td><code>Normalize</code></td>
+<td>required</td>
+<td>Matplotlib normalization.</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Colorbar label.</td>
+</tr>
+<tr>
+<td><code>ticks</code></td>
+<td><code>Sequence[float] | None</code></td>
+<td><code>None</code></td>
+<td>Tick locations.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Tick and label color.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="plot_colorbars"><code>plot_colorbars</code><a class="headerlink" href="#plot_colorbars" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_colorbars</span><span class="p">(</span>
+</span><span id="__line-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">nrows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">ncols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
+</span><span id="__line-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="n">hpad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+</span><span id="__line-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="n">vpad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+</span><span id="__line-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="n">gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span>
+</span><span id="__line-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="n">border_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="n">border_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
+</span><span id="__line-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="n">border_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span id="__line-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="n">label_position</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;below&quot;</span><span class="p">,</span>
+</span><span id="__line-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>    <span class="n">tick_decimals</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nrows</code></td>
+<td><code>int | None</code></td>
+<td><code>auto</code></td>
+<td>Grid rows.</td>
+</tr>
+<tr>
+<td><code>ncols</code></td>
+<td><code>int | None</code></td>
+<td><code>auto</code></td>
+<td>Grid columns.</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td><code>float</code></td>
+<td><code>0.05</code></td>
+<td>Total colorbar strip height.</td>
+</tr>
+<tr>
+<td><code>hpad</code></td>
+<td><code>float</code></td>
+<td><code>0.01</code></td>
+<td>Horizontal spacing between colorbars.</td>
+</tr>
+<tr>
+<td><code>vpad</code></td>
+<td><code>float</code></td>
+<td><code>0.01</code></td>
+<td>Vertical spacing between colorbars.</td>
+</tr>
+<tr>
+<td><code>gap</code></td>
+<td><code>float</code></td>
+<td><code>0.02</code></td>
+<td>Gap between matrix and strip.</td>
+</tr>
+<tr>
+<td><code>border_color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Border color.</td>
+</tr>
+<tr>
+<td><code>border_width</code></td>
+<td><code>float</code></td>
+<td><code>0.8</code></td>
+<td>Border line width.</td>
+</tr>
+<tr>
+<td><code>border_alpha</code></td>
+<td><code>float</code></td>
+<td><code>1.0</code></td>
+<td>Border alpha.</td>
+</tr>
+<tr>
+<td><code>fontsize</code></td>
+<td><code>float | None</code></td>
+<td><code>9</code></td>
+<td>Tick and label font size.</td>
+</tr>
+<tr>
+<td><code>font</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Tick and label font family.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Tick and label color.</td>
+</tr>
+<tr>
+<td><code>label_position</code></td>
+<td><code>str</code></td>
+<td><code>"below"</code></td>
+<td>Label placement: <code>"below"</code> or <code>"above"</code>.</td>
+</tr>
+<tr>
+<td><code>tick_decimals</code></td>
+<td><code>int | None</code></td>
+<td><code>None</code></td>
+<td>Maximum decimal places for colorbar ticks; trailing zeros are trimmed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="legends">Legends<a class="headerlink" href="#legends" title="Permanent link">&para;</a></h2>
+<h3 id="plot_sigbar_legend"><code>plot_sigbar_legend</code><a class="headerlink" href="#plot_sigbar_legend" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_sigbar_legend</span><span class="p">(</span>
+</span><span id="__line-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">axes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.92</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
+</span><span id="__line-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="n">sigbar_cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="n">norm</span><span class="p">:</span> <span class="n">Normalize</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="n">sigbar_min_logp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">sigbar_max_logp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>axes</code></td>
+<td><code>Sequence[float]</code></td>
+<td><code>[0.92, 0.20, 0.015, 0.25]</code></td>
+<td>Legend box <code>[x0, y0, w, h]</code>.</td>
+</tr>
+<tr>
+<td><code>sigbar_cmap</code></td>
+<td><code>str | None</code></td>
+<td><code>"YlOrBr"</code></td>
+<td>Colormap for the legend.</td>
+</tr>
+<tr>
+<td><code>norm</code></td>
+<td><code>Normalize | None</code></td>
+<td><code>None</code></td>
+<td>Normalization for <code>-log10(p)</code>.</td>
+</tr>
+<tr>
+<td><code>sigbar_min_logp</code></td>
+<td><code>float | None</code></td>
+<td><code>2.0</code></td>
+<td>Lower bound for legend scale.</td>
+</tr>
+<tr>
+<td><code>sigbar_max_logp</code></td>
+<td><code>float | None</code></td>
+<td><code>10.0</code></td>
+<td>Upper bound for legend scale.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rendering">Rendering<a class="headerlink" href="#rendering" title="Permanent link">&para;</a></h2>
+<h3 id="set_background"><code>set_background</code><a class="headerlink" href="#set_background" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">set_background</span><span class="p">(</span><span class="n">color</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>color</code></td>
+<td><code>str</code></td>
+<td>required</td>
+<td>Figure background color for display and save.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="show"><code>show</code><a class="headerlink" href="#show" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</span></code></pre></div>
+<h3 id="save"><code>save</code><a class="headerlink" href="#save" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</span></code></pre></div>
+<p><code>**kwargs</code> are passed to Matplotlib <code>savefig</code>.</p>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>Plotter</code> expects <code>Results</code> with layout from <code>Analysis.finalize()</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../6_results/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Results and Filtering">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Results and Filtering
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../8_condensed_dendrogram/" class="md-footer__link md-footer__link--next" aria-label="Next: Condensed Dendrogram">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Condensed Dendrogram
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
