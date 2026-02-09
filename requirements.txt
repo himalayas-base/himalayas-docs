@@ -1,0 +1,6 @@
+himalayas==0.0.5
+numpy
+pandas
+scipy
+matplotlib
+jupyter
