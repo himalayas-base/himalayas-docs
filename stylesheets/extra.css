@@ -10,3 +10,22 @@
   height: 44px;
   width: auto;
 }
+
+.home-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.home-hero > img {
+  width: clamp(140px, 25%, 220px);
+  height: auto;
+  flex: 0 1 220px;
+}
+
+.home-hero > p {
+  flex: 1 1 18rem;
+  margin: 0;
+}
