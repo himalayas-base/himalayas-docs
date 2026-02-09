@@ -42,4 +42,13 @@ Try:
 - Enabling `wrap_text=True` with a smaller `wrap_width`.
 - Increasing figure size or shrinking font size.
 
+## I called `plot_dendrogram_condensed(...)` but no figure appears
+
+`plot_dendrogram_condensed(...)` returns a `CondensedDendrogramPlot` handle. Call `.show()` to display it or `.save(...)` to write it to disk.
+
+```python
+condensed = plot_dendrogram_condensed(results)
+condensed.show()
+```
+
 If you still have issues, open an issue in the repository with a minimal reproducible example.

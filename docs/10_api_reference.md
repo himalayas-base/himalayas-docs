@@ -26,6 +26,10 @@ This page is a compact map of the public API. Detailed behavior and examples liv
   - Main layered plotting interface.
   - See: [Plotting](7_plotting.md)
 
-- `himalayas.plot.plot_dendrogram_condensed(results: Results, *, term_col: str = "term", cluster_col: str = "cluster", weight_col: str = "pval", label_mode: str = "top_term", label_col: str | None = "term_name", ...)`
+- `himalayas.plot.CondensedDendrogramPlot`
+  - Rendered handle returned by `plot_dendrogram_condensed(...)` with `.fig`, `.ax_den`, `.ax_sig`, `.ax_txt`, `.show()`, and `.save(...)`.
+  - See: [Condensed Dendrogram](8_condensed_dendrogram.md)
+
+- `himalayas.plot.plot_dendrogram_condensed(results: Results, *, term_col: str = "term", cluster_col: str = "cluster", weight_col: str = "pval", label_mode: str = "top_term", label_col: str | None = "term_name", ..., sigbar_height: float = 0.8) -> CondensedDendrogramPlot`
   - Condensed cluster-level dendrogram view.
   - See: [Condensed Dendrogram](8_condensed_dendrogram.md)

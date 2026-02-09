@@ -1,6 +1,7 @@
 # Condensed Dendrogram
 
 The condensed dendrogram summarizes clusters while preserving the original dendrogram order and branch heights. Labels are generated internally from `Results.cluster_labels(...)`.
+`plot_dendrogram_condensed(...)` returns a rendered handle (`CondensedDendrogramPlot`) with explicit `show()` and `save()` methods.
 
 ## Signature
 
@@ -20,7 +21,8 @@ plot_dendrogram_condensed(
     sigbar_max_logp: float = 10.0,
     sigbar_norm: Normalize | None = None,
     sigbar_width: float = 0.06,
-    sigbar_alpha: float = 0.9,
+    sigbar_height: float = 0.8,
+    sigbar_alpha: float = 1.0,
     font: str = "Helvetica",
     fontsize: float = 9,
     max_words: int | None = None,
@@ -37,7 +39,7 @@ plot_dendrogram_condensed(
     dendrogram_lw: float = 1.0,
     label_left_pad: float = 0.02,
     background_color: str | None = None,
-) -> None
+) -> CondensedDendrogramPlot
 ```
 
 ## Parameters
@@ -57,7 +59,8 @@ plot_dendrogram_condensed(
 | `sigbar_max_logp` | `float` | `10.0` | Maximum `-log10(p)` for scaling. |
 | `sigbar_norm` | `Normalize | None` | `None` | Optional normalization; overrides min/max scaling. |
 | `sigbar_width` | `float` | `0.06` | Significance bar width (axes fraction). |
-| `sigbar_alpha` | `float` | `0.9` | Significance bar alpha. |
+| `sigbar_height` | `float` | `0.8` | Height of each significance bar relative to row pitch. Must be in `(0, 1]`. |
+| `sigbar_alpha` | `float` | `1.0` | Significance bar alpha. |
 | `font` | `str` | `"Helvetica"` | Label font family. |
 | `fontsize` | `float` | `9` | Label font size. |
 | `max_words` | `int | None` | `None` | Truncate labels to this word count. |
@@ -75,12 +78,27 @@ plot_dendrogram_condensed(
 | `label_left_pad` | `float` | `0.02` | Left padding for labels (axes fraction). |
 | `background_color` | `str | None` | `None` | Figure and axes background color. |
 
+## Return Handle
+
+```python
+CondensedDendrogramPlot
+```
+
+| Property / Method | Type | Description |
+| --- | --- | --- |
+| `fig` | `matplotlib.figure.Figure` | Rendered figure handle. |
+| `ax_den` | `matplotlib.axes.Axes` | Dendrogram axis. |
+| `ax_sig` | `matplotlib.axes.Axes` | Significance bar axis. |
+| `ax_txt` | `matplotlib.axes.Axes` | Label text axis. |
+| `show()` | `() -> None` | Displays the rendered figure. Raises `RuntimeError` if the figure was closed. |
+| `save(path, **kwargs)` | `(str | PathLike[str], **kwargs) -> None` | Saves the rendered figure with current facecolor. Raises `RuntimeError` if the figure was closed. |
+
 ## Example
 
 ```python
 from himalayas.plot import plot_dendrogram_condensed
 
-plot_dendrogram_condensed(
+condensed = plot_dendrogram_condensed(
     results,
     figsize=(6, 10),
     sigbar_min_logp=2.0,
@@ -89,6 +107,8 @@ plot_dendrogram_condensed(
     wrap_text=True,
     wrap_width=34,
 )
+
+condensed.show()
 ```
 
 ## Example (Zoom Results)
@@ -96,7 +116,7 @@ plot_dendrogram_condensed(
 After a zoom analysis, you can summarize the zoomed hierarchy with the same function:
 
 ```python
-plot_dendrogram_condensed(
+condensed = plot_dendrogram_condensed(
     zoom_results,
     figsize=(4, 8),
     sigbar_min_logp=0.0,
@@ -105,4 +125,12 @@ plot_dendrogram_condensed(
     wrap_text=True,
     wrap_width=30,
 )
+
+condensed.save("zoom_condensed_dendrogram.png", dpi=300)
 ```
+
+## Notes
+
+- Labels are generated internally from the attached `Results` object.
+- `label_fields` must be a subset of `{ "label", "n", "p" }`.
+- Use `Results.cluster_labels(...)` only for inspection/export/custom workflows, not as required input.

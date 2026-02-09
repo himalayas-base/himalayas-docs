@@ -83,7 +83,7 @@ HiMaLAYAS is domain-agnostic. The recipe example builds an ingredient-by-recipe 
 
 Key steps:
 
-- Clean and canonicalize ingredient tokens.
+- Clean and merge near-duplicate ingredient tokens.
 - Build a sparse binary matrix.
 - Filter low-frequency ingredients and very small recipes.
 - Map countries to recipe IDs and run enrichment.
