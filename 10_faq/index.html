@@ -10,10 +10,10 @@
       
       
       
-        <link rel="canonical" href="https://himalayas-base.github.io/himalayas-docs/11_faq/">
+        <link rel="canonical" href="https://himalayas-base.github.io/himalayas-docs/10_faq/">
       
       
-        <link rel="prev" href="../10_api_reference/">
+        <link rel="prev" href="../9_advanced_workflows/">
       
       
       
@@ -909,34 +909,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../10_api_reference/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -1087,6 +1059,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#i-called-plot_dendrogram_condensed-but-no-figure-appears" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I called plot_dendrogram_condensed(...) but no figure appears
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1152,6 +1135,11 @@ Run <a href="https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/HEAD?filep
 <li>Enabling <code>wrap_text=True</code> with a smaller <code>wrap_width</code>.</li>
 <li>Increasing figure size or shrinking font size.</li>
 </ul>
+<h2 id="i-called-plot_dendrogram_condensed-but-no-figure-appears">I called <code>plot_dendrogram_condensed(...)</code> but no figure appears<a class="headerlink" href="#i-called-plot_dendrogram_condensed-but-no-figure-appears" title="Permanent link">&para;</a></h2>
+<p><code>plot_dendrogram_condensed(...)</code> returns a <code>CondensedDendrogramPlot</code> handle. Call <code>.show()</code> to display it or <code>.save(...)</code> to write it to disk.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">condensed</span> <span class="o">=</span> <span class="n">plot_dendrogram_condensed</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">condensed</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
 <p>If you still have issues, open an issue in the repository with a minimal reproducible example.</p>
 
 
@@ -1190,7 +1178,7 @@ Run <a href="https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/HEAD?filep
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../10_api_reference/" class="md-footer__link md-footer__link--prev" aria-label="Previous: API Reference">
+          <a href="../9_advanced_workflows/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Zoom and Non-Biological Workflows">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1200,7 +1188,7 @@ Run <a href="https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/HEAD?filep
                 Previous
               </span>
               <div class="md-ellipsis">
-                API Reference
+                Zoom and Non-Biological Workflows
               </div>
             </div>
           </a>
