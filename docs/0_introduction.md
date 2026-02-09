@@ -2,7 +2,7 @@
 
 HiMaLAYAS is a general framework for post hoc enrichment-based annotation of hierarchically clustered matrices. It treats dendrogram-defined clusters as statistical units, supports enrichment across dendrogram depths, and renders significant annotations alongside their matrix regions.
 
-[![HiMaLAYAS workflow overview](https://imgur.com/FHNttCz.jpeg)](https://imgur.com/FHNttCz.jpeg)
+[![HiMaLAYAS workflow overview](https://imgur.com/a/Wp4rNW2.jpeg)](https://imgur.com/a/Wp4rNW2.jpeg)
 **HiMaLAYAS workflow and application to a hierarchically clustered yeast
 genetic interaction profile similarity matrix (Costanzo _et al_., 2016).**
 A real-valued matrix and categorical annotations serve as inputs. The matrix is
