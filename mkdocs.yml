@@ -22,8 +22,7 @@ nav:
   - Advanced:
       - Zoom and Non-Biological Workflows: 9_advanced_workflows.md
   - Reference:
-      - API Reference: 10_api_reference.md
-      - FAQ and Troubleshooting: 11_faq.md
+      - FAQ and Troubleshooting: 10_faq.md
 
 theme:
   name: material
