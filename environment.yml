@@ -8,4 +8,4 @@ dependencies:
   - matplotlib
   - pip
   - pip:
-      - himalayas
+      - himalayas==0.0.5
