@@ -40,8 +40,10 @@ This documentation walks through installation, workflows, and examples using HiM
 
 For a full description of HiMaLAYAS and its applications, see:
 
-Horecka, I., and Röst, H. (unpublished)
+Horecka, I., and Röst, H. (2026)
 <br>
 _HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_
 <br>
-Manuscript in preparation.
+_bioRxiv_. [https://doi.org/10.1101/2026.xx.xx.xxxxxx](https://doi.org/10.1101/2026.xx.xx.xxxxxx)
+<br>
+Under review at _Bioinformatics_.
