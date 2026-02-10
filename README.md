@@ -4,7 +4,7 @@
 [![pypiv](https://img.shields.io/pypi/v/himalayas.svg)](https://pypi.python.org/pypi/himalayas)
 [![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](LICENSE)
 
-This documentation describes Hierarchical Matrix Layout and Annotation Software (HiMaLAYAS), a framework for post hoc enrichment-based annotation of hierarchically clustered matrices. HiMaLAYAS treats dendrogram-defined clusters as statistical units, evaluates enrichment, and maps significant terms onto the clustered matrix. It supports biological and non-biological domains.
+This documentation describes Hierarchical Matrix Layout and Annotation Software (HiMaLAYAS), a framework for post hoc enrichment-based annotation of hierarchically clustered matrices. HiMaLAYAS treats dendrogram-defined clusters as statistical units, tests annotation enrichment, and renders significant annotations alongside the matrix. It supports biological and non-biological domains.
 
 - **Full Documentation**: [himalayas-base.github.io/himalayas-docs](https://himalayas-base.github.io/himalayas-docs)
 - **Try in Browser (Binder)**: [![Launch in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/HEAD?filepath=notebooks/quickstart.ipynb)
@@ -18,10 +18,10 @@ Manuscript in preparation.
 
 ## Yeast Genetic Interaction Matrix Demonstration
 
-HiMaLAYAS is applied to a hierarchically clustered _Saccharomyces cerevisiae_ genetic interaction profile similarity matrix (Costanzo _et al_., 2016), focusing on genes with high profile variance. Dendrogram-defined clusters are evaluated for Gene Ontology Biological Process (GO BP; Ashburner _et al_., 2000) enrichment, revealing hierarchical organization of biological processes.
+HiMaLAYAS is applied to a hierarchically clustered _Saccharomyces cerevisiae_ genetic interaction profile similarity matrix (Costanzo _et al_., 2016). Dendrogram-defined clusters are evaluated for Gene Ontology Biological Process (GO BP; Ashburner _et al_., 2000) enrichment, revealing hierarchical organization of biological processes.
 
 [![HiMaLAYAS workflow overview](https://imgur.com/SMDInVs.png)](https://imgur.com/SMDInVs.png)
-**HiMaLAYAS workflow and application to a hierarchically clustered yeast genetic interaction profile similarity matrix (Costanzo _et al_., 2016).** A real-valued matrix and categorical annotations serve as inputs. The matrix is cut at a user-defined depth, and clusters are evaluated for GO BP enrichment. The application focuses on ~1,100 genes with high profile variance, and each entry represents Pearson-correlation similarity between genetic interaction profiles.
+**HiMaLAYAS workflow and application to a hierarchically clustered yeast genetic interaction profile similarity matrix (Costanzo _et al_., 2016).** A real-valued matrix and categorical annotations serve as inputs. HiMaLAYAS clusters the matrix to produce a dendrogram, which is cut at a user-defined depth to identify clusters. Enrichment is evaluated across dendrogram-defined clusters and annotations using an overrepresentation test, and significant annotations are rendered alongside the matrix. The application focuses on ~1,100 genes with high profile variance, and each entry represents similarity between two genes' genetic interaction profiles measured by Pearson correlation.
 
 ## Quickstart
 
@@ -44,8 +44,10 @@ Open `notebooks/quickstart.ipynb` in Jupyter.
 
 ### Manuscript (unpublished)
 
-**Horecka, I. and Rost, H.**
-_HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_.
+Horecka, I., and Röst, H. (2026)
+<br>
+_HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_
+<br>
 Manuscript in preparation.
 
 ### Zenodo
