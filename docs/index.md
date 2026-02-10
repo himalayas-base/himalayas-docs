@@ -3,14 +3,15 @@
 <div class="home-hero">
   <img src="https://i.imgur.com/zEIr4gB.png" alt="HiMaLAYAS logo" />
   <p>
-    Hierarchical Matrix Layout and Annotation Software (HiMaLAYAS) is a framework
+    <b>Hierarchical Matrix Layout and Annotation Software</b> (<b>HiMaLAYAS</b>) is a framework
     for post hoc enrichment-based annotation of hierarchically clustered matrices.
     It treats dendrogram-defined clusters as statistical units, tests annotation
-    enrichment, and renders significant annotations alongside the matrix.
+    enrichment, and renders significant annotations alongside the matrix. HiMaLAYAS
+    supports biological and non-biological domains.
   </p>
 </div>
 
-Hierarchical clustering organizes high-dimensional matrices and is commonly used for visualization rather than statistical inference. HiMaLAYAS adds a post hoc enrichment-based inference layer across biological and non-biological domains.
+This documentation walks through installation, workflows, and examples using HiMaLAYAS.
 
 ## Start Here
 
@@ -34,3 +35,13 @@ Hierarchical clustering organizes high-dimensional matrices and is commonly used
 
 - Annotate clustered matrices for biological or non-biological data.
 - Zoom into a cluster and rerun enrichment on the subset.
+
+## Citation
+
+For a full description of HiMaLAYAS and its applications, see:
+
+Horecka, I., and Röst, H. (unpublished)
+<br>
+_HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_
+<br>
+Manuscript in preparation.
