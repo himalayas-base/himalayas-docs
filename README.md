@@ -12,8 +12,10 @@ This documentation describes Hierarchical Matrix Layout and Annotation Software 
 
 For a full description of HiMaLAYAS and its applications, see:
 <br>
-**Horecka, I. and Rost, H. (unpublished)**.
-_HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_.
+Horecka, I., and Röst, H. (unpublished)
+<br>
+_HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_
+<br>
 Manuscript in preparation.
 
 ## Yeast Genetic Interaction Matrix Demonstration
@@ -53,7 +55,7 @@ Open `notebooks/quickstart.ipynb` in Jupyter.
 
 ### Manuscript (unpublished)
 
-Horecka, I., and Röst, H. (2026)
+Horecka, I., and Röst, H. (unpublished)
 <br>
 _HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_
 <br>
