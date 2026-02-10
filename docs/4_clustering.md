@@ -1,6 +1,6 @@
 # Clustering and Layout
 
-HiMaLAYAS uses hierarchical clustering to organize matrix rows. Clusters are defined by cutting the dendrogram at a user-defined depth (distance threshold).
+HiMaLAYAS uses hierarchical clustering to organize matrix rows and columns into contiguous regions of related observations. Clusters are defined by cutting the dendrogram at a user-defined depth (distance threshold).
 
 ## Signature
 

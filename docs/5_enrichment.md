@@ -1,6 +1,6 @@
 # Enrichment and FDR
 
-HiMaLAYAS performs one-sided hypergeometric enrichment for each cluster and categorical term. Multiple testing is controlled with Benjamini-Hochberg FDR.
+HiMaLAYAS tests enrichment across clusters and categorical annotations using a one-sided hypergeometric test. Multiple testing across cluster-term tests is controlled with Benjamini-Hochberg FDR.
 
 ## Signature
 
