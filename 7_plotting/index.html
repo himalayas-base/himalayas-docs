@@ -1567,13 +1567,13 @@ Use <code>Results.cluster_labels(...)</code> when you want an explicit post-hoc 
 The list below documents the supported keyword arguments and effective defaults.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_cluster_labels</span><span class="p">(</span>
 </span><span id="__line-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="o">*</span><span class="p">,</span>
-</span><span id="__line-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">overrides</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">overrides</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 </span><span id="__line-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">term_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span>
 </span><span id="__line-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">cluster_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
 </span><span id="__line-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">weight_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span>
 </span><span id="__line-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
 </span><span id="__line-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">label_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;term_name&quot;</span><span class="p">,</span>
-</span><span id="__line-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 </span><span id="__line-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">label_fields</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">),</span>
 </span><span id="__line-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">wrap_text</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 </span><span id="__line-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="n">wrap_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1616,9 +1616,9 @@ The list below documents the supported keyword arguments and effective defaults.
 <tbody>
 <tr>
 <td><code>overrides</code></td>
-<td><code>dict[int, str | dict[str, Any]] | None</code></td>
+<td><code>dict[int, str] | None</code></td>
 <td><code>None</code></td>
-<td>Per-cluster overrides. Values may be a label string, or a dict with <code>label</code> (required), optional <code>pval</code>, and optional <code>hide_stats</code>.</td>
+<td>Per-cluster label overrides (<code>cluster_id -&gt; label string</code>).</td>
 </tr>
 <tr>
 <td><code>term_col</code></td>
@@ -1652,9 +1652,9 @@ The list below documents the supported keyword arguments and effective defaults.
 </tr>
 <tr>
 <td><code>max_words</code></td>
-<td><code>int</code></td>
-<td><code>6</code></td>
-<td>Max words used by internal <code>"compressed"</code> label generation.</td>
+<td><code>int | None</code></td>
+<td><code>None</code></td>
+<td>Word-based truncation limit for labels.</td>
 </tr>
 <tr>
 <td><code>label_fields</code></td>
@@ -1820,13 +1820,13 @@ The list below documents the supported keyword arguments and effective defaults.
 </tr>
 </tbody>
 </table>
-<p>Use <code>overrides</code> to edit or hide labels per cluster and the <code>label_*</code> options to tune gutter and spacing.</p>
+<p>Use <code>overrides</code> to edit labels per cluster and the <code>label_*</code> options to tune gutter and spacing.</p>
 <p>Behavior notes:</p>
 <ul>
 <li>Labels are always generated from the attached <code>Results</code> object.</li>
 <li><code>n</code> is derived from cluster sizes in the attached layout.</li>
 <li><code>label_fields</code> values outside <code>{ "label", "n", "p" }</code> raise <code>ValueError</code>.</li>
-<li>Dict-style <code>overrides</code> entries require a non-empty <code>label</code>.</li>
+<li>Override values must be non-empty strings.</li>
 <li>If <code>skip_unlabeled=True</code>, clusters without labels are omitted instead of receiving placeholder text.</li>
 </ul>
 <h2 id="label-panel-tracks">Label Panel Tracks<a class="headerlink" href="#label-panel-tracks" title="Permanent link">&para;</a></h2>
@@ -1836,16 +1836,15 @@ The list below documents the supported keyword arguments and effective defaults.
 <div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_cluster_bar</span><span class="p">(</span>
 </span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 </span><span id="__line-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="o">*</span><span class="p">,</span>
-</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span>
-</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">left_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
-</span><span id="__line-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">right_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
-</span><span id="__line-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Colormap</span> <span class="o">=</span> <span class="s2">&quot;YlOrBr&quot;</span><span class="p">,</span>
-</span><span id="__line-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">norm</span><span class="p">:</span> <span class="n">Normalize</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
-</span><span id="__line-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-</span><span id="__line-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">left_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">right_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__line-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Colormap</span> <span class="o">=</span> <span class="s2">&quot;YlOrBr&quot;</span><span class="p">,</span>
+</span><span id="__line-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">norm</span><span class="p">:</span> <span class="n">Normalize</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+</span><span id="__line-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -1862,12 +1861,6 @@ The list below documents the supported keyword arguments and effective defaults.
 <td><code>str</code></td>
 <td>required</td>
 <td>Track name used for ordering.</td>
-</tr>
-<tr>
-<td><code>kind</code></td>
-<td><code>str</code></td>
-<td><code>"pvalue"</code></td>
-<td>Only <code>"pvalue"</code> is supported.</td>
 </tr>
 <tr>
 <td><code>width</code></td>
