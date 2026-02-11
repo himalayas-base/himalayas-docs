@@ -14,7 +14,6 @@ plot_dendrogram_condensed(
     weight_col: str = "pval",
     label_mode: str = "top_term",
     label_col: str | None = "term_name",
-    summary_max_words: int = 6,
     figsize: Sequence[float] = (10, 10),
     sigbar_cmap: str | Colormap = "YlOrBr",
     sigbar_min_logp: float = 2.0,
@@ -52,7 +51,6 @@ plot_dendrogram_condensed(
 | `weight_col` | `str` | `"pval"` | Weight/p-value column used during internal label generation. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
 | `label_col` | `str | None` | `"term_name"` | Optional display-name column for internal label generation. |
-| `summary_max_words` | `int` | `6` | Max words used by internal `"compressed"` label summarization. |
 | `figsize` | `Sequence[float]` | `(10, 10)` | Figure size (width, height). |
 | `sigbar_cmap` | `str / Colormap` | `"YlOrBr"` | Colormap for the significance bar. |
 | `sigbar_min_logp` | `float` | `2.0` | Minimum `-log10(p)` for scaling. |
@@ -63,7 +61,7 @@ plot_dendrogram_condensed(
 | `sigbar_alpha` | `float` | `1.0` | Significance bar alpha. |
 | `font` | `str` | `"Helvetica"` | Label font family. |
 | `fontsize` | `float` | `9` | Label font size. |
-| `max_words` | `int | None` | `None` | Truncate labels to this word count. |
+| `max_words` | `int | None` | `None` | Word-based truncation limit for labels. |
 | `wrap_text` | `bool` | `True` | Wrap long labels. |
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |

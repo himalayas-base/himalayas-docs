@@ -129,13 +129,13 @@ The list below documents the supported keyword arguments and effective defaults.
 ```python
 Plotter.plot_cluster_labels(
     *,
-    overrides: dict[int, Any] | None = None,
+    overrides: dict[int, str] | None = None,
     term_col: str = "term",
     cluster_col: str = "cluster",
     weight_col: str = "pval",
     label_mode: str = "top_term",
     label_col: str | None = "term_name",
-    max_words: int = 6,
+    max_words: int | None = None,
     label_fields: tuple[str, ...] = ("label", "n", "p"),
     wrap_text: bool = True,
     wrap_width: int | None = None,
@@ -170,13 +170,13 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `overrides` | `dict[int, str | dict[str, Any]] | None` | `None` | Per-cluster overrides. Values may be a label string, or a dict with `label` (required), optional `pval`, and optional `hide_stats`. |
+| `overrides` | `dict[int, str] | None` | `None` | Per-cluster label overrides (`cluster_id -> label string`). |
 | `term_col` | `str` | `"term"` | Term id column used during internal label generation. |
 | `cluster_col` | `str` | `"cluster"` | Cluster id column used during internal label generation. |
 | `weight_col` | `str` | `"pval"` | Weight/p-value column used during internal label generation. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
 | `label_col` | `str | None` | `"term_name"` | Optional display-name column for internal label generation. |
-| `max_words` | `int` | `6` | Max words used by internal `"compressed"` label generation. |
+| `max_words` | `int | None` | `None` | Word-based truncation limit for labels. |
 | `label_fields` | `tuple[str, ...]` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`. |
 | `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
@@ -205,14 +205,14 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `dendro_boundary_lw` | `float | None` | `0.5` | Dendrogram boundary line width. |
 | `dendro_boundary_alpha` | `float | None` | `0.3` | Dendrogram boundary alpha. |
 
-Use `overrides` to edit or hide labels per cluster and the `label_*` options to tune gutter and spacing.
+Use `overrides` to edit labels per cluster and the `label_*` options to tune gutter and spacing.
 
 Behavior notes:
 
 - Labels are always generated from the attached `Results` object.
 - `n` is derived from cluster sizes in the attached layout.
 - `label_fields` values outside `{ "label", "n", "p" }` raise `ValueError`.
-- Dict-style `overrides` entries require a non-empty `label`.
+- Override values must be non-empty strings.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 
 ## Label Panel Tracks
@@ -226,7 +226,6 @@ Requires `plot_cluster_labels(...)` in the same plotting chain. Rendering raises
 Plotter.plot_cluster_bar(
     name: str,
     *,
-    kind: str = "pvalue",
     width: float | None = None,
     left_pad: float = 0.0,
     right_pad: float = 0.0,
@@ -241,7 +240,6 @@ Plotter.plot_cluster_bar(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `name` | `str` | required | Track name used for ordering. |
-| `kind` | `str` | `"pvalue"` | Only `"pvalue"` is supported. |
 | `width` | `float | None` | `0.015` | Track width. |
 | `left_pad` | `float` | `0.0` | Left padding in the label panel. |
 | `right_pad` | `float` | `0.0` | Right padding in the label panel. |
