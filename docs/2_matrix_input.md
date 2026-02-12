@@ -20,6 +20,7 @@ Matrix(df: pd.DataFrame, *, axis: str = "rows")
 | Attribute | Type | Description |
 | --- | --- | --- |
 | `matrix.df` | `pd.DataFrame` | Stored matrix table (defensive copy of the input DataFrame). |
+| `matrix.values` | `np.ndarray` | Numeric matrix values as a NumPy array. |
 | `matrix.labels` | `np.ndarray` | Row labels used as the matrix label universe for clustering and enrichment. |
 
 ## Example
