@@ -2,6 +2,17 @@
 
 `Results` holds the enrichment table and attached context (matrix, clusters, layout). It is passed to `Plotter` for visualization.
 
+## Common Attributes
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`, and optional `qval`). |
+| `results.matrix` | `Matrix \| None` | Matrix attached to the result object, useful for zoom workflows and background reuse. |
+| `results.clusters` | `Clusters \| None` | Cluster assignments and dendrogram metadata attached to the result object. |
+| `results.clusters.unique_clusters` | `np.ndarray` | Sorted cluster ids present in the result context (when clusters are attached). |
+| `results.clusters.cluster_sizes` | `dict[int, int]` | Mapping from cluster id to cluster size (when clusters are attached). |
+| `results.clusters.cluster_to_labels` | `dict[int, set[Any]]` | Mapping from cluster id to member labels (when clusters are attached). |
+
 ## Common Methods
 
 ```python
@@ -85,6 +96,14 @@ Build optional cluster labels for inspection/export:
 
 ```python
 cluster_labels = results.cluster_labels(label_mode="top_term")
+```
+
+Inspect cluster membership and sizes:
+
+```python
+display(results.clusters.cluster_sizes)
+example_cluster = int(sorted(results.clusters.cluster_sizes)[0])
+display(sorted(results.clusters.cluster_to_labels[example_cluster])[:10])
 ```
 
 ## Key Columns in `results.df`

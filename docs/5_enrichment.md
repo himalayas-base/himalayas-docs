@@ -28,7 +28,15 @@ analysis = (
     .enrich(min_overlap=2)
     .finalize(add_qvalues=True)
 )
+
+results = analysis.results
 ```
+
+After running enrichment, the primary output is attached as:
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| `analysis.results` | `Results` | Enrichment results table and attached context used for filtering, inspection, and plotting. |
 
 ## FDR Correction
 

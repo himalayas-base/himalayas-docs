@@ -15,6 +15,12 @@ Annotations(term_to_labels: dict[str, Iterable[str]], matrix: Matrix)
 | `term_to_labels` | `dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, recipes, proteins). |
 | `matrix` | `Matrix` | required | Provides the label universe. |
 
+## Common Attributes
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| `annotations.term_to_labels` | `dict[str, set[str]]` | Filtered term-to-label mapping retained on the object after dropping labels not present in the matrix. |
+
 ## Example (GO Biological Process)
 
 ```python
