@@ -679,6 +679,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#common-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-methods" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1077,6 +1088,63 @@
 
 <h1 id="results-and-filtering">Results and Filtering<a class="headerlink" href="#results-and-filtering" title="Permanent link">&para;</a></h1>
 <p><code>Results</code> holds the enrichment table and attached context (matrix, clusters, layout). It is passed to <code>Plotter</code> for visualization.</p>
+<h2 id="common-attributes">Common Attributes<a class="headerlink" href="#common-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>results.df</code></td>
+<td><code>pd.DataFrame</code></td>
+<td>Enrichment table (<code>cluster</code>, <code>term</code>, <code>k</code>, <code>K</code>, <code>n</code>, <code>N</code>, <code>pval</code>, and optional <code>qval</code>).</td>
+</tr>
+<tr>
+<td><code>results.method</code></td>
+<td><code>str</code></td>
+<td>Method identifier for the result object (for example, <code>"hypergeom"</code> after enrichment or <code>"subset"</code> after <code>results.subset(...)</code>).</td>
+</tr>
+<tr>
+<td><code>results.params</code></td>
+<td><code>dict[str, Any]</code></td>
+<td>Analysis metadata attached to results (for example, <code>linkage_threshold</code> when available).</td>
+</tr>
+<tr>
+<td><code>results.matrix</code></td>
+<td><code>Matrix \| None</code></td>
+<td>Matrix attached to the result object, useful for zoom workflows and background reuse.</td>
+</tr>
+<tr>
+<td><code>results.clusters</code></td>
+<td><code>Clusters \| None</code></td>
+<td>Cluster assignments and dendrogram metadata attached to the result object.</td>
+</tr>
+<tr>
+<td><code>results.clusters.unique_clusters</code></td>
+<td><code>np.ndarray</code></td>
+<td>Sorted cluster ids present in the result context (when clusters are attached).</td>
+</tr>
+<tr>
+<td><code>results.clusters.cluster_sizes</code></td>
+<td><code>dict[int, int]</code></td>
+<td>Mapping from cluster id to cluster size (when clusters are attached).</td>
+</tr>
+<tr>
+<td><code>results.clusters.cluster_to_labels</code></td>
+<td><code>dict[int, set[Any]]</code></td>
+<td>Mapping from cluster id to member labels (when clusters are attached).</td>
+</tr>
+<tr>
+<td><code>results.clusters.label_to_cluster</code></td>
+<td><code>dict[Any, int]</code></td>
+<td>Mapping from label to cluster id (when clusters are attached).</td>
+</tr>
+</tbody>
+</table>
 <h2 id="common-methods">Common Methods<a class="headerlink" href="#common-methods" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">expr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
 </span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
@@ -1209,6 +1277,13 @@
 </span></code></pre></div>
 <p>Build optional cluster labels for inspection/export:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Inspect cluster membership and sizes:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_sizes</span><span class="p">)</span>
+</span><span id="__line-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">example_cluster</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_sizes</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span><span id="__line-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">display</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_to_labels</span><span class="p">[</span><span class="n">example_cluster</span><span class="p">])[:</span><span class="mi">10</span><span class="p">])</span>
+</span><span id="__line-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">example_label</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">labels</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__line-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">label_to_cluster</span><span class="p">[</span><span class="n">example_label</span><span class="p">])</span>
 </span></code></pre></div>
 <h2 id="key-columns-in-resultsdf">Key Columns in <code>results.df</code><a class="headerlink" href="#key-columns-in-resultsdf" title="Permanent link">&para;</a></h2>
 <ul>

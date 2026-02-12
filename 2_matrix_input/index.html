@@ -528,6 +528,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#common-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1102,6 +1113,33 @@
 <td><code>str</code></td>
 <td><code>"rows"</code></td>
 <td>Orientation of labels. Use <code>"rows"</code> for standard usage. Reserved for column-labeled use cases.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-attributes">Common Attributes<a class="headerlink" href="#common-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>matrix.df</code></td>
+<td><code>pd.DataFrame</code></td>
+<td>Stored matrix table (defensive copy of the input DataFrame).</td>
+</tr>
+<tr>
+<td><code>matrix.values</code></td>
+<td><code>np.ndarray</code></td>
+<td>Numeric matrix values as a NumPy array.</td>
+</tr>
+<tr>
+<td><code>matrix.labels</code></td>
+<td><code>np.ndarray</code></td>
+<td>Row labels used as the matrix label universe for clustering and enrichment.</td>
 </tr>
 </tbody>
 </table>

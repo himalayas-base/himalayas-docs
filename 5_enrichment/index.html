@@ -1105,7 +1105,26 @@
 </span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">add_qvalues</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">)</span>
+</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__line-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">results</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">results</span>
 </span></code></pre></div>
+<p>After running enrichment, the primary output is attached as:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>analysis.results</code></td>
+<td><code>Results</code></td>
+<td>Enrichment results table and attached context used for filtering, inspection, and plotting.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fdr-correction">FDR Correction<a class="headerlink" href="#fdr-correction" title="Permanent link">&para;</a></h2>
 <p>HiMaLAYAS uses Benjamini-Hochberg (BH) FDR across cluster-term tests.</p>
 <p>See <a href="../6_results/">Results and Filtering</a> for examples of filtering on q-values.</p>

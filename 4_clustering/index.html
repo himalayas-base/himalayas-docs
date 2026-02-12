@@ -1109,6 +1109,23 @@
 </span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
 </span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">)</span>
 </span></code></pre></div>
+<p>After clustering, cluster assignments are attached as:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>analysis.clusters</code></td>
+<td><code>Clusters</code></td>
+<td>Dendrogram, per-label cluster IDs, and cluster membership mappings.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Any method or metric supported by SciPy <code>linkage</code> is valid (see the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html">SciPy linkage docs</a>).</li>
