@@ -7,11 +7,14 @@
 | Attribute | Type | Description |
 | --- | --- | --- |
 | `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`, and optional `qval`). |
+| `results.method` | `str` | Method identifier for the result object (for example, `"hypergeom"` after enrichment or `"subset"` after `results.subset(...)`). |
+| `results.params` | `dict[str, Any]` | Analysis metadata attached to results (for example, `linkage_threshold` when available). |
 | `results.matrix` | `Matrix \| None` | Matrix attached to the result object, useful for zoom workflows and background reuse. |
 | `results.clusters` | `Clusters \| None` | Cluster assignments and dendrogram metadata attached to the result object. |
 | `results.clusters.unique_clusters` | `np.ndarray` | Sorted cluster ids present in the result context (when clusters are attached). |
 | `results.clusters.cluster_sizes` | `dict[int, int]` | Mapping from cluster id to cluster size (when clusters are attached). |
 | `results.clusters.cluster_to_labels` | `dict[int, set[Any]]` | Mapping from cluster id to member labels (when clusters are attached). |
+| `results.clusters.label_to_cluster` | `dict[Any, int]` | Mapping from label to cluster id (when clusters are attached). |
 
 ## Common Methods
 
@@ -104,6 +107,8 @@ Inspect cluster membership and sizes:
 display(results.clusters.cluster_sizes)
 example_cluster = int(sorted(results.clusters.cluster_sizes)[0])
 display(sorted(results.clusters.cluster_to_labels[example_cluster])[:10])
+example_label = sorted(results.matrix.labels)[0]
+display(results.clusters.label_to_cluster[example_label])
 ```
 
 ## Key Columns in `results.df`

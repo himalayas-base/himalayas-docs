@@ -34,6 +34,12 @@ analysis = Analysis(matrix, annotations).cluster(
 )
 ```
 
+After clustering, cluster assignments are attached as:
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| `analysis.clusters` | `Clusters` | Dendrogram, per-label cluster IDs, and cluster membership mappings. |
+
 ## Notes
 
 - Any method or metric supported by SciPy `linkage` is valid (see the [SciPy linkage docs](https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html)).
