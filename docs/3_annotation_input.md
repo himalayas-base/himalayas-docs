@@ -19,19 +19,40 @@ Annotations(term_to_labels: dict[str, Iterable[str]], matrix: Matrix)
 
 | Attribute | Type | Description |
 | --- | --- | --- |
+| `annotations.matrix_labels` | `set[str]` | Matrix label universe used to filter incoming annotation labels. |
 | `annotations.term_to_labels` | `dict[str, set[str]]` | Filtered term-to-label mapping retained on the object after dropping labels not present in the matrix. |
 
 ## Common Methods
 
 ```python
-Annotations.terms() -> list[str]
+Annotations.terms -> list[str]
 Annotations.rebind(matrix: Matrix) -> Annotations
 ```
 
 | Method | Description |
 | --- | --- |
-| `annotations.terms()` | Returns retained annotation terms after overlap filtering. |
+| `annotations.terms` | Returns retained annotation terms after overlap filtering. |
 | `annotations.rebind(matrix)` | Returns a new `Annotations` object aligned to a new matrix label universe (useful for zoom/subset workflows). |
+
+## `terms`
+
+```python
+Annotations.terms -> list[str]
+```
+
+Returns retained annotation terms after overlap filtering.
+
+## `rebind`
+
+```python
+Annotations.rebind(matrix: Matrix) -> Annotations
+```
+
+Returns a new `Annotations` object aligned to a new matrix label universe.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `matrix` | `Matrix` | required | New matrix whose label universe will be used to re-filter terms. |
 
 ## Example (GO Biological Process)
 

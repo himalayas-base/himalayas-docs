@@ -58,11 +58,36 @@ plotter = (
 plotter.show()
 ```
 
+## Common Methods
+
+| Method | Description |
+| --- | --- |
+| `plotter.plot_matrix(...)` | Declares the main matrix heatmap layer. |
+| `plotter.plot_dendrogram(...)` | Declares a dendrogram layer aligned to matrix rows. |
+| `plotter.set_label_panel(...)` | Configures shared label-panel geometry for labels and tracks. |
+| `plotter.plot_cluster_labels(...)` | Declares cluster-level labels generated from attached `Results`. |
+| `plotter.plot_cluster_bar(...)` | Declares a cluster-level bar track derived from cluster p-values. |
+| `plotter.plot_label_bar(...)` | Declares a row-level annotation bar track in the label panel. |
+| `plotter.set_label_track_order(...)` | Sets explicit ordering of registered label-panel tracks. |
+| `plotter.plot_bar_labels(...)` | Declares titles for registered label-panel tracks. |
+| `plotter.plot_title(...)` | Declares a matrix title layer. |
+| `plotter.plot_matrix_axis_labels(...)` | Declares x/y axis labels for the matrix panel. |
+| `plotter.plot_row_ticks(...)` | Declares row tick labels for the matrix panel. |
+| `plotter.plot_col_ticks(...)` | Declares column tick labels for the matrix panel. |
+| `plotter.add_colorbar(...)` | Declares a figure-level colorbar specification. |
+| `plotter.plot_colorbars(...)` | Declares layout for the bottom colorbar strip. |
+| `plotter.plot_sigbar_legend(...)` | Declares a significance-bar legend layer. |
+| `plotter.set_background(...)` | Sets figure background color used for display and save. |
+| `plotter.show()` | Renders (if needed) and displays the current plot. |
+| `plotter.save(...)` | Renders (if needed) and saves the current plot. |
+
 ## Core Layers
 
 Layers render in declaration order. Later layers draw on top of earlier ones.
 
 ### `plot_matrix`
+
+Declares the main matrix heatmap layer.
 
 ```python
 Plotter.plot_matrix(
@@ -103,6 +128,8 @@ Use `center` for diverging color scales and `vmin`/`vmax` for explicit limits.
 
 ### `plot_dendrogram`
 
+Declares a dendrogram layer aligned to matrix rows.
+
 ```python
 Plotter.plot_dendrogram(
     *,
@@ -121,6 +148,8 @@ Plotter.plot_dendrogram(
 | `data_pad` | `float` | `0.25` | Expands y-limits to avoid top/bottom clipping. |
 
 ### `set_label_panel`
+
+Configures shared label-panel geometry for labels and tracks.
 
 ```python
 Plotter.set_label_panel(
@@ -142,6 +171,8 @@ Plotter.set_label_panel(
 | `text_pad` | `float | None` | `0.01` | Padding between tracks and label text. |
 
 ### `plot_cluster_labels`
+
+Declares cluster-level labels generated from attached `Results`.
 
 Labels are generated internally from attached `Results` via `Results.cluster_labels(...)`.
 Use `Results.cluster_labels(...)` when you want an explicit post-hoc label table (inspection/export/custom side workflows), not as a required input to this method.
@@ -227,12 +258,14 @@ Behavior notes:
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
 - `n` is derived from cluster sizes in the attached layout.
 - `label_fields` values outside `{ "label", "n", "p" }` raise `ValueError`.
-- Override values must be non-empty strings.
+- Override values must be strings (empty strings are allowed to intentionally suppress text).
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 
 ## Label Panel Tracks
 
 ### `plot_cluster_bar`
+
+Declares a cluster-level bar track derived from cluster p-values.
 
 Requires `plot_cluster_labels(...)` in the same plotting chain. Rendering raises
 `ValueError` if an enabled cluster bar track is declared without a cluster-label layer.
@@ -265,6 +298,8 @@ Plotter.plot_cluster_bar(
 | `title` | `str | None` | `None` | Optional track title. |
 
 ### `plot_label_bar`
+
+Declares a row-level annotation bar track in the label panel.
 
 `values` is a mapping from matrix row id to either a category label or a numeric value.
 Row-level label tracks can render without `plot_cluster_labels(...)`.
@@ -327,6 +362,8 @@ Plotter.plot_label_bar(
 
 ### Track Order
 
+Sets explicit ordering of registered label-panel tracks.
+
 ```python
 Plotter.set_label_track_order(order: Sequence[str] | None = None) -> Plotter
 ```
@@ -336,6 +373,8 @@ Plotter.set_label_track_order(order: Sequence[str] | None = None) -> Plotter
 | `order` | `Sequence[str] | None` | `declaration order` | Explicit track order. |
 
 ### Track Titles
+
+Declares titles for registered label-panel tracks.
 
 ```python
 Plotter.plot_bar_labels(
@@ -362,6 +401,8 @@ Plotter.plot_bar_labels(
 
 ### `plot_title`
 
+Declares a matrix title layer.
+
 ```python
 Plotter.plot_title(
     title: str,
@@ -380,6 +421,8 @@ Plotter.plot_title(
 | `color` | `str | None` | `"black"` | Title color. |
 
 ### `plot_matrix_axis_labels`
+
+Declares x/y axis labels for the matrix panel.
 
 ```python
 Plotter.plot_matrix_axis_labels(
@@ -410,6 +453,8 @@ Plotter.plot_matrix_axis_labels(
 
 ### `plot_row_ticks`
 
+Declares row tick labels for the matrix panel.
+
 ```python
 Plotter.plot_row_ticks(
     labels: Sequence[str] | None = None,
@@ -428,6 +473,8 @@ Plotter.plot_row_ticks(
 | `max_labels` | `int | None` | `all labels` | Show at most this many labels. |
 
 ### `plot_col_ticks`
+
+Declares column tick labels for the matrix panel.
 
 ```python
 Plotter.plot_col_ticks(
@@ -452,6 +499,8 @@ Plotter.plot_col_ticks(
 
 ### `add_colorbar`
 
+Declares a figure-level colorbar specification.
+
 ```python
 Plotter.add_colorbar(
     *,
@@ -474,6 +523,8 @@ Plotter.add_colorbar(
 | `color` | `str | None` | `"black"` | Tick and label color. |
 
 ### `plot_colorbars`
+
+Declares layout for the bottom colorbar strip.
 
 ```python
 Plotter.plot_colorbars(
@@ -516,6 +567,8 @@ Plotter.plot_colorbars(
 
 ### `plot_sigbar_legend`
 
+Declares a significance-bar legend layer.
+
 ```python
 Plotter.plot_sigbar_legend(
     *,
@@ -539,6 +592,8 @@ Plotter.plot_sigbar_legend(
 
 ### `set_background`
 
+Sets figure background color used for display and save.
+
 ```python
 Plotter.set_background(color: str) -> Plotter
 ```
@@ -549,11 +604,15 @@ Plotter.set_background(color: str) -> Plotter
 
 ### `show`
 
+Renders (if needed) and displays the current plot.
+
 ```python
 Plotter.show() -> None
 ```
 
 ### `save`
+
+Renders (if needed) and saves the current plot.
 
 ```python
 Plotter.save(path: str, **kwargs) -> None

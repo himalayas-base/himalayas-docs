@@ -21,6 +21,9 @@
 ```python
 Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
+Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
+Results.cluster_layout() -> ClusterLayout
+Results.cluster_spans() -> list[tuple[int, int, int]]
 Results.cluster_labels(
     term_col: str = "term",
     cluster_col: str = "cluster",
@@ -32,11 +35,22 @@ Results.cluster_labels(
 ) -> pd.DataFrame
 ```
 
+| Method | Description |
+| --- | --- |
+| `results.filter(...)` | Returns a new `Results` filtered by a query expression on `results.df`. |
+| `results.subset(...)` | Returns a cluster-specific view for zoom workflows (with subset matrix attached). |
+| `results.with_qvalues(...)` | Returns a new `Results` with BH-FDR q-values added to `results.df`. |
+| `results.cluster_layout()` | Returns the attached plotting layout (required by `Plotter`). |
+| `results.cluster_spans()` | Returns contiguous cluster spans in dendrogram order. |
+| `results.cluster_labels(...)` | Builds one-label-per-cluster summaries for inspection/export. |
+
 ## `filter`
 
 ```python
 Results.filter(expr: str, **kwargs: Any) -> Results
 ```
+
+Returns a new `Results` filtered by a query expression on `results.df`.
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -49,9 +63,34 @@ Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
 ```
 
+Returns a cluster-specific view for zoom workflows (with subset matrix attached).
+
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `cluster` | `int` | required | Cluster id to subset. Returns a new `Results` view with a subset matrix attached. |
+
+## `with_qvalues`
+
+```python
+Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
+```
+
+Returns a new `Results` with BH-FDR q-values added to `results.df`.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `pval_col` | `str` | `"pval"` | Source p-value column used for BH-FDR correction. |
+| `qval_col` | `str` | `"qval"` | Output q-value column name. |
+
+## `cluster_layout` and `cluster_spans`
+
+```python
+Results.cluster_layout() -> ClusterLayout
+Results.cluster_spans() -> list[tuple[int, int, int]]
+```
+
+`results.cluster_layout()` returns the attached plotting layout (required by `Plotter`).
+`results.cluster_spans()` returns contiguous cluster spans in dendrogram order.
 
 ## `cluster_labels`
 
@@ -66,6 +105,8 @@ Results.cluster_labels(
     max_words: int = 6,
 ) -> pd.DataFrame
 ```
+
+Builds one-label-per-cluster summaries for inspection/export.
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
