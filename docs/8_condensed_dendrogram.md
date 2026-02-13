@@ -33,6 +33,10 @@ plot_dendrogram_condensed(
     label_overrides: dict[int, str] | None = None,
     label_color: str = "black",
     label_alpha: float = 1.0,
+    placeholder_text: str = "—",
+    placeholder_color: str | None = None,
+    placeholder_alpha: float | None = None,
+    skip_unlabeled: bool = False,
     label_fontweight: str = "normal",
     dendrogram_color: str = "black",
     dendrogram_lw: float = 1.0,
@@ -69,12 +73,28 @@ plot_dendrogram_condensed(
 | `label_fields` | `Sequence[str]` | `("label", "n", "p")` | Label fields to include. |
 | `label_overrides` | `dict[int, str] | None` | `None` | Mapping `cluster_id -> label` for custom names. |
 | `label_color` | `str` | `"black"` | Label text color. |
-| `label_alpha` | `float` | `1.0` | Label text alpha. |
+| `label_alpha` | `float` | `1.0` | Label text alpha for regular (non-placeholder) labels. |
+| `placeholder_text` | `str` | `"—"` | Placeholder label for unlabeled clusters. |
+| `placeholder_color` | `str | None` | `None` | Placeholder text color. Falls back to `label_color`, then default. |
+| `placeholder_alpha` | `float | None` | `None` | Placeholder text alpha. Falls back to `label_alpha`, then default. |
+| `skip_unlabeled` | `bool` | `False` | Skip clusters with no label. |
 | `label_fontweight` | `str` | `"normal"` | Label font weight. |
 | `dendrogram_color` | `str` | `"black"` | Dendrogram line color. |
 | `dendrogram_lw` | `float` | `1.0` | Dendrogram line width. |
 | `label_left_pad` | `float` | `0.02` | Left padding for labels (axes fraction). |
 | `background_color` | `str | None` | `None` | Figure and axes background color. |
+
+Use `label_overrides` to edit labels per cluster.
+
+Behavior notes:
+
+- Labels are always generated from the attached `Results` object.
+- Unknown keyword arguments in `plot_dendrogram_condensed(...)` raise `TypeError`.
+- `label_fields` values outside `{ "label", "n", "p" }` raise `ValueError`.
+- Override values in `label_overrides` must be strings.
+- If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
+- Placeholder style resolves as `placeholder_color` -> `label_color`, and `placeholder_alpha` -> `label_alpha`.
+- Placeholder styling applies only to unlabeled/placeholder cluster labels.
 
 ## Return Handle
 
