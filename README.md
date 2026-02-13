@@ -3,7 +3,6 @@
 ![Python](https://img.shields.io/badge/python-3.8%2B-yellow)
 [![pypiv](https://img.shields.io/pypi/v/himalayas.svg)](https://pypi.python.org/pypi/himalayas)
 [![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18610373.svg)](https://doi.org/10.5281/zenodo.18610373)
 
 This documentation describes Hierarchical Matrix Layout and Annotation Software (HiMaLAYAS), a framework for post hoc enrichment-based annotation of hierarchically clustered matrices. HiMaLAYAS treats dendrogram-defined clusters as statistical units, tests annotation enrichment, and renders significant annotations alongside the matrix. It supports biological and non-biological domains.
 
