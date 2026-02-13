@@ -199,6 +199,7 @@ Plotter.plot_cluster_labels(
     skip_unlabeled: bool = False,
     placeholder_text: str | None = "\\u2014",
     placeholder_color: str | None = "#b22222",
+    placeholder_alpha: float | None = 0.6,
     omit_words: Sequence[str] | None = None,
     label_sep_color: str | None = "gray",
     label_sep_lw: float | None = 0.5,
@@ -232,10 +233,11 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `font` | `str` | `"Helvetica"` | Label font family. |
 | `fontsize` | `float | None` | `9` | Label font size. |
 | `color` | `str | None` | `"black"` | Label text color. |
-| `alpha` | `float | None` | `0.9` | Label text alpha (`0.6` for placeholders). |
+| `alpha` | `float | None` | `0.9` | Label text alpha for regular (non-placeholder) labels. |
 | `skip_unlabeled` | `bool` | `False` | Skip clusters with no label. |
 | `placeholder_text` | `str | None` | `"\\u2014"` | Placeholder label for unlabeled clusters. |
-| `placeholder_color` | `str | None` | `"#b22222"` | Placeholder text color. |
+| `placeholder_color` | `str | None` | `"#b22222"` | Placeholder text color. Falls back to `color`, then default. |
+| `placeholder_alpha` | `float | None` | `0.6` | Placeholder text alpha. Falls back to `alpha`, then default. |
 | `omit_words` | `Sequence[str] | None` | `None` | Words omitted from rendered label text before formatting. |
 | `label_sep_color` | `str | None` | `"gray"` | Separator line color. |
 | `label_sep_lw` | `float | None` | `0.5` | Separator line width. |
@@ -260,6 +262,7 @@ Behavior notes:
 - `label_fields` values outside `{ "label", "n", "p" }` raise `ValueError`.
 - Override values must be strings (empty strings are allowed to intentionally suppress text).
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
+- Placeholder style resolves as `placeholder_color` -> `color` -> default, and `placeholder_alpha` -> `alpha` -> default.
 
 ## Label Panel Tracks
 
