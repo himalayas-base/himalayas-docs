@@ -29,11 +29,11 @@ plotter = (
     .plot_dendrogram(axes=[0.06, 0.16, 0.09, 0.79], linewidth=0.75, color="#888888")
     .plot_matrix(cmap="RdBu_r", center=0, vmin=-vlim, vmax=vlim, outer_lw=0)
     .plot_matrix_axis_labels(xlabel="Gene", ylabel="Gene", fontsize=16)
+    .set_label_panel(axes=[0.62, 0.16, 0.36, 0.79], text_pad=0.02)
     .plot_cluster_labels(
         label_fields=("label", "p"),
         wrap_text=True,
         wrap_width=40,
-        axes=[0.62, 0.16, 0.36, 0.79],
     )
     .plot_cluster_bar(
         name="sigbar",
@@ -120,6 +120,27 @@ Plotter.plot_dendrogram(
 | `linewidth` | `float | None` | `1.0` | Dendrogram line width. |
 | `data_pad` | `float` | `0.25` | Expands y-limits to avoid top/bottom clipping. |
 
+### `set_label_panel`
+
+```python
+Plotter.set_label_panel(
+    *,
+    axes: Sequence[float] | None = None,
+    track_x: float | None = None,
+    gutter_width: float | None = None,
+    gutter_color: str | None = None,
+    text_pad: float | None = None,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `axes` | `Sequence[float] | None` | `[0.70, 0.05, 0.29, 0.90]` | Label-panel box. |
+| `track_x` | `float | None` | `0.02` | Starting x-position for label-panel tracks. |
+| `gutter_width` | `float | None` | `0.01` | Gutter width before label-panel tracks. |
+| `gutter_color` | `str | None` | `"white"` | Label-panel gutter color. |
+| `text_pad` | `float | None` | `0.01` | Padding between tracks and label text. |
+
 ### `plot_cluster_labels`
 
 Labels are generated internally from attached `Results` via `Results.cluster_labels(...)`.
@@ -144,14 +165,10 @@ Plotter.plot_cluster_labels(
     fontsize: float | None = 9,
     color: str | None = "black",
     alpha: float | None = 0.9,
-    axes: Sequence[float] | None = [0.70, 0.05, 0.29, 0.90],
     skip_unlabeled: bool = False,
     placeholder_text: str | None = "\\u2014",
     placeholder_color: str | None = "#b22222",
-    label_text_pad: float | None = 0.01,
-    label_x: float | None = 0.02,
-    label_gutter_width: float | None = 0.01,
-    label_gutter_color: str | None = "white",
+    omit_words: Sequence[str] | None = None,
     label_sep_color: str | None = "gray",
     label_sep_lw: float | None = 0.5,
     label_sep_alpha: float | None = 0.3,
@@ -185,14 +202,10 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `fontsize` | `float | None` | `9` | Label font size. |
 | `color` | `str | None` | `"black"` | Label text color. |
 | `alpha` | `float | None` | `0.9` | Label text alpha (`0.6` for placeholders). |
-| `axes` | `Sequence[float] | None` | `[0.70, 0.05, 0.29, 0.90]` | Label panel box. |
 | `skip_unlabeled` | `bool` | `False` | Skip clusters with no label. |
 | `placeholder_text` | `str | None` | `"\\u2014"` | Placeholder label for unlabeled clusters. |
 | `placeholder_color` | `str | None` | `"#b22222"` | Placeholder text color. |
-| `label_text_pad` | `float | None` | `0.01` | Padding between tracks and text. |
-| `label_x` | `float | None` | `0.02` | Left offset for label tracks. |
-| `label_gutter_width` | `float | None` | `0.01` | Gutter width between matrix and labels. |
-| `label_gutter_color` | `str | None` | `"white"` | Gutter color. |
+| `omit_words` | `Sequence[str] | None` | `None` | Words omitted from rendered label text before formatting. |
 | `label_sep_color` | `str | None` | `"gray"` | Separator line color. |
 | `label_sep_lw` | `float | None` | `0.5` | Separator line width. |
 | `label_sep_alpha` | `float | None` | `0.3` | Separator line alpha. |
@@ -205,11 +218,13 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `dendro_boundary_lw` | `float | None` | `0.5` | Dendrogram boundary line width. |
 | `dendro_boundary_alpha` | `float | None` | `0.3` | Dendrogram boundary alpha. |
 
-Use `overrides` to edit labels per cluster and the `label_*` options to tune gutter and spacing.
+Use `overrides` to edit labels per cluster. Configure panel geometry with `set_label_panel(...)`.
 
 Behavior notes:
 
 - Labels are always generated from the attached `Results` object.
+- Panel geometry (`axes`, `track_x`, `gutter_width`, `gutter_color`, `text_pad`) is configured via `set_label_panel(...)`.
+- Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
 - `n` is derived from cluster sizes in the attached layout.
 - `label_fields` values outside `{ "label", "n", "p" }` raise `ValueError`.
 - Override values must be non-empty strings.
@@ -252,6 +267,7 @@ Plotter.plot_cluster_bar(
 ### `plot_label_bar`
 
 `values` is a mapping from matrix row id to either a category label or a numeric value.
+Row-level label tracks can render without `plot_cluster_labels(...)`.
 
 ```python
 # Categorical example: row_id -> category, plus category -> color.
