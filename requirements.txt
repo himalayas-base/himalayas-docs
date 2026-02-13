@@ -1,4 +1,4 @@
-himalayas==0.0.8a
+himalayas==0.0.8
 numpy
 pandas
 scipy
