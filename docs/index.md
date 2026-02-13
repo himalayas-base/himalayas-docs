@@ -1,7 +1,7 @@
 # HiMaLAYAS Documentation
 
 <div class="home-hero">
-  <img src="https://i.imgur.com/zEIr4gB.png" alt="HiMaLAYAS logo" />
+  <img src="images/figure_1.png" alt="HiMaLAYAS logo" />
   <p>
     <b>Hierarchical Matrix Layout and Annotation Software</b> (<b>HiMaLAYAS</b>) is a framework
     for post hoc enrichment-based annotation of hierarchically clustered matrices.
