@@ -8764,6 +8764,7 @@ Significant rows (q&lt;=0.05): 331
     <span class="n">cluster_id</span><span class="p">,</span>
     <span class="n">go_bp</span><span class="p">,</span>
     <span class="n">linkage_threshold</span><span class="p">,</span>
+    <span class="n">background_matrix</span><span class="p">,</span>
     <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
     <span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">qval_cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
@@ -8775,6 +8776,7 @@ Significant rows (q&lt;=0.05): 331
     <span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="n">cluster_id</span><span class="p">)</span>
     <span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
     <span class="n">zoom_annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">go_bp</span><span class="p">,</span> <span class="n">zoom_matrix</span><span class="p">)</span>
+
     <span class="n">zoom_analysis</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">Analysis</span><span class="p">(</span><span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_annotations</span><span class="p">)</span>
         <span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
@@ -8783,7 +8785,7 @@ Significant rows (q&lt;=0.05): 331
             <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">linkage_threshold</span><span class="p">,</span>
             <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="n">min_overlap</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="n">min_overlap</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="n">background_matrix</span><span class="p">)</span>
         <span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_qvalues</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">zoom_results</span> <span class="o">=</span> <span class="n">zoom_analysis</span><span class="o">.</span><span class="n">results</span>
@@ -8823,6 +8825,7 @@ Significant rows (q&lt;=0.05): 331
     <span class="n">cluster_id</span><span class="o">=</span><span class="n">CLUSTER_ID</span><span class="p">,</span>
     <span class="n">go_bp</span><span class="o">=</span><span class="n">go_bp</span><span class="p">,</span>
     <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">ZOOM_LINKAGE_THRESHOLD</span><span class="p">,</span>
+    <span class="n">background_matrix</span><span class="o">=</span><span class="n">matrix</span><span class="p">,</span>
     <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -9035,6 +9038,7 @@ Significant rows (q&lt;=0.05): 331
     <span class="n">go_bp</span><span class="o">=</span><span class="n">go_bp</span><span class="p">,</span>
     <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">SUBCLUSTER_LINKAGE_THRESHOLD</span><span class="p">,</span>
     <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">background_matrix</span><span class="o">=</span><span class="n">matrix</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">vals</span> <span class="o">=</span> <span class="n">subcluster_matrix</span><span class="o">.</span><span class="n">values</span>
