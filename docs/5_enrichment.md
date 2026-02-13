@@ -2,7 +2,16 @@
 
 HiMaLAYAS tests enrichment across clusters and categorical annotations using a one-sided hypergeometric test. Multiple testing across cluster-term tests is controlled with Benjamini-Hochberg FDR.
 
-## Signature
+## Common Methods
+
+| Method | Description |
+| --- | --- |
+| `analysis.enrich(...)` | Runs one-sided hypergeometric enrichment over clustered labels and annotations. |
+| `analysis.finalize(...)` | Attaches plotting layout and optional q-values to produce a plotting-ready `Results`. |
+
+## `enrich`
+
+Runs one-sided hypergeometric enrichment over clustered labels and annotations.
 
 ```python
 Analysis.enrich(
@@ -12,12 +21,33 @@ Analysis.enrich(
 ) -> Analysis
 ```
 
-## Parameters
+### Parameters
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `min_overlap` | `int` | `1` | Minimum overlap k to report. Increase to reduce weak hits. |
 | `background` | `Matrix | None` | `None` | Optional background universe. If provided, must contain all matrix labels. |
+
+## `finalize`
+
+Attaches plotting layout and optional q-values to produce a plotting-ready `Results`. Call this before using `Plotter`.
+
+```python
+Analysis.finalize(
+    *,
+    add_qvalues: bool = True,
+    col_cluster: bool = False,
+    **kwargs,
+) -> Analysis
+```
+
+### Parameters
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `add_qvalues` | `bool` | `True` | Adds BH-FDR q-values to `results.df` via `Results.with_qvalues()`. |
+| `col_cluster` | `bool` | `False` | Computes a dendrogram-based column order for plotting. |
+| `**kwargs` | `Any` | `{}` | Forwarded to column ordering (`linkage_method`, `linkage_metric`). |
 
 ## Example
 

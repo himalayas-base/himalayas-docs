@@ -22,6 +22,7 @@ Matrix(df: pd.DataFrame, *, axis: str = "rows")
 | `matrix.df` | `pd.DataFrame` | Stored matrix table (defensive copy of the input DataFrame). |
 | `matrix.values` | `np.ndarray` | Numeric matrix values as a NumPy array. |
 | `matrix.labels` | `np.ndarray` | Row labels used as the matrix label universe for clustering and enrichment. |
+| `matrix.axis` | `str` | Label orientation metadata (`"rows"` by default). |
 
 ## Example
 

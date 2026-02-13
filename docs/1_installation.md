@@ -14,7 +14,11 @@ pip install himalayas
 git clone https://github.com/himalayas-base/himalayas.git
 cd himalayas
 pip install .
-# editable install
+```
+
+For development, use an editable install instead:
+
+```bash
 pip install -e .
 ```
 
