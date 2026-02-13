@@ -40,7 +40,7 @@ for GO BP enrichment.
 
 **Try in Browser (Binder)**
 
-[![Launch in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
+[Launch Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
 
 **Local Run**
 
