@@ -1106,12 +1106,16 @@
 </span><span id="__line-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">label_overrides</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 </span><span id="__line-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">label_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
 </span><span id="__line-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">label_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-</span><span id="__line-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">label_fontweight</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
-</span><span id="__line-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">dendrogram_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
-</span><span id="__line-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">dendrogram_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-</span><span id="__line-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">label_left_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span>
-</span><span id="__line-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">background_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CondensedDendrogramPlot</span>
+</span><span id="__line-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">placeholder_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;—&quot;</span><span class="p">,</span>
+</span><span id="__line-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">placeholder_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">placeholder_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">skip_unlabeled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="__line-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">label_fontweight</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+</span><span id="__line-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">dendrogram_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+</span><span id="__line-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">dendrogram_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span id="__line-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">label_left_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span>
+</span><span id="__line-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">background_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CondensedDendrogramPlot</span>
 </span></code></pre></div>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <table>
@@ -1272,7 +1276,31 @@
 <td><code>label_alpha</code></td>
 <td><code>float</code></td>
 <td><code>1.0</code></td>
-<td>Label text alpha.</td>
+<td>Label text alpha for regular (non-placeholder) labels.</td>
+</tr>
+<tr>
+<td><code>placeholder_text</code></td>
+<td><code>str</code></td>
+<td><code>"—"</code></td>
+<td>Placeholder label for unlabeled clusters.</td>
+</tr>
+<tr>
+<td><code>placeholder_color</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Placeholder text color. Falls back to <code>label_color</code>, then default.</td>
+</tr>
+<tr>
+<td><code>placeholder_alpha</code></td>
+<td><code>float | None</code></td>
+<td><code>None</code></td>
+<td>Placeholder text alpha. Falls back to <code>label_alpha</code>, then default.</td>
+</tr>
+<tr>
+<td><code>skip_unlabeled</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>Skip clusters with no label.</td>
 </tr>
 <tr>
 <td><code>label_fontweight</code></td>
@@ -1306,6 +1334,17 @@
 </tr>
 </tbody>
 </table>
+<p>Use <code>label_overrides</code> to edit labels per cluster.</p>
+<p>Behavior notes:</p>
+<ul>
+<li>Labels are always generated from the attached <code>Results</code> object.</li>
+<li>Unknown keyword arguments in <code>plot_dendrogram_condensed(...)</code> raise <code>TypeError</code>.</li>
+<li><code>label_fields</code> values outside <code>{ "label", "n", "p" }</code> raise <code>ValueError</code>.</li>
+<li>Override values in <code>label_overrides</code> must be strings.</li>
+<li>If <code>skip_unlabeled=True</code>, clusters without labels are omitted instead of receiving placeholder text.</li>
+<li>Placeholder style resolves as <code>placeholder_color</code> -&gt; <code>label_color</code>, and <code>placeholder_alpha</code> -&gt; <code>label_alpha</code>.</li>
+<li>Placeholder styling applies only to unlabeled/placeholder cluster labels.</li>
+</ul>
 <h2 id="return-handle">Return Handle<a class="headerlink" href="#return-handle" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">CondensedDendrogramPlot</span>
 </span></code></pre></div>
