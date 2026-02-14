@@ -25,12 +25,9 @@ Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
 Results.cluster_layout() -> ClusterLayout
 Results.cluster_spans() -> list[tuple[int, int, int]]
 Results.cluster_labels(
-    term_col: str = "term",
-    cluster_col: str = "cluster",
-    weight_col: str = "pval",
     *,
+    rank_by: str = "p",
     label_mode: str = "top_term",
-    label_col: str | None = "term_name",
     max_words: int = 6,
 ) -> pd.DataFrame
 ```
@@ -42,7 +39,7 @@ Results.cluster_labels(
 | `results.with_qvalues(...)` | Returns a new `Results` with BH-FDR q-values added to `results.df`. |
 | `results.cluster_layout()` | Returns the attached plotting layout (required by `Plotter`). |
 | `results.cluster_spans()` | Returns contiguous cluster spans in dendrogram order. |
-| `results.cluster_labels(...)` | Builds one-label-per-cluster summaries for inspection/export. |
+| `results.cluster_labels(...)` | Builds one label per cluster for inspection or export. |
 
 ## `filter`
 
@@ -96,30 +93,30 @@ Results.cluster_spans() -> list[tuple[int, int, int]]
 
 ```python
 Results.cluster_labels(
-    term_col: str = "term",
-    cluster_col: str = "cluster",
-    weight_col: str = "pval",
     *,
+    rank_by: str = "p",
     label_mode: str = "top_term",
-    label_col: str | None = "term_name",
     max_words: int = 6,
 ) -> pd.DataFrame
 ```
 
-Builds one-label-per-cluster summaries for inspection/export.
+Builds one label per cluster for inspection or export.
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `term_col` | `str` | `"term"` | Stable term identifier column. |
-| `cluster_col` | `str` | `"cluster"` | Cluster id column. |
-| `weight_col` | `str` | `"pval"` | Weight/p-value column used for ranking/summarization. |
+| `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"` (`ValueError` otherwise). |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"`. |
-| `label_col` | `str | None` | `"term_name"` | Optional display-name column; falls back to `term_col` when unavailable. |
 | `max_words` | `int` | `6` | Maximum words for compressed labels. |
 
-Returns one row per cluster with columns `["cluster", "label", "pval", "n", "term"]`.
+Behavior details:
 
-`Results.cluster_labels(...)` is an optional post-hoc helper for inspecting, exporting, or reusing one-label-per-cluster summaries. You do not need to pass its output into `Plotter.plot_cluster_labels(...)` or `plot_dendrogram_condensed(...)`; both generate labels internally from the attached `Results`.
+- Uses canonical input columns `term` and `cluster`; `term_name` is used as an optional display fallback.
+- Returns one row per cluster with columns `["cluster", "label", "pval", "qval", "score", "n", "term"]`.
+- `score` is the statistic selected by `rank_by` (`pval` for `"p"`, `qval` for `"q"`).
+- `label_mode="top_term"` requires the selected score column.
+- `label_mode="compressed"` requires `qval` when `rank_by="q"` and can run without `pval` when `rank_by="p"` (uniform weights; `score` may be `None`).
+
+`Results.cluster_labels(...)` is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into `Plotter.plot_cluster_labels(...)` or `plot_dendrogram_condensed(...)`; both generate labels internally from the attached `Results`.
 
 ## Examples
 
@@ -136,10 +133,13 @@ zoom_view = results.subset(cluster=7)
 zoom_matrix = zoom_view.matrix
 ```
 
-Build optional cluster labels for inspection/export:
+Build optional cluster labels for inspection or export:
 
 ```python
-cluster_labels = results.cluster_labels(label_mode="top_term")
+cluster_labels = results.cluster_labels(rank_by="q", label_mode="top_term")
+compressed_labels = results.cluster_labels(rank_by="p", label_mode="compressed", max_words=5)
+
+display(cluster_labels[["cluster", "label", "pval", "qval", "score", "n", "term"]].head())
 ```
 
 Inspect cluster membership and sizes:
