@@ -9,11 +9,8 @@ The condensed dendrogram summarizes clusters while preserving the original dendr
 plot_dendrogram_condensed(
     results: Results,
     *,
-    term_col: str = "term",
-    cluster_col: str = "cluster",
-    weight_col: str = "pval",
+    rank_by: str = "p",
     label_mode: str = "top_term",
-    label_col: str | None = "term_name",
     figsize: Sequence[float] = (10, 10),
     sigbar_cmap: str | Colormap = "YlOrBr",
     sigbar_min_logp: float = 2.0,
@@ -50,15 +47,12 @@ plot_dendrogram_condensed(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `results` | `Results` | required | Results exposing `cluster_layout()` and `clusters`. |
-| `term_col` | `str` | `"term"` | Term id column used during internal label generation. |
-| `cluster_col` | `str` | `"cluster"` | Cluster id column used during internal label generation. |
-| `weight_col` | `str` | `"pval"` | Weight/p-value column used during internal label generation. |
+| `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
-| `label_col` | `str | None` | `"term_name"` | Optional display-name column for internal label generation. |
 | `figsize` | `Sequence[float]` | `(10, 10)` | Figure size (width, height). |
 | `sigbar_cmap` | `str / Colormap` | `"YlOrBr"` | Colormap for the significance bar. |
-| `sigbar_min_logp` | `float` | `2.0` | Minimum `-log10(p)` for scaling. |
-| `sigbar_max_logp` | `float` | `10.0` | Maximum `-log10(p)` for scaling. |
+| `sigbar_min_logp` | `float` | `2.0` | Minimum `-log10(score)` for scaling. |
+| `sigbar_max_logp` | `float` | `10.0` | Maximum `-log10(score)` for scaling. |
 | `sigbar_norm` | `Normalize | None` | `None` | Optional normalization; overrides min/max scaling. |
 | `sigbar_width` | `float` | `0.06` | Significance bar width (axes fraction). |
 | `sigbar_height` | `float` | `0.8` | Height of each significance bar relative to row pitch. Must be in `(0, 1]`. |
@@ -70,7 +64,7 @@ plot_dendrogram_condensed(
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
 | `omit_words` | `Sequence[str] | None` | `None` | Words to omit from label text. |
-| `label_fields` | `Sequence[str]` | `("label", "n", "p")` | Label fields to include. |
+| `label_fields` | `Sequence[str]` | `("label", "n", "p")` | Label fields to include; allowed values are `"label"`, `"n"`, `"p"`, `"q"`. |
 | `label_overrides` | `dict[int, str] | None` | `None` | Mapping `cluster_id -> label` for custom names. |
 | `label_color` | `str` | `"black"` | Label text color. |
 | `label_alpha` | `float` | `1.0` | Label text alpha for regular (non-placeholder) labels. |
@@ -84,14 +78,14 @@ plot_dendrogram_condensed(
 | `label_left_pad` | `float` | `0.02` | Left padding for labels (axes fraction). |
 | `background_color` | `str | None` | `None` | Figure and axes background color. |
 
-Use `label_overrides` to edit labels per cluster.
+Use `label_overrides` to specify custom labels per cluster.
 
 Behavior notes:
 
 - Labels are always generated from the attached `Results` object.
 - Unknown keyword arguments in `plot_dendrogram_condensed(...)` raise `TypeError`.
-- `label_fields` values outside `{ "label", "n", "p" }` raise `ValueError`.
-- Override values in `label_overrides` must be strings.
+- `label_fields` values outside `{ "label", "n", "p", "q" }` raise `ValueError`.
+- Cluster significance bars are scaled from `-log10(score)`, where `score` is selected by `rank_by`.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `label_color`, and `placeholder_alpha` -> `label_alpha`.
 - Placeholder styling applies only to unlabeled/placeholder cluster labels.
@@ -118,10 +112,11 @@ from himalayas.plot import plot_dendrogram_condensed
 
 condensed = plot_dendrogram_condensed(
     results,
+    rank_by="q",
     figsize=(6, 10),
     sigbar_min_logp=2.0,
     sigbar_max_logp=10.0,
-    label_fields=("label", "n", "p"),
+    label_fields=("label", "n", "p", "q"),
     wrap_text=True,
     wrap_width=34,
 )
@@ -150,5 +145,5 @@ condensed.save("zoom_condensed_dendrogram.png", dpi=300)
 ## Notes
 
 - Labels are generated internally from the attached `Results` object.
-- `label_fields` must be a subset of `{ "label", "n", "p" }`.
-- Use `Results.cluster_labels(...)` only for inspection/export/custom workflows, not as required input.
+- `label_fields` must be a subset of `{ "label", "n", "p", "q" }`.
+- Use `Results.cluster_labels(...)` only for inspection, export, or external workflows, not as required input.

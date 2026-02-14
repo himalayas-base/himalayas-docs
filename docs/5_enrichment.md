@@ -7,7 +7,7 @@ HiMaLAYAS tests enrichment across clusters and categorical annotations using a o
 | Method | Description |
 | --- | --- |
 | `analysis.enrich(...)` | Runs one-sided hypergeometric enrichment over clustered labels and annotations. |
-| `analysis.finalize(...)` | Attaches plotting layout and optional q-values to produce a plotting-ready `Results`. |
+| `analysis.finalize(...)` | Attaches plotting layout and BH-FDR q-values to produce a plotting-ready `Results`. |
 
 ## `enrich`
 
@@ -30,14 +30,12 @@ Analysis.enrich(
 
 ## `finalize`
 
-Attaches plotting layout and optional q-values to produce a plotting-ready `Results`. Call this before using `Plotter`.
+Attaches plotting layout and BH-FDR q-values to produce a plotting-ready `Results`. Call this before using `Plotter`.
 
 ```python
 Analysis.finalize(
     *,
-    add_qvalues: bool = True,
     col_cluster: bool = False,
-    **kwargs,
 ) -> Analysis
 ```
 
@@ -45,9 +43,7 @@ Analysis.finalize(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `add_qvalues` | `bool` | `True` | Adds BH-FDR q-values to `results.df` via `Results.with_qvalues()`. |
-| `col_cluster` | `bool` | `False` | Computes a dendrogram-based column order for plotting. |
-| `**kwargs` | `Any` | `{}` | Forwarded to column ordering (`linkage_method`, `linkage_metric`). |
+| `col_cluster` | `bool` | `False` | Computes a dendrogram-based column order for plotting using the same `linkage_method` and `linkage_metric` set in `Analysis.cluster(...)`. |
 
 ## Example
 
@@ -56,7 +52,7 @@ analysis = (
     Analysis(matrix, annotations)
     .cluster(...)
     .enrich(min_overlap=2)
-    .finalize(add_qvalues=True)
+    .finalize()
 )
 
 results = analysis.results

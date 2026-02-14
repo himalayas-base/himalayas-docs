@@ -44,3 +44,4 @@ After clustering, cluster assignments are attached as:
 
 - Any method or metric supported by SciPy `linkage` is valid (see the [SciPy linkage docs](https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html)).
 - `min_cluster_size` preserves hierarchy by merging undersized clusters into their parent cluster.
+- `linkage_method` and `linkage_metric` are reused by `Analysis.finalize(col_cluster=True)` for optional column ordering.

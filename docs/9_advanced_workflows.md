@@ -37,7 +37,7 @@ def run_zoom_analysis(
             min_cluster_size=min_cluster_size,
         )
         .enrich(min_overlap=min_overlap, background=results.matrix)
-        .finalize(col_cluster=True, add_qvalues=True)
+        .finalize(col_cluster=True)
     )
     zoom_results = zoom_analysis.results
     zoom_results_sig = zoom_results.filter(f"qval <= {qval_cutoff}")
@@ -69,7 +69,7 @@ plotter = (
     Plotter(zoom_results)
     .plot_dendrogram()
     .plot_matrix(cmap="RdBu_r", center=0)
-    .plot_cluster_labels(label_mode="top_term")
+    .plot_cluster_labels(rank_by="q", label_mode="top_term", label_fields=("label", "q"))
 )
 
 plotter.show()
@@ -79,7 +79,7 @@ For a cluster-level summary of the zoomed result, see [Condensed Dendrogram](8_c
 
 ## Non-Biological Example (Recipes)
 
-HiMaLAYAS is domain-agnostic. The recipe example builds an ingredient-by-recipe matrix and annotates clusters by country of origin using a world-wide recipe dataset.
+HiMaLAYAS supports biological and non-biological domains. The recipe example builds an ingredient-by-recipe matrix and annotates clusters by country of origin using a worldwide recipe dataset.
 
 Key steps:
 
@@ -107,10 +107,10 @@ analysis = (
         min_cluster_size=15,
     )
     .enrich(min_overlap=2)
-    .finalize(col_cluster=True, add_qvalues=True)
+    .finalize(col_cluster=True)
 )
 
 results = analysis.results
 results_sig = results.filter("qval <= 0.05")
-cluster_labels = results_sig.cluster_labels(label_mode="top_term")
+cluster_labels = results_sig.cluster_labels(rank_by="q", label_mode="top_term")
 ```

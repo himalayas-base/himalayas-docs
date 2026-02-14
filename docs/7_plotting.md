@@ -31,7 +31,8 @@ plotter = (
     .plot_matrix_axis_labels(xlabel="Gene", ylabel="Gene", fontsize=16)
     .set_label_panel(axes=[0.62, 0.16, 0.36, 0.79], text_pad=0.02)
     .plot_cluster_labels(
-        label_fields=("label", "p"),
+        rank_by="q",
+        label_fields=("label", "q"),
         wrap_text=True,
         wrap_width=40,
     )
@@ -66,7 +67,7 @@ plotter.show()
 | `plotter.plot_dendrogram(...)` | Declares a dendrogram layer aligned to matrix rows. |
 | `plotter.set_label_panel(...)` | Configures shared label-panel geometry for labels and tracks. |
 | `plotter.plot_cluster_labels(...)` | Declares cluster-level labels generated from attached `Results`. |
-| `plotter.plot_cluster_bar(...)` | Declares a cluster-level bar track derived from cluster p-values. |
+| `plotter.plot_cluster_bar(...)` | Declares a cluster-level bar track derived from cluster ranking scores. |
 | `plotter.plot_label_bar(...)` | Declares a row-level annotation bar track in the label panel. |
 | `plotter.set_label_track_order(...)` | Sets explicit ordering of registered label-panel tracks. |
 | `plotter.plot_bar_labels(...)` | Declares titles for registered label-panel tracks. |
@@ -175,19 +176,16 @@ Plotter.set_label_panel(
 Declares cluster-level labels generated from attached `Results`.
 
 Labels are generated internally from attached `Results` via `Results.cluster_labels(...)`.
-Use `Results.cluster_labels(...)` when you want an explicit post-hoc label table (inspection/export/custom side workflows), not as a required input to this method.
+Use `Results.cluster_labels(...)` when you need an explicit post hoc label table for inspection, export, or external workflows, not as a required input to this method.
 The list below documents the supported keyword arguments and effective defaults.
 
 ```python
 Plotter.plot_cluster_labels(
     *,
     overrides: dict[int, str] | None = None,
-    term_col: str = "term",
-    cluster_col: str = "cluster",
-    weight_col: str = "pval",
+    rank_by: str = "p",
     label_mode: str = "top_term",
-    label_col: str | None = "term_name",
-    max_words: int | None = None,
+    max_words: int | None = 6,
     label_fields: tuple[str, ...] = ("label", "n", "p"),
     wrap_text: bool = True,
     wrap_width: int | None = None,
@@ -220,13 +218,10 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `overrides` | `dict[int, str] | None` | `None` | Per-cluster label overrides (`cluster_id -> label string`). |
-| `term_col` | `str` | `"term"` | Term id column used during internal label generation. |
-| `cluster_col` | `str` | `"cluster"` | Cluster id column used during internal label generation. |
-| `weight_col` | `str` | `"pval"` | Weight/p-value column used during internal label generation. |
+| `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
-| `label_col` | `str | None` | `"term_name"` | Optional display-name column for internal label generation. |
-| `max_words` | `int | None` | `None` | Word-based truncation limit for labels. |
-| `label_fields` | `tuple[str, ...]` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`. |
+| `max_words` | `int | None` | `6` | Word-based truncation limit for labels. Use `None` to avoid truncation in compressed mode. |
+| `label_fields` | `tuple[str, ...]` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`. |
 | `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
@@ -256,11 +251,8 @@ Use `overrides` to edit labels per cluster. Configure panel geometry with `set_l
 Behavior notes:
 
 - Labels are always generated from the attached `Results` object.
-- Panel geometry (`axes`, `track_x`, `gutter_width`, `gutter_color`, `text_pad`) is configured via `set_label_panel(...)`.
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
-- `n` is derived from cluster sizes in the attached layout.
-- `label_fields` values outside `{ "label", "n", "p" }` raise `ValueError`.
-- Override values must be strings (empty strings are allowed to intentionally suppress text).
+- `label_fields` values outside `{ "label", "n", "p", "q" }` raise `ValueError`.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `color` -> default, and `placeholder_alpha` -> `alpha` -> default.
 
@@ -268,7 +260,9 @@ Behavior notes:
 
 ### `plot_cluster_bar`
 
-Declares a cluster-level bar track derived from cluster p-values.
+Declares a cluster-level bar track derived from cluster ranking scores.
+Bars are scaled from `-log10(score)`, where `score` is the per-cluster statistic
+selected by `plot_cluster_labels(rank_by=...)`.
 
 Requires `plot_cluster_labels(...)` in the same plotting chain. Rendering raises
 `ValueError` if an enabled cluster bar track is declared without a cluster-label layer.
@@ -295,7 +289,7 @@ Plotter.plot_cluster_bar(
 | `left_pad` | `float` | `0.0` | Left padding in the label panel. |
 | `right_pad` | `float` | `0.0` | Right padding in the label panel. |
 | `cmap` | `str | Colormap` | `"YlOrBr"` | Colormap name or instance. |
-| `norm` | `Normalize | None` | `None` | Normalization for `-log10(p)`. |
+| `norm` | `Normalize | None` | `None` | Normalization for `-log10(score)`. |
 | `alpha` | `float` | `0.9` | Bar alpha. |
 | `enabled` | `bool` | `True` | Register the track. |
 | `title` | `str | None` | `None` | Optional track title. |
@@ -587,7 +581,7 @@ Plotter.plot_sigbar_legend(
 | --- | --- | --- | --- |
 | `axes` | `Sequence[float]` | `[0.92, 0.20, 0.015, 0.25]` | Legend box `[x0, y0, w, h]`. |
 | `sigbar_cmap` | `str | None` | `"YlOrBr"` | Colormap for the legend. |
-| `norm` | `Normalize | None` | `None` | Normalization for `-log10(p)`. |
+| `norm` | `Normalize | None` | `None` | Normalization for `-log10(score)`. |
 | `sigbar_min_logp` | `float | None` | `2.0` | Lower bound for legend scale. |
 | `sigbar_max_logp` | `float | None` | `10.0` | Upper bound for legend scale. |
 
