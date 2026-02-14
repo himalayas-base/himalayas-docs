@@ -37,7 +37,7 @@ def run_zoom_analysis(
             min_cluster_size=min_cluster_size,
         )
         .enrich(min_overlap=min_overlap, background=results.matrix)
-        .finalize(col_cluster=True, add_qvalues=True)
+        .finalize(col_cluster=True)
     )
     zoom_results = zoom_analysis.results
     zoom_results_sig = zoom_results.filter(f"qval <= {qval_cutoff}")
@@ -107,7 +107,7 @@ analysis = (
         min_cluster_size=15,
     )
     .enrich(min_overlap=2)
-    .finalize(col_cluster=True, add_qvalues=True)
+    .finalize(col_cluster=True)
 )
 
 results = analysis.results
