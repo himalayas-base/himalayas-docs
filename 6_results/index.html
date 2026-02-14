@@ -1174,14 +1174,11 @@
 </span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_layout</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ClusterLayout</span>
 </span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_spans</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
 </span><span id="__line-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span>
-</span><span id="__line-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">term_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span>
-</span><span id="__line-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">cluster_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
-</span><span id="__line-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">weight_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span>
-</span><span id="__line-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="o">*</span><span class="p">,</span>
-</span><span id="__line-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
-</span><span id="__line-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">label_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;term_name&quot;</span><span class="p">,</span>
-</span><span id="__line-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
-</span><span id="__line-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+</span><span id="__line-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+</span><span id="__line-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
+</span><span id="__line-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -1213,7 +1210,7 @@
 </tr>
 <tr>
 <td><code>results.cluster_labels(...)</code></td>
-<td>Builds one-label-per-cluster summaries for inspection/export.</td>
+<td>Builds one label per cluster for inspection or export.</td>
 </tr>
 </tbody>
 </table>
@@ -1303,16 +1300,13 @@
 <code>results.cluster_spans()</code> returns contiguous cluster spans in dendrogram order.</p>
 <h2 id="cluster_labels"><code>cluster_labels</code><a class="headerlink" href="#cluster_labels" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span>
-</span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">term_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span>
-</span><span id="__line-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">cluster_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
-</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">weight_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span>
-</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="o">*</span><span class="p">,</span>
-</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
-</span><span id="__line-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">label_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;term_name&quot;</span><span class="p">,</span>
-</span><span id="__line-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
-</span><span id="__line-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+</span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
+</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
 </span></code></pre></div>
-<p>Builds one-label-per-cluster summaries for inspection/export.</p>
+<p>Builds one label per cluster for inspection or export.</p>
 <table>
 <thead>
 <tr>
@@ -1324,34 +1318,16 @@
 </thead>
 <tbody>
 <tr>
-<td><code>term_col</code></td>
+<td><code>rank_by</code></td>
 <td><code>str</code></td>
-<td><code>"term"</code></td>
-<td>Stable term identifier column.</td>
-</tr>
-<tr>
-<td><code>cluster_col</code></td>
-<td><code>str</code></td>
-<td><code>"cluster"</code></td>
-<td>Cluster id column.</td>
-</tr>
-<tr>
-<td><code>weight_col</code></td>
-<td><code>str</code></td>
-<td><code>"pval"</code></td>
-<td>Weight/p-value column used for ranking/summarization.</td>
+<td><code>"p"</code></td>
+<td>Ranking statistic for representative terms. Must be <code>"p"</code> or <code>"q"</code> (<code>ValueError</code> otherwise).</td>
 </tr>
 <tr>
 <td><code>label_mode</code></td>
 <td><code>str</code></td>
 <td><code>"top_term"</code></td>
 <td>One of <code>"top_term"</code> or <code>"compressed"</code>.</td>
-</tr>
-<tr>
-<td><code>label_col</code></td>
-<td><code>str | None</code></td>
-<td><code>"term_name"</code></td>
-<td>Optional display-name column; falls back to <code>term_col</code> when unavailable.</td>
 </tr>
 <tr>
 <td><code>max_words</code></td>
@@ -1361,8 +1337,15 @@
 </tr>
 </tbody>
 </table>
-<p>Returns one row per cluster with columns <code>["cluster", "label", "pval", "n", "term"]</code>.</p>
-<p><code>Results.cluster_labels(...)</code> is an optional post-hoc helper for inspecting, exporting, or reusing one-label-per-cluster summaries. You do not need to pass its output into <code>Plotter.plot_cluster_labels(...)</code> or <code>plot_dendrogram_condensed(...)</code>; both generate labels internally from the attached <code>Results</code>.</p>
+<p>Behavior details:</p>
+<ul>
+<li>Uses canonical input columns <code>term</code> and <code>cluster</code>; <code>term_name</code> is used as an optional display fallback.</li>
+<li>Returns one row per cluster with columns <code>["cluster", "label", "pval", "qval", "score", "n", "term"]</code>.</li>
+<li><code>score</code> is the statistic selected by <code>rank_by</code> (<code>pval</code> for <code>"p"</code>, <code>qval</code> for <code>"q"</code>).</li>
+<li><code>label_mode="top_term"</code> requires the selected score column.</li>
+<li><code>label_mode="compressed"</code> requires <code>qval</code> when <code>rank_by="q"</code> and can run without <code>pval</code> when <code>rank_by="p"</code> (uniform weights; <code>score</code> may be <code>None</code>).</li>
+</ul>
+<p><code>Results.cluster_labels(...)</code> is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into <code>Plotter.plot_cluster_labels(...)</code> or <code>plot_dendrogram_condensed(...)</code>; both generate labels internally from the attached <code>Results</code>.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>Filter to significant annotation terms:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">results_sig</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;qval &lt;= 0.05&quot;</span><span class="p">)</span>
@@ -1371,8 +1354,11 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__line-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 </span><span id="__line-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
 </span></code></pre></div>
-<p>Build optional cluster labels for inspection/export:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
+<p>Build optional cluster labels for inspection or export:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
+</span><span id="__line-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">compressed_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;compressed&quot;</span><span class="p">,</span> <span class="n">max_words</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__line-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__line-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">display</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">[[</span><span class="s2">&quot;cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span> <span class="s2">&quot;qval&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;term&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </span></code></pre></div>
 <p>Inspect cluster membership and sizes:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_sizes</span><span class="p">)</span>

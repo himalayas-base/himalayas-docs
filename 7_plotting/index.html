@@ -1401,31 +1401,32 @@
 </span><span id="__line-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="o">.</span><span class="n">plot_matrix_axis_labels</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Gene&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Gene&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 </span><span id="__line-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="o">.</span><span class="n">set_label_panel</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">],</span> <span class="n">text_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
 </span><span id="__line-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="o">.</span><span class="n">plot_cluster_labels</span><span class="p">(</span>
-</span><span id="__line-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="n">label_fields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">),</span>
-</span><span id="__line-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">wrap_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__line-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">wrap_width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
-</span><span id="__line-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="p">)</span>
-</span><span id="__line-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="o">.</span><span class="n">plot_cluster_bar</span><span class="p">(</span>
-</span><span id="__line-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span>
-</span><span id="__line-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
-</span><span id="__line-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
-</span><span id="__line-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
-</span><span id="__line-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="p">)</span>
-</span><span id="__line-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="o">.</span><span class="n">plot_label_bar</span><span class="p">(</span>
-</span><span id="__line-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;essentiality&quot;</span><span class="p">,</span>
-</span><span id="__line-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">values</span><span class="o">=</span><span class="n">gene_essential_map</span><span class="p">,</span>
-</span><span id="__line-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-</span><span id="__line-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="n">colors</span><span class="o">=</span><span class="n">gene_essential_colors</span><span class="p">,</span>
-</span><span id="__line-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
-</span><span id="__line-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
-</span><span id="__line-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    <span class="p">)</span>
-</span><span id="__line-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="o">.</span><span class="n">plot_bar_labels</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-</span><span id="__line-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="o">.</span><span class="n">set_label_track_order</span><span class="p">((</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span> <span class="s2">&quot;essentiality&quot;</span><span class="p">))</span>
-</span><span id="__line-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="o">.</span><span class="n">add_colorbar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;matrix&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="o">-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vlim</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Similarity&quot;</span><span class="p">)</span>
-</span><span id="__line-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="o">.</span><span class="n">plot_colorbars</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.045</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-</span><span id="__line-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="p">)</span>
-</span><span id="__line-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
-</span><span id="__line-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="__line-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span>
+</span><span id="__line-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">label_fields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">),</span>
+</span><span id="__line-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">wrap_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="n">wrap_width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+</span><span id="__line-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="p">)</span>
+</span><span id="__line-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="o">.</span><span class="n">plot_cluster_bar</span><span class="p">(</span>
+</span><span id="__line-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span>
+</span><span id="__line-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+</span><span id="__line-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+</span><span id="__line-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+</span><span id="__line-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="p">)</span>
+</span><span id="__line-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="o">.</span><span class="n">plot_label_bar</span><span class="p">(</span>
+</span><span id="__line-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;essentiality&quot;</span><span class="p">,</span>
+</span><span id="__line-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">values</span><span class="o">=</span><span class="n">gene_essential_map</span><span class="p">,</span>
+</span><span id="__line-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+</span><span id="__line-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">colors</span><span class="o">=</span><span class="n">gene_essential_colors</span><span class="p">,</span>
+</span><span id="__line-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+</span><span id="__line-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
+</span><span id="__line-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="p">)</span>
+</span><span id="__line-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="o">.</span><span class="n">plot_bar_labels</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</span><span id="__line-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="o">.</span><span class="n">set_label_track_order</span><span class="p">((</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span> <span class="s2">&quot;essentiality&quot;</span><span class="p">))</span>
+</span><span id="__line-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="o">.</span><span class="n">add_colorbar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;matrix&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="o">-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vlim</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Similarity&quot;</span><span class="p">)</span>
+</span><span id="__line-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="o">.</span><span class="n">plot_colorbars</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.045</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</span><span id="__line-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="p">)</span>
+</span><span id="__line-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+</span><span id="__line-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
 <h2 id="common-methods">Common Methods<a class="headerlink" href="#common-methods" title="Permanent link">&para;</a></h2>
 <table>
@@ -1454,7 +1455,7 @@
 </tr>
 <tr>
 <td><code>plotter.plot_cluster_bar(...)</code></td>
-<td>Declares a cluster-level bar track derived from cluster p-values.</td>
+<td>Declares a cluster-level bar track derived from cluster ranking scores.</td>
 </tr>
 <tr>
 <td><code>plotter.plot_label_bar(...)</code></td>
@@ -1724,42 +1725,39 @@
 <h3 id="plot_cluster_labels"><code>plot_cluster_labels</code><a class="headerlink" href="#plot_cluster_labels" title="Permanent link">&para;</a></h3>
 <p>Declares cluster-level labels generated from attached <code>Results</code>.</p>
 <p>Labels are generated internally from attached <code>Results</code> via <code>Results.cluster_labels(...)</code>.
-Use <code>Results.cluster_labels(...)</code> when you want an explicit post-hoc label table (inspection/export/custom side workflows), not as a required input to this method.
+Use <code>Results.cluster_labels(...)</code> when you need an explicit post hoc label table for inspection, export, or external workflows, not as a required input to this method.
 The list below documents the supported keyword arguments and effective defaults.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_cluster_labels</span><span class="p">(</span>
 </span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="o">*</span><span class="p">,</span>
 </span><span id="__line-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">overrides</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">term_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span>
-</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">cluster_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
-</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">weight_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span>
-</span><span id="__line-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
-</span><span id="__line-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">label_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;term_name&quot;</span><span class="p">,</span>
-</span><span id="__line-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">label_fields</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">),</span>
-</span><span id="__line-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">wrap_text</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-</span><span id="__line-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">wrap_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">overflow</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;wrap&quot;</span><span class="p">,</span>
-</span><span id="__line-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span>
-</span><span id="__line-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
-</span><span id="__line-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
-</span><span id="__line-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
-</span><span id="__line-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="n">skip_unlabeled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="__line-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="n">placeholder_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">u2014&quot;</span><span class="p">,</span>
-</span><span id="__line-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="n">placeholder_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;#b22222&quot;</span><span class="p">,</span>
-</span><span id="__line-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="n">placeholder_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
-</span><span id="__line-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="n">omit_words</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="n">label_sep_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span>
-</span><span id="__line-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="n">label_sep_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-</span><span id="__line-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>    <span class="n">label_sep_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
-</span><span id="__line-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>    <span class="n">label_sep_xmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="n">label_sep_xmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-</span><span id="__line-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="n">boundary_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
-</span><span id="__line-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="n">boundary_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-</span><span id="__line-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>    <span class="n">boundary_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
-</span><span id="__line-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>    <span class="n">dendro_boundary_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
-</span><span id="__line-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="n">dendro_boundary_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-</span><span id="__line-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>    <span class="n">dendro_boundary_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
-</span><span id="__line-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
+</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">label_fields</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">),</span>
+</span><span id="__line-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">wrap_text</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">wrap_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">overflow</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;wrap&quot;</span><span class="p">,</span>
+</span><span id="__line-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span>
+</span><span id="__line-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+</span><span id="__line-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+</span><span id="__line-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+</span><span id="__line-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="n">skip_unlabeled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="__line-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="n">placeholder_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">u2014&quot;</span><span class="p">,</span>
+</span><span id="__line-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="n">placeholder_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;#b22222&quot;</span><span class="p">,</span>
+</span><span id="__line-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="n">placeholder_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+</span><span id="__line-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="n">omit_words</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="n">label_sep_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+</span><span id="__line-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="n">label_sep_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span id="__line-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="n">label_sep_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+</span><span id="__line-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="n">label_sep_xmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="n">label_sep_xmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span id="__line-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>    <span class="n">boundary_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+</span><span id="__line-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>    <span class="n">boundary_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span id="__line-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="n">boundary_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+</span><span id="__line-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="n">dendro_boundary_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
+</span><span id="__line-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="n">dendro_boundary_lw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span id="__line-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>    <span class="n">dendro_boundary_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+</span><span id="__line-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
 </span></code></pre></div>
 <p>Defaults shown here are effective user-facing defaults resolved from internal style configuration.</p>
 <table>
@@ -1779,22 +1777,10 @@ The list below documents the supported keyword arguments and effective defaults.
 <td>Per-cluster label overrides (<code>cluster_id -&gt; label string</code>).</td>
 </tr>
 <tr>
-<td><code>term_col</code></td>
+<td><code>rank_by</code></td>
 <td><code>str</code></td>
-<td><code>"term"</code></td>
-<td>Term id column used during internal label generation.</td>
-</tr>
-<tr>
-<td><code>cluster_col</code></td>
-<td><code>str</code></td>
-<td><code>"cluster"</code></td>
-<td>Cluster id column used during internal label generation.</td>
-</tr>
-<tr>
-<td><code>weight_col</code></td>
-<td><code>str</code></td>
-<td><code>"pval"</code></td>
-<td>Weight/p-value column used during internal label generation.</td>
+<td><code>"p"</code></td>
+<td>Ranking statistic for representative terms. Must be <code>"p"</code> or <code>"q"</code>.</td>
 </tr>
 <tr>
 <td><code>label_mode</code></td>
@@ -1803,22 +1789,16 @@ The list below documents the supported keyword arguments and effective defaults.
 <td>One of <code>"top_term"</code> or <code>"compressed"</code> for internal label generation.</td>
 </tr>
 <tr>
-<td><code>label_col</code></td>
-<td><code>str | None</code></td>
-<td><code>"term_name"</code></td>
-<td>Optional display-name column for internal label generation.</td>
-</tr>
-<tr>
 <td><code>max_words</code></td>
 <td><code>int | None</code></td>
-<td><code>None</code></td>
-<td>Word-based truncation limit for labels.</td>
+<td><code>6</code></td>
+<td>Word-based truncation limit for labels. Use <code>None</code> to avoid truncation in compressed mode.</td>
 </tr>
 <tr>
 <td><code>label_fields</code></td>
 <td><code>tuple[str, ...]</code></td>
 <td><code>("label", "n", "p")</code></td>
-<td>Fields shown in each label; allowed values are <code>"label"</code>, <code>"n"</code>, <code>"p"</code>.</td>
+<td>Fields shown in each label; allowed values are <code>"label"</code>, <code>"n"</code>, <code>"p"</code>, <code>"q"</code>.</td>
 </tr>
 <tr>
 <td><code>wrap_text</code></td>
@@ -1964,17 +1944,16 @@ The list below documents the supported keyword arguments and effective defaults.
 <p>Behavior notes:</p>
 <ul>
 <li>Labels are always generated from the attached <code>Results</code> object.</li>
-<li>Panel geometry (<code>axes</code>, <code>track_x</code>, <code>gutter_width</code>, <code>gutter_color</code>, <code>text_pad</code>) is configured via <code>set_label_panel(...)</code>.</li>
 <li>Unknown keyword arguments in <code>plot_cluster_labels(...)</code> raise <code>TypeError</code>.</li>
-<li><code>n</code> is derived from cluster sizes in the attached layout.</li>
-<li><code>label_fields</code> values outside <code>{ "label", "n", "p" }</code> raise <code>ValueError</code>.</li>
-<li>Override values must be strings (empty strings are allowed to intentionally suppress text).</li>
+<li><code>label_fields</code> values outside <code>{ "label", "n", "p", "q" }</code> raise <code>ValueError</code>.</li>
 <li>If <code>skip_unlabeled=True</code>, clusters without labels are omitted instead of receiving placeholder text.</li>
 <li>Placeholder style resolves as <code>placeholder_color</code> -&gt; <code>color</code> -&gt; default, and <code>placeholder_alpha</code> -&gt; <code>alpha</code> -&gt; default.</li>
 </ul>
 <h2 id="label-panel-tracks">Label Panel Tracks<a class="headerlink" href="#label-panel-tracks" title="Permanent link">&para;</a></h2>
 <h3 id="plot_cluster_bar"><code>plot_cluster_bar</code><a class="headerlink" href="#plot_cluster_bar" title="Permanent link">&para;</a></h3>
-<p>Declares a cluster-level bar track derived from cluster p-values.</p>
+<p>Declares a cluster-level bar track derived from cluster ranking scores.
+Bars are scaled from <code>-log10(score)</code>, where <code>score</code> is the per-cluster statistic
+selected by <code>plot_cluster_labels(rank_by=...)</code>.</p>
 <p>Requires <code>plot_cluster_labels(...)</code> in the same plotting chain. Rendering raises
 <code>ValueError</code> if an enabled cluster bar track is declared without a cluster-label layer.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_cluster_bar</span><span class="p">(</span>
@@ -2034,7 +2013,7 @@ The list below documents the supported keyword arguments and effective defaults.
 <td><code>norm</code></td>
 <td><code>Normalize | None</code></td>
 <td><code>None</code></td>
-<td>Normalization for <code>-log10(p)</code>.</td>
+<td>Normalization for <code>-log10(score)</code>.</td>
 </tr>
 <tr>
 <td><code>alpha</code></td>
@@ -2710,7 +2689,7 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td><code>norm</code></td>
 <td><code>Normalize | None</code></td>
 <td><code>None</code></td>
-<td>Normalization for <code>-log10(p)</code>.</td>
+<td>Normalization for <code>-log10(score)</code>.</td>
 </tr>
 <tr>
 <td><code>sigbar_min_logp</code></td>

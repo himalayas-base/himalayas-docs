@@ -1130,6 +1130,7 @@
 <ul>
 <li>Any method or metric supported by SciPy <code>linkage</code> is valid (see the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html">SciPy linkage docs</a>).</li>
 <li><code>min_cluster_size</code> preserves hierarchy by merging undersized clusters into their parent cluster.</li>
+<li><code>linkage_method</code> and <code>linkage_metric</code> are reused by <code>Analysis.finalize(col_cluster=True)</code> for optional column ordering.</li>
 </ul>
 
 
