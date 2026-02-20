@@ -7580,7 +7580,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>HiMaLAYAS version: 0.0.10
+<pre>HiMaLAYAS version: 0.0.11
 </pre>
 </div>
 </div>
@@ -8038,6 +8038,7 @@ Row-variance range: [0.001, 0.014]
 <span class="n">LINKAGE_METHOD</span> <span class="o">=</span> <span class="s2">"ward"</span>
 <span class="n">LINKAGE_METRIC</span> <span class="o">=</span> <span class="s2">"euclidean"</span>
 <span class="n">LINKAGE_THRESHOLD</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">OPTIMAL_ORDERING</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="n">matrix</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">DF</span><span class="p">)</span>
 <span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">go_bp</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
@@ -8048,6 +8049,7 @@ Row-variance range: [0.001, 0.014]
         <span class="n">linkage_method</span><span class="o">=</span><span class="n">LINKAGE_METHOD</span><span class="p">,</span>
         <span class="n">linkage_metric</span><span class="o">=</span><span class="n">LINKAGE_METRIC</span><span class="p">,</span>
         <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">LINKAGE_THRESHOLD</span><span class="p">,</span>
+        <span class="n">optimal_ordering</span><span class="o">=</span><span class="n">OPTIMAL_ORDERING</span><span class="p">,</span>
         <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -8791,6 +8793,7 @@ Significant rows (q&lt;=0.05): 331
     <span class="n">linkage_method</span><span class="o">=</span><span class="s2">"ward"</span><span class="p">,</span>
     <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">"euclidean"</span><span class="p">,</span>
     <span class="n">background_matrix</span><span class="p">,</span>
+    <span class="n">optimal_ordering</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
     <span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">qval_cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
@@ -8809,6 +8812,7 @@ Significant rows (q&lt;=0.05): 331
             <span class="n">linkage_method</span><span class="o">=</span><span class="n">linkage_method</span><span class="p">,</span>
             <span class="n">linkage_metric</span><span class="o">=</span><span class="n">linkage_metric</span><span class="p">,</span>
             <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">linkage_threshold</span><span class="p">,</span>
+            <span class="n">optimal_ordering</span><span class="o">=</span><span class="n">optimal_ordering</span><span class="p">,</span>
             <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="n">min_overlap</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="n">background_matrix</span><span class="p">)</span>
@@ -8853,6 +8857,7 @@ Significant rows (q&lt;=0.05): 331
     <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">ZOOM_LINKAGE_THRESHOLD</span><span class="p">,</span>
     <span class="n">linkage_method</span><span class="o">=</span><span class="n">LINKAGE_METHOD</span><span class="p">,</span>
     <span class="n">linkage_metric</span><span class="o">=</span><span class="n">LINKAGE_METRIC</span><span class="p">,</span>
+    <span class="n">optimal_ordering</span><span class="o">=</span><span class="n">OPTIMAL_ORDERING</span><span class="p">,</span>
     <span class="n">background_matrix</span><span class="o">=</span><span class="n">matrix</span><span class="p">,</span>
     <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
 <span class="p">)</span>
@@ -9068,6 +9073,7 @@ Significant rows (q&lt;=0.05): 331
     <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">SUBCLUSTER_LINKAGE_THRESHOLD</span><span class="p">,</span>
     <span class="n">linkage_method</span><span class="o">=</span><span class="n">LINKAGE_METHOD</span><span class="p">,</span>
     <span class="n">linkage_metric</span><span class="o">=</span><span class="n">LINKAGE_METRIC</span><span class="p">,</span>
+    <span class="n">optimal_ordering</span><span class="o">=</span><span class="n">OPTIMAL_ORDERING</span><span class="p">,</span>
     <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">background_matrix</span><span class="o">=</span><span class="n">matrix</span><span class="p">,</span>
 <span class="p">)</span>
@@ -9116,7 +9122,6 @@ Significant rows (q&lt;=0.05): 331
     <span class="o">.</span><span class="n">plot_row_ticks</span><span class="p">(</span>
         <span class="n">max_labels</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
         <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
-        <span class="n">color</span><span class="o">=</span><span class="n">LABEL_COLOR</span><span class="p">,</span>
         <span class="n">position</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="o">.</span><span class="n">set_label_panel</span><span class="p">(</span>
