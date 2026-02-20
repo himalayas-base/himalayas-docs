@@ -28,3 +28,19 @@ pip install -e .
 import himalayas
 print(himalayas.__version__)
 ```
+
+## Optional Dependencies
+
+HiMaLAYAS works without optional dependencies. The packages below are optional and control performance or text processing behavior.
+
+| Package | Purpose | Behavior if missing |
+| --- | --- | --- |
+| `fastcluster` (`speed` extra) | Faster hierarchical linkage when `optimal_ordering=False`. | Falls back to SciPy linkage. |
+| `nltk` (`text` extra) | Improved tokenization/lemmatization for `label_mode="compressed"`. | Falls back to regex-based tokenization. |
+
+Install optional packages as needed:
+
+```bash
+pip install "himalayas[speed]"
+pip install "himalayas[text]"
+```

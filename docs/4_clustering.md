@@ -22,7 +22,7 @@ Analysis.cluster(
 | `linkage_method` | `str` | `"ward"` | Hierarchical linkage method. Common: `ward`, `average`, `complete`, `single`. |
 | `linkage_metric` | `str` | `"euclidean"` | Distance metric. Common: `euclidean`, `correlation`, `cosine`, `cityblock`. |
 | `linkage_threshold` | `float` | `0.7` | Dendrogram cut threshold (depth). Lower gives more clusters, higher gives fewer. |
-| `optimal_ordering` | `bool` | `False` | Enables optimal leaf ordering in linkage output. |
+| `optimal_ordering` | `bool` | `False` | Enables optimal leaf ordering in linkage output. Often improves visual ordering, but can be slower. |
 | `min_cluster_size` | `int` | `1` | Merge small clusters upward until size is met. Values <= 1 disable. |
 
 ## Example
@@ -45,5 +45,6 @@ After clustering, cluster assignments are attached as:
 ## Notes
 
 - Any method or metric supported by SciPy `linkage` is valid (see the [SciPy linkage docs](https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html)).
+- When `optimal_ordering=False`, HiMaLAYAS uses `fastcluster` if installed and otherwise falls back to SciPy linkage.
 - `min_cluster_size` preserves hierarchy by merging undersized clusters into their parent cluster.
 - `linkage_method`, `linkage_metric`, and `optimal_ordering` are reused by `Analysis.finalize(col_cluster=True)` for optional column ordering.

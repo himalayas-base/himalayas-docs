@@ -128,6 +128,7 @@ Behavior details:
 - Returns one row per cluster with columns `["cluster", "label", "pval", "qval", "score", "n", "term"]`.
 - `score` is the statistic selected by `rank_by` (`pval` for `"p"`, `qval` for `"q"`).
 - Both `label_mode="top_term"` and `label_mode="compressed"` require the selected score column (`pval` for `rank_by="p"`, `qval` for `rank_by="q"`).
+- In `label_mode="compressed"`, HiMaLAYAS uses NLTK normalization when available and falls back to regex tokenization otherwise.
 
 `Results.cluster_labels(...)` is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into `Plotter.plot_cluster_labels(...)` or `plot_dendrogram_condensed(...)`; both generate labels internally from the attached `Results`.
 
