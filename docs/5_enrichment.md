@@ -43,7 +43,7 @@ Analysis.finalize(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `col_cluster` | `bool` | `False` | Computes a dendrogram-based column order for plotting using the same `linkage_method` and `linkage_metric` set in `Analysis.cluster(...)`. |
+| `col_cluster` | `bool` | `False` | Computes a dendrogram-based column order for plotting using the same `linkage_method`, `linkage_metric`, and `optimal_ordering` set in `Analysis.cluster(...)`. |
 
 ## Example
 

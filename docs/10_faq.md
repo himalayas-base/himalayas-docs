@@ -30,6 +30,26 @@ Common causes:
 - Terms are filtered out because they do not overlap with the matrix.
 - Your annotations are too sparse or the matrix is too small.
 
+## Clustering is slower than expected
+
+When `optimal_ordering=False`, HiMaLAYAS uses `fastcluster` if installed and otherwise falls back to SciPy linkage. Installing the `speed` extra can improve clustering speed in this mode.
+
+When `optimal_ordering=True`, SciPy optimal ordering is used and can be slower on larger matrices.
+
+```bash
+pip install "himalayas[speed]"
+```
+
+## Compressed labels differ across environments
+
+`Results.cluster_labels(label_mode="compressed")` uses NLTK tokenization/lemmatization when available and falls back to regex tokenization when NLTK resources are unavailable.
+
+Install the text extra to enable NLTK support:
+
+```bash
+pip install "himalayas[text]"
+```
+
 ## The plotter raises "Results has no attached ClusterLayout"
 
 Make sure you called `Analysis.finalize()` before plotting. The plotter needs layout metadata.

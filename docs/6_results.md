@@ -7,7 +7,7 @@
 | Attribute | Type | Description |
 | --- | --- | --- |
 | `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`, and optional `qval`). |
-| `results.method` | `str` | Method identifier for the result object (for example, `"hypergeom"` after enrichment or `"subset"` after `results.subset(...)`). |
+| `results.method` | `str` | Method identifier for the result object (for example, `"hypergeom"` after enrichment or `"subset"` after `results.subset(...)` / `results.subset_clusters(...)`). |
 | `results.params` | `dict[str, Any]` | Analysis metadata attached to results (for example, `linkage_threshold` when available). |
 | `results.matrix` | `Matrix \| None` | Matrix attached to the result object, useful for zoom workflows and background reuse. |
 | `results.clusters` | `Clusters \| None` | Cluster assignments and dendrogram metadata attached to the result object. |
@@ -21,6 +21,7 @@
 ```python
 Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
+Results.subset_clusters(clusters: Iterable[int]) -> Results
 Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
 Results.cluster_layout() -> ClusterLayout
 Results.cluster_spans() -> list[tuple[int, int, int]]
@@ -35,7 +36,8 @@ Results.cluster_labels(
 | Method | Description |
 | --- | --- |
 | `results.filter(...)` | Returns a new `Results` filtered by a query expression on `results.df`. |
-| `results.subset(...)` | Returns a cluster-specific view for zoom workflows (with subset matrix attached). |
+| `results.subset(...)` | Returns a single-cluster view for zoom workflows (with subset matrix attached). |
+| `results.subset_clusters(...)` | Returns a multi-cluster view for zoom workflows by taking the union of selected cluster labels. |
 | `results.with_qvalues(...)` | Returns a new `Results` with BH-FDR q-values added to `results.df`. |
 | `results.cluster_layout()` | Returns the attached plotting layout (required by `Plotter`). |
 | `results.cluster_spans()` | Returns contiguous cluster spans in dendrogram order. |
@@ -60,11 +62,23 @@ Returns a new `Results` filtered by a query expression on `results.df`.
 Results.subset(cluster: int) -> Results
 ```
 
-Returns a cluster-specific view for zoom workflows (with subset matrix attached).
+Returns a single-cluster view for zoom workflows (with subset matrix attached).
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `cluster` | `int` | required | Cluster id to subset. Returns a new `Results` view with a subset matrix attached. |
+
+## `subset_clusters`
+
+```python
+Results.subset_clusters(clusters: Iterable[int]) -> Results
+```
+
+Returns a multi-cluster view for zoom workflows by taking the union of selected cluster labels.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `clusters` | `Iterable[int]` | required | Cluster ids to subset. Returns one combined `Results` view with a subset matrix attached. |
 
 ## `with_qvalues`
 
@@ -113,8 +127,8 @@ Behavior details:
 - Uses canonical input columns `term` and `cluster`; `term_name` is used as an optional display fallback.
 - Returns one row per cluster with columns `["cluster", "label", "pval", "qval", "score", "n", "term"]`.
 - `score` is the statistic selected by `rank_by` (`pval` for `"p"`, `qval` for `"q"`).
-- `label_mode="top_term"` requires the selected score column.
-- `label_mode="compressed"` requires `qval` when `rank_by="q"` and can run without `pval` when `rank_by="p"` (uniform weights; `score` may be `None`).
+- Both `label_mode="top_term"` and `label_mode="compressed"` require the selected score column (`pval` for `rank_by="p"`, `qval` for `rank_by="q"`).
+- In `label_mode="compressed"`, HiMaLAYAS uses NLTK normalization when available and falls back to regex tokenization otherwise.
 
 `Results.cluster_labels(...)` is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into `Plotter.plot_cluster_labels(...)` or `plot_dendrogram_condensed(...)`; both generate labels internally from the attached `Results`.
 
@@ -131,6 +145,13 @@ Subset to a single cluster (for zoom analysis):
 ```python
 zoom_view = results.subset(cluster=7)
 zoom_matrix = zoom_view.matrix
+```
+
+Subset to multiple clusters (union view):
+
+```python
+zoom_view_multi = results.subset_clusters(clusters=[2, 7, 9])
+zoom_matrix_multi = zoom_view_multi.matrix
 ```
 
 Build optional cluster labels for inspection or export:
