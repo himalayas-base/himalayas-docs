@@ -89,6 +89,7 @@ Behavior notes:
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `label_color`, and `placeholder_alpha` -> `label_alpha`.
 - Placeholder styling applies only to unlabeled/placeholder cluster labels.
+- Condensed plotting requires at least two clusters; single-cluster inputs raise a `ValueError`.
 
 ## Return Handle
 
@@ -102,8 +103,8 @@ CondensedDendrogramPlot
 | `ax_den` | `matplotlib.axes.Axes` | Dendrogram axis. |
 | `ax_sig` | `matplotlib.axes.Axes` | Significance bar axis. |
 | `ax_txt` | `matplotlib.axes.Axes` | Label text axis. |
-| `show()` | `() -> None` | Displays the rendered figure. Raises `RuntimeError` if the figure was closed. |
-| `save(path, **kwargs)` | `(str | PathLike[str], **kwargs) -> None` | Saves the rendered figure with current facecolor. Raises `RuntimeError` if the figure was closed. |
+| `show()` | `() -> None` | Displays the rendered figure. If the backing figure was closed, it is rebuilt automatically from the stored render specification. |
+| `save(path, **kwargs)` | `(str | PathLike[str], **kwargs) -> None` | Saves the rendered figure with current facecolor. If the backing figure was closed, it is rebuilt automatically before saving. |
 
 ## Example
 

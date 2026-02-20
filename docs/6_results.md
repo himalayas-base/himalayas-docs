@@ -127,8 +127,7 @@ Behavior details:
 - Uses canonical input columns `term` and `cluster`; `term_name` is used as an optional display fallback.
 - Returns one row per cluster with columns `["cluster", "label", "pval", "qval", "score", "n", "term"]`.
 - `score` is the statistic selected by `rank_by` (`pval` for `"p"`, `qval` for `"q"`).
-- `label_mode="top_term"` requires the selected score column.
-- `label_mode="compressed"` requires `qval` when `rank_by="q"` and can run without `pval` when `rank_by="p"` (uniform weights; `score` may be `None`).
+- Both `label_mode="top_term"` and `label_mode="compressed"` require the selected score column (`pval` for `rank_by="p"`, `qval` for `rank_by="q"`).
 
 `Results.cluster_labels(...)` is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into `Plotter.plot_cluster_labels(...)` or `plot_dendrogram_condensed(...)`; both generate labels internally from the attached `Results`.
 
