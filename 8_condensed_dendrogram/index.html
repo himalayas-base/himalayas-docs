@@ -1323,6 +1323,7 @@
 <li>If <code>skip_unlabeled=True</code>, clusters without labels are omitted instead of receiving placeholder text.</li>
 <li>Placeholder style resolves as <code>placeholder_color</code> -&gt; <code>label_color</code>, and <code>placeholder_alpha</code> -&gt; <code>label_alpha</code>.</li>
 <li>Placeholder styling applies only to unlabeled/placeholder cluster labels.</li>
+<li>Condensed plotting requires at least two clusters; single-cluster inputs raise a <code>ValueError</code>.</li>
 </ul>
 <h2 id="return-handle">Return Handle<a class="headerlink" href="#return-handle" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">CondensedDendrogramPlot</span>
@@ -1359,12 +1360,12 @@
 <tr>
 <td><code>show()</code></td>
 <td><code>() -&gt; None</code></td>
-<td>Displays the rendered figure. Raises <code>RuntimeError</code> if the figure was closed.</td>
+<td>Displays the rendered figure. If the backing figure was closed, it is rebuilt automatically from the stored render specification.</td>
 </tr>
 <tr>
 <td><code>save(path, **kwargs)</code></td>
 <td><code>(str | PathLike[str], **kwargs) -&gt; None</code></td>
-<td>Saves the rendered figure with current facecolor. Raises <code>RuntimeError</code> if the figure was closed.</td>
+<td>Saves the rendered figure with current facecolor. If the backing figure was closed, it is rebuilt automatically before saving.</td>
 </tr>
 </tbody>
 </table>

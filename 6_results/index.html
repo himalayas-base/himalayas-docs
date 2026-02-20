@@ -723,6 +723,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#subset_clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        subset_clusters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#with_qvalues" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1128,7 +1139,7 @@
 <tr>
 <td><code>results.method</code></td>
 <td><code>str</code></td>
-<td>Method identifier for the result object (for example, <code>"hypergeom"</code> after enrichment or <code>"subset"</code> after <code>results.subset(...)</code>).</td>
+<td>Method identifier for the result object (for example, <code>"hypergeom"</code> after enrichment or <code>"subset"</code> after <code>results.subset(...)</code> / <code>results.subset_clusters(...)</code>).</td>
 </tr>
 <tr>
 <td><code>results.params</code></td>
@@ -1170,15 +1181,16 @@
 <h2 id="common-methods">Common Methods<a class="headerlink" href="#common-methods" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">expr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
 </span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
-</span><span id="__line-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Results</span><span class="o">.</span><span class="n">with_qvalues</span><span class="p">(</span><span class="n">pval_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span> <span class="n">qval_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;qval&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
-</span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_layout</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ClusterLayout</span>
-</span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_spans</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
-</span><span id="__line-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span>
-</span><span id="__line-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="o">*</span><span class="p">,</span>
-</span><span id="__line-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
-</span><span id="__line-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
-</span><span id="__line-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
-</span><span id="__line-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+</span><span id="__line-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Results</span><span class="o">.</span><span class="n">subset_clusters</span><span class="p">(</span><span class="n">clusters</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Results</span>
+</span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">Results</span><span class="o">.</span><span class="n">with_qvalues</span><span class="p">(</span><span class="n">pval_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span> <span class="n">qval_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;qval&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
+</span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_layout</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ClusterLayout</span>
+</span><span id="__line-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_spans</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
+</span><span id="__line-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span>
+</span><span id="__line-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+</span><span id="__line-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
+</span><span id="__line-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -1194,7 +1206,11 @@
 </tr>
 <tr>
 <td><code>results.subset(...)</code></td>
-<td>Returns a cluster-specific view for zoom workflows (with subset matrix attached).</td>
+<td>Returns a single-cluster view for zoom workflows (with subset matrix attached).</td>
+</tr>
+<tr>
+<td><code>results.subset_clusters(...)</code></td>
+<td>Returns a multi-cluster view for zoom workflows by taking the union of selected cluster labels.</td>
 </tr>
 <tr>
 <td><code>results.with_qvalues(...)</code></td>
@@ -1245,7 +1261,7 @@
 <h2 id="subset"><code>subset</code><a class="headerlink" href="#subset" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
 </span></code></pre></div>
-<p>Returns a cluster-specific view for zoom workflows (with subset matrix attached).</p>
+<p>Returns a single-cluster view for zoom workflows (with subset matrix attached).</p>
 <table>
 <thead>
 <tr>
@@ -1264,8 +1280,30 @@
 </tr>
 </tbody>
 </table>
+<h2 id="subset_clusters"><code>subset_clusters</code><a class="headerlink" href="#subset_clusters" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">subset_clusters</span><span class="p">(</span><span class="n">clusters</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Results</span>
+</span></code></pre></div>
+<p>Returns a multi-cluster view for zoom workflows by taking the union of selected cluster labels.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clusters</code></td>
+<td><code>Iterable[int]</code></td>
+<td>required</td>
+<td>Cluster ids to subset. Returns one combined <code>Results</code> view with a subset matrix attached.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="with_qvalues"><code>with_qvalues</code><a class="headerlink" href="#with_qvalues" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">with_qvalues</span><span class="p">(</span><span class="n">pval_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span> <span class="n">qval_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;qval&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">with_qvalues</span><span class="p">(</span><span class="n">pval_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span> <span class="n">qval_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;qval&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span>
 </span></code></pre></div>
 <p>Returns a new <code>Results</code> with BH-FDR q-values added to <code>results.df</code>.</p>
 <table>
@@ -1293,18 +1331,18 @@
 </tbody>
 </table>
 <h2 id="cluster_layout-and-cluster_spans"><code>cluster_layout</code> and <code>cluster_spans</code><a class="headerlink" href="#cluster_layout-and-cluster_spans" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_layout</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ClusterLayout</span>
-</span><span id="__line-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_spans</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_layout</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ClusterLayout</span>
+</span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_spans</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
 </span></code></pre></div>
 <p><code>results.cluster_layout()</code> returns the attached plotting layout (required by <code>Plotter</code>).
 <code>results.cluster_spans()</code> returns contiguous cluster spans in dendrogram order.</p>
 <h2 id="cluster_labels"><code>cluster_labels</code><a class="headerlink" href="#cluster_labels" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span>
-</span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="o">*</span><span class="p">,</span>
-</span><span id="__line-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
-</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
-</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
-</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span>
+</span><span id="__line-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">rank_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+</span><span id="__line-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">label_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_term&quot;</span><span class="p">,</span>
+</span><span id="__line-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">max_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
 </span></code></pre></div>
 <p>Builds one label per cluster for inspection or export.</p>
 <table>
@@ -1342,30 +1380,34 @@
 <li>Uses canonical input columns <code>term</code> and <code>cluster</code>; <code>term_name</code> is used as an optional display fallback.</li>
 <li>Returns one row per cluster with columns <code>["cluster", "label", "pval", "qval", "score", "n", "term"]</code>.</li>
 <li><code>score</code> is the statistic selected by <code>rank_by</code> (<code>pval</code> for <code>"p"</code>, <code>qval</code> for <code>"q"</code>).</li>
-<li><code>label_mode="top_term"</code> requires the selected score column.</li>
-<li><code>label_mode="compressed"</code> requires <code>qval</code> when <code>rank_by="q"</code> and can run without <code>pval</code> when <code>rank_by="p"</code> (uniform weights; <code>score</code> may be <code>None</code>).</li>
+<li>Both <code>label_mode="top_term"</code> and <code>label_mode="compressed"</code> require the selected score column (<code>pval</code> for <code>rank_by="p"</code>, <code>qval</code> for <code>rank_by="q"</code>).</li>
+<li>In <code>label_mode="compressed"</code>, HiMaLAYAS uses NLTK normalization when available and falls back to regex tokenization otherwise.</li>
 </ul>
 <p><code>Results.cluster_labels(...)</code> is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into <code>Plotter.plot_cluster_labels(...)</code> or <code>plot_dendrogram_condensed(...)</code>; both generate labels internally from the attached <code>Results</code>.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>Filter to significant annotation terms:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">results_sig</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;qval &lt;= 0.05&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">results_sig</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;qval &lt;= 0.05&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Subset to a single cluster (for zoom analysis):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-</span><span id="__line-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</span><span id="__line-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
+</span></code></pre></div>
+<p>Subset to multiple clusters (union view):</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">zoom_view_multi</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset_clusters</span><span class="p">(</span><span class="n">clusters</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+</span><span id="__line-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">zoom_matrix_multi</span> <span class="o">=</span> <span class="n">zoom_view_multi</span><span class="o">.</span><span class="n">matrix</span>
 </span></code></pre></div>
 <p>Build optional cluster labels for inspection or export:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
-</span><span id="__line-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">compressed_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;compressed&quot;</span><span class="p">,</span> <span class="n">max_words</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="__line-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-</span><span id="__line-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">display</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">[[</span><span class="s2">&quot;cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span> <span class="s2">&quot;qval&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;term&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
+</span><span id="__line-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">compressed_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;compressed&quot;</span><span class="p">,</span> <span class="n">max_words</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__line-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__line-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">display</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">[[</span><span class="s2">&quot;cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span> <span class="s2">&quot;qval&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;term&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </span></code></pre></div>
 <p>Inspect cluster membership and sizes:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_sizes</span><span class="p">)</span>
-</span><span id="__line-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">example_cluster</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_sizes</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-</span><span id="__line-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">display</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_to_labels</span><span class="p">[</span><span class="n">example_cluster</span><span class="p">])[:</span><span class="mi">10</span><span class="p">])</span>
-</span><span id="__line-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">example_label</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">labels</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__line-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">label_to_cluster</span><span class="p">[</span><span class="n">example_label</span><span class="p">])</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_sizes</span><span class="p">)</span>
+</span><span id="__line-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">example_cluster</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_sizes</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span><span id="__line-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">display</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">cluster_to_labels</span><span class="p">[</span><span class="n">example_cluster</span><span class="p">])[:</span><span class="mi">10</span><span class="p">])</span>
+</span><span id="__line-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">example_label</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">labels</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__line-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">label_to_cluster</span><span class="p">[</span><span class="n">example_label</span><span class="p">])</span>
 </span></code></pre></div>
 <h2 id="key-columns-in-resultsdf">Key Columns in <code>results.df</code><a class="headerlink" href="#key-columns-in-resultsdf" title="Permanent link">&para;</a></h2>
 <ul>

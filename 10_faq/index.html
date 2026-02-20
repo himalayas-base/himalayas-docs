@@ -1038,6 +1038,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#clustering-is-slower-than-expected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clustering is slower than expected
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compressed-labels-differ-across-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compressed labels differ across environments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-plotter-raises-results-has-no-attached-clusterlayout" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1126,6 +1148,16 @@ Run <a href="https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filep
 <li>Terms are filtered out because they do not overlap with the matrix.</li>
 <li>Your annotations are too sparse or the matrix is too small.</li>
 </ul>
+<h2 id="clustering-is-slower-than-expected">Clustering is slower than expected<a class="headerlink" href="#clustering-is-slower-than-expected" title="Permanent link">&para;</a></h2>
+<p>When <code>optimal_ordering=False</code>, HiMaLAYAS uses <code>fastcluster</code> if installed and otherwise falls back to SciPy linkage. Installing the <code>speed</code> extra can improve clustering speed in this mode.</p>
+<p>When <code>optimal_ordering=True</code>, SciPy optimal ordering is used and can be slower on larger matrices.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;himalayas[speed]&quot;</span>
+</span></code></pre></div>
+<h2 id="compressed-labels-differ-across-environments">Compressed labels differ across environments<a class="headerlink" href="#compressed-labels-differ-across-environments" title="Permanent link">&para;</a></h2>
+<p><code>Results.cluster_labels(label_mode="compressed")</code> uses NLTK tokenization/lemmatization when available and falls back to regex tokenization when NLTK resources are unavailable.</p>
+<p>Install the text extra to enable NLTK support:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;himalayas[text]&quot;</span>
+</span></code></pre></div>
 <h2 id="the-plotter-raises-results-has-no-attached-clusterlayout">The plotter raises "Results has no attached ClusterLayout"<a class="headerlink" href="#the-plotter-raises-results-has-no-attached-clusterlayout" title="Permanent link">&para;</a></h2>
 <p>Make sure you called <code>Analysis.finalize()</code> before plotting. The plotter needs layout metadata.</p>
 <h2 id="cluster-labels-look-crowded">Cluster labels look crowded<a class="headerlink" href="#cluster-labels-look-crowded" title="Permanent link">&para;</a></h2>
@@ -1137,8 +1169,8 @@ Run <a href="https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filep
 </ul>
 <h2 id="i-called-plot_dendrogram_condensed-but-no-figure-appears">I called <code>plot_dendrogram_condensed(...)</code> but no figure appears<a class="headerlink" href="#i-called-plot_dendrogram_condensed-but-no-figure-appears" title="Permanent link">&para;</a></h2>
 <p><code>plot_dendrogram_condensed(...)</code> returns a <code>CondensedDendrogramPlot</code> handle. Call <code>.show()</code> to display it or <code>.save(...)</code> to write it to disk.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">condensed</span> <span class="o">=</span> <span class="n">plot_dendrogram_condensed</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-</span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">condensed</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">condensed</span> <span class="o">=</span> <span class="n">plot_dendrogram_condensed</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</span><span id="__line-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">condensed</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
 <p>If you still have issues, open an issue in the repository with a minimal reproducible example.</p>
 

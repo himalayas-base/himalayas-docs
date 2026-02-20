@@ -449,6 +449,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#optional-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1058,6 +1069,33 @@
 <h2 id="verify-installation">Verify Installation<a class="headerlink" href="#verify-installation" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">himalayas</span>
 </span><span id="__line-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">himalayas</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="optional-dependencies">Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permanent link">&para;</a></h2>
+<p>HiMaLAYAS works without optional dependencies. The packages below are optional and control performance or text processing behavior.</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+<th>Behavior if missing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fastcluster</code> (<code>speed</code> extra)</td>
+<td>Faster hierarchical linkage when <code>optimal_ordering=False</code>.</td>
+<td>Falls back to SciPy linkage.</td>
+</tr>
+<tr>
+<td><code>nltk</code> (<code>text</code> extra)</td>
+<td>Improved tokenization/lemmatization for <code>label_mode="compressed"</code>.</td>
+<td>Falls back to regex-based tokenization.</td>
+</tr>
+</tbody>
+</table>
+<p>Install optional packages as needed:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;himalayas[speed]&quot;</span>
+</span><span id="__line-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;himalayas[text]&quot;</span>
 </span></code></pre></div>
 
 
