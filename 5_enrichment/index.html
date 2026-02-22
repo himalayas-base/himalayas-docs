@@ -1222,6 +1222,8 @@
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>If no terms pass filtering, the results table is empty.</li>
+<li><code>analysis.enrich(...)</code> recomputes enrichment each time it is called.</li>
+<li>Each call updates <code>analysis.results</code>; save per-run snapshots (for example, <code>res_06</code>, <code>res_10</code>) during threshold sweeps.</li>
 </ul>
 
 

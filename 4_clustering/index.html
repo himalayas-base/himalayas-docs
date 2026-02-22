@@ -1116,6 +1116,28 @@
 </span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
 </span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">)</span>
 </span></code></pre></div>
+<p>Sweep linkage thresholds on one <code>Analysis</code> object:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">analysis</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">annotations</span><span class="p">)</span>
+</span><span id="__line-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__line-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># First run: computes and caches row linkage for these linkage settings.</span>
+</span><span id="__line-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">analysis</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
+</span><span id="__line-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">linkage_method</span><span class="o">=</span><span class="s2">&quot;average&quot;</span><span class="p">,</span>
+</span><span id="__line-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">&quot;cosine&quot;</span><span class="p">,</span>
+</span><span id="__line-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">linkage_threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+</span><span id="__line-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">optimal_ordering</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="__line-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+</span><span id="__line-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">)</span>
+</span><span id="__line-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__line-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># Second run: same linkage settings, new threshold.</span>
+</span><span id="__line-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># Reuses cached row linkage and only re-cuts clusters.</span>
+</span><span id="__line-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">analysis</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
+</span><span id="__line-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="n">linkage_method</span><span class="o">=</span><span class="s2">&quot;average&quot;</span><span class="p">,</span>
+</span><span id="__line-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">&quot;cosine&quot;</span><span class="p">,</span>
+</span><span id="__line-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="n">linkage_threshold</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+</span><span id="__line-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="n">optimal_ordering</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="__line-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+</span><span id="__line-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="p">)</span>
+</span></code></pre></div>
 <p>After clustering, cluster assignments are attached as:</p>
 <table>
 <thead>
@@ -1138,7 +1160,10 @@
 <li>Any method or metric supported by SciPy <code>linkage</code> is valid (see the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html">SciPy linkage docs</a>).</li>
 <li>When <code>optimal_ordering=False</code>, HiMaLAYAS uses <code>fastcluster</code> if installed and otherwise falls back to SciPy linkage.</li>
 <li><code>min_cluster_size</code> preserves hierarchy by merging undersized clusters into their parent cluster.</li>
-<li><code>linkage_method</code>, <code>linkage_metric</code>, and <code>optimal_ordering</code> are reused by <code>Analysis.finalize(col_cluster=True)</code> for optional column ordering.</li>
+<li>With <code>Analysis.finalize(col_cluster=True)</code>, HiMaLAYAS reuses cached column order for the current linkage settings (<code>linkage_method</code>, <code>linkage_metric</code>, <code>optimal_ordering</code>).</li>
+<li>For large matrices, reuse a single <code>Analysis</code> object when sweeping linkage thresholds.</li>
+<li>For fixed linkage settings (<code>linkage_method</code>, <code>linkage_metric</code>, <code>optimal_ordering</code>), <code>Analysis.cluster(...)</code> reuses cached row linkage.</li>
+<li>Creating a new <code>Analysis(matrix, annotations)</code> starts with empty caches.</li>
 </ul>
 
 
