@@ -556,6 +556,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#expected-mapping-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Mapping Format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-attributes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1149,6 +1160,14 @@
 </tr>
 </tbody>
 </table>
+<h2 id="expected-mapping-format">Expected Mapping Format<a class="headerlink" href="#expected-mapping-format" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">term_to_labels</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">&quot;mitochondrion inheritance&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;GEM1&quot;</span><span class="p">,</span> <span class="s2">&quot;PTC1&quot;</span><span class="p">,</span> <span class="s2">&quot;ARP2&quot;</span><span class="p">,</span> <span class="s2">&quot;ADY3&quot;</span><span class="p">],</span>
+</span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">&quot;vacuole inheritance&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;VPS15&quot;</span><span class="p">,</span> <span class="s2">&quot;VAC17&quot;</span><span class="p">,</span> <span class="s2">&quot;PEP7&quot;</span><span class="p">,</span> <span class="s2">&quot;VPS3&quot;</span><span class="p">],</span>
+</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Each key is an annotation term, and each value is a list of matrix label IDs.
+Labels must match matrix row labels exactly.</p>
 <h2 id="common-attributes">Common Attributes<a class="headerlink" href="#common-attributes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1172,8 +1191,8 @@
 </tbody>
 </table>
 <h2 id="common-methods">Common Methods<a class="headerlink" href="#common-methods" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">terms</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
-</span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">rebind</span><span class="p">(</span><span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Annotations</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">terms</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</span><span id="__line-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">rebind</span><span class="p">(</span><span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Annotations</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -1194,11 +1213,11 @@
 </tbody>
 </table>
 <h2 id="terms"><code>terms</code><a class="headerlink" href="#terms" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">terms</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">terms</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 </span></code></pre></div>
 <p>Returns retained annotation terms after overlap filtering.</p>
 <h2 id="rebind"><code>rebind</code><a class="headerlink" href="#rebind" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">rebind</span><span class="p">(</span><span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Annotations</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">rebind</span><span class="p">(</span><span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Annotations</span>
 </span></code></pre></div>
 <p>Returns a new <code>Annotations</code> object aligned to a new matrix label universe.</p>
 <table>
@@ -1220,21 +1239,21 @@
 </tbody>
 </table>
 <h2 id="example-go-biological-process">Example (GO Biological Process)<a class="headerlink" href="#example-go-biological-process" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-</span><span id="__line-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">himalayas</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotations</span>
-</span><span id="__line-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__line-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/go_bp_name_to_orfs.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
-</span><span id="__line-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">go_bp</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
-</span><span id="__line-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__line-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">go_bp</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">himalayas</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotations</span>
+</span><span id="__line-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/go_bp_name_to_orfs.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">go_bp</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__line-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">go_bp</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="example-country-to-recipes">Example (Country to Recipes)<a class="headerlink" href="#example-country-to-recipes" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">country_to_recipes</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__line-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="s2">&quot;Italy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_001&quot;</span><span class="p">,</span> <span class="s2">&quot;r_105&quot;</span><span class="p">,</span> <span class="s2">&quot;r_214&quot;</span><span class="p">],</span>
-</span><span id="__line-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="s2">&quot;India&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_002&quot;</span><span class="p">,</span> <span class="s2">&quot;r_003&quot;</span><span class="p">],</span>
-</span><span id="__line-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
-</span><span id="__line-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-</span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">country_to_recipes</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">country_to_recipes</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__line-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="s2">&quot;Italy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_001&quot;</span><span class="p">,</span> <span class="s2">&quot;r_105&quot;</span><span class="p">,</span> <span class="s2">&quot;r_214&quot;</span><span class="p">],</span>
+</span><span id="__line-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="s2">&quot;India&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_002&quot;</span><span class="p">,</span> <span class="s2">&quot;r_003&quot;</span><span class="p">],</span>
+</span><span id="__line-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
+</span><span id="__line-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__line-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">country_to_recipes</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h2>
 <ul>

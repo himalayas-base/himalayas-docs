@@ -528,6 +528,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#expected-input-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Input Format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-attributes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1116,6 +1127,76 @@
 </tr>
 </tbody>
 </table>
+<h2 id="expected-input-format">Expected Input Format<a class="headerlink" href="#expected-input-format" title="Permanent link">&para;</a></h2>
+<p>For standard usage, provide a numeric DataFrame with labeled rows. Row labels define the matrix label universe used downstream.</p>
+<table>
+<thead>
+<tr>
+<th>gene</th>
+<th>GAA1</th>
+<th>GPI18</th>
+<th>RFA1</th>
+<th>COP1</th>
+<th>...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GAA1</td>
+<td>0.000</td>
+<td>0.368</td>
+<td>-0.114</td>
+<td>0.269</td>
+<td>...</td>
+</tr>
+<tr>
+<td>GPI18</td>
+<td>0.368</td>
+<td>0.000</td>
+<td>-0.151</td>
+<td>0.252</td>
+<td>...</td>
+</tr>
+<tr>
+<td>RFA1</td>
+<td>-0.114</td>
+<td>-0.151</td>
+<td>0.000</td>
+<td>-0.177</td>
+<td>...</td>
+</tr>
+<tr>
+<td>COP1</td>
+<td>0.269</td>
+<td>0.252</td>
+<td>-0.177</td>
+<td>0.002</td>
+<td>...</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Example square matrix with gene labels on both axes.</span>
+</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">DF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="p">[</span>
+</span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="p">[</span><span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.368</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.114</span><span class="p">,</span> <span class="mf">0.269</span><span class="p">],</span>
+</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="p">[</span><span class="mf">0.368</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.151</span><span class="p">,</span> <span class="mf">0.252</span><span class="p">],</span>
+</span><span id="__line-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="p">[</span><span class="o">-</span><span class="mf">0.114</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.151</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.177</span><span class="p">],</span>
+</span><span id="__line-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="p">[</span><span class="mf">0.269</span><span class="p">,</span> <span class="mf">0.252</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.177</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">],</span>
+</span><span id="__line-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="p">],</span>
+</span><span id="__line-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GAA1&quot;</span><span class="p">,</span> <span class="s2">&quot;GPI18&quot;</span><span class="p">,</span> <span class="s2">&quot;RFA1&quot;</span><span class="p">,</span> <span class="s2">&quot;COP1&quot;</span><span class="p">],</span>
+</span><span id="__line-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GAA1&quot;</span><span class="p">,</span> <span class="s2">&quot;GPI18&quot;</span><span class="p">,</span> <span class="s2">&quot;RFA1&quot;</span><span class="p">,</span> <span class="s2">&quot;COP1&quot;</span><span class="p">],</span>
+</span><span id="__line-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">)</span>
+</span></code></pre></div>
 <h2 id="common-attributes">Common Attributes<a class="headerlink" href="#common-attributes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1149,43 +1230,44 @@
 </tbody>
 </table>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">himalayas</span><span class="w"> </span><span class="kn">import</span> <span class="n">Matrix</span>
-</span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">DF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/gi_pcc_sampled.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-</span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">matrix</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">DF</span><span class="p">)</span>
-</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</span><span id="__line-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">labels</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
-</span></code></pre></div>
-<h2 id="example-stacked-long-matrix-table">Example (Stacked / Long Matrix Table)<a class="headerlink" href="#example-stacked-long-matrix-table" title="Permanent link">&para;</a></h2>
-<p>If your matrix is stored as three columns (<code>row_id</code>, <code>col_id</code>, <code>value</code>), pivot it first:</p>
+<p>Load a matrix from file and create a <code>Matrix</code> object.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </span><span id="__line-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">himalayas</span><span class="w"> </span><span class="kn">import</span> <span class="n">Matrix</span>
 </span><span id="__line-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__line-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">stacked_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-</span><span id="__line-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="p">{</span>
-</span><span id="__line-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="s2">&quot;row_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;GENE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_B&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_B&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_C&quot;</span><span class="p">],</span>
-</span><span id="__line-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="s2">&quot;col_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;GENE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_B&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_C&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_C&quot;</span><span class="p">],</span>
-</span><span id="__line-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.30</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">],</span>
-</span><span id="__line-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="p">}</span>
-</span><span id="__line-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">)</span>
-</span><span id="__line-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-</span><span id="__line-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">matrix_df</span> <span class="o">=</span> <span class="n">stacked_df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
-</span><span id="__line-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;row_id&quot;</span><span class="p">,</span>
-</span><span id="__line-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;col_id&quot;</span><span class="p">,</span>
-</span><span id="__line-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
-</span><span id="__line-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># If duplicates exist for the same row/col pair, average them.</span>
-</span><span id="__line-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">)</span>
-</span><span id="__line-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
-</span><span id="__line-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="c1"># Build a square matrix over the full label universe.</span>
-</span><span id="__line-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">labels</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">matrix_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">matrix_df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-</span><span id="__line-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="n">DF</span> <span class="o">=</span> <span class="n">matrix_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
-</span><span id="__line-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
-</span><span id="__line-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="c1"># Choose how to handle missing row/col pairs for your data.</span>
-</span><span id="__line-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="n">DF</span> <span class="o">=</span> <span class="n">DF</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-</span><span id="__line-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
-</span><span id="__line-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="n">matrix</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">DF</span><span class="p">)</span>
+</span><span id="__line-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">DF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/gi_pcc_sampled.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__line-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__line-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">matrix</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">DF</span><span class="p">)</span>
+</span><span id="__line-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__line-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">labels</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</span></code></pre></div>
+<h2 id="example-stacked-long-matrix-table">Example (Stacked / Long Matrix Table)<a class="headerlink" href="#example-stacked-long-matrix-table" title="Permanent link">&para;</a></h2>
+<p>If your matrix is stored as three columns (<code>row_id</code>, <code>col_id</code>, <code>value</code>), pivot it first:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__line-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">himalayas</span><span class="w"> </span><span class="kn">import</span> <span class="n">Matrix</span>
+</span><span id="__line-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__line-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">stacked_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+</span><span id="__line-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="p">{</span>
+</span><span id="__line-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="s2">&quot;row_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;GENE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_B&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_B&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_C&quot;</span><span class="p">],</span>
+</span><span id="__line-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="s2">&quot;col_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;GENE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_B&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_A&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_C&quot;</span><span class="p">,</span> <span class="s2">&quot;GENE_C&quot;</span><span class="p">],</span>
+</span><span id="__line-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="mf">0.42</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.30</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">],</span>
+</span><span id="__line-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="p">}</span>
+</span><span id="__line-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">)</span>
+</span><span id="__line-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__line-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">matrix_df</span> <span class="o">=</span> <span class="n">stacked_df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+</span><span id="__line-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;row_id&quot;</span><span class="p">,</span>
+</span><span id="__line-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;col_id&quot;</span><span class="p">,</span>
+</span><span id="__line-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+</span><span id="__line-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>  <span class="c1"># If duplicates exist for the same row/col pair, average them.</span>
+</span><span id="__line-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">)</span>
+</span><span id="__line-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__line-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="c1"># Build a square matrix over the full label universe.</span>
+</span><span id="__line-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="n">labels</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">matrix_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">matrix_df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+</span><span id="__line-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">DF</span> <span class="o">=</span> <span class="n">matrix_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+</span><span id="__line-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+</span><span id="__line-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="c1"># Choose how to handle missing row/col pairs for your data.</span>
+</span><span id="__line-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="n">DF</span> <span class="o">=</span> <span class="n">DF</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__line-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+</span><span id="__line-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="n">matrix</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">DF</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h2>
 <ul>
