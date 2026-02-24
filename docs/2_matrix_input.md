@@ -15,7 +15,7 @@ Matrix(df: pd.DataFrame, *, axis: str = "rows")
 | `df` | `pd.DataFrame` | required | Numeric matrix with labeled rows. Row labels become the matrix label universe. |
 | `axis` | `str` | `"rows"` | Orientation of labels. Use `"rows"` for standard usage. Reserved for column-labeled use cases. |
 
-## Expected Input Format (Row-Labeled DataFrame)
+## Expected Input Format
 
 For standard usage, provide a numeric DataFrame with labeled rows. Row labels define the matrix label universe used downstream.
 
