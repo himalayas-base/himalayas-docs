@@ -69,7 +69,7 @@ plotter = (
     Plotter(zoom_results)
     .plot_dendrogram()
     .plot_matrix(cmap="RdBu_r", center=0)
-    .plot_cluster_labels(rank_by="q", label_mode="top_term", label_fields=("label", "q"))
+    .plot_cluster_labels(rank_by="q", label_mode="top_term", label_fields=("label", "q", "fe"))
 )
 
 plotter.show()

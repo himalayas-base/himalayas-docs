@@ -186,7 +186,8 @@ Plotter.plot_cluster_labels(
     rank_by: str = "p",
     label_mode: str = "top_term",
     max_words: int | None = 6,
-    label_fields: tuple[str, ...] = ("label", "n", "p"),
+    label_fields: tuple[str, ...] | None = ("label", "n", "p"),
+    label_prefix: str | None = None,
     wrap_text: bool = True,
     wrap_width: int | None = None,
     overflow: str = "wrap",
@@ -221,7 +222,8 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
 | `max_words` | `int | None` | `6` | Word-based truncation limit for labels. Use `None` to avoid truncation in compressed mode. |
-| `label_fields` | `tuple[str, ...]` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`. |
+| `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label/stat text. |
+| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None` and `"cid"`. |
 | `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
@@ -252,7 +254,9 @@ Behavior notes:
 
 - Labels are always generated from the attached `Results` object.
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
-- `label_fields` values outside `{ "label", "n", "p", "q" }` raise `ValueError`.
+- `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
+- `label_fields=None` suppresses base label/stat text.
+- `label_prefix="cid"` can prefix labels even when `"label"` is omitted from `label_fields`.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `color` -> default, and `placeholder_alpha` -> `alpha` -> default.
 

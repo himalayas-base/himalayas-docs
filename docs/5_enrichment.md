@@ -7,7 +7,7 @@ HiMaLAYAS tests enrichment across clusters and categorical annotations using a o
 | Method | Description |
 | --- | --- |
 | `analysis.enrich(...)` | Runs one-sided hypergeometric enrichment over clustered labels and annotations. |
-| `analysis.finalize(...)` | Attaches plotting layout and BH-FDR q-values to produce a plotting-ready `Results`. |
+| `analysis.finalize(...)` | Attaches plotting layout, fold enrichment (`fe`), and BH-FDR q-values to produce a plotting-ready `Results`. |
 
 ## `enrich`
 
@@ -30,7 +30,7 @@ Analysis.enrich(
 
 ## `finalize`
 
-Attaches plotting layout and BH-FDR q-values to produce a plotting-ready `Results`. Call this before using `Plotter`.
+Attaches plotting layout, fold enrichment (`fe`), and BH-FDR q-values to produce a plotting-ready `Results`. Call this before using `Plotter`.
 
 ```python
 Analysis.finalize(
