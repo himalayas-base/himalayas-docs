@@ -6,7 +6,7 @@
 
 | Attribute | Type | Description |
 | --- | --- | --- |
-| `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`, and optional `fe` / `qval`). |
+| `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`), plus `fe` and `qval` after `Analysis.finalize()`. |
 | `results.method` | `str` | Method identifier for the result object (for example, `"hypergeom"` after enrichment or `"subset"` after `results.subset(...)` / `results.subset_clusters(...)`). |
 | `results.params` | `dict[str, Any]` | Analysis metadata attached to results (for example, `linkage_threshold` when available). |
 | `results.matrix` | `Matrix \| None` | Matrix attached to the result object, useful for zoom workflows and background reuse. |
@@ -22,8 +22,6 @@
 Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
 Results.subset_clusters(clusters: Iterable[int]) -> Results
-Results.with_effect_sizes(fe_col: str = "fe") -> Results
-Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
 Results.cluster_layout() -> ClusterLayout
 Results.cluster_spans() -> list[tuple[int, int, int]]
 Results.cluster_labels(
@@ -39,8 +37,6 @@ Results.cluster_labels(
 | `results.filter(...)` | Returns a new `Results` filtered by a query expression on `results.df`. |
 | `results.subset(...)` | Returns a single-cluster view for zoom workflows (with subset matrix attached). |
 | `results.subset_clusters(...)` | Returns a multi-cluster view for zoom workflows by taking the union of selected cluster labels. |
-| `results.with_effect_sizes(...)` | Returns a new `Results` with fold enrichment added to `results.df`. |
-| `results.with_qvalues(...)` | Returns a new `Results` with BH-FDR q-values added to `results.df`. |
 | `results.cluster_layout()` | Returns the attached plotting layout (required by `Plotter`). |
 | `results.cluster_spans()` | Returns contiguous cluster spans in dendrogram order. |
 | `results.cluster_labels(...)` | Builds one label per cluster for inspection or export. |
@@ -81,31 +77,6 @@ Returns a multi-cluster view for zoom workflows by taking the union of selected 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `clusters` | `Iterable[int]` | required | Cluster ids to subset. Returns one combined `Results` view with a subset matrix attached. |
-
-## `with_effect_sizes`
-
-```python
-Results.with_effect_sizes(fe_col: str = "fe") -> Results
-```
-
-Returns a new `Results` with fold enrichment added to `results.df`.
-
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `fe_col` | `str` | `"fe"` | Output column name for fold enrichment. |
-
-## `with_qvalues`
-
-```python
-Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
-```
-
-Returns a new `Results` with BH-FDR q-values added to `results.df`.
-
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `pval_col` | `str` | `"pval"` | Source p-value column used for BH-FDR correction. |
-| `qval_col` | `str` | `"qval"` | Output q-value column name. |
 
 ## `cluster_layout` and `cluster_spans`
 
