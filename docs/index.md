@@ -28,7 +28,7 @@ This documentation walks through installation, workflows, and examples using HiM
 1. Load a real-valued matrix into `Matrix`.
 2. Load term-to-label annotations into `Annotations`.
 3. Run `Analysis.cluster()` and `Analysis.enrich()`.
-4. Call `Analysis.finalize()` to attach layout and Benjamini-Hochberg FDR-adjusted q-values.
+4. Call `Analysis.finalize()` to attach layout, fold enrichment (`fe`), and Benjamini-Hochberg FDR-adjusted q-values.
 5. Plot with `Plotter` and summarize clusters.
 
 ## Use Cases

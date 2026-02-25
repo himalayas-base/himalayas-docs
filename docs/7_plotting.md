@@ -77,7 +77,6 @@ plotter.show()
 | `plotter.plot_col_ticks(...)` | Declares column tick labels for the matrix panel. |
 | `plotter.add_colorbar(...)` | Declares a figure-level colorbar specification. |
 | `plotter.plot_colorbars(...)` | Declares layout for the bottom colorbar strip. |
-| `plotter.plot_sigbar_legend(...)` | Declares a significance-bar legend layer. |
 | `plotter.set_background(...)` | Sets figure background color used for display and save. |
 | `plotter.show()` | Renders (if needed) and displays the current plot. |
 | `plotter.save(...)` | Renders (if needed) and saves the current plot. |
@@ -186,7 +185,8 @@ Plotter.plot_cluster_labels(
     rank_by: str = "p",
     label_mode: str = "top_term",
     max_words: int | None = 6,
-    label_fields: tuple[str, ...] = ("label", "n", "p"),
+    label_fields: tuple[str, ...] | None = ("label", "n", "p"),
+    label_prefix: str | None = None,
     wrap_text: bool = True,
     wrap_width: int | None = None,
     overflow: str = "wrap",
@@ -221,7 +221,8 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
 | `max_words` | `int | None` | `6` | Word-based truncation limit for labels. Use `None` to avoid truncation in compressed mode. |
-| `label_fields` | `tuple[str, ...]` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`. |
+| `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label/stat text. |
+| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None` and `"cid"`. |
 | `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
@@ -252,7 +253,9 @@ Behavior notes:
 
 - Labels are always generated from the attached `Results` object.
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
-- `label_fields` values outside `{ "label", "n", "p", "q" }` raise `ValueError`.
+- `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
+- `label_fields=None` suppresses base label/stat text.
+- `label_prefix="cid"` can prefix labels even when `"label"` is omitted from `label_fields`.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `color` -> default, and `placeholder_alpha` -> `alpha` -> default.
 
@@ -559,31 +562,6 @@ Plotter.plot_colorbars(
 | `color` | `str | None` | `"black"` | Tick and label color. |
 | `label_position` | `str` | `"below"` | Label placement: `"below"` or `"above"`. |
 | `tick_decimals` | `int | None` | `None` | Maximum decimal places for colorbar ticks; trailing zeros are trimmed. |
-
-## Legends
-
-### `plot_sigbar_legend`
-
-Declares a significance-bar legend layer.
-
-```python
-Plotter.plot_sigbar_legend(
-    *,
-    axes: Sequence[float] = [0.92, 0.20, 0.015, 0.25],
-    sigbar_cmap: str | None = None,
-    norm: Normalize | None = None,
-    sigbar_min_logp: float | None = None,
-    sigbar_max_logp: float | None = None,
-) -> Plotter
-```
-
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `axes` | `Sequence[float]` | `[0.92, 0.20, 0.015, 0.25]` | Legend box `[x0, y0, w, h]`. |
-| `sigbar_cmap` | `str | None` | `"YlOrBr"` | Colormap for the legend. |
-| `norm` | `Normalize | None` | `None` | Normalization for `-log10(score)`. |
-| `sigbar_min_logp` | `float | None` | `2.0` | Lower bound for legend scale. |
-| `sigbar_max_logp` | `float | None` | `10.0` | Upper bound for legend scale. |
 
 ## Rendering
 

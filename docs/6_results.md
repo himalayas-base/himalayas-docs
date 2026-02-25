@@ -6,9 +6,7 @@
 
 | Attribute | Type | Description |
 | --- | --- | --- |
-| `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`, and optional `qval`). |
-| `results.method` | `str` | Method identifier for the result object (for example, `"hypergeom"` after enrichment or `"subset"` after `results.subset(...)` / `results.subset_clusters(...)`). |
-| `results.params` | `dict[str, Any]` | Analysis metadata attached to results (for example, `linkage_threshold` when available). |
+| `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`), plus `fe` and `qval` after `Analysis.finalize()`. |
 | `results.matrix` | `Matrix \| None` | Matrix attached to the result object, useful for zoom workflows and background reuse. |
 | `results.clusters` | `Clusters \| None` | Cluster assignments and dendrogram metadata attached to the result object. |
 | `results.clusters.unique_clusters` | `np.ndarray` | Sorted cluster ids present in the result context (when clusters are attached). |
@@ -22,9 +20,6 @@
 Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
 Results.subset_clusters(clusters: Iterable[int]) -> Results
-Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
-Results.cluster_layout() -> ClusterLayout
-Results.cluster_spans() -> list[tuple[int, int, int]]
 Results.cluster_labels(
     *,
     rank_by: str = "p",
@@ -38,9 +33,6 @@ Results.cluster_labels(
 | `results.filter(...)` | Returns a new `Results` filtered by a query expression on `results.df`. |
 | `results.subset(...)` | Returns a single-cluster view for zoom workflows (with subset matrix attached). |
 | `results.subset_clusters(...)` | Returns a multi-cluster view for zoom workflows by taking the union of selected cluster labels. |
-| `results.with_qvalues(...)` | Returns a new `Results` with BH-FDR q-values added to `results.df`. |
-| `results.cluster_layout()` | Returns the attached plotting layout (required by `Plotter`). |
-| `results.cluster_spans()` | Returns contiguous cluster spans in dendrogram order. |
 | `results.cluster_labels(...)` | Builds one label per cluster for inspection or export. |
 
 ## `filter`
@@ -80,29 +72,6 @@ Returns a multi-cluster view for zoom workflows by taking the union of selected 
 | --- | --- | --- | --- |
 | `clusters` | `Iterable[int]` | required | Cluster ids to subset. Returns one combined `Results` view with a subset matrix attached. |
 
-## `with_qvalues`
-
-```python
-Results.with_qvalues(pval_col: str = "pval", qval_col: str = "qval") -> Results
-```
-
-Returns a new `Results` with BH-FDR q-values added to `results.df`.
-
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `pval_col` | `str` | `"pval"` | Source p-value column used for BH-FDR correction. |
-| `qval_col` | `str` | `"qval"` | Output q-value column name. |
-
-## `cluster_layout` and `cluster_spans`
-
-```python
-Results.cluster_layout() -> ClusterLayout
-Results.cluster_spans() -> list[tuple[int, int, int]]
-```
-
-`results.cluster_layout()` returns the attached plotting layout (required by `Plotter`).
-`results.cluster_spans()` returns contiguous cluster spans in dendrogram order.
-
 ## `cluster_labels`
 
 ```python
@@ -125,9 +94,10 @@ Builds one label per cluster for inspection or export.
 Behavior details:
 
 - Uses canonical input columns `term` and `cluster`; `term_name` is used as an optional display fallback.
-- Returns one row per cluster with columns `["cluster", "label", "pval", "qval", "score", "n", "term"]`.
+- Returns one row per cluster with columns `["cluster", "label", "pval", "qval", "score", "n", "term", "fe"]`.
 - `score` is the statistic selected by `rank_by` (`pval` for `"p"`, `qval` for `"q"`).
 - Both `label_mode="top_term"` and `label_mode="compressed"` require the selected score column (`pval` for `rank_by="p"`, `qval` for `rank_by="q"`).
+- Representative-term selection is deterministic: selected score (`pval` or `qval`), then `pval` (if present), then lexical `term`.
 - In `label_mode="compressed"`, HiMaLAYAS uses NLTK normalization when available and falls back to regex tokenization otherwise.
 
 `Results.cluster_labels(...)` is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into `Plotter.plot_cluster_labels(...)` or `plot_dendrogram_condensed(...)`; both generate labels internally from the attached `Results`.
@@ -160,7 +130,7 @@ Build optional cluster labels for inspection or export:
 cluster_labels = results.cluster_labels(rank_by="q", label_mode="top_term")
 compressed_labels = results.cluster_labels(rank_by="p", label_mode="compressed", max_words=5)
 
-display(cluster_labels[["cluster", "label", "pval", "qval", "score", "n", "term"]].head())
+display(cluster_labels[["cluster", "label", "pval", "qval", "score", "n", "term", "fe"]].head())
 ```
 
 Inspect cluster membership and sizes:
@@ -182,4 +152,5 @@ display(results.clusters.label_to_cluster[example_label])
 - `n`: Cluster size.
 - `N`: Background size.
 - `pval`: Hypergeometric p-value.
+- `fe`: Fold enrichment effect size, computed as `(k / n) / (K / N)`.
 - `qval`: Adjusted p-value used for significance filtering (if present).
