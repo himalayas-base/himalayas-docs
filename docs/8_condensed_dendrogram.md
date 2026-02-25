@@ -47,7 +47,7 @@ plot_dendrogram_condensed(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `results` | `Results` | required | Results exposing `cluster_layout()` and `clusters`. |
+| `results` | `Results` | required | Results from `Analysis.finalize(...)`. |
 | `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
 | `figsize` | `Sequence[float]` | `(10, 10)` | Figure size (width, height). |
@@ -104,9 +104,6 @@ CondensedDendrogramPlot
 | Property / Method | Type | Description |
 | --- | --- | --- |
 | `fig` | `matplotlib.figure.Figure` | Rendered figure handle. |
-| `ax_den` | `matplotlib.axes.Axes` | Dendrogram axis. |
-| `ax_sig` | `matplotlib.axes.Axes` | Significance bar axis. |
-| `ax_txt` | `matplotlib.axes.Axes` | Label text axis. |
 | `show()` | `() -> None` | Displays the rendered figure. If the backing figure was closed, it is rebuilt automatically from the stored render specification. |
 | `save(path, **kwargs)` | `(str | PathLike[str], **kwargs) -> None` | Saves the rendered figure with current facecolor. If the backing figure was closed, it is rebuilt automatically before saving. |
 

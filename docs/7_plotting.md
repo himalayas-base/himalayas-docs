@@ -77,7 +77,6 @@ plotter.show()
 | `plotter.plot_col_ticks(...)` | Declares column tick labels for the matrix panel. |
 | `plotter.add_colorbar(...)` | Declares a figure-level colorbar specification. |
 | `plotter.plot_colorbars(...)` | Declares layout for the bottom colorbar strip. |
-| `plotter.plot_sigbar_legend(...)` | Declares a significance-bar legend layer. |
 | `plotter.set_background(...)` | Sets figure background color used for display and save. |
 | `plotter.show()` | Renders (if needed) and displays the current plot. |
 | `plotter.save(...)` | Renders (if needed) and saves the current plot. |
@@ -563,31 +562,6 @@ Plotter.plot_colorbars(
 | `color` | `str | None` | `"black"` | Tick and label color. |
 | `label_position` | `str` | `"below"` | Label placement: `"below"` or `"above"`. |
 | `tick_decimals` | `int | None` | `None` | Maximum decimal places for colorbar ticks; trailing zeros are trimmed. |
-
-## Legends
-
-### `plot_sigbar_legend`
-
-Declares a significance-bar legend layer.
-
-```python
-Plotter.plot_sigbar_legend(
-    *,
-    axes: Sequence[float] = [0.92, 0.20, 0.015, 0.25],
-    sigbar_cmap: str | None = None,
-    norm: Normalize | None = None,
-    sigbar_min_logp: float | None = None,
-    sigbar_max_logp: float | None = None,
-) -> Plotter
-```
-
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `axes` | `Sequence[float]` | `[0.92, 0.20, 0.015, 0.25]` | Legend box `[x0, y0, w, h]`. |
-| `sigbar_cmap` | `str | None` | `"YlOrBr"` | Colormap for the legend. |
-| `norm` | `Normalize | None` | `None` | Normalization for `-log10(score)`. |
-| `sigbar_min_logp` | `float | None` | `2.0` | Lower bound for legend scale. |
-| `sigbar_max_logp` | `float | None` | `10.0` | Upper bound for legend scale. |
 
 ## Rendering
 

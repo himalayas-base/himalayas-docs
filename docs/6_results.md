@@ -22,8 +22,6 @@
 Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
 Results.subset_clusters(clusters: Iterable[int]) -> Results
-Results.cluster_layout() -> ClusterLayout
-Results.cluster_spans() -> list[tuple[int, int, int]]
 Results.cluster_labels(
     *,
     rank_by: str = "p",
@@ -37,8 +35,6 @@ Results.cluster_labels(
 | `results.filter(...)` | Returns a new `Results` filtered by a query expression on `results.df`. |
 | `results.subset(...)` | Returns a single-cluster view for zoom workflows (with subset matrix attached). |
 | `results.subset_clusters(...)` | Returns a multi-cluster view for zoom workflows by taking the union of selected cluster labels. |
-| `results.cluster_layout()` | Returns the attached plotting layout (required by `Plotter`). |
-| `results.cluster_spans()` | Returns contiguous cluster spans in dendrogram order. |
 | `results.cluster_labels(...)` | Builds one label per cluster for inspection or export. |
 
 ## `filter`
@@ -77,16 +73,6 @@ Returns a multi-cluster view for zoom workflows by taking the union of selected 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `clusters` | `Iterable[int]` | required | Cluster ids to subset. Returns one combined `Results` view with a subset matrix attached. |
-
-## `cluster_layout` and `cluster_spans`
-
-```python
-Results.cluster_layout() -> ClusterLayout
-Results.cluster_spans() -> list[tuple[int, int, int]]
-```
-
-`results.cluster_layout()` returns the attached plotting layout (required by `Plotter`).
-`results.cluster_spans()` returns contiguous cluster spans in dendrogram order.
 
 ## `cluster_labels`
 
