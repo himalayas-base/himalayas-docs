@@ -15,6 +15,18 @@ Annotations(term_to_labels: dict[str, Iterable[str]], matrix: Matrix)
 | `term_to_labels` | `dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, recipes, proteins). |
 | `matrix` | `Matrix` | required | Provides the label universe. |
 
+## Expected Mapping Format
+
+```python
+term_to_labels = {
+    "mitochondrion inheritance": ["GEM1", "PTC1", "ARP2", "ADY3"],
+    "vacuole inheritance": ["VPS15", "VAC17", "PEP7", "VPS3"],
+}
+```
+
+Each key is an annotation term, and each value is a list of matrix label IDs.
+Labels must match matrix row labels exactly.
+
 ## Common Attributes
 
 | Attribute | Type | Description |

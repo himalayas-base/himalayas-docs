@@ -15,6 +15,34 @@ Matrix(df: pd.DataFrame, *, axis: str = "rows")
 | `df` | `pd.DataFrame` | required | Numeric matrix with labeled rows. Row labels become the matrix label universe. |
 | `axis` | `str` | `"rows"` | Orientation of labels. Use `"rows"` for standard usage. Reserved for column-labeled use cases. |
 
+## Expected Input Format
+
+For standard usage, provide a numeric DataFrame with labeled rows. Row labels define the matrix label universe used downstream.
+
+| gene | GAA1 | GPI18 | RFA1 | COP1 | ... |
+| --- | --- | --- | --- | --- | --- |
+| GAA1 | 0.000 | 0.368 | -0.114 | 0.269 | ... |
+| GPI18 | 0.368 | 0.000 | -0.151 | 0.252 | ... |
+| RFA1 | -0.114 | -0.151 | 0.000 | -0.177 | ... |
+| COP1 | 0.269 | 0.252 | -0.177 | 0.002 | ... |
+| ... | ... | ... | ... | ... | ... |
+
+```python
+import pandas as pd
+
+# Example square matrix with gene labels on both axes.
+DF = pd.DataFrame(
+    [
+        [0.000, 0.368, -0.114, 0.269],
+        [0.368, 0.000, -0.151, 0.252],
+        [-0.114, -0.151, 0.000, -0.177],
+        [0.269, 0.252, -0.177, 0.002],
+    ],
+    index=["GAA1", "GPI18", "RFA1", "COP1"],
+    columns=["GAA1", "GPI18", "RFA1", "COP1"],
+)
+```
+
 ## Common Attributes
 
 | Attribute | Type | Description |
@@ -25,6 +53,8 @@ Matrix(df: pd.DataFrame, *, axis: str = "rows")
 | `matrix.axis` | `str` | Label orientation metadata (`"rows"` by default). |
 
 ## Example
+
+Load a matrix from file and create a `Matrix` object.
 
 ```python
 import pandas as pd

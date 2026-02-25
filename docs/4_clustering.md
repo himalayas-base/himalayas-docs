@@ -36,6 +36,31 @@ analysis = Analysis(matrix, annotations).cluster(
 )
 ```
 
+Sweep linkage thresholds on one `Analysis` object:
+
+```python
+analysis = Analysis(matrix, annotations)
+
+# First run: computes and caches row linkage for these linkage settings.
+analysis.cluster(
+    linkage_method="average",
+    linkage_metric="cosine",
+    linkage_threshold=0.6,
+    optimal_ordering=False,
+    min_cluster_size=30,
+)
+
+# Second run: same linkage settings, new threshold.
+# Reuses cached row linkage and only re-cuts clusters.
+analysis.cluster(
+    linkage_method="average",
+    linkage_metric="cosine",
+    linkage_threshold=1.0,
+    optimal_ordering=False,
+    min_cluster_size=30,
+)
+```
+
 After clustering, cluster assignments are attached as:
 
 | Attribute | Type | Description |
@@ -47,4 +72,7 @@ After clustering, cluster assignments are attached as:
 - Any method or metric supported by SciPy `linkage` is valid (see the [SciPy linkage docs](https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html)).
 - When `optimal_ordering=False`, HiMaLAYAS uses `fastcluster` if installed and otherwise falls back to SciPy linkage.
 - `min_cluster_size` preserves hierarchy by merging undersized clusters into their parent cluster.
-- `linkage_method`, `linkage_metric`, and `optimal_ordering` are reused by `Analysis.finalize(col_cluster=True)` for optional column ordering.
+- With `Analysis.finalize(col_cluster=True)`, HiMaLAYAS reuses cached column order for the current linkage settings (`linkage_method`, `linkage_metric`, `optimal_ordering`).
+- For large matrices, reuse a single `Analysis` object when sweeping linkage thresholds.
+- For fixed linkage settings (`linkage_method`, `linkage_metric`, `optimal_ordering`), `Analysis.cluster(...)` reuses cached row linkage.
+- Creating a new `Analysis(matrix, annotations)` starts with empty caches.

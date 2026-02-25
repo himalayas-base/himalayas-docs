@@ -73,3 +73,5 @@ See [Results and Filtering](6_results.md) for examples of filtering on q-values.
 ## Notes
 
 - If no terms pass filtering, the results table is empty.
+- `analysis.enrich(...)` recomputes enrichment each time it is called.
+- Each call updates `analysis.results`; save per-run snapshots (for example, `res_06`, `res_10`) during threshold sweeps.
