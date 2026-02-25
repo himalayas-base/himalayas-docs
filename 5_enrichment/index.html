@@ -1126,7 +1126,7 @@
 </tr>
 <tr>
 <td><code>analysis.finalize(...)</code></td>
-<td>Attaches plotting layout and BH-FDR q-values to produce a plotting-ready <code>Results</code>.</td>
+<td>Attaches plotting layout, fold enrichment (<code>fe</code>), and BH-FDR q-values to produce a plotting-ready <code>Results</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -1164,7 +1164,7 @@
 </tbody>
 </table>
 <h2 id="finalize"><code>finalize</code><a class="headerlink" href="#finalize" title="Permanent link">&para;</a></h2>
-<p>Attaches plotting layout and BH-FDR q-values to produce a plotting-ready <code>Results</code>. Call this before using <code>Plotter</code>.</p>
+<p>Attaches plotting layout, fold enrichment (<code>fe</code>), and BH-FDR q-values to produce a plotting-ready <code>Results</code>. Call this before using <code>Plotter</code>.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Analysis</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span>
 </span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">*</span><span class="p">,</span>
 </span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">col_cluster</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
