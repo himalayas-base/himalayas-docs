@@ -8067,6 +8067,7 @@ Significant rows (q&lt;=0.05): 331
 <span class="n">BACKGROUND_COLOR</span> <span class="o">=</span> <span class="s2">"white"</span>
 <span class="n">FONT</span> <span class="o">=</span> <span class="s2">"DejaVu Sans"</span>
 
+<span class="c1"># Set color limits for the matrix</span>
 <span class="n">vals</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">values</span>
 <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">vals</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">vlim</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">mask</span><span class="p">]),</span> <span class="mi">99</span><span class="p">))</span>

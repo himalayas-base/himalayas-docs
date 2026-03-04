@@ -8052,7 +8052,7 @@ Row-variance range: [0.001, 0.014]
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Run clustering/enrichment and prepare optional cluster labels</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Run clustering and enrichment and prepare optional cluster labels</span>
 
 <span class="n">LINKAGE_METHOD</span> <span class="o">=</span> <span class="s2">"ward"</span>
 <span class="n">LINKAGE_METRIC</span> <span class="o">=</span> <span class="s2">"euclidean"</span>
@@ -8537,12 +8537,13 @@ Significant rows (q&lt;=0.05): 331
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Configure and render the full plot</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Configure and render the annotated matrix</span>
 
 <span class="n">LABEL_COLOR</span> <span class="o">=</span> <span class="s2">"black"</span>
 <span class="n">BACKGROUND_COLOR</span> <span class="o">=</span> <span class="s2">"white"</span>
 <span class="n">FONT</span> <span class="o">=</span> <span class="s2">"DejaVu Sans"</span>
 
+<span class="c1"># Set color limits for the matrix</span>
 <span class="n">vals</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">values</span>
 <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">vals</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">vlim</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">mask</span><span class="p">]),</span> <span class="mi">99</span><span class="p">))</span>
@@ -8720,6 +8721,13 @@ Significant rows (q&lt;=0.05): 331
 <span class="p">)</span>
 
 <span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Optional: save figures locally (Binder storage is temporary).</span>
+<span class="n">SAVE_FIGURES</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">SAVE_FIGURES</span><span class="p">:</span>
+    <span class="n">Path</span><span class="p">(</span><span class="s2">"outputs"</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plotter</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"outputs/quickstart_advanced_matrix.png"</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">"tight"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8788,6 +8796,9 @@ Significant rows (q&lt;=0.05): 331
 <span class="p">)</span>
 
 <span class="n">condensed</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">SAVE_FIGURES</span><span class="p">:</span>
+    <span class="n">condensed</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"outputs/quickstart_advanced_condensed.png"</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">"tight"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8832,7 +8843,7 @@ Significant rows (q&lt;=0.05): 331
     <span class="o">*</span><span class="p">,</span>
     <span class="n">results</span><span class="p">,</span>
     <span class="n">cluster_id</span><span class="p">,</span>
-    <span class="n">go_bp</span><span class="p">,</span>
+    <span class="n">annotations</span><span class="p">,</span>
     <span class="n">linkage_threshold</span><span class="p">,</span>
     <span class="n">linkage_method</span><span class="o">=</span><span class="s2">"ward"</span><span class="p">,</span>
     <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">"euclidean"</span><span class="p">,</span>
@@ -8848,7 +8859,7 @@ Significant rows (q&lt;=0.05): 331
 <span class="sd">    """</span>
     <span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="n">cluster_id</span><span class="p">)</span>
     <span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
-    <span class="n">zoom_annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">go_bp</span><span class="p">,</span> <span class="n">zoom_matrix</span><span class="p">)</span>
+    <span class="n">zoom_annotations</span> <span class="o">=</span> <span class="n">annotations</span><span class="o">.</span><span class="n">rebind</span><span class="p">(</span><span class="n">zoom_matrix</span><span class="p">)</span>
 
     <span class="n">zoom_analysis</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">Analysis</span><span class="p">(</span><span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_annotations</span><span class="p">)</span>
@@ -8898,7 +8909,7 @@ Significant rows (q&lt;=0.05): 331
 <span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_results</span><span class="p">,</span> <span class="n">zoom_results_sig</span> <span class="o">=</span> <span class="n">run_zoom_analysis</span><span class="p">(</span>
     <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
     <span class="n">cluster_id</span><span class="o">=</span><span class="n">CLUSTER_ID</span><span class="p">,</span>
-    <span class="n">go_bp</span><span class="o">=</span><span class="n">go_bp</span><span class="p">,</span>
+    <span class="n">annotations</span><span class="o">=</span><span class="n">annotations</span><span class="p">,</span>
     <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">ZOOM_LINKAGE_THRESHOLD</span><span class="p">,</span>
     <span class="n">linkage_method</span><span class="o">=</span><span class="n">LINKAGE_METHOD</span><span class="p">,</span>
     <span class="n">linkage_metric</span><span class="o">=</span><span class="n">LINKAGE_METRIC</span><span class="p">,</span>
@@ -9090,7 +9101,7 @@ Significant rows (q&lt;=0.05): 331
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/Users/irahorecka/Desktop/harddrive_desktop/PhD/University of Toronto/Rost Lab/GitHub/himalayas/src/himalayas/core/annotations.py:72: RuntimeWarning: Dropped 658/1095 annotations with no overlap to matrix labels
+<pre>/Users/irahorecka/Desktop/harddrive_desktop/PhD/University of Toronto/Rost Lab/GitHub/himalayas/src/himalayas/core/annotations.py:72: RuntimeWarning: Dropped 394/831 annotations with no overlap to matrix labels
   warn(
 </pre>
 </div>
@@ -9122,7 +9133,7 @@ Significant rows (q&lt;=0.05): 331
 <span class="n">subcluster_matrix</span><span class="p">,</span> <span class="n">subcluster_results</span><span class="p">,</span> <span class="n">subcluster_results_sig</span> <span class="o">=</span> <span class="n">run_zoom_analysis</span><span class="p">(</span>
     <span class="n">results</span><span class="o">=</span><span class="n">zoom_results</span><span class="p">,</span>
     <span class="n">cluster_id</span><span class="o">=</span><span class="n">SUBCLUSTER_ID</span><span class="p">,</span>
-    <span class="n">go_bp</span><span class="o">=</span><span class="n">go_bp</span><span class="p">,</span>
+    <span class="n">annotations</span><span class="o">=</span><span class="n">annotations</span><span class="p">,</span>
     <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">SUBCLUSTER_LINKAGE_THRESHOLD</span><span class="p">,</span>
     <span class="n">linkage_method</span><span class="o">=</span><span class="n">LINKAGE_METHOD</span><span class="p">,</span>
     <span class="n">linkage_metric</span><span class="o">=</span><span class="n">LINKAGE_METRIC</span><span class="p">,</span>
@@ -9282,7 +9293,7 @@ Significant rows (q&lt;=0.05): 331
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/Users/irahorecka/Desktop/harddrive_desktop/PhD/University of Toronto/Rost Lab/GitHub/himalayas/src/himalayas/core/annotations.py:72: RuntimeWarning: Dropped 1062/1095 annotations with no overlap to matrix labels
+<pre>/Users/irahorecka/Desktop/harddrive_desktop/PhD/University of Toronto/Rost Lab/GitHub/himalayas/src/himalayas/core/annotations.py:72: RuntimeWarning: Dropped 798/831 annotations with no overlap to matrix labels
   warn(
 </pre>
 </div>
