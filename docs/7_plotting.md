@@ -21,7 +21,8 @@ from matplotlib.colors import Normalize
 from himalayas.plot import Plotter
 
 # Assumes `vlim`, `gene_essential_map`, and `gene_essential_colors` are prepared upstream.
-# See `quickstart.html` for a complete example showing where these are defined.
+# See `quickstart.html` for the core workflow and `quickstart_advanced.html`
+# for rails, legends, and nested zoom extensions.
 plotter = (
     Plotter(results)
     .set_background(color="white")
