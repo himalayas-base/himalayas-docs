@@ -2,9 +2,10 @@
 
 ## Where can I find a full end-to-end example?
 
-See [Quickstart Notebook (HTML)](quickstart.html) for a full workflow from input loading through plotting.
-<br>
-Run [Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb) to run this workflow in the browser without local setup.
+Use either notebook based on depth:
+
+- Quickstart: [HTML](quickstart.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
+- Advanced Quickstart: [HTML](quickstart_advanced.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart_advanced.ipynb)
 
 ## I get "Matrix labels must be unique"
 

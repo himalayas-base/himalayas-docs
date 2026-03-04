@@ -21,7 +21,8 @@ from matplotlib.colors import Normalize
 from himalayas.plot import Plotter
 
 # Assumes `vlim`, `gene_essential_map`, and `gene_essential_colors` are prepared upstream.
-# See `quickstart.html` for a complete example showing where these are defined.
+# See `quickstart.html` for the core workflow and `quickstart_advanced.html`
+# for rails, legends, and nested zoom extensions.
 plotter = (
     Plotter(results)
     .set_background(color="white")
@@ -77,6 +78,8 @@ plotter.show()
 | `plotter.plot_col_ticks(...)` | Declares column tick labels for the matrix panel. |
 | `plotter.add_colorbar(...)` | Declares a figure-level colorbar specification. |
 | `plotter.plot_colorbars(...)` | Declares layout for the bottom colorbar strip. |
+| `plotter.add_label_legend(...)` | Declares a categorical legend block for a row-level label bar. |
+| `plotter.plot_label_legends(...)` | Declares layout for categorical legend blocks below the colorbar strip or matrix. |
 | `plotter.set_background(...)` | Sets figure background color used for display and save. |
 | `plotter.show()` | Renders (if needed) and displays the current plot. |
 | `plotter.save(...)` | Renders (if needed) and saves the current plot. |
@@ -142,7 +145,7 @@ Plotter.plot_dendrogram(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `axes` | `Sequence[float] | None` | `[0.06, 0.05, 0.09, 0.90]` | Dendrogram panel box. |
+| `axes` | `Sequence[float] | None` | `[0.06, 0.05, 0.09, 0.90]` | Dendrogram panel box `[x0, y0, w, h]` in figure fraction. |
 | `color` | `str | None` | `"#888888"` | Dendrogram line color. |
 | `linewidth` | `float | None` | `1.0` | Dendrogram line width. |
 | `data_pad` | `float` | `0.25` | Expands y-limits to avoid top/bottom clipping. |
@@ -164,11 +167,11 @@ Plotter.set_label_panel(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `axes` | `Sequence[float] | None` | `[0.70, 0.05, 0.29, 0.90]` | Label-panel box. |
-| `track_x` | `float | None` | `0.02` | Starting x-position for label-panel tracks. |
-| `gutter_width` | `float | None` | `0.01` | Gutter width before label-panel tracks. |
+| `axes` | `Sequence[float] | None` | `[0.70, 0.05, 0.29, 0.90]` | Label-panel box `[x0, y0, w, h]` in figure fraction. |
+| `track_x` | `float | None` | `0.02` | Starting x-position for label-panel tracks (label-panel axes fraction). |
+| `gutter_width` | `float | None` | `0.01` | Gutter width before label-panel tracks (label-panel axes fraction). |
 | `gutter_color` | `str | None` | `"white"` | Label-panel gutter color. |
-| `text_pad` | `float | None` | `0.01` | Padding between tracks and label text. |
+| `text_pad` | `float | None` | `0.01` | Padding between tracks and label text (label-panel axes fraction). |
 
 ### `plot_cluster_labels`
 
@@ -297,9 +300,9 @@ Plotter.plot_cluster_bar(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `name` | `str` | required | Track name used for ordering. |
-| `width` | `float | None` | `0.015` | Track width. |
-| `left_pad` | `float` | `0.0` | Left padding in the label panel. |
-| `right_pad` | `float` | `0.0` | Right padding in the label panel. |
+| `width` | `float | None` | `0.015` | Track width (label-panel axes fraction). |
+| `left_pad` | `float` | `0.0` | Left padding in the label panel (label-panel axes fraction). |
+| `right_pad` | `float` | `0.0` | Right padding in the label panel (label-panel axes fraction). |
 | `cmap` | `str | Colormap` | `"YlOrBr"` | Colormap name or instance. |
 | `norm` | `Normalize | None` | `None` | Normalization for `-log10(score)`. |
 | `alpha` | `float` | `0.9` | Bar alpha. |
@@ -362,9 +365,9 @@ Plotter.plot_label_bar(
 | `vmin` | `float | None` | `None` | Minimum for continuous mode normalization. |
 | `vmax` | `float | None` | `None` | Maximum for continuous mode normalization. |
 | `missing_color` | `str | None` | `"#eeeeee"` | Missing-value color. |
-| `left_pad` | `float` | `0.0` | Left padding in the label panel. |
-| `width` | `float | None` | `0.012` | Track width. |
-| `right_pad` | `float` | `0.0` | Right padding in the label panel. |
+| `left_pad` | `float` | `0.0` | Left padding in the label panel (label-panel axes fraction). |
+| `width` | `float | None` | `0.012` | Track width (label-panel axes fraction). |
+| `right_pad` | `float` | `0.0` | Right padding in the label panel (label-panel axes fraction). |
 | `name` | `str` | `"label_bar"` | Track name used for ordering. |
 | `title` | `str | None` | `None` | Optional track title. |
 | `enabled` | `bool` | `True` | Register the track. |
@@ -426,7 +429,7 @@ Plotter.plot_title(
 | --- | --- | --- | --- |
 | `title` | `str` | required | Title text. |
 | `fontsize` | `float | None` | `14` | Title font size. |
-| `pad` | `float | None` | `15` | Padding above the plot. |
+| `pad` | `float | None` | `15` | Padding above the plot (points). |
 | `color` | `str | None` | `"black"` | Title color. |
 
 ### `plot_matrix_axis_labels`
@@ -454,8 +457,8 @@ Plotter.plot_matrix_axis_labels(
 | `ylabel` | `str` | `""` | Y-axis label text. |
 | `fontsize` | `float` | `12` | Axis label font size. |
 | `fontweight` | `str` | `"normal"` | Axis label font weight. |
-| `xlabel_pad` | `float` | `8` | Padding for the x-axis label. |
-| `ylabel_pad` | `float | None` | `0.015` | Padding between matrix and y-axis label. |
+| `xlabel_pad` | `float` | `8` | Padding for the x-axis label (points). |
+| `ylabel_pad` | `float | None` | `0.015` | Offset between matrix and y-axis label axes (figure fraction). |
 | `font` | `str | None` | `None` | Font family for axis labels. |
 | `color` | `str | None` | `"black"` | Axis label color. |
 | `alpha` | `float` | `1.0` | Axis label alpha. |
@@ -551,6 +554,7 @@ Plotter.plot_colorbars(
     font: str | None = None,
     color: str | None = None,
     label_position: str = "below",
+    label_pad: float = 2.0,
     tick_decimals: int | None = None,
 ) -> Plotter
 ```
@@ -559,10 +563,10 @@ Plotter.plot_colorbars(
 | --- | --- | --- | --- |
 | `nrows` | `int | None` | `auto` | Grid rows. |
 | `ncols` | `int | None` | `auto` | Grid columns. |
-| `height` | `float` | `0.05` | Total colorbar strip height. |
-| `hpad` | `float` | `0.01` | Horizontal spacing between colorbars. |
-| `vpad` | `float` | `0.01` | Vertical spacing between colorbars. |
-| `gap` | `float` | `0.02` | Gap between matrix and strip. |
+| `height` | `float` | `0.05` | Total colorbar strip height (figure fraction). |
+| `hpad` | `float` | `0.01` | Horizontal spacing between colorbars (figure fraction). |
+| `vpad` | `float` | `0.01` | Vertical spacing between colorbars (figure fraction). |
+| `gap` | `float` | `0.02` | Gap between matrix and strip (figure fraction). |
 | `border_color` | `str | None` | `"black"` | Border color. |
 | `border_width` | `float` | `0.8` | Border line width. |
 | `border_alpha` | `float` | `1.0` | Border alpha. |
@@ -570,7 +574,100 @@ Plotter.plot_colorbars(
 | `font` | `str | None` | `None` | Tick and label font family. |
 | `color` | `str | None` | `"black"` | Tick and label color. |
 | `label_position` | `str` | `"below"` | Label placement: `"below"` or `"above"`. |
+| `label_pad` | `float` | `2.0` | Padding between colorbar and label text (points). |
 | `tick_decimals` | `int | None` | `None` | Maximum decimal places for colorbar ticks; trailing zeros are trimmed. |
+
+### `add_label_legend`
+
+Declares a categorical legend block for a row-level label bar.
+The referenced track must be declared with `plot_label_bar(..., mode="categorical")`.
+
+```python
+Plotter.add_label_legend(
+    *,
+    name: str,
+    title: str | None = None,
+    nrows: int | None = None,
+    ncols: int | None = None,
+    row_pad: float | None = None,
+    col_pad: float | None = None,
+    show_only_present: bool = True,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `name` | `str` | required | Name of the row-level categorical track to explain. |
+| `title` | `str | None` | `None` | Legend title override. Falls back to track title, then `name`. |
+| `nrows` | `int | None` | `None` | Legend grid rows. If `None`, inferred from `ncols`. |
+| `ncols` | `int | None` | `None` | Legend grid columns. If `None`, inferred from `nrows`. |
+| `row_pad` | `float | None` | `None` | Vertical spacing between item rows (block-relative fraction). Renderer default is `0.02` for multi-row legends and `0.0` for one row. |
+| `col_pad` | `float | None` | `None` | Horizontal spacing between items in a row (block-relative fraction). Renderer default is `0.02` for multi-column legends and `0.0` for one column. |
+| `show_only_present` | `bool` | `True` | If `True`, includes only categories present in plotted matrix rows. |
+
+Behavior notes:
+
+- Referenced legend `name` must exist and must be a row-level label bar.
+- The referenced track must use `mode="categorical"`.
+- A non-empty category color mapping is required on the referenced track.
+- Duplicate legend declarations for the same `name` raise `ValueError`.
+- Legends with no items after filtering are skipped.
+
+### `plot_label_legends`
+
+Declares layout for categorical legend blocks.
+Legends render below the colorbar strip when colorbars exist; otherwise below the matrix.
+
+```python
+Plotter.plot_label_legends(
+    *,
+    height: float = 0.08,
+    gap: float = 0.01,
+    vpad: float = 0.01,
+    title_pad: float = 2.0,
+    swatch_scale: float = 0.75,
+    fontsize: float | None = None,
+    font: str | None = None,
+    color: str | None = None,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `height` | `float` | `0.08` | Total legend strip height (figure fraction). |
+| `gap` | `float` | `0.01` | Gap from the anchor strip above (figure fraction). |
+| `vpad` | `float` | `0.01` | Vertical spacing between legend blocks (figure fraction). |
+| `title_pad` | `float` | `2.0` | Padding between legend title and items (points). |
+| `swatch_scale` | `float` | `0.75` | Relative swatch size inside each legend cell. |
+| `fontsize` | `float | None` | `9` | Legend font size. |
+| `font` | `str | None` | `None` | Legend font family. |
+| `color` | `str | None` | `"black"` | Legend text color. |
+
+```python
+plotter = (
+    Plotter(results)
+    .plot_label_bar(
+        name="compound_category",
+        values=gene_compound_map,
+        mode="categorical",
+        colors=gene_compound_colors,
+        missing_color="#ffffff",
+        width=0.04,
+        left_pad=0.02,
+    )
+    .add_label_legend(
+        name="compound_category",
+        title="Compound category",
+        show_only_present=True,
+    )
+    .plot_label_legends(
+        height=0.04,
+        gap=0.005,
+        vpad=0.008,
+        title_pad=2.0,
+    )
+)
+```
 
 ## Rendering
 
@@ -607,3 +704,4 @@ Plotter.save(path: str, **kwargs) -> None
 ## Notes
 
 - `Plotter` expects `Results` with layout from `Analysis.finalize()`.
+- Unit convention: text spacing uses points (`plot_title(pad=...)`, `plot_bar_labels(pad=...)`, `plot_matrix_axis_labels(xlabel_pad=...)`, `plot_colorbars(label_pad=...)`); layout geometry uses fractions (`height`, `gap`, `hpad`, `vpad`, `left_pad`, `right_pad`, `width`, `axes`, `track_x`, `gutter_width`, `text_pad`). `ylabel_pad` is also a geometry fraction (panel offset).
