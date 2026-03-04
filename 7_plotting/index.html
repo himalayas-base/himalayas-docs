@@ -1028,6 +1028,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#add_label_legend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_label_legend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plot_label_legends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_label_legends
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1363,42 +1385,43 @@
 </span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">himalayas.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">Plotter</span>
 </span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 </span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Assumes `vlim`, `gene_essential_map`, and `gene_essential_colors` are prepared upstream.</span>
-</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># See `quickstart.html` for a complete example showing where these are defined.</span>
-</span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">plotter</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">Plotter</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-</span><span id="__line-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="o">.</span><span class="n">set_background</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-</span><span id="__line-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="o">.</span><span class="n">plot_title</span><span class="p">(</span><span class="s2">&quot;HiMaLAYAS - Yeast GI Matrix&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
-</span><span id="__line-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="o">.</span><span class="n">plot_dendrogram</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>
-</span><span id="__line-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlim</span><span class="p">,</span> <span class="n">outer_lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</span><span id="__line-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="o">.</span><span class="n">plot_matrix_axis_labels</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Gene&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Gene&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-</span><span id="__line-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="o">.</span><span class="n">set_label_panel</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">],</span> <span class="n">text_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
-</span><span id="__line-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="o">.</span><span class="n">plot_cluster_labels</span><span class="p">(</span>
-</span><span id="__line-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span>
-</span><span id="__line-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">label_fields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">),</span>
-</span><span id="__line-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">wrap_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__line-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="n">wrap_width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
-</span><span id="__line-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="p">)</span>
-</span><span id="__line-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="o">.</span><span class="n">plot_cluster_bar</span><span class="p">(</span>
-</span><span id="__line-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span>
-</span><span id="__line-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
-</span><span id="__line-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
-</span><span id="__line-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
-</span><span id="__line-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="p">)</span>
-</span><span id="__line-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="o">.</span><span class="n">plot_label_bar</span><span class="p">(</span>
-</span><span id="__line-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;essentiality&quot;</span><span class="p">,</span>
-</span><span id="__line-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">values</span><span class="o">=</span><span class="n">gene_essential_map</span><span class="p">,</span>
-</span><span id="__line-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-</span><span id="__line-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">colors</span><span class="o">=</span><span class="n">gene_essential_colors</span><span class="p">,</span>
-</span><span id="__line-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
-</span><span id="__line-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
-</span><span id="__line-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="p">)</span>
-</span><span id="__line-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="o">.</span><span class="n">plot_bar_labels</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-</span><span id="__line-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="o">.</span><span class="n">set_label_track_order</span><span class="p">((</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span> <span class="s2">&quot;essentiality&quot;</span><span class="p">))</span>
-</span><span id="__line-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="o">.</span><span class="n">add_colorbar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;matrix&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="o">-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vlim</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Similarity&quot;</span><span class="p">)</span>
-</span><span id="__line-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="o">.</span><span class="n">plot_colorbars</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.045</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-</span><span id="__line-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="p">)</span>
-</span><span id="__line-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
-</span><span id="__line-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># See `quickstart.html` for the core workflow and `quickstart_advanced.html`</span>
+</span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># for rails, legends, and nested zoom extensions.</span>
+</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">plotter</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__line-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">Plotter</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</span><span id="__line-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="o">.</span><span class="n">set_background</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+</span><span id="__line-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="o">.</span><span class="n">plot_title</span><span class="p">(</span><span class="s2">&quot;HiMaLAYAS - Yeast GI Matrix&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+</span><span id="__line-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="o">.</span><span class="n">plot_dendrogram</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>
+</span><span id="__line-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlim</span><span class="p">,</span> <span class="n">outer_lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__line-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="o">.</span><span class="n">plot_matrix_axis_labels</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Gene&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Gene&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</span><span id="__line-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="o">.</span><span class="n">set_label_panel</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">],</span> <span class="n">text_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+</span><span id="__line-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="o">.</span><span class="n">plot_cluster_labels</span><span class="p">(</span>
+</span><span id="__line-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span>
+</span><span id="__line-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">label_fields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">),</span>
+</span><span id="__line-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="n">wrap_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="n">wrap_width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+</span><span id="__line-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="p">)</span>
+</span><span id="__line-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="o">.</span><span class="n">plot_cluster_bar</span><span class="p">(</span>
+</span><span id="__line-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span>
+</span><span id="__line-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+</span><span id="__line-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+</span><span id="__line-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+</span><span id="__line-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="p">)</span>
+</span><span id="__line-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    <span class="o">.</span><span class="n">plot_label_bar</span><span class="p">(</span>
+</span><span id="__line-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;essentiality&quot;</span><span class="p">,</span>
+</span><span id="__line-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="n">values</span><span class="o">=</span><span class="n">gene_essential_map</span><span class="p">,</span>
+</span><span id="__line-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+</span><span id="__line-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">colors</span><span class="o">=</span><span class="n">gene_essential_colors</span><span class="p">,</span>
+</span><span id="__line-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+</span><span id="__line-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
+</span><span id="__line-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="p">)</span>
+</span><span id="__line-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="o">.</span><span class="n">plot_bar_labels</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</span><span id="__line-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="o">.</span><span class="n">set_label_track_order</span><span class="p">((</span><span class="s2">&quot;sigbar&quot;</span><span class="p">,</span> <span class="s2">&quot;essentiality&quot;</span><span class="p">))</span>
+</span><span id="__line-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="o">.</span><span class="n">add_colorbar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;matrix&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="o">-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vlim</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Similarity&quot;</span><span class="p">)</span>
+</span><span id="__line-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="o">.</span><span class="n">plot_colorbars</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.045</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</span><span id="__line-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="p">)</span>
+</span><span id="__line-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+</span><span id="__line-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
 <h2 id="common-methods">Common Methods<a class="headerlink" href="#common-methods" title="Permanent link">&para;</a></h2>
 <table>
@@ -1464,6 +1487,14 @@
 <tr>
 <td><code>plotter.plot_colorbars(...)</code></td>
 <td>Declares layout for the bottom colorbar strip.</td>
+</tr>
+<tr>
+<td><code>plotter.add_label_legend(...)</code></td>
+<td>Declares a categorical legend block for a row-level label bar.</td>
+</tr>
+<tr>
+<td><code>plotter.plot_label_legends(...)</code></td>
+<td>Declares layout for categorical legend blocks below the colorbar strip or matrix.</td>
 </tr>
 <tr>
 <td><code>plotter.set_background(...)</code></td>
@@ -1615,7 +1646,7 @@
 <td><code>axes</code></td>
 <td><code>Sequence[float] | None</code></td>
 <td><code>[0.06, 0.05, 0.09, 0.90]</code></td>
-<td>Dendrogram panel box.</td>
+<td>Dendrogram panel box <code>[x0, y0, w, h]</code> in figure fraction.</td>
 </tr>
 <tr>
 <td><code>color</code></td>
@@ -1662,19 +1693,19 @@
 <td><code>axes</code></td>
 <td><code>Sequence[float] | None</code></td>
 <td><code>[0.70, 0.05, 0.29, 0.90]</code></td>
-<td>Label-panel box.</td>
+<td>Label-panel box <code>[x0, y0, w, h]</code> in figure fraction.</td>
 </tr>
 <tr>
 <td><code>track_x</code></td>
 <td><code>float | None</code></td>
 <td><code>0.02</code></td>
-<td>Starting x-position for label-panel tracks.</td>
+<td>Starting x-position for label-panel tracks (label-panel axes fraction).</td>
 </tr>
 <tr>
 <td><code>gutter_width</code></td>
 <td><code>float | None</code></td>
 <td><code>0.01</code></td>
-<td>Gutter width before label-panel tracks.</td>
+<td>Gutter width before label-panel tracks (label-panel axes fraction).</td>
 </tr>
 <tr>
 <td><code>gutter_color</code></td>
@@ -1686,7 +1717,7 @@
 <td><code>text_pad</code></td>
 <td><code>float | None</code></td>
 <td><code>0.01</code></td>
-<td>Padding between tracks and label text.</td>
+<td>Padding between tracks and label text (label-panel axes fraction).</td>
 </tr>
 </tbody>
 </table>
@@ -1975,19 +2006,19 @@ selected by <code>plot_cluster_labels(rank_by=...)</code>.</p>
 <td><code>width</code></td>
 <td><code>float | None</code></td>
 <td><code>0.015</code></td>
-<td>Track width.</td>
+<td>Track width (label-panel axes fraction).</td>
 </tr>
 <tr>
 <td><code>left_pad</code></td>
 <td><code>float</code></td>
 <td><code>0.0</code></td>
-<td>Left padding in the label panel.</td>
+<td>Left padding in the label panel (label-panel axes fraction).</td>
 </tr>
 <tr>
 <td><code>right_pad</code></td>
 <td><code>float</code></td>
 <td><code>0.0</code></td>
-<td>Right padding in the label panel.</td>
+<td>Right padding in the label panel (label-panel axes fraction).</td>
 </tr>
 <tr>
 <td><code>cmap</code></td>
@@ -2117,19 +2148,19 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td><code>left_pad</code></td>
 <td><code>float</code></td>
 <td><code>0.0</code></td>
-<td>Left padding in the label panel.</td>
+<td>Left padding in the label panel (label-panel axes fraction).</td>
 </tr>
 <tr>
 <td><code>width</code></td>
 <td><code>float | None</code></td>
 <td><code>0.012</code></td>
-<td>Track width.</td>
+<td>Track width (label-panel axes fraction).</td>
 </tr>
 <tr>
 <td><code>right_pad</code></td>
 <td><code>float</code></td>
 <td><code>0.0</code></td>
-<td>Right padding in the label panel.</td>
+<td>Right padding in the label panel (label-panel axes fraction).</td>
 </tr>
 <tr>
 <td><code>name</code></td>
@@ -2270,7 +2301,7 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td><code>pad</code></td>
 <td><code>float | None</code></td>
 <td><code>15</code></td>
-<td>Padding above the plot.</td>
+<td>Padding above the plot (points).</td>
 </tr>
 <tr>
 <td><code>color</code></td>
@@ -2333,13 +2364,13 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td><code>xlabel_pad</code></td>
 <td><code>float</code></td>
 <td><code>8</code></td>
-<td>Padding for the x-axis label.</td>
+<td>Padding for the x-axis label (points).</td>
 </tr>
 <tr>
 <td><code>ylabel_pad</code></td>
 <td><code>float | None</code></td>
 <td><code>0.015</code></td>
-<td>Padding between matrix and y-axis label.</td>
+<td>Offset between matrix and y-axis label axes (figure fraction).</td>
 </tr>
 <tr>
 <td><code>font</code></td>
@@ -2538,8 +2569,9 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 </span><span id="__line-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 </span><span id="__line-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 </span><span id="__line-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    <span class="n">label_position</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;below&quot;</span><span class="p">,</span>
-</span><span id="__line-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>    <span class="n">tick_decimals</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span><span id="__line-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>    <span class="n">label_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+</span><span id="__line-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>    <span class="n">tick_decimals</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -2567,25 +2599,25 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td><code>height</code></td>
 <td><code>float</code></td>
 <td><code>0.05</code></td>
-<td>Total colorbar strip height.</td>
+<td>Total colorbar strip height (figure fraction).</td>
 </tr>
 <tr>
 <td><code>hpad</code></td>
 <td><code>float</code></td>
 <td><code>0.01</code></td>
-<td>Horizontal spacing between colorbars.</td>
+<td>Horizontal spacing between colorbars (figure fraction).</td>
 </tr>
 <tr>
 <td><code>vpad</code></td>
 <td><code>float</code></td>
 <td><code>0.01</code></td>
-<td>Vertical spacing between colorbars.</td>
+<td>Vertical spacing between colorbars (figure fraction).</td>
 </tr>
 <tr>
 <td><code>gap</code></td>
 <td><code>float</code></td>
 <td><code>0.02</code></td>
-<td>Gap between matrix and strip.</td>
+<td>Gap between matrix and strip (figure fraction).</td>
 </tr>
 <tr>
 <td><code>border_color</code></td>
@@ -2630,6 +2662,12 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td>Label placement: <code>"below"</code> or <code>"above"</code>.</td>
 </tr>
 <tr>
+<td><code>label_pad</code></td>
+<td><code>float</code></td>
+<td><code>2.0</code></td>
+<td>Padding between colorbar and label text (points).</td>
+</tr>
+<tr>
 <td><code>tick_decimals</code></td>
 <td><code>int | None</code></td>
 <td><code>None</code></td>
@@ -2637,10 +2675,185 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 </tr>
 </tbody>
 </table>
+<h3 id="add_label_legend"><code>add_label_legend</code><a class="headerlink" href="#add_label_legend" title="Permanent link">&para;</a></h3>
+<p>Declares a categorical legend block for a row-level label bar.
+The referenced track must be declared with <code>plot_label_bar(..., mode="categorical")</code>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">add_label_legend</span><span class="p">(</span>
+</span><span id="__line-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__line-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="n">nrows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="n">ncols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>    <span class="n">row_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    <span class="n">col_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>    <span class="n">show_only_present</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>required</td>
+<td>Name of the row-level categorical track to explain.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Legend title override. Falls back to track title, then <code>name</code>.</td>
+</tr>
+<tr>
+<td><code>nrows</code></td>
+<td><code>int | None</code></td>
+<td><code>None</code></td>
+<td>Legend grid rows. If <code>None</code>, inferred from <code>ncols</code>.</td>
+</tr>
+<tr>
+<td><code>ncols</code></td>
+<td><code>int | None</code></td>
+<td><code>None</code></td>
+<td>Legend grid columns. If <code>None</code>, inferred from <code>nrows</code>.</td>
+</tr>
+<tr>
+<td><code>row_pad</code></td>
+<td><code>float | None</code></td>
+<td><code>None</code></td>
+<td>Vertical spacing between item rows (block-relative fraction). Renderer default is <code>0.02</code> for multi-row legends and <code>0.0</code> for one row.</td>
+</tr>
+<tr>
+<td><code>col_pad</code></td>
+<td><code>float | None</code></td>
+<td><code>None</code></td>
+<td>Horizontal spacing between items in a row (block-relative fraction). Renderer default is <code>0.02</code> for multi-column legends and <code>0.0</code> for one column.</td>
+</tr>
+<tr>
+<td><code>show_only_present</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>If <code>True</code>, includes only categories present in plotted matrix rows.</td>
+</tr>
+</tbody>
+</table>
+<p>Behavior notes:</p>
+<ul>
+<li>Referenced legend <code>name</code> must exist and must be a row-level label bar.</li>
+<li>The referenced track must use <code>mode="categorical"</code>.</li>
+<li>A non-empty category color mapping is required on the referenced track.</li>
+<li>Duplicate legend declarations for the same <code>name</code> raise <code>ValueError</code>.</li>
+<li>Legends with no items after filtering are skipped.</li>
+</ul>
+<h3 id="plot_label_legends"><code>plot_label_legends</code><a class="headerlink" href="#plot_label_legends" title="Permanent link">&para;</a></h3>
+<p>Declares layout for categorical legend blocks.
+Legends render below the colorbar strip when colorbars exist; otherwise below the matrix.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_label_legends</span><span class="p">(</span>
+</span><span id="__line-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.08</span><span class="p">,</span>
+</span><span id="__line-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="n">gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+</span><span id="__line-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="n">vpad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+</span><span id="__line-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="n">title_pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+</span><span id="__line-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>    <span class="n">swatch_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
+</span><span id="__line-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>height</code></td>
+<td><code>float</code></td>
+<td><code>0.08</code></td>
+<td>Total legend strip height (figure fraction).</td>
+</tr>
+<tr>
+<td><code>gap</code></td>
+<td><code>float</code></td>
+<td><code>0.01</code></td>
+<td>Gap from the anchor strip above (figure fraction).</td>
+</tr>
+<tr>
+<td><code>vpad</code></td>
+<td><code>float</code></td>
+<td><code>0.01</code></td>
+<td>Vertical spacing between legend blocks (figure fraction).</td>
+</tr>
+<tr>
+<td><code>title_pad</code></td>
+<td><code>float</code></td>
+<td><code>2.0</code></td>
+<td>Padding between legend title and items (points).</td>
+</tr>
+<tr>
+<td><code>swatch_scale</code></td>
+<td><code>float</code></td>
+<td><code>0.75</code></td>
+<td>Relative swatch size inside each legend cell.</td>
+</tr>
+<tr>
+<td><code>fontsize</code></td>
+<td><code>float | None</code></td>
+<td><code>9</code></td>
+<td>Legend font size.</td>
+</tr>
+<tr>
+<td><code>font</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Legend font family.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str | None</code></td>
+<td><code>"black"</code></td>
+<td>Legend text color.</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">plotter</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__line-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="n">Plotter</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</span><span id="__line-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="o">.</span><span class="n">plot_label_bar</span><span class="p">(</span>
+</span><span id="__line-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;compound_category&quot;</span><span class="p">,</span>
+</span><span id="__line-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>        <span class="n">values</span><span class="o">=</span><span class="n">gene_compound_map</span><span class="p">,</span>
+</span><span id="__line-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+</span><span id="__line-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>        <span class="n">colors</span><span class="o">=</span><span class="n">gene_compound_colors</span><span class="p">,</span>
+</span><span id="__line-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>        <span class="n">missing_color</span><span class="o">=</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span>
+</span><span id="__line-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>        <span class="n">width</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+</span><span id="__line-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>        <span class="n">left_pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+</span><span id="__line-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    <span class="p">)</span>
+</span><span id="__line-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>    <span class="o">.</span><span class="n">add_label_legend</span><span class="p">(</span>
+</span><span id="__line-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;compound_category&quot;</span><span class="p">,</span>
+</span><span id="__line-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Compound category&quot;</span><span class="p">,</span>
+</span><span id="__line-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>        <span class="n">show_only_present</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>    <span class="p">)</span>
+</span><span id="__line-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>    <span class="o">.</span><span class="n">plot_label_legends</span><span class="p">(</span>
+</span><span id="__line-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>        <span class="n">height</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+</span><span id="__line-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>        <span class="n">gap</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span>
+</span><span id="__line-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>        <span class="n">vpad</span><span class="o">=</span><span class="mf">0.008</span><span class="p">,</span>
+</span><span id="__line-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>        <span class="n">title_pad</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+</span><span id="__line-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>    <span class="p">)</span>
+</span><span id="__line-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="p">)</span>
+</span></code></pre></div>
 <h2 id="rendering">Rendering<a class="headerlink" href="#rendering" title="Permanent link">&para;</a></h2>
 <h3 id="set_background"><code>set_background</code><a class="headerlink" href="#set_background" title="Permanent link">&para;</a></h3>
 <p>Sets figure background color used for display and save.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">set_background</span><span class="p">(</span><span class="n">color</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">set_background</span><span class="p">(</span><span class="n">color</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -2662,16 +2875,17 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 </table>
 <h3 id="show"><code>show</code><a class="headerlink" href="#show" title="Permanent link">&para;</a></h3>
 <p>Renders (if needed) and displays the current plot.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </span></code></pre></div>
 <h3 id="save"><code>save</code><a class="headerlink" href="#save" title="Permanent link">&para;</a></h3>
 <p>Renders (if needed) and saves the current plot.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </span></code></pre></div>
 <p><code>**kwargs</code> are passed to Matplotlib <code>savefig</code>.</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>Plotter</code> expects <code>Results</code> with layout from <code>Analysis.finalize()</code>.</li>
+<li>Unit convention: text spacing uses points (<code>plot_title(pad=...)</code>, <code>plot_bar_labels(pad=...)</code>, <code>plot_matrix_axis_labels(xlabel_pad=...)</code>, <code>plot_colorbars(label_pad=...)</code>); layout geometry uses fractions (<code>height</code>, <code>gap</code>, <code>hpad</code>, <code>vpad</code>, <code>left_pad</code>, <code>right_pad</code>, <code>width</code>, <code>axes</code>, <code>track_x</code>, <code>gutter_width</code>, <code>text_pad</code>). <code>ylabel_pad</code> is also a geometry fraction (panel offset).</li>
 </ul>
 
 
