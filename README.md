@@ -7,7 +7,9 @@
 This documentation describes Hierarchical Matrix Layout and Annotation Software (HiMaLAYAS), a framework for post hoc enrichment-based annotation of hierarchically clustered matrices. HiMaLAYAS treats dendrogram-defined clusters as statistical units, tests annotation enrichment, and renders significant annotations alongside the matrix. It supports biological and non-biological domains.
 
 - **Full Documentation**: [himalayas-base.github.io/himalayas-docs](https://himalayas-base.github.io/himalayas-docs)
-- **Try in Browser (Binder)**: [![Launch in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
+- **Try in Browser (Binder)**:
+  - Quickstart: [![Launch Quickstart in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
+  - Advanced Quickstart: [![Launch Advanced Quickstart in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart_advanced.ipynb)
 - **Source Code**: [github.com/himalayas-base/himalayas](https://github.com/himalayas-base/himalayas)
 
 For a full description of HiMaLAYAS and its applications, see:
@@ -40,7 +42,8 @@ for GO BP enrichment.
 
 **Try in Browser (Binder)**
 
-[Launch Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
+- [Launch Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
+- [Launch Advanced Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart_advanced.ipynb)
 
 **Local Run**
 
@@ -51,7 +54,7 @@ cd himalayas-docs
 jupyter notebook
 ```
 
-Open `notebooks/quickstart.ipynb` in Jupyter.
+Open `notebooks/quickstart.ipynb` or `notebooks/quickstart_advanced.ipynb` in Jupyter.
 
 ## Citation
 
