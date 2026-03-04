@@ -77,6 +77,8 @@ plotter.show()
 | `plotter.plot_col_ticks(...)` | Declares column tick labels for the matrix panel. |
 | `plotter.add_colorbar(...)` | Declares a figure-level colorbar specification. |
 | `plotter.plot_colorbars(...)` | Declares layout for the bottom colorbar strip. |
+| `plotter.add_label_legend(...)` | Declares a categorical legend block for a row-level label bar. |
+| `plotter.plot_label_legends(...)` | Declares layout for categorical legend blocks below the colorbar strip or matrix. |
 | `plotter.set_background(...)` | Sets figure background color used for display and save. |
 | `plotter.show()` | Renders (if needed) and displays the current plot. |
 | `plotter.save(...)` | Renders (if needed) and saves the current plot. |
@@ -573,6 +575,98 @@ Plotter.plot_colorbars(
 | `label_position` | `str` | `"below"` | Label placement: `"below"` or `"above"`. |
 | `label_pad` | `float` | `2.0` | Padding between colorbar and label text (points). |
 | `tick_decimals` | `int | None` | `None` | Maximum decimal places for colorbar ticks; trailing zeros are trimmed. |
+
+### `add_label_legend`
+
+Declares a categorical legend block for a row-level label bar.
+The referenced track must be declared with `plot_label_bar(..., mode="categorical")`.
+
+```python
+Plotter.add_label_legend(
+    *,
+    name: str,
+    title: str | None = None,
+    nrows: int | None = None,
+    ncols: int | None = None,
+    row_pad: float | None = None,
+    col_pad: float | None = None,
+    show_only_present: bool = True,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `name` | `str` | required | Name of the row-level categorical track to explain. |
+| `title` | `str | None` | `None` | Legend title override. Falls back to track title, then `name`. |
+| `nrows` | `int | None` | `None` | Legend grid rows. If `None`, inferred from `ncols`. |
+| `ncols` | `int | None` | `None` | Legend grid columns. If `None`, inferred from `nrows`. |
+| `row_pad` | `float | None` | `None` | Vertical spacing between item rows (block-relative fraction). Renderer default is `0.02` for multi-row legends and `0.0` for one row. |
+| `col_pad` | `float | None` | `None` | Horizontal spacing between items in a row (block-relative fraction). Renderer default is `0.02` for multi-column legends and `0.0` for one column. |
+| `show_only_present` | `bool` | `True` | If `True`, includes only categories present in plotted matrix rows. |
+
+Behavior notes:
+
+- Referenced legend `name` must exist and must be a row-level label bar.
+- The referenced track must use `mode="categorical"`.
+- A non-empty category color mapping is required on the referenced track.
+- Duplicate legend declarations for the same `name` raise `ValueError`.
+- Legends with no items after filtering are skipped.
+
+### `plot_label_legends`
+
+Declares layout for categorical legend blocks.
+Legends render below the colorbar strip when colorbars exist; otherwise below the matrix.
+
+```python
+Plotter.plot_label_legends(
+    *,
+    height: float = 0.08,
+    gap: float = 0.01,
+    vpad: float = 0.01,
+    title_pad: float = 2.0,
+    swatch_scale: float = 0.75,
+    fontsize: float | None = None,
+    font: str | None = None,
+    color: str | None = None,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `height` | `float` | `0.08` | Total legend strip height (figure fraction). |
+| `gap` | `float` | `0.01` | Gap from the anchor strip above (figure fraction). |
+| `vpad` | `float` | `0.01` | Vertical spacing between legend blocks (figure fraction). |
+| `title_pad` | `float` | `2.0` | Padding between legend title and items (points). |
+| `swatch_scale` | `float` | `0.75` | Relative swatch size inside each legend cell. |
+| `fontsize` | `float | None` | `9` | Legend font size. |
+| `font` | `str | None` | `None` | Legend font family. |
+| `color` | `str | None` | `"black"` | Legend text color. |
+
+```python
+plotter = (
+    Plotter(results)
+    .plot_label_bar(
+        name="compound_category",
+        values=gene_compound_map,
+        mode="categorical",
+        colors=gene_compound_colors,
+        missing_color="#ffffff",
+        width=0.04,
+        left_pad=0.02,
+    )
+    .add_label_legend(
+        name="compound_category",
+        title="Compound category",
+        show_only_present=True,
+    )
+    .plot_label_legends(
+        height=0.04,
+        gap=0.005,
+        vpad=0.008,
+        title_pad=2.0,
+    )
+)
+```
 
 ## Rendering
 
