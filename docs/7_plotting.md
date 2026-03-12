@@ -474,6 +474,7 @@ Plotter.plot_row_ticks(
     position: str = "right",
     fontsize: float = 9,
     max_labels: int | None = None,
+    pad: float | None = None,
 ) -> Plotter
 ```
 
@@ -483,6 +484,7 @@ Plotter.plot_row_ticks(
 | `position` | `str` | `"right"` | Tick side: `"left"` or `"right"`. |
 | `fontsize` | `float` | `9` | Tick label font size. |
 | `max_labels` | `int | None` | `all labels` | Show at most this many labels. |
+| `pad` | `float | None` | `Matplotlib default` | Tick-label padding (points). |
 
 ### `plot_col_ticks`
 
@@ -496,6 +498,7 @@ Plotter.plot_col_ticks(
     fontsize: float = 9,
     rotation: float = 90,
     max_labels: int | None = None,
+    pad: float | None = None,
 ) -> Plotter
 ```
 
@@ -506,6 +509,7 @@ Plotter.plot_col_ticks(
 | `fontsize` | `float` | `9` | Tick label font size. |
 | `rotation` | `float` | `90` | Tick label rotation in degrees. |
 | `max_labels` | `int | None` | `all labels` | Show at most this many labels. |
+| `pad` | `float | None` | `Matplotlib default` | Tick-label padding (points). |
 
 ## Colorbars
 
@@ -704,4 +708,4 @@ Plotter.save(path: str, **kwargs) -> None
 ## Notes
 
 - `Plotter` expects `Results` with layout from `Analysis.finalize()`.
-- Unit convention: text spacing uses points (`plot_title(pad=...)`, `plot_bar_labels(pad=...)`, `plot_matrix_axis_labels(xlabel_pad=...)`, `plot_colorbars(label_pad=...)`); layout geometry uses fractions (`height`, `gap`, `hpad`, `vpad`, `left_pad`, `right_pad`, `width`, `axes`, `track_x`, `gutter_width`, `text_pad`). `ylabel_pad` is also a geometry fraction (panel offset).
+- Unit convention: text spacing uses points (`plot_title(pad=...)`, `plot_bar_labels(pad=...)`, `plot_matrix_axis_labels(xlabel_pad=...)`, `plot_row_ticks(pad=...)`, `plot_col_ticks(pad=...)`, `plot_colorbars(label_pad=...)`); layout geometry uses fractions (`height`, `gap`, `hpad`, `vpad`, `left_pad`, `right_pad`, `width`, `axes`, `track_x`, `gutter_width`, `text_pad`). `ylabel_pad` is also a geometry fraction (panel offset).
