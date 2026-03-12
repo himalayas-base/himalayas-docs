@@ -45,6 +45,8 @@ def run_zoom_analysis(
 ```
 
 **Why `background=results.matrix`?** It keeps the enrichment universe fixed so zoomed p-values remain comparable to the full analysis.
+By default, subset reruns use the subset matrix as the local enrichment universe; pass the parent matrix explicitly via `background` to anchor enrichment to the parent universe.
+q-values may still differ between master and subset reruns because FDR correction depends on the tested hypothesis family.
 
 ### Example
 

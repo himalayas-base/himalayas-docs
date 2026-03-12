@@ -75,3 +75,5 @@ See [Results and Filtering](6_results.md) for examples of filtering on q-values.
 - If no terms pass filtering, the results table is empty.
 - `analysis.enrich(...)` recomputes enrichment each time it is called.
 - Each call updates `analysis.results`; save per-run snapshots (for example, `res_06`, `res_10`) during threshold sweeps.
+- Providing `background=...` keeps the enrichment universe (`N`, `K`) consistent across full and zoomed analyses, so p-values remain comparable.
+- q-values may still differ across runs because Benjamini-Hochberg FDR is applied to the hypothesis family tested in each run.

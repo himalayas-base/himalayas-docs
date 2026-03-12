@@ -31,6 +31,13 @@ Common causes:
 - Terms are filtered out because they do not overlap with the matrix.
 - Your annotations are too sparse or the matrix is too small.
 
+## Why do zoomed q-values differ from full-run q-values even with shared background?
+
+`background=...` aligns the enrichment universe and helps make p-values comparable.
+q-values can still differ because Benjamini-Hochberg FDR is applied over the hypothesis family tested in each run.
+
+If you need directly comparable FDR across views, compute/store a separate "global q" from a single master hypothesis family.
+
 ## Clustering is slower than expected
 
 When `optimal_ordering=False`, HiMaLAYAS uses `fastcluster` if installed and otherwise falls back to SciPy linkage. Installing the `speed` extra can improve clustering speed in this mode.
