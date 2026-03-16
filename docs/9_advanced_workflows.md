@@ -2,16 +2,18 @@
 
 This page collects two advanced patterns used in the example notebooks.
 
-## Cluster-Specific Zoom Analysis
+## Cluster Zoom Analysis
 
-A common pattern is to zoom into a single cluster, re-run clustering and enrichment, and then plot a higher-resolution view. The key steps are:
+A common pattern is to zoom into one cluster, re-run clustering and enrichment, and then plot a higher-resolution view. The same pattern also supports a union of multiple clusters.
 
-1. Subset the results to a single cluster.
+1. Subset the results to one cluster (`results.subset(...)`) or multiple clusters (`results.subset_clusters(...)`).
 2. Rebuild annotations for the subset.
 3. Cut the subset dendrogram at a lower depth.
 4. Re-run enrichment with a background (parent) matrix.
 
 Repeat the analysis at different dendrogram depths to explore depth-dependent enrichment.
+
+For API details on `subset(...)` and `subset_clusters(...)`, see [Results and Filtering](6_results.md).
 
 ```python
 def run_zoom_analysis(
@@ -48,7 +50,7 @@ def run_zoom_analysis(
 By default, subset reruns use the subset matrix as the local enrichment universe; pass the parent matrix explicitly via `background` to anchor enrichment to the parent universe.
 q-values may still differ between master and subset reruns because FDR correction depends on the tested hypothesis family.
 
-### Example
+### Single-Cluster Example
 
 Choose a cluster and a tighter cut, then run the zoom:
 
@@ -76,6 +78,35 @@ plotter = (
 
 plotter.show()
 ```
+
+### Multi-Cluster Example (Union View)
+
+Use the same zoom pipeline, but subset a union of parent clusters:
+
+```python
+cluster_ids = [2, 7, 9]
+zoom_threshold = 6
+
+zoom_view = results.subset_clusters(clusters=cluster_ids)
+zoom_matrix = zoom_view.matrix
+zoom_annotations = Annotations(go_bp, zoom_matrix)
+zoom_analysis = (
+    Analysis(zoom_matrix, zoom_annotations)
+    .cluster(
+        linkage_method="ward",
+        linkage_metric="euclidean",
+        linkage_threshold=zoom_threshold,
+        min_cluster_size=6,
+    )
+    .enrich(min_overlap=2, background=results.matrix)
+    .finalize(col_cluster=True)
+)
+
+zoom_results = zoom_analysis.results
+zoom_results_sig = zoom_results.filter("qval <= 0.05")
+```
+
+Then plot with the same `Plotter` pipeline used above.
 
 For a cluster-level summary of the zoomed result, see [Condensed Dendrogram](8_condensed_dendrogram.md).
 
