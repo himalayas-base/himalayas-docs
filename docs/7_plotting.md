@@ -64,25 +64,25 @@ plotter.show()
 
 | Method | Description |
 | --- | --- |
-| `plotter.plot_matrix(...)` | Declares the main matrix heatmap layer. |
-| `plotter.plot_dendrogram(...)` | Declares a dendrogram layer aligned to matrix rows. |
-| `plotter.set_label_panel(...)` | Configures shared label-panel geometry for labels and tracks. |
-| `plotter.plot_cluster_labels(...)` | Declares cluster-level labels generated from attached `Results`. |
-| `plotter.plot_cluster_bar(...)` | Declares a cluster-level bar track derived from cluster ranking scores. |
-| `plotter.plot_label_bar(...)` | Declares a row-level annotation bar track in the label panel. |
-| `plotter.set_label_track_order(...)` | Sets explicit ordering of registered label-panel tracks. |
-| `plotter.plot_bar_labels(...)` | Declares titles for registered label-panel tracks. |
-| `plotter.plot_title(...)` | Declares a matrix title layer. |
-| `plotter.plot_matrix_axis_labels(...)` | Declares x/y axis labels for the matrix panel. |
-| `plotter.plot_row_ticks(...)` | Declares row tick labels for the matrix panel. |
-| `plotter.plot_col_ticks(...)` | Declares column tick labels for the matrix panel. |
-| `plotter.add_colorbar(...)` | Declares a figure-level colorbar specification. |
-| `plotter.plot_colorbars(...)` | Declares layout for the bottom colorbar strip. |
-| `plotter.add_label_legend(...)` | Declares a categorical legend block for a row-level label bar. |
-| `plotter.plot_label_legends(...)` | Declares layout for categorical legend blocks below the colorbar strip or matrix. |
-| `plotter.set_background(...)` | Sets figure background color used for display and save. |
-| `plotter.show()` | Renders (if needed) and displays the current plot. |
-| `plotter.save(...)` | Renders (if needed) and saves the current plot. |
+| [`plotter.plot_matrix(...)`](#plot_matrix) | Declares the main matrix heatmap layer. |
+| [`plotter.plot_dendrogram(...)`](#plot_dendrogram) | Declares a dendrogram layer aligned to matrix rows. |
+| [`plotter.set_label_panel(...)`](#set_label_panel) | Configures shared label-panel geometry for labels and tracks. |
+| [`plotter.plot_cluster_labels(...)`](#plot_cluster_labels) | Declares cluster-level labels generated from attached `Results`. |
+| [`plotter.plot_cluster_bar(...)`](#plot_cluster_bar) | Declares a cluster-level bar track derived from cluster ranking scores. |
+| [`plotter.plot_label_bar(...)`](#plot_label_bar) | Declares a row-level annotation bar track in the label panel. |
+| [`plotter.set_label_track_order(...)`](#track-order) | Sets explicit ordering of registered label-panel tracks. |
+| [`plotter.plot_bar_labels(...)`](#track-titles) | Declares titles for registered label-panel tracks. |
+| [`plotter.plot_title(...)`](#plot_title) | Declares a matrix title layer. |
+| [`plotter.plot_matrix_axis_labels(...)`](#plot_matrix_axis_labels) | Declares x/y axis labels for the matrix panel. |
+| [`plotter.plot_row_ticks(...)`](#plot_row_ticks) | Declares row tick labels for the matrix panel. |
+| [`plotter.plot_col_ticks(...)`](#plot_col_ticks) | Declares column tick labels for the matrix panel. |
+| [`plotter.add_colorbar(...)`](#add_colorbar) | Declares a figure-level colorbar specification. |
+| [`plotter.plot_colorbars(...)`](#plot_colorbars) | Declares layout for the bottom colorbar strip. |
+| [`plotter.add_label_legend(...)`](#add_label_legend) | Declares a categorical legend block for a row-level label bar. |
+| [`plotter.plot_label_legends(...)`](#plot_label_legends) | Declares layout for categorical legend blocks below the colorbar strip or matrix. |
+| [`plotter.set_background(...)`](#set_background) | Sets figure background color used for display and save. |
+| [`plotter.show()`](#show) | Renders (if needed) and displays the current plot. |
+| [`plotter.save(...)`](#save) | Renders (if needed) and saves the current plot. |
 
 ## Core Layers
 
