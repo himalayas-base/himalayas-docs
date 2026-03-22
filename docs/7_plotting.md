@@ -73,7 +73,7 @@ plotter.show()
 | [`plotter.set_label_track_order(...)`](#track-order) | Sets explicit ordering of registered label-panel tracks. |
 | [`plotter.plot_bar_labels(...)`](#track-titles) | Declares titles for registered label-panel tracks. |
 | [`plotter.plot_title(...)`](#plot_title) | Declares a matrix title layer. |
-| [`plotter.plot_matrix_axis_labels(...)`](#plot_matrix_axis_labels) | Declares x/y axis labels for the matrix panel. |
+| [`plotter.plot_matrix_axis_labels(...)`](#plot_matrix_axis_labels) | Declares x-axis and y-axis labels for the matrix panel. |
 | [`plotter.plot_row_ticks(...)`](#plot_row_ticks) | Declares row tick labels for the matrix panel. |
 | [`plotter.plot_col_ticks(...)`](#plot_col_ticks) | Declares column tick labels for the matrix panel. |
 | [`plotter.add_colorbar(...)`](#add_colorbar) | Declares a figure-level colorbar specification. |
@@ -148,7 +148,7 @@ Plotter.plot_dendrogram(
 | `axes` | `Sequence[float] | None` | `[0.06, 0.05, 0.09, 0.90]` | Dendrogram panel box `[x0, y0, w, h]` in figure fraction. |
 | `color` | `str | None` | `"#888888"` | Dendrogram line color. |
 | `linewidth` | `float | None` | `1.0` | Dendrogram line width. |
-| `data_pad` | `float` | `0.25` | Expands y-limits to avoid top/bottom clipping. |
+| `data_pad` | `float` | `0.25` | Expands y-limits to avoid clipping at the top or bottom. |
 
 ### `set_label_panel`
 
@@ -224,7 +224,7 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
 | `max_words` | `int | None` | `6` | Word-based truncation limit for labels. Use `None` to avoid truncation in compressed mode. |
-| `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label/stat text. |
+| `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label and statistic text. |
 | `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None` and `"cid"`. |
 | `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
@@ -257,7 +257,7 @@ Behavior notes:
 - Labels are always generated from the attached `Results` object.
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
 - `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
-- `label_fields=None` suppresses base label/stat text.
+- `label_fields=None` suppresses base label and statistic text.
 - `label_prefix="cid"` can prefix labels even when `"label"` is omitted from `label_fields`.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `color` -> default, and `placeholder_alpha` -> `alpha` -> default.
@@ -434,7 +434,7 @@ Plotter.plot_title(
 
 ### `plot_matrix_axis_labels`
 
-Declares x/y axis labels for the matrix panel.
+Declares x-axis and y-axis labels for the matrix panel.
 
 ```python
 Plotter.plot_matrix_axis_labels(

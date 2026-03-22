@@ -36,7 +36,7 @@ Common causes:
 `background=...` aligns the enrichment universe and helps make p-values comparable.
 q-values can still differ because Benjamini-Hochberg FDR is applied over the hypothesis family tested in each run.
 
-If you need directly comparable FDR across views, compute/store a separate "global q" from a single master hypothesis family.
+If you need directly comparable FDR across views, compute and store a separate "global q" from a single master hypothesis family.
 
 ## Clustering is slower than expected
 
@@ -50,7 +50,7 @@ pip install "himalayas[speed]"
 
 ## Compressed labels differ across environments
 
-`Results.cluster_labels(label_mode="compressed")` uses NLTK tokenization/lemmatization when available and falls back to regex tokenization when NLTK resources are unavailable.
+`Results.cluster_labels(label_mode="compressed")` uses NLTK tokenization and lemmatization when available and falls back to regex tokenization when NLTK resources are unavailable.
 
 Install the text extra to enable NLTK support:
 

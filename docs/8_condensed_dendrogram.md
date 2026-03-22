@@ -54,7 +54,7 @@ plot_dendrogram_condensed(
 | `sigbar_cmap` | `str / Colormap` | `"YlOrBr"` | Colormap for the significance bar. |
 | `sigbar_min_logp` | `float` | `2.0` | Minimum `-log10(score)` for scaling. |
 | `sigbar_max_logp` | `float` | `10.0` | Maximum `-log10(score)` for scaling. |
-| `sigbar_norm` | `Normalize | None` | `None` | Optional normalization; overrides min/max scaling. |
+| `sigbar_norm` | `Normalize | None` | `None` | Optional normalization; overrides minimum and maximum scaling. |
 | `sigbar_width` | `float` | `0.06` | Significance bar width (axes fraction). |
 | `sigbar_height` | `float` | `0.8` | Height of each significance bar relative to row pitch. Must be in `(0, 1]`. |
 | `sigbar_alpha` | `float` | `1.0` | Significance bar alpha. |
@@ -65,7 +65,7 @@ plot_dendrogram_condensed(
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
 | `omit_words` | `Sequence[str] | None` | `None` | Words to omit from label text. |
-| `label_fields` | `Sequence[str] | None` | `("label", "n", "p")` | Label fields to include; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label/stat text. |
+| `label_fields` | `Sequence[str] | None` | `("label", "n", "p")` | Label fields to include; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label and statistic text. |
 | `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None` and `"cid"`. |
 | `label_overrides` | `dict[int, str] | None` | `None` | Mapping `cluster_id -> label` for custom names. |
 | `label_color` | `str` | `"black"` | Label text color. |
@@ -92,7 +92,7 @@ Behavior notes:
 - Cluster significance bars are scaled from `-log10(score)`, where `score` is selected by `rank_by`.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `label_color`, and `placeholder_alpha` -> `label_alpha`.
-- Placeholder styling applies only to unlabeled/placeholder cluster labels.
+- Placeholder styling applies only to unlabeled or placeholder cluster labels.
 - Condensed plotting requires at least two clusters; single-cluster inputs raise a `ValueError`.
 
 `label_fields` reference:

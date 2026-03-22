@@ -44,7 +44,7 @@ Annotations.rebind(matrix: Matrix) -> Annotations
 | Method | Description |
 | --- | --- |
 | `annotations.terms` | Returns retained annotation terms after overlap filtering. |
-| `annotations.rebind(matrix)` | Returns a new `Annotations` object aligned to a new matrix label universe (useful for zoom/subset workflows). |
+| `annotations.rebind(matrix)` | Returns a new `Annotations` object aligned to a new matrix label universe (useful for zoom and subset workflows). |
 
 ## `terms`
 
