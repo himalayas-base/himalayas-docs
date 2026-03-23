@@ -1016,6 +1016,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#annotation-terms-were-dropped-unexpectedly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotation terms were dropped unexpectedly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#i-get-min_cluster_size-exceeds-n" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1031,6 +1042,28 @@
     <span class="md-ellipsis">
       
         I get an empty enrichment table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-i-choose-between-global-and-per_cluster-q-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How do I choose between global and per_cluster q-values?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-do-zoomed-q-values-differ-from-full-run-q-values-even-with-shared-background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why do zoomed q-values differ from full-run q-values even with shared background?
       
     </span>
   </a>
@@ -1141,6 +1174,12 @@
 <p>The DataFrame contains non-numeric values. Convert columns to numeric or filter invalid rows.</p>
 <h2 id="i-get-no-annotation-terms-overlap-matrix-labels">I get "No annotation terms overlap matrix labels"<a class="headerlink" href="#i-get-no-annotation-terms-overlap-matrix-labels" title="Permanent link">&para;</a></h2>
 <p>None of the annotation labels are present in the matrix. Double-check your identifier system and ensure labels match exactly.</p>
+<h2 id="annotation-terms-were-dropped-unexpectedly">Annotation terms were dropped unexpectedly<a class="headerlink" href="#annotation-terms-were-dropped-unexpectedly" title="Permanent link">&para;</a></h2>
+<p>HiMaLAYAS filters term labels to matrix labels, then applies term-size filters in <code>Annotations(...)</code>.</p>
+<ul>
+<li>Terms with overlap below <code>min_term_size</code> are dropped.</li>
+<li>Terms above <code>max_term_size</code> are dropped when <code>max_term_size</code> is set.</li>
+</ul>
 <h2 id="i-get-min_cluster_size-exceeds-n">I get "min_cluster_size exceeds N"<a class="headerlink" href="#i-get-min_cluster_size-exceeds-n" title="Permanent link">&para;</a></h2>
 <p><code>min_cluster_size</code> is larger than the number of rows in the matrix. Lower the value or analyze fewer items.</p>
 <h2 id="i-get-an-empty-enrichment-table">I get an empty enrichment table<a class="headerlink" href="#i-get-an-empty-enrichment-table" title="Permanent link">&para;</a></h2>
@@ -1150,18 +1189,29 @@
 <li>Terms are filtered out because they do not overlap with the matrix.</li>
 <li>Your annotations are too sparse or the matrix is too small.</li>
 </ul>
+<h2 id="how-do-i-choose-between-global-and-per_cluster-q-values">How do I choose between <code>global</code> and <code>per_cluster</code> q-values?<a class="headerlink" href="#how-do-i-choose-between-global-and-per_cluster-q-values" title="Permanent link">&para;</a></h2>
+<p>Set scope in <code>Analysis.finalize(fdr_scope=...)</code>:</p>
+<ul>
+<li><code>fdr_scope="global"</code> (default): BH across all cluster-term tests in the run.</li>
+<li><code>fdr_scope="per_cluster"</code>: BH independently within each cluster.</li>
+</ul>
+<p>Use <code>"global"</code> for full-run interpretation and <code>"per_cluster"</code> for within-cluster interpretation.</p>
+<h2 id="why-do-zoomed-q-values-differ-from-full-run-q-values-even-with-shared-background">Why do zoomed q-values differ from full-run q-values even with shared background?<a class="headerlink" href="#why-do-zoomed-q-values-differ-from-full-run-q-values-even-with-shared-background" title="Permanent link">&para;</a></h2>
+<p><code>background=...</code> aligns the enrichment universe and helps make p-values comparable.
+q-values can still differ because Benjamini-Hochberg FDR is applied over the hypothesis family tested in each run.</p>
+<p>If you need directly comparable FDR across views, compute and store a separate "global q" from a single master hypothesis family.</p>
 <h2 id="clustering-is-slower-than-expected">Clustering is slower than expected<a class="headerlink" href="#clustering-is-slower-than-expected" title="Permanent link">&para;</a></h2>
 <p>When <code>optimal_ordering=False</code>, HiMaLAYAS uses <code>fastcluster</code> if installed and otherwise falls back to SciPy linkage. Installing the <code>speed</code> extra can improve clustering speed in this mode.</p>
 <p>When <code>optimal_ordering=True</code>, SciPy optimal ordering is used and can be slower on larger matrices.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;himalayas[speed]&quot;</span>
 </span></code></pre></div>
 <h2 id="compressed-labels-differ-across-environments">Compressed labels differ across environments<a class="headerlink" href="#compressed-labels-differ-across-environments" title="Permanent link">&para;</a></h2>
-<p><code>Results.cluster_labels(label_mode="compressed")</code> uses NLTK tokenization/lemmatization when available and falls back to regex tokenization when NLTK resources are unavailable.</p>
+<p><code>Results.cluster_labels(label_mode="compressed")</code> uses NLTK tokenization and lemmatization when available and falls back to regex tokenization when NLTK resources are unavailable.</p>
 <p>Install the text extra to enable NLTK support:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;himalayas[text]&quot;</span>
 </span></code></pre></div>
 <h2 id="the-plotter-raises-results-has-no-attached-clusterlayout">The plotter raises "Results has no attached ClusterLayout"<a class="headerlink" href="#the-plotter-raises-results-has-no-attached-clusterlayout" title="Permanent link">&para;</a></h2>
-<p>Make sure you called <code>Analysis.finalize()</code> before plotting. The plotter needs layout metadata.</p>
+<p>Make sure you called <code>Analysis.finalize(...)</code> before plotting. The plotter needs layout metadata.</p>
 <h2 id="cluster-labels-look-crowded">Cluster labels look crowded<a class="headerlink" href="#cluster-labels-look-crowded" title="Permanent link">&para;</a></h2>
 <p>Try:</p>
 <ul>

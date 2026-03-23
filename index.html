@@ -1090,7 +1090,7 @@
 <li>Load a real-valued matrix into <code>Matrix</code>.</li>
 <li>Load term-to-label annotations into <code>Annotations</code>.</li>
 <li>Run <code>Analysis.cluster()</code> and <code>Analysis.enrich()</code>.</li>
-<li>Call <code>Analysis.finalize()</code> to attach layout, fold enrichment (<code>fe</code>), and Benjamini-Hochberg FDR-adjusted q-values.</li>
+<li>Call <code>Analysis.finalize(...)</code> to attach layout, fold enrichment (<code>fe</code>), and BH-FDR q-values (<code>fdr_scope="global"</code> or <code>"per_cluster"</code>).</li>
 <li>Plot with <code>Plotter</code> and summarize clusters.</li>
 </ol>
 <h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>

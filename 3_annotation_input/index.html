@@ -1131,9 +1131,15 @@
 
 
 <h1 id="annotation-input">Annotation Input<a class="headerlink" href="#annotation-input" title="Permanent link">&para;</a></h1>
-<p>Annotations map categorical terms to the labels present in your matrix. HiMaLAYAS filters out labels not present in the matrix and drops terms with no overlap.</p>
+<p>Annotations map categorical terms to labels present in your matrix. HiMaLAYAS filters labels to the matrix universe, then applies term-size filters.</p>
 <h2 id="signature">Signature<a class="headerlink" href="#signature" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Annotations</span><span class="p">(</span><span class="n">term_to_labels</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Annotations</span><span class="p">(</span>
+</span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">term_to_labels</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+</span><span id="__line-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">,</span>
+</span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">min_term_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+</span><span id="__line-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">max_term_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <table>
@@ -1157,6 +1163,18 @@
 <td><code>Matrix</code></td>
 <td>required</td>
 <td>Provides the label universe.</td>
+</tr>
+<tr>
+<td><code>min_term_size</code></td>
+<td><code>int</code></td>
+<td><code>2</code></td>
+<td>Minimum number of matrix-overlapping labels required for a term to be retained.</td>
+</tr>
+<tr>
+<td><code>max_term_size</code></td>
+<td><code>int | None</code></td>
+<td><code>None</code></td>
+<td>Maximum number of matrix-overlapping labels allowed for a term to be retained.</td>
 </tr>
 </tbody>
 </table>
@@ -1208,7 +1226,7 @@ Labels must match matrix row labels exactly.</p>
 </tr>
 <tr>
 <td><code>annotations.rebind(matrix)</code></td>
-<td>Returns a new <code>Annotations</code> object aligned to a new matrix label universe (useful for zoom/subset workflows).</td>
+<td>Returns a new <code>Annotations</code> object aligned to a new matrix label universe (useful for zoom and subset workflows).</td>
 </tr>
 </tbody>
 </table>
@@ -1262,8 +1280,8 @@ Labels must match matrix row labels exactly.</p>
 </ul>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Terms with no overlap are dropped with a warning.</li>
-<li>You can pre-filter terms by size before loading.</li>
+<li>Terms are filtered by matrix overlap and term size limits.</li>
+<li>Keep <code>min_term_size=2</code> as the default floor for analysis-ready runs.</li>
 </ul>
 
 

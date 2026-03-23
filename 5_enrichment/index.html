@@ -1168,7 +1168,8 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Analysis</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span>
 </span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">*</span><span class="p">,</span>
 </span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">col_cluster</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Analysis</span>
+</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">fdr_scope</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;global&quot;</span><span class="p">,</span>
+</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Analysis</span>
 </span></code></pre></div>
 <h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
 <table>
@@ -1187,6 +1188,12 @@
 <td><code>False</code></td>
 <td>Computes a dendrogram-based column order for plotting using the same <code>linkage_method</code>, <code>linkage_metric</code>, and <code>optimal_ordering</code> set in <code>Analysis.cluster(...)</code>.</td>
 </tr>
+<tr>
+<td><code>fdr_scope</code></td>
+<td><code>str</code></td>
+<td><code>"global"</code></td>
+<td>FDR scope. Use <code>"global"</code> for full-run correction or <code>"per_cluster"</code> for within-cluster correction.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
@@ -1194,7 +1201,7 @@
 </span><span id="__line-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">Analysis</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">annotations</span><span class="p">)</span>
 </span><span id="__line-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </span><span id="__line-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__line-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</span><span id="__line-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">fdr_scope</span><span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="p">)</span>
 </span><span id="__line-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span>
 </span><span id="__line-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
 </span><span id="__line-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">results</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">results</span>
@@ -1217,13 +1224,21 @@
 </tbody>
 </table>
 <h2 id="fdr-correction">FDR Correction<a class="headerlink" href="#fdr-correction" title="Permanent link">&para;</a></h2>
-<p>HiMaLAYAS uses Benjamini-Hochberg (BH) FDR across cluster-term tests.</p>
+<p>HiMaLAYAS uses Benjamini-Hochberg (BH) FDR for q-values.</p>
+<p>Set scope with <code>Analysis.finalize(fdr_scope=...)</code>:</p>
+<ul>
+<li><code>"global"</code> (default): BH across all cluster-term tests in the run.</li>
+<li><code>"per_cluster"</code>: BH independently within each cluster.</li>
+</ul>
 <p>See <a href="../6_results/">Results and Filtering</a> for examples of filtering on q-values.</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>If no terms pass filtering, the results table is empty.</li>
 <li><code>analysis.enrich(...)</code> recomputes enrichment each time it is called.</li>
 <li>Each call updates <code>analysis.results</code>; save per-run snapshots (for example, <code>res_06</code>, <code>res_10</code>) during threshold sweeps.</li>
+<li>Providing <code>background=...</code> keeps the enrichment universe (<code>N</code>, <code>K</code>) consistent across full and zoomed analyses, so p-values remain comparable.</li>
+<li>q-values may still differ across runs because Benjamini-Hochberg FDR is applied to the hypothesis family tested in each run.</li>
+<li><code>fdr_scope="per_cluster"</code> supports within-cluster interpretation.</li>
 </ul>
 
 

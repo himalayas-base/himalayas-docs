@@ -1172,7 +1172,7 @@
 <td><code>sigbar_norm</code></td>
 <td><code>Normalize | None</code></td>
 <td><code>None</code></td>
-<td>Optional normalization; overrides min/max scaling.</td>
+<td>Optional normalization; overrides minimum and maximum scaling.</td>
 </tr>
 <tr>
 <td><code>sigbar_width</code></td>
@@ -1238,13 +1238,13 @@
 <td><code>label_fields</code></td>
 <td><code>Sequence[str] | None</code></td>
 <td><code>("label", "n", "p")</code></td>
-<td>Label fields to include; allowed values are <code>"label"</code>, <code>"n"</code>, <code>"p"</code>, <code>"q"</code>, <code>"fe"</code>. Use <code>None</code> to suppress base label/stat text.</td>
+<td>Label fields to include; allowed values are <code>"label"</code>, <code>"n"</code>, <code>"p"</code>, <code>"q"</code>, <code>"fe"</code>. Use <code>None</code> to suppress base label and statistic text.</td>
 </tr>
 <tr>
 <td><code>label_prefix</code></td>
 <td><code>str | None</code></td>
 <td><code>None</code></td>
-<td>Optional prefix mode for display labels. Supported values are <code>None</code> and <code>"cid"</code>.</td>
+<td>Optional prefix mode for display labels. Supported values are <code>None</code>, <code>"cid"</code>, and <code>"alpha"</code>.</td>
 </tr>
 <tr>
 <td><code>label_overrides</code></td>
@@ -1327,11 +1327,12 @@
 <li>Unknown keyword arguments in <code>plot_dendrogram_condensed(...)</code> raise <code>TypeError</code>.</li>
 <li><code>label_fields</code> values outside <code>{ "label", "n", "p", "q", "fe" }</code> raise <code>ValueError</code>.</li>
 <li><code>label_fields=None</code> is allowed.</li>
-<li><code>label_prefix="cid"</code> can prefix labels even when <code>"label"</code> is omitted from <code>label_fields</code>.</li>
+<li><code>label_prefix="cid"</code> or <code>label_prefix="alpha"</code> can prefix labels even when <code>"label"</code> is omitted from <code>label_fields</code>.</li>
+<li><code>label_prefix="alpha"</code> uses Excel-style indexing (<code>A.</code>, <code>B.</code>, ..., <code>Z.</code>, <code>AA.</code>, ...).</li>
 <li>Cluster significance bars are scaled from <code>-log10(score)</code>, where <code>score</code> is selected by <code>rank_by</code>.</li>
 <li>If <code>skip_unlabeled=True</code>, clusters without labels are omitted instead of receiving placeholder text.</li>
 <li>Placeholder style resolves as <code>placeholder_color</code> -&gt; <code>label_color</code>, and <code>placeholder_alpha</code> -&gt; <code>label_alpha</code>.</li>
-<li>Placeholder styling applies only to unlabeled/placeholder cluster labels.</li>
+<li>Placeholder styling applies only to unlabeled or placeholder cluster labels.</li>
 <li>Condensed plotting requires at least two clusters; single-cluster inputs raise a <code>ValueError</code>.</li>
 </ul>
 <p><code>label_fields</code> reference:</p>
@@ -1383,7 +1384,7 @@
 </span><span id="__line-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">sigbar_max_logp</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
 </span><span id="__line-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">label_fields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">),</span>
 </span><span id="__line-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">wrap_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__line-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">wrap_width</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span>
+</span><span id="__line-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">wrap_width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
 </span><span id="__line-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">)</span>
 </span><span id="__line-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
 </span><span id="__line-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">condensed</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1397,7 +1398,7 @@
 </span><span id="__line-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">sigbar_max_logp</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span>
 </span><span id="__line-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">label_fields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">),</span>
 </span><span id="__line-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">wrap_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__line-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">wrap_width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+</span><span id="__line-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">wrap_width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
 </span><span id="__line-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">)</span>
 </span><span id="__line-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
 </span><span id="__line-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">condensed</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;zoom_condensed_dendrogram.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
@@ -1406,7 +1407,7 @@
 <ul>
 <li>Labels are generated internally from the attached <code>Results</code> object.</li>
 <li><code>label_fields</code> may be <code>None</code> or a subset of <code>{ "label", "n", "p", "q", "fe" }</code>.</li>
-<li><code>label_prefix</code> supports <code>None</code> and <code>"cid"</code>.</li>
+<li><code>label_prefix</code> supports <code>None</code>, <code>"cid"</code>, and <code>"alpha"</code>.</li>
 <li>Use <code>Results.cluster_labels(...)</code> only for inspection, export, or external workflows, not as required input.</li>
 </ul>
 

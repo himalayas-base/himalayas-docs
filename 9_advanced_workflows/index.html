@@ -885,22 +885,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cluster-specific-zoom-analysis" class="md-nav__link">
+  <a href="#cluster-zoom-analysis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cluster-Specific Zoom Analysis
+        Cluster Zoom Analysis
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Cluster-Specific Zoom Analysis">
+    <nav class="md-nav" aria-label="Cluster Zoom Analysis">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#single-cluster-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example
+        Single-Cluster Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-cluster-example-union-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Cluster Example (Union View)
       
     </span>
   </a>
@@ -1050,56 +1061,63 @@
 
 <h1 id="zoom-and-non-biological-workflows">Zoom and Non-Biological Workflows<a class="headerlink" href="#zoom-and-non-biological-workflows" title="Permanent link">&para;</a></h1>
 <p>This page collects two advanced patterns used in the example notebooks.</p>
-<h2 id="cluster-specific-zoom-analysis">Cluster-Specific Zoom Analysis<a class="headerlink" href="#cluster-specific-zoom-analysis" title="Permanent link">&para;</a></h2>
-<p>A common pattern is to zoom into a single cluster, re-run clustering and enrichment, and then plot a higher-resolution view. The key steps are:</p>
+<h2 id="cluster-zoom-analysis">Cluster Zoom Analysis<a class="headerlink" href="#cluster-zoom-analysis" title="Permanent link">&para;</a></h2>
+<p>A common pattern is to zoom into one cluster, re-run clustering and enrichment, and then plot a higher-resolution view. The same pattern also supports a union of multiple clusters.</p>
 <ol>
-<li>Subset the results to a single cluster.</li>
-<li>Rebuild annotations for the subset.</li>
+<li>Subset the results to one cluster (<code>results.subset(...)</code>) or multiple clusters (<code>results.subset_clusters(...)</code>).</li>
+<li>Rebind annotations to the subset matrix.</li>
 <li>Cut the subset dendrogram at a lower depth.</li>
 <li>Re-run enrichment with a background (parent) matrix.</li>
 </ol>
 <p>Repeat the analysis at different dendrogram depths to explore depth-dependent enrichment.</p>
+<p>Subset reruns are often smaller than the full matrix. Keep the default annotation term-size floor (<code>min_term_size=2</code>) unless you have a specific exploratory reason to change it.</p>
+<p>For API details on <code>subset(...)</code> and <code>subset_clusters(...)</code>, see <a href="../6_results/">Results and Filtering</a>.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_zoom_analysis</span><span class="p">(</span>
 </span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="o">*</span><span class="p">,</span>
 </span><span id="__line-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">results</span><span class="p">,</span>
 </span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">cluster_id</span><span class="p">,</span>
-</span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">go_bp</span><span class="p">,</span>
+</span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">annotations</span><span class="p">,</span>
 </span><span id="__line-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">linkage_threshold</span><span class="p">,</span>
 </span><span id="__line-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
 </span><span id="__line-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-</span><span id="__line-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">qval_cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-</span><span id="__line-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">):</span>
-</span><span id="__line-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Recluster a single cluster, re-run enrichment, and return zoomed results.&quot;&quot;&quot;</span>
-</span><span id="__line-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="n">cluster_id</span><span class="p">)</span>
-</span><span id="__line-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
-</span><span id="__line-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">zoom_annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">go_bp</span><span class="p">,</span> <span class="n">zoom_matrix</span><span class="p">)</span>
-</span><span id="__line-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">zoom_analysis</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__line-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">Analysis</span><span class="p">(</span><span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_annotations</span><span class="p">)</span>
-</span><span id="__line-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
-</span><span id="__line-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>            <span class="n">linkage_method</span><span class="o">=</span><span class="s2">&quot;ward&quot;</span><span class="p">,</span>
-</span><span id="__line-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>            <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-</span><span id="__line-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">linkage_threshold</span><span class="p">,</span>
-</span><span id="__line-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>            <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
-</span><span id="__line-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="p">)</span>
-</span><span id="__line-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="n">min_overlap</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
-</span><span id="__line-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__line-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="p">)</span>
-</span><span id="__line-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">zoom_results</span> <span class="o">=</span> <span class="n">zoom_analysis</span><span class="o">.</span><span class="n">results</span>
-</span><span id="__line-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">zoom_results_sig</span> <span class="o">=</span> <span class="n">zoom_results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qval &lt;= </span><span class="si">{</span><span class="n">qval_cutoff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="__line-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">return</span> <span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_results</span><span class="p">,</span> <span class="n">zoom_results_sig</span>
+</span><span id="__line-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">fdr_scope</span><span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="p">,</span>
+</span><span id="__line-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">qval_cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+</span><span id="__line-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">):</span>
+</span><span id="__line-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Recluster a single cluster, re-run enrichment, and return zoomed results.&quot;&quot;&quot;</span>
+</span><span id="__line-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="n">cluster_id</span><span class="p">)</span>
+</span><span id="__line-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
+</span><span id="__line-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">zoom_annotations</span> <span class="o">=</span> <span class="n">annotations</span><span class="o">.</span><span class="n">rebind</span><span class="p">(</span><span class="n">zoom_matrix</span><span class="p">)</span>
+</span><span id="__line-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">zoom_analysis</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__line-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="n">Analysis</span><span class="p">(</span><span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_annotations</span><span class="p">)</span>
+</span><span id="__line-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
+</span><span id="__line-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>            <span class="n">linkage_method</span><span class="o">=</span><span class="s2">&quot;ward&quot;</span><span class="p">,</span>
+</span><span id="__line-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
+</span><span id="__line-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>            <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">linkage_threshold</span><span class="p">,</span>
+</span><span id="__line-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
+</span><span id="__line-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="p">)</span>
+</span><span id="__line-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="n">min_overlap</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+</span><span id="__line-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fdr_scope</span><span class="o">=</span><span class="n">fdr_scope</span><span class="p">)</span>
+</span><span id="__line-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="p">)</span>
+</span><span id="__line-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">zoom_results</span> <span class="o">=</span> <span class="n">zoom_analysis</span><span class="o">.</span><span class="n">results</span>
+</span><span id="__line-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">zoom_results_sig</span> <span class="o">=</span> <span class="n">zoom_results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qval &lt;= </span><span class="si">{</span><span class="n">qval_cutoff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__line-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">return</span> <span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_results</span><span class="p">,</span> <span class="n">zoom_results_sig</span>
 </span></code></pre></div>
-<p><strong>Why <code>background=results.matrix</code>?</strong> It keeps the enrichment universe fixed so zoomed p-values remain comparable to the full analysis.</p>
-<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p><strong>Why <code>background=results.matrix</code>?</strong> It keeps the enrichment universe fixed so zoomed p-values remain comparable to the full analysis.
+By default, subset reruns use the subset matrix as the local enrichment universe; pass the parent matrix explicitly via <code>background</code> to anchor enrichment to the parent universe.
+q-values may still differ between master and subset reruns because FDR correction depends on the tested hypothesis family.</p>
+<h3 id="single-cluster-example">Single-Cluster Example<a class="headerlink" href="#single-cluster-example" title="Permanent link">&para;</a></h3>
 <p>Choose a cluster and a tighter cut, then run the zoom:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">example_cluster</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">unique_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </span><span id="__line-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">zoom_threshold</span> <span class="o">=</span> <span class="mi">6</span>
-</span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_results</span><span class="p">,</span> <span class="n">zoom_results_sig</span> <span class="o">=</span> <span class="n">run_zoom_analysis</span><span class="p">(</span>
-</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
-</span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">cluster_id</span><span class="o">=</span><span class="n">example_cluster</span><span class="p">,</span>
-</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">go_bp</span><span class="o">=</span><span class="n">go_bp</span><span class="p">,</span>
-</span><span id="__line-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">zoom_threshold</span><span class="p">,</span>
-</span><span id="__line-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">)</span>
+</span><span id="__line-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">FDR_SCOPE</span> <span class="o">=</span> <span class="s2">&quot;global&quot;</span>
+</span><span id="__line-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__line-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_results</span><span class="p">,</span> <span class="n">zoom_results_sig</span> <span class="o">=</span> <span class="n">run_zoom_analysis</span><span class="p">(</span>
+</span><span id="__line-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
+</span><span id="__line-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">cluster_id</span><span class="o">=</span><span class="n">example_cluster</span><span class="p">,</span>
+</span><span id="__line-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">annotations</span><span class="o">=</span><span class="n">annotations</span><span class="p">,</span>
+</span><span id="__line-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">zoom_threshold</span><span class="p">,</span>
+</span><span id="__line-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">fdr_scope</span><span class="o">=</span><span class="n">FDR_SCOPE</span><span class="p">,</span>
+</span><span id="__line-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">)</span>
 </span></code></pre></div>
 <p>Then plot the zoomed matrix with the same <code>Plotter</code> pipeline:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">plotter</span> <span class="o">=</span> <span class="p">(</span>
@@ -1111,6 +1129,31 @@
 </span><span id="__line-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
 </span><span id="__line-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
+<h3 id="multi-cluster-example-union-view">Multi-Cluster Example (Union View)<a class="headerlink" href="#multi-cluster-example-union-view" title="Permanent link">&para;</a></h3>
+<p>Use the same zoom pipeline, but subset a union of parent clusters:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">cluster_ids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</span><span id="__line-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">zoom_threshold</span> <span class="o">=</span> <span class="mi">6</span>
+</span><span id="__line-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">FDR_SCOPE</span> <span class="o">=</span> <span class="s2">&quot;global&quot;</span>
+</span><span id="__line-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__line-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">zoom_view</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">subset_clusters</span><span class="p">(</span><span class="n">clusters</span><span class="o">=</span><span class="n">cluster_ids</span><span class="p">)</span>
+</span><span id="__line-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">zoom_matrix</span> <span class="o">=</span> <span class="n">zoom_view</span><span class="o">.</span><span class="n">matrix</span>
+</span><span id="__line-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">zoom_annotations</span> <span class="o">=</span> <span class="n">annotations</span><span class="o">.</span><span class="n">rebind</span><span class="p">(</span><span class="n">zoom_matrix</span><span class="p">)</span>
+</span><span id="__line-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">zoom_analysis</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__line-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">Analysis</span><span class="p">(</span><span class="n">zoom_matrix</span><span class="p">,</span> <span class="n">zoom_annotations</span><span class="p">)</span>
+</span><span id="__line-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
+</span><span id="__line-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">linkage_method</span><span class="o">=</span><span class="s2">&quot;ward&quot;</span><span class="p">,</span>
+</span><span id="__line-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
+</span><span id="__line-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">linkage_threshold</span><span class="o">=</span><span class="n">zoom_threshold</span><span class="p">,</span>
+</span><span id="__line-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+</span><span id="__line-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="p">)</span>
+</span><span id="__line-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+</span><span id="__line-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fdr_scope</span><span class="o">=</span><span class="n">FDR_SCOPE</span><span class="p">)</span>
+</span><span id="__line-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">)</span>
+</span><span id="__line-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+</span><span id="__line-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="n">zoom_results</span> <span class="o">=</span> <span class="n">zoom_analysis</span><span class="o">.</span><span class="n">results</span>
+</span><span id="__line-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">zoom_results_sig</span> <span class="o">=</span> <span class="n">zoom_results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;qval &lt;= 0.05&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Then plot with the same <code>Plotter</code> pipeline used above.</p>
 <p>For a cluster-level summary of the zoomed result, see <a href="../8_condensed_dendrogram/">Condensed Dendrogram</a>.</p>
 <h2 id="non-biological-example-recipes">Non-Biological Example (Recipes)<a class="headerlink" href="#non-biological-example-recipes" title="Permanent link">&para;</a></h2>
 <p>HiMaLAYAS supports biological and non-biological domains. The recipe example builds an ingredient-by-recipe matrix and annotates clusters by country of origin using a worldwide recipe dataset.</p>
@@ -1121,30 +1164,30 @@
 <li>Filter low-frequency ingredients and very small recipes.</li>
 <li>Map countries to recipe IDs and run enrichment.</li>
 </ul>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">country_to_recipes</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__line-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="s2">&quot;India&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_001&quot;</span><span class="p">,</span> <span class="s2">&quot;r_003&quot;</span><span class="p">],</span>
-</span><span id="__line-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="s2">&quot;Nigeria&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_002&quot;</span><span class="p">],</span>
-</span><span id="__line-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="s2">&quot;Mexico&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_004&quot;</span><span class="p">,</span> <span class="s2">&quot;r_005&quot;</span><span class="p">],</span>
-</span><span id="__line-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
-</span><span id="__line-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__line-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">matrix</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">ingredient_matrix</span><span class="p">)</span>
-</span><span id="__line-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">country_to_recipes</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
-</span><span id="__line-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-</span><span id="__line-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">analysis</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__line-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">Analysis</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">annotations</span><span class="p">)</span>
-</span><span id="__line-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
-</span><span id="__line-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">linkage_method</span><span class="o">=</span><span class="s2">&quot;ward&quot;</span><span class="p">,</span>
-</span><span id="__line-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-</span><span id="__line-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="n">linkage_threshold</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span>
-</span><span id="__line-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
-</span><span id="__line-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="p">)</span>
-</span><span id="__line-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__line-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__line-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">)</span>
-</span><span id="__line-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
-</span><span id="__line-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="n">results</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">results</span>
-</span><span id="__line-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="n">results_sig</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;qval &lt;= 0.05&quot;</span><span class="p">)</span>
-</span><span id="__line-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results_sig</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">country_to_recipes</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__line-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">&quot;India&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_001&quot;</span><span class="p">,</span> <span class="s2">&quot;r_003&quot;</span><span class="p">],</span>
+</span><span id="__line-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="s2">&quot;Nigeria&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_002&quot;</span><span class="p">],</span>
+</span><span id="__line-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s2">&quot;Mexico&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_004&quot;</span><span class="p">,</span> <span class="s2">&quot;r_005&quot;</span><span class="p">],</span>
+</span><span id="__line-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+</span><span id="__line-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__line-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">matrix</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">ingredient_matrix</span><span class="p">)</span>
+</span><span id="__line-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">country_to_recipes</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+</span><span id="__line-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__line-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">analysis</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__line-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">Analysis</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">annotations</span><span class="p">)</span>
+</span><span id="__line-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
+</span><span id="__line-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="n">linkage_method</span><span class="o">=</span><span class="s2">&quot;ward&quot;</span><span class="p">,</span>
+</span><span id="__line-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        <span class="n">linkage_metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
+</span><span id="__line-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        <span class="n">linkage_threshold</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span>
+</span><span id="__line-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+</span><span id="__line-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="p">)</span>
+</span><span id="__line-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    <span class="o">.</span><span class="n">enrich</span><span class="p">(</span><span class="n">min_overlap</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__line-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    <span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fdr_scope</span><span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="p">)</span>
+</span><span id="__line-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="p">)</span>
+</span><span id="__line-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+</span><span id="__line-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="n">results</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">results</span>
+</span><span id="__line-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="n">results_sig</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;qval &lt;= 0.05&quot;</span><span class="p">)</span>
+</span><span id="__line-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results_sig</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 
 

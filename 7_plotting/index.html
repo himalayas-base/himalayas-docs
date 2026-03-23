@@ -1376,7 +1376,7 @@
 <tr>
 <td><code>results</code></td>
 <td><code>Results</code></td>
-<td>Results with a matrix and layout from <code>Analysis.finalize()</code>.</td>
+<td>Results with a matrix and layout from <code>Analysis.finalize(...)</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -1433,79 +1433,79 @@
 </thead>
 <tbody>
 <tr>
-<td><code>plotter.plot_matrix(...)</code></td>
+<td><a href="#plot_matrix"><code>plotter.plot_matrix(...)</code></a></td>
 <td>Declares the main matrix heatmap layer.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_dendrogram(...)</code></td>
+<td><a href="#plot_dendrogram"><code>plotter.plot_dendrogram(...)</code></a></td>
 <td>Declares a dendrogram layer aligned to matrix rows.</td>
 </tr>
 <tr>
-<td><code>plotter.set_label_panel(...)</code></td>
+<td><a href="#set_label_panel"><code>plotter.set_label_panel(...)</code></a></td>
 <td>Configures shared label-panel geometry for labels and tracks.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_cluster_labels(...)</code></td>
+<td><a href="#plot_cluster_labels"><code>plotter.plot_cluster_labels(...)</code></a></td>
 <td>Declares cluster-level labels generated from attached <code>Results</code>.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_cluster_bar(...)</code></td>
+<td><a href="#plot_cluster_bar"><code>plotter.plot_cluster_bar(...)</code></a></td>
 <td>Declares a cluster-level bar track derived from cluster ranking scores.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_label_bar(...)</code></td>
+<td><a href="#plot_label_bar"><code>plotter.plot_label_bar(...)</code></a></td>
 <td>Declares a row-level annotation bar track in the label panel.</td>
 </tr>
 <tr>
-<td><code>plotter.set_label_track_order(...)</code></td>
+<td><a href="#track-order"><code>plotter.set_label_track_order(...)</code></a></td>
 <td>Sets explicit ordering of registered label-panel tracks.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_bar_labels(...)</code></td>
+<td><a href="#track-titles"><code>plotter.plot_bar_labels(...)</code></a></td>
 <td>Declares titles for registered label-panel tracks.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_title(...)</code></td>
+<td><a href="#plot_title"><code>plotter.plot_title(...)</code></a></td>
 <td>Declares a matrix title layer.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_matrix_axis_labels(...)</code></td>
-<td>Declares x/y axis labels for the matrix panel.</td>
+<td><a href="#plot_matrix_axis_labels"><code>plotter.plot_matrix_axis_labels(...)</code></a></td>
+<td>Declares x-axis and y-axis labels for the matrix panel.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_row_ticks(...)</code></td>
+<td><a href="#plot_row_ticks"><code>plotter.plot_row_ticks(...)</code></a></td>
 <td>Declares row tick labels for the matrix panel.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_col_ticks(...)</code></td>
+<td><a href="#plot_col_ticks"><code>plotter.plot_col_ticks(...)</code></a></td>
 <td>Declares column tick labels for the matrix panel.</td>
 </tr>
 <tr>
-<td><code>plotter.add_colorbar(...)</code></td>
+<td><a href="#add_colorbar"><code>plotter.add_colorbar(...)</code></a></td>
 <td>Declares a figure-level colorbar specification.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_colorbars(...)</code></td>
+<td><a href="#plot_colorbars"><code>plotter.plot_colorbars(...)</code></a></td>
 <td>Declares layout for the bottom colorbar strip.</td>
 </tr>
 <tr>
-<td><code>plotter.add_label_legend(...)</code></td>
+<td><a href="#add_label_legend"><code>plotter.add_label_legend(...)</code></a></td>
 <td>Declares a categorical legend block for a row-level label bar.</td>
 </tr>
 <tr>
-<td><code>plotter.plot_label_legends(...)</code></td>
+<td><a href="#plot_label_legends"><code>plotter.plot_label_legends(...)</code></a></td>
 <td>Declares layout for categorical legend blocks below the colorbar strip or matrix.</td>
 </tr>
 <tr>
-<td><code>plotter.set_background(...)</code></td>
+<td><a href="#set_background"><code>plotter.set_background(...)</code></a></td>
 <td>Sets figure background color used for display and save.</td>
 </tr>
 <tr>
-<td><code>plotter.show()</code></td>
+<td><a href="#show"><code>plotter.show()</code></a></td>
 <td>Renders (if needed) and displays the current plot.</td>
 </tr>
 <tr>
-<td><code>plotter.save(...)</code></td>
+<td><a href="#save"><code>plotter.save(...)</code></a></td>
 <td>Renders (if needed) and saves the current plot.</td>
 </tr>
 </tbody>
@@ -1664,7 +1664,7 @@
 <td><code>data_pad</code></td>
 <td><code>float</code></td>
 <td><code>0.25</code></td>
-<td>Expands y-limits to avoid top/bottom clipping.</td>
+<td>Expands y-limits to avoid clipping at the top or bottom.</td>
 </tr>
 </tbody>
 </table>
@@ -1798,13 +1798,13 @@ The list below documents the supported keyword arguments and effective defaults.
 <td><code>label_fields</code></td>
 <td><code>tuple[str, ...] | None</code></td>
 <td><code>("label", "n", "p")</code></td>
-<td>Fields shown in each label; allowed values are <code>"label"</code>, <code>"n"</code>, <code>"p"</code>, <code>"q"</code>, <code>"fe"</code>. Use <code>None</code> to suppress base label/stat text.</td>
+<td>Fields shown in each label; allowed values are <code>"label"</code>, <code>"n"</code>, <code>"p"</code>, <code>"q"</code>, <code>"fe"</code>. Use <code>None</code> to suppress base label and statistic text.</td>
 </tr>
 <tr>
 <td><code>label_prefix</code></td>
 <td><code>str | None</code></td>
 <td><code>None</code></td>
-<td>Optional prefix mode for display labels. Supported values are <code>None</code> and <code>"cid"</code>.</td>
+<td>Optional prefix mode for display labels. Supported values are <code>None</code>, <code>"cid"</code>, and <code>"alpha"</code>.</td>
 </tr>
 <tr>
 <td><code>wrap_text</code></td>
@@ -1952,8 +1952,9 @@ The list below documents the supported keyword arguments and effective defaults.
 <li>Labels are always generated from the attached <code>Results</code> object.</li>
 <li>Unknown keyword arguments in <code>plot_cluster_labels(...)</code> raise <code>TypeError</code>.</li>
 <li><code>label_fields</code> values outside <code>{ "label", "n", "p", "q", "fe" }</code> raise <code>ValueError</code>.</li>
-<li><code>label_fields=None</code> suppresses base label/stat text.</li>
-<li><code>label_prefix="cid"</code> can prefix labels even when <code>"label"</code> is omitted from <code>label_fields</code>.</li>
+<li><code>label_fields=None</code> suppresses base label and statistic text.</li>
+<li><code>label_prefix="cid"</code> or <code>label_prefix="alpha"</code> can prefix labels even when <code>"label"</code> is omitted from <code>label_fields</code>.</li>
+<li><code>label_prefix="alpha"</code> uses Excel-style indexing (<code>A.</code>, <code>B.</code>, ..., <code>Z.</code>, <code>AA.</code>, ...).</li>
 <li>If <code>skip_unlabeled=True</code>, clusters without labels are omitted instead of receiving placeholder text.</li>
 <li>Placeholder style resolves as <code>placeholder_color</code> -&gt; <code>color</code> -&gt; default, and <code>placeholder_alpha</code> -&gt; <code>alpha</code> -&gt; default.</li>
 </ul>
@@ -2271,9 +2272,10 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 </span><span id="__line-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 </span><span id="__line-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="o">*</span><span class="p">,</span>
 </span><span id="__line-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span><span id="__line-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -2298,6 +2300,12 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td>Title font size.</td>
 </tr>
 <tr>
+<td><code>font</code></td>
+<td><code>str | None</code></td>
+<td><code>None</code></td>
+<td>Title font family.</td>
+</tr>
+<tr>
 <td><code>pad</code></td>
 <td><code>float | None</code></td>
 <td><code>15</code></td>
@@ -2312,7 +2320,7 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 </tbody>
 </table>
 <h3 id="plot_matrix_axis_labels"><code>plot_matrix_axis_labels</code><a class="headerlink" href="#plot_matrix_axis_labels" title="Permanent link">&para;</a></h3>
-<p>Declares x/y axis labels for the matrix panel.</p>
+<p>Declares x-axis and y-axis labels for the matrix panel.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Plotter</span><span class="o">.</span><span class="n">plot_matrix_axis_labels</span><span class="p">(</span>
 </span><span id="__line-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="o">*</span><span class="p">,</span>
 </span><span id="__line-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">xlabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
@@ -2400,7 +2408,8 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 </span><span id="__line-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">position</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span><span class="p">,</span>
 </span><span id="__line-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
 </span><span id="__line-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="n">max_labels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span><span id="__line-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="n">pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -2436,6 +2445,12 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td><code>all labels</code></td>
 <td>Show at most this many labels.</td>
 </tr>
+<tr>
+<td><code>pad</code></td>
+<td><code>float | None</code></td>
+<td><code>Matplotlib default</code></td>
+<td>Tick-label padding (points).</td>
+</tr>
 </tbody>
 </table>
 <h3 id="plot_col_ticks"><code>plot_col_ticks</code><a class="headerlink" href="#plot_col_ticks" title="Permanent link">&para;</a></h3>
@@ -2447,7 +2462,8 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 </span><span id="__line-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">fontsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
 </span><span id="__line-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span>
 </span><span id="__line-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="n">max_labels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__line-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
+</span><span id="__line-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="n">pad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__line-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plotter</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -2488,6 +2504,12 @@ Row-level label tracks can render without <code>plot_cluster_labels(...)</code>.
 <td><code>int | None</code></td>
 <td><code>all labels</code></td>
 <td>Show at most this many labels.</td>
+</tr>
+<tr>
+<td><code>pad</code></td>
+<td><code>float | None</code></td>
+<td><code>Matplotlib default</code></td>
+<td>Tick-label padding (points).</td>
 </tr>
 </tbody>
 </table>
@@ -2884,8 +2906,8 @@ Legends render below the colorbar strip when colorbars exist; otherwise below th
 <p><code>**kwargs</code> are passed to Matplotlib <code>savefig</code>.</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>Plotter</code> expects <code>Results</code> with layout from <code>Analysis.finalize()</code>.</li>
-<li>Unit convention: text spacing uses points (<code>plot_title(pad=...)</code>, <code>plot_bar_labels(pad=...)</code>, <code>plot_matrix_axis_labels(xlabel_pad=...)</code>, <code>plot_colorbars(label_pad=...)</code>); layout geometry uses fractions (<code>height</code>, <code>gap</code>, <code>hpad</code>, <code>vpad</code>, <code>left_pad</code>, <code>right_pad</code>, <code>width</code>, <code>axes</code>, <code>track_x</code>, <code>gutter_width</code>, <code>text_pad</code>). <code>ylabel_pad</code> is also a geometry fraction (panel offset).</li>
+<li><code>Plotter</code> expects <code>Results</code> with layout from <code>Analysis.finalize(...)</code>.</li>
+<li>Unit convention: text spacing uses points (<code>plot_title(pad=...)</code>, <code>plot_bar_labels(pad=...)</code>, <code>plot_matrix_axis_labels(xlabel_pad=...)</code>, <code>plot_row_ticks(pad=...)</code>, <code>plot_col_ticks(pad=...)</code>, <code>plot_colorbars(label_pad=...)</code>); layout geometry uses fractions (<code>height</code>, <code>gap</code>, <code>hpad</code>, <code>vpad</code>, <code>left_pad</code>, <code>right_pad</code>, <code>width</code>, <code>axes</code>, <code>track_x</code>, <code>gutter_width</code>, <code>text_pad</code>). <code>ylabel_pad</code> is also a geometry fraction (panel offset).</li>
 </ul>
 
 

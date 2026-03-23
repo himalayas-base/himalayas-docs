@@ -1112,7 +1112,7 @@
 <tr>
 <td><code>results.df</code></td>
 <td><code>pd.DataFrame</code></td>
-<td>Enrichment table (<code>cluster</code>, <code>term</code>, <code>k</code>, <code>K</code>, <code>n</code>, <code>N</code>, <code>pval</code>), plus <code>fe</code> and <code>qval</code> after <code>Analysis.finalize()</code>.</td>
+<td>Enrichment table (<code>cluster</code>, <code>term</code>, <code>k</code>, <code>K</code>, <code>n</code>, <code>N</code>, <code>pval</code>), plus <code>fe</code> and <code>qval</code> after <code>Analysis.finalize(...)</code>.</td>
 </tr>
 <tr>
 <td><code>results.matrix</code></td>
@@ -1318,7 +1318,7 @@
 </span></code></pre></div>
 <p>Build optional cluster labels for inspection or export:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;top_term&quot;</span><span class="p">)</span>
-</span><span id="__line-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">compressed_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;compressed&quot;</span><span class="p">,</span> <span class="n">max_words</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__line-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">compressed_labels</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">cluster_labels</span><span class="p">(</span><span class="n">rank_by</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;compressed&quot;</span><span class="p">,</span> <span class="n">max_words</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
 </span><span id="__line-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
 </span><span id="__line-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">display</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">[[</span><span class="s2">&quot;cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;pval&quot;</span><span class="p">,</span> <span class="s2">&quot;qval&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span> <span class="s2">&quot;fe&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </span></code></pre></div>
