@@ -12,7 +12,7 @@ Plotter(results: Results) -> Plotter
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `results` | `Results` | Results with a matrix and layout from `Analysis.finalize()`. |
+| `results` | `Results` | Results with a matrix and layout from `Analysis.finalize(...)`. |
 
 ## Example
 
@@ -421,6 +421,7 @@ Plotter.plot_title(
     title: str,
     *,
     fontsize: float | None = None,
+    font: str | None = None,
     pad: float | None = None,
     color: str | None = None,
 ) -> Plotter
@@ -430,6 +431,7 @@ Plotter.plot_title(
 | --- | --- | --- | --- |
 | `title` | `str` | required | Title text. |
 | `fontsize` | `float | None` | `14` | Title font size. |
+| `font` | `str | None` | `None` | Title font family. |
 | `pad` | `float | None` | `15` | Padding above the plot (points). |
 | `color` | `str | None` | `"black"` | Title color. |
 
@@ -708,5 +710,5 @@ Plotter.save(path: str, **kwargs) -> None
 
 ## Notes
 
-- `Plotter` expects `Results` with layout from `Analysis.finalize()`.
+- `Plotter` expects `Results` with layout from `Analysis.finalize(...)`.
 - Unit convention: text spacing uses points (`plot_title(pad=...)`, `plot_bar_labels(pad=...)`, `plot_matrix_axis_labels(xlabel_pad=...)`, `plot_row_ticks(pad=...)`, `plot_col_ticks(pad=...)`, `plot_colorbars(label_pad=...)`); layout geometry uses fractions (`height`, `gap`, `hpad`, `vpad`, `left_pad`, `right_pad`, `width`, `axes`, `track_x`, `gutter_width`, `text_pad`). `ylabel_pad` is also a geometry fraction (panel offset).

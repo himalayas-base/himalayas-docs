@@ -7,7 +7,7 @@ This page collects two advanced patterns used in the example notebooks.
 A common pattern is to zoom into one cluster, re-run clustering and enrichment, and then plot a higher-resolution view. The same pattern also supports a union of multiple clusters.
 
 1. Subset the results to one cluster (`results.subset(...)`) or multiple clusters (`results.subset_clusters(...)`).
-2. Rebuild annotations for the subset.
+2. Rebind annotations to the subset matrix.
 3. Cut the subset dendrogram at a lower depth.
 4. Re-run enrichment with a background (parent) matrix.
 
@@ -22,16 +22,17 @@ def run_zoom_analysis(
     *,
     results,
     cluster_id,
-    go_bp,
+    annotations,
     linkage_threshold,
     min_cluster_size=6,
     min_overlap=2,
+    fdr_scope="global",
     qval_cutoff=0.05,
 ):
     """Recluster a single cluster, re-run enrichment, and return zoomed results."""
     zoom_view = results.subset(cluster=cluster_id)
     zoom_matrix = zoom_view.matrix
-    zoom_annotations = Annotations(go_bp, zoom_matrix)
+    zoom_annotations = annotations.rebind(zoom_matrix)
     zoom_analysis = (
         Analysis(zoom_matrix, zoom_annotations)
         .cluster(
@@ -41,7 +42,7 @@ def run_zoom_analysis(
             min_cluster_size=min_cluster_size,
         )
         .enrich(min_overlap=min_overlap, background=results.matrix)
-        .finalize(col_cluster=True)
+        .finalize(col_cluster=True, fdr_scope=fdr_scope)
     )
     zoom_results = zoom_analysis.results
     zoom_results_sig = zoom_results.filter(f"qval <= {qval_cutoff}")
@@ -59,12 +60,14 @@ Choose a cluster and a tighter cut, then run the zoom:
 ```python
 example_cluster = int(results.clusters.unique_clusters[0])
 zoom_threshold = 6
+FDR_SCOPE = "global"
 
 zoom_matrix, zoom_results, zoom_results_sig = run_zoom_analysis(
     results=results,
     cluster_id=example_cluster,
-    go_bp=go_bp,
+    annotations=annotations,
     linkage_threshold=zoom_threshold,
+    fdr_scope=FDR_SCOPE,
 )
 ```
 
@@ -88,10 +91,11 @@ Use the same zoom pipeline, but subset a union of parent clusters:
 ```python
 cluster_ids = [2, 7, 9]
 zoom_threshold = 6
+FDR_SCOPE = "global"
 
 zoom_view = results.subset_clusters(clusters=cluster_ids)
 zoom_matrix = zoom_view.matrix
-zoom_annotations = Annotations(go_bp, zoom_matrix)
+zoom_annotations = annotations.rebind(zoom_matrix)
 zoom_analysis = (
     Analysis(zoom_matrix, zoom_annotations)
     .cluster(
@@ -101,7 +105,7 @@ zoom_analysis = (
         min_cluster_size=6,
     )
     .enrich(min_overlap=2, background=results.matrix)
-    .finalize(col_cluster=True)
+    .finalize(col_cluster=True, fdr_scope=FDR_SCOPE)
 )
 
 zoom_results = zoom_analysis.results
@@ -142,7 +146,7 @@ analysis = (
         min_cluster_size=15,
     )
     .enrich(min_overlap=2)
-    .finalize(col_cluster=True)
+    .finalize(col_cluster=True, fdr_scope="global")
 )
 
 results = analysis.results

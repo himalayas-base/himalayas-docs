@@ -76,7 +76,7 @@ pip install "himalayas[text]"
 
 ## The plotter raises "Results has no attached ClusterLayout"
 
-Make sure you called `Analysis.finalize()` before plotting. The plotter needs layout metadata.
+Make sure you called `Analysis.finalize(...)` before plotting. The plotter needs layout metadata.
 
 ## Cluster labels look crowded
 

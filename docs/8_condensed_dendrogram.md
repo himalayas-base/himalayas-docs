@@ -130,7 +130,7 @@ condensed = plot_dendrogram_condensed(
     sigbar_max_logp=10.0,
     label_fields=("label", "n", "p", "q"),
     wrap_text=True,
-    wrap_width=34,
+    wrap_width=40,
 )
 
 condensed.show()
@@ -148,7 +148,7 @@ condensed = plot_dendrogram_condensed(
     sigbar_max_logp=30.0,
     label_fields=("label", "n"),
     wrap_text=True,
-    wrap_width=30,
+    wrap_width=40,
 )
 
 condensed.save("zoom_condensed_dendrogram.png", dpi=300)

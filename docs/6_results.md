@@ -128,7 +128,7 @@ Build optional cluster labels for inspection or export:
 
 ```python
 cluster_labels = results.cluster_labels(rank_by="q", label_mode="top_term")
-compressed_labels = results.cluster_labels(rank_by="p", label_mode="compressed", max_words=5)
+compressed_labels = results.cluster_labels(rank_by="p", label_mode="compressed", max_words=24)
 
 display(cluster_labels[["cluster", "label", "pval", "qval", "score", "n", "term", "fe"]].head())
 ```
