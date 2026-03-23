@@ -12,7 +12,7 @@ Plotter(results: Results) -> Plotter
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `results` | `Results` | Results with a matrix and layout from `Analysis.finalize()`. |
+| `results` | `Results` | Results with a matrix and layout from `Analysis.finalize(...)`. |
 
 ## Example
 
@@ -64,25 +64,25 @@ plotter.show()
 
 | Method | Description |
 | --- | --- |
-| `plotter.plot_matrix(...)` | Declares the main matrix heatmap layer. |
-| `plotter.plot_dendrogram(...)` | Declares a dendrogram layer aligned to matrix rows. |
-| `plotter.set_label_panel(...)` | Configures shared label-panel geometry for labels and tracks. |
-| `plotter.plot_cluster_labels(...)` | Declares cluster-level labels generated from attached `Results`. |
-| `plotter.plot_cluster_bar(...)` | Declares a cluster-level bar track derived from cluster ranking scores. |
-| `plotter.plot_label_bar(...)` | Declares a row-level annotation bar track in the label panel. |
-| `plotter.set_label_track_order(...)` | Sets explicit ordering of registered label-panel tracks. |
-| `plotter.plot_bar_labels(...)` | Declares titles for registered label-panel tracks. |
-| `plotter.plot_title(...)` | Declares a matrix title layer. |
-| `plotter.plot_matrix_axis_labels(...)` | Declares x/y axis labels for the matrix panel. |
-| `plotter.plot_row_ticks(...)` | Declares row tick labels for the matrix panel. |
-| `plotter.plot_col_ticks(...)` | Declares column tick labels for the matrix panel. |
-| `plotter.add_colorbar(...)` | Declares a figure-level colorbar specification. |
-| `plotter.plot_colorbars(...)` | Declares layout for the bottom colorbar strip. |
-| `plotter.add_label_legend(...)` | Declares a categorical legend block for a row-level label bar. |
-| `plotter.plot_label_legends(...)` | Declares layout for categorical legend blocks below the colorbar strip or matrix. |
-| `plotter.set_background(...)` | Sets figure background color used for display and save. |
-| `plotter.show()` | Renders (if needed) and displays the current plot. |
-| `plotter.save(...)` | Renders (if needed) and saves the current plot. |
+| [`plotter.plot_matrix(...)`](#plot_matrix) | Declares the main matrix heatmap layer. |
+| [`plotter.plot_dendrogram(...)`](#plot_dendrogram) | Declares a dendrogram layer aligned to matrix rows. |
+| [`plotter.set_label_panel(...)`](#set_label_panel) | Configures shared label-panel geometry for labels and tracks. |
+| [`plotter.plot_cluster_labels(...)`](#plot_cluster_labels) | Declares cluster-level labels generated from attached `Results`. |
+| [`plotter.plot_cluster_bar(...)`](#plot_cluster_bar) | Declares a cluster-level bar track derived from cluster ranking scores. |
+| [`plotter.plot_label_bar(...)`](#plot_label_bar) | Declares a row-level annotation bar track in the label panel. |
+| [`plotter.set_label_track_order(...)`](#track-order) | Sets explicit ordering of registered label-panel tracks. |
+| [`plotter.plot_bar_labels(...)`](#track-titles) | Declares titles for registered label-panel tracks. |
+| [`plotter.plot_title(...)`](#plot_title) | Declares a matrix title layer. |
+| [`plotter.plot_matrix_axis_labels(...)`](#plot_matrix_axis_labels) | Declares x-axis and y-axis labels for the matrix panel. |
+| [`plotter.plot_row_ticks(...)`](#plot_row_ticks) | Declares row tick labels for the matrix panel. |
+| [`plotter.plot_col_ticks(...)`](#plot_col_ticks) | Declares column tick labels for the matrix panel. |
+| [`plotter.add_colorbar(...)`](#add_colorbar) | Declares a figure-level colorbar specification. |
+| [`plotter.plot_colorbars(...)`](#plot_colorbars) | Declares layout for the bottom colorbar strip. |
+| [`plotter.add_label_legend(...)`](#add_label_legend) | Declares a categorical legend block for a row-level label bar. |
+| [`plotter.plot_label_legends(...)`](#plot_label_legends) | Declares layout for categorical legend blocks below the colorbar strip or matrix. |
+| [`plotter.set_background(...)`](#set_background) | Sets figure background color used for display and save. |
+| [`plotter.show()`](#show) | Renders (if needed) and displays the current plot. |
+| [`plotter.save(...)`](#save) | Renders (if needed) and saves the current plot. |
 
 ## Core Layers
 
@@ -148,7 +148,7 @@ Plotter.plot_dendrogram(
 | `axes` | `Sequence[float] | None` | `[0.06, 0.05, 0.09, 0.90]` | Dendrogram panel box `[x0, y0, w, h]` in figure fraction. |
 | `color` | `str | None` | `"#888888"` | Dendrogram line color. |
 | `linewidth` | `float | None` | `1.0` | Dendrogram line width. |
-| `data_pad` | `float` | `0.25` | Expands y-limits to avoid top/bottom clipping. |
+| `data_pad` | `float` | `0.25` | Expands y-limits to avoid clipping at the top or bottom. |
 
 ### `set_label_panel`
 
@@ -224,8 +224,8 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
 | `max_words` | `int | None` | `6` | Word-based truncation limit for labels. Use `None` to avoid truncation in compressed mode. |
-| `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label/stat text. |
-| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None` and `"cid"`. |
+| `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label and statistic text. |
+| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None`, `"cid"`, and `"alpha"`. |
 | `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
@@ -257,8 +257,9 @@ Behavior notes:
 - Labels are always generated from the attached `Results` object.
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
 - `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
-- `label_fields=None` suppresses base label/stat text.
-- `label_prefix="cid"` can prefix labels even when `"label"` is omitted from `label_fields`.
+- `label_fields=None` suppresses base label and statistic text.
+- `label_prefix="cid"` or `label_prefix="alpha"` can prefix labels even when `"label"` is omitted from `label_fields`.
+- `label_prefix="alpha"` uses Excel-style indexing (`A.`, `B.`, ..., `Z.`, `AA.`, ...).
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `color` -> default, and `placeholder_alpha` -> `alpha` -> default.
 
@@ -420,6 +421,7 @@ Plotter.plot_title(
     title: str,
     *,
     fontsize: float | None = None,
+    font: str | None = None,
     pad: float | None = None,
     color: str | None = None,
 ) -> Plotter
@@ -429,12 +431,13 @@ Plotter.plot_title(
 | --- | --- | --- | --- |
 | `title` | `str` | required | Title text. |
 | `fontsize` | `float | None` | `14` | Title font size. |
+| `font` | `str | None` | `None` | Title font family. |
 | `pad` | `float | None` | `15` | Padding above the plot (points). |
 | `color` | `str | None` | `"black"` | Title color. |
 
 ### `plot_matrix_axis_labels`
 
-Declares x/y axis labels for the matrix panel.
+Declares x-axis and y-axis labels for the matrix panel.
 
 ```python
 Plotter.plot_matrix_axis_labels(
@@ -474,6 +477,7 @@ Plotter.plot_row_ticks(
     position: str = "right",
     fontsize: float = 9,
     max_labels: int | None = None,
+    pad: float | None = None,
 ) -> Plotter
 ```
 
@@ -483,6 +487,7 @@ Plotter.plot_row_ticks(
 | `position` | `str` | `"right"` | Tick side: `"left"` or `"right"`. |
 | `fontsize` | `float` | `9` | Tick label font size. |
 | `max_labels` | `int | None` | `all labels` | Show at most this many labels. |
+| `pad` | `float | None` | `Matplotlib default` | Tick-label padding (points). |
 
 ### `plot_col_ticks`
 
@@ -496,6 +501,7 @@ Plotter.plot_col_ticks(
     fontsize: float = 9,
     rotation: float = 90,
     max_labels: int | None = None,
+    pad: float | None = None,
 ) -> Plotter
 ```
 
@@ -506,6 +512,7 @@ Plotter.plot_col_ticks(
 | `fontsize` | `float` | `9` | Tick label font size. |
 | `rotation` | `float` | `90` | Tick label rotation in degrees. |
 | `max_labels` | `int | None` | `all labels` | Show at most this many labels. |
+| `pad` | `float | None` | `Matplotlib default` | Tick-label padding (points). |
 
 ## Colorbars
 
@@ -703,5 +710,5 @@ Plotter.save(path: str, **kwargs) -> None
 
 ## Notes
 
-- `Plotter` expects `Results` with layout from `Analysis.finalize()`.
-- Unit convention: text spacing uses points (`plot_title(pad=...)`, `plot_bar_labels(pad=...)`, `plot_matrix_axis_labels(xlabel_pad=...)`, `plot_colorbars(label_pad=...)`); layout geometry uses fractions (`height`, `gap`, `hpad`, `vpad`, `left_pad`, `right_pad`, `width`, `axes`, `track_x`, `gutter_width`, `text_pad`). `ylabel_pad` is also a geometry fraction (panel offset).
+- `Plotter` expects `Results` with layout from `Analysis.finalize(...)`.
+- Unit convention: text spacing uses points (`plot_title(pad=...)`, `plot_bar_labels(pad=...)`, `plot_matrix_axis_labels(xlabel_pad=...)`, `plot_row_ticks(pad=...)`, `plot_col_ticks(pad=...)`, `plot_colorbars(label_pad=...)`); layout geometry uses fractions (`height`, `gap`, `hpad`, `vpad`, `left_pad`, `right_pad`, `width`, `axes`, `track_x`, `gutter_width`, `text_pad`). `ylabel_pad` is also a geometry fraction (panel offset).

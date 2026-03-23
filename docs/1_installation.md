@@ -36,7 +36,7 @@ HiMaLAYAS works without optional dependencies. The packages below are optional a
 | Package | Purpose | Behavior if missing |
 | --- | --- | --- |
 | `fastcluster` (`speed` extra) | Faster hierarchical linkage when `optimal_ordering=False`. | Falls back to SciPy linkage. |
-| `nltk` (`text` extra) | Improved tokenization/lemmatization for `label_mode="compressed"`. | Falls back to regex-based tokenization. |
+| `nltk` (`text` extra) | Improved tokenization and lemmatization for `label_mode="compressed"`. | Falls back to regex-based tokenization. |
 
 Install optional packages as needed:
 

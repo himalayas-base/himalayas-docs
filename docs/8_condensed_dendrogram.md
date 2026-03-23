@@ -54,7 +54,7 @@ plot_dendrogram_condensed(
 | `sigbar_cmap` | `str / Colormap` | `"YlOrBr"` | Colormap for the significance bar. |
 | `sigbar_min_logp` | `float` | `2.0` | Minimum `-log10(score)` for scaling. |
 | `sigbar_max_logp` | `float` | `10.0` | Maximum `-log10(score)` for scaling. |
-| `sigbar_norm` | `Normalize | None` | `None` | Optional normalization; overrides min/max scaling. |
+| `sigbar_norm` | `Normalize | None` | `None` | Optional normalization; overrides minimum and maximum scaling. |
 | `sigbar_width` | `float` | `0.06` | Significance bar width (axes fraction). |
 | `sigbar_height` | `float` | `0.8` | Height of each significance bar relative to row pitch. Must be in `(0, 1]`. |
 | `sigbar_alpha` | `float` | `1.0` | Significance bar alpha. |
@@ -65,8 +65,8 @@ plot_dendrogram_condensed(
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
 | `omit_words` | `Sequence[str] | None` | `None` | Words to omit from label text. |
-| `label_fields` | `Sequence[str] | None` | `("label", "n", "p")` | Label fields to include; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label/stat text. |
-| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None` and `"cid"`. |
+| `label_fields` | `Sequence[str] | None` | `("label", "n", "p")` | Label fields to include; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label and statistic text. |
+| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None`, `"cid"`, and `"alpha"`. |
 | `label_overrides` | `dict[int, str] | None` | `None` | Mapping `cluster_id -> label` for custom names. |
 | `label_color` | `str` | `"black"` | Label text color. |
 | `label_alpha` | `float` | `1.0` | Label text alpha for regular (non-placeholder) labels. |
@@ -88,11 +88,12 @@ Behavior notes:
 - Unknown keyword arguments in `plot_dendrogram_condensed(...)` raise `TypeError`.
 - `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
 - `label_fields=None` is allowed.
-- `label_prefix="cid"` can prefix labels even when `"label"` is omitted from `label_fields`.
+- `label_prefix="cid"` or `label_prefix="alpha"` can prefix labels even when `"label"` is omitted from `label_fields`.
+- `label_prefix="alpha"` uses Excel-style indexing (`A.`, `B.`, ..., `Z.`, `AA.`, ...).
 - Cluster significance bars are scaled from `-log10(score)`, where `score` is selected by `rank_by`.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `label_color`, and `placeholder_alpha` -> `label_alpha`.
-- Placeholder styling applies only to unlabeled/placeholder cluster labels.
+- Placeholder styling applies only to unlabeled or placeholder cluster labels.
 - Condensed plotting requires at least two clusters; single-cluster inputs raise a `ValueError`.
 
 `label_fields` reference:
@@ -129,7 +130,7 @@ condensed = plot_dendrogram_condensed(
     sigbar_max_logp=10.0,
     label_fields=("label", "n", "p", "q"),
     wrap_text=True,
-    wrap_width=34,
+    wrap_width=40,
 )
 
 condensed.show()
@@ -147,7 +148,7 @@ condensed = plot_dendrogram_condensed(
     sigbar_max_logp=30.0,
     label_fields=("label", "n"),
     wrap_text=True,
-    wrap_width=30,
+    wrap_width=40,
 )
 
 condensed.save("zoom_condensed_dendrogram.png", dpi=300)
@@ -157,5 +158,5 @@ condensed.save("zoom_condensed_dendrogram.png", dpi=300)
 
 - Labels are generated internally from the attached `Results` object.
 - `label_fields` may be `None` or a subset of `{ "label", "n", "p", "q", "fe" }`.
-- `label_prefix` supports `None` and `"cid"`.
+- `label_prefix` supports `None`, `"cid"`, and `"alpha"`.
 - Use `Results.cluster_labels(...)` only for inspection, export, or external workflows, not as required input.
