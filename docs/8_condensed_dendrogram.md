@@ -66,7 +66,7 @@ plot_dendrogram_condensed(
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
 | `omit_words` | `Sequence[str] | None` | `None` | Words to omit from label text. |
 | `label_fields` | `Sequence[str] | None` | `("label", "n", "p")` | Label fields to include; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label and statistic text. |
-| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None` and `"cid"`. |
+| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None`, `"cid"`, and `"alpha"`. |
 | `label_overrides` | `dict[int, str] | None` | `None` | Mapping `cluster_id -> label` for custom names. |
 | `label_color` | `str` | `"black"` | Label text color. |
 | `label_alpha` | `float` | `1.0` | Label text alpha for regular (non-placeholder) labels. |
@@ -88,7 +88,8 @@ Behavior notes:
 - Unknown keyword arguments in `plot_dendrogram_condensed(...)` raise `TypeError`.
 - `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
 - `label_fields=None` is allowed.
-- `label_prefix="cid"` can prefix labels even when `"label"` is omitted from `label_fields`.
+- `label_prefix="cid"` or `label_prefix="alpha"` can prefix labels even when `"label"` is omitted from `label_fields`.
+- `label_prefix="alpha"` uses Excel-style indexing (`A.`, `B.`, ..., `Z.`, `AA.`, ...).
 - Cluster significance bars are scaled from `-log10(score)`, where `score` is selected by `rank_by`.
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `label_color`, and `placeholder_alpha` -> `label_alpha`.
@@ -157,5 +158,5 @@ condensed.save("zoom_condensed_dendrogram.png", dpi=300)
 
 - Labels are generated internally from the attached `Results` object.
 - `label_fields` may be `None` or a subset of `{ "label", "n", "p", "q", "fe" }`.
-- `label_prefix` supports `None` and `"cid"`.
+- `label_prefix` supports `None`, `"cid"`, and `"alpha"`.
 - Use `Results.cluster_labels(...)` only for inspection, export, or external workflows, not as required input.

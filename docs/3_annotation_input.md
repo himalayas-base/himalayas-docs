@@ -1,11 +1,17 @@
 # Annotation Input
 
-Annotations map categorical terms to the labels present in your matrix. HiMaLAYAS filters out labels not present in the matrix and drops terms with no overlap.
+Annotations map categorical terms to labels present in your matrix. HiMaLAYAS filters labels to the matrix universe, then applies term-size filters.
 
 ## Signature
 
 ```python
-Annotations(term_to_labels: dict[str, Iterable[str]], matrix: Matrix)
+Annotations(
+    term_to_labels: dict[str, Iterable[str]],
+    matrix: Matrix,
+    *,
+    min_term_size: int = 2,
+    max_term_size: int | None = None,
+)
 ```
 
 ## Parameters
@@ -14,6 +20,8 @@ Annotations(term_to_labels: dict[str, Iterable[str]], matrix: Matrix)
 | --- | --- | --- | --- |
 | `term_to_labels` | `dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, recipes, proteins). |
 | `matrix` | `Matrix` | required | Provides the label universe. |
+| `min_term_size` | `int` | `2` | Minimum number of matrix-overlapping labels required for a term to be retained. |
+| `max_term_size` | `int | None` | `None` | Maximum number of matrix-overlapping labels allowed for a term to be retained. |
 
 ## Expected Mapping Format
 
@@ -96,5 +104,5 @@ annotations = Annotations(country_to_recipes, matrix)
 
 ## Notes
 
-- Terms with no overlap are dropped with a warning.
-- You can pre-filter terms by size before loading.
+- Terms are filtered by matrix overlap and term size limits.
+- Keep `min_term_size=2` as the default floor for analysis-ready runs.

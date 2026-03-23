@@ -36,6 +36,7 @@ Attaches plotting layout, fold enrichment (`fe`), and BH-FDR q-values to produce
 Analysis.finalize(
     *,
     col_cluster: bool = False,
+    fdr_scope: str = "global",
 ) -> Analysis
 ```
 
@@ -44,6 +45,7 @@ Analysis.finalize(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `col_cluster` | `bool` | `False` | Computes a dendrogram-based column order for plotting using the same `linkage_method`, `linkage_metric`, and `optimal_ordering` set in `Analysis.cluster(...)`. |
+| `fdr_scope` | `str` | `"global"` | FDR scope. Use `"global"` for full-run correction or `"per_cluster"` for within-cluster correction. |
 
 ## Example
 
@@ -52,7 +54,7 @@ analysis = (
     Analysis(matrix, annotations)
     .cluster(...)
     .enrich(min_overlap=2)
-    .finalize()
+    .finalize(fdr_scope="global")
 )
 
 results = analysis.results
@@ -66,7 +68,12 @@ After running enrichment, the primary output is attached as:
 
 ## FDR Correction
 
-HiMaLAYAS uses Benjamini-Hochberg (BH) FDR across cluster-term tests.
+HiMaLAYAS uses Benjamini-Hochberg (BH) FDR for q-values.
+
+Set scope with `Analysis.finalize(fdr_scope=...)`:
+
+- `"global"` (default): BH across all cluster-term tests in the run.
+- `"per_cluster"`: BH independently within each cluster.
 
 See [Results and Filtering](6_results.md) for examples of filtering on q-values.
 
@@ -77,3 +84,4 @@ See [Results and Filtering](6_results.md) for examples of filtering on q-values.
 - Each call updates `analysis.results`; save per-run snapshots (for example, `res_06`, `res_10`) during threshold sweeps.
 - Providing `background=...` keeps the enrichment universe (`N`, `K`) consistent across full and zoomed analyses, so p-values remain comparable.
 - q-values may still differ across runs because Benjamini-Hochberg FDR is applied to the hypothesis family tested in each run.
+- `fdr_scope="per_cluster"` supports within-cluster interpretation.

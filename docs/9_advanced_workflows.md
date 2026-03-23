@@ -13,6 +13,8 @@ A common pattern is to zoom into one cluster, re-run clustering and enrichment, 
 
 Repeat the analysis at different dendrogram depths to explore depth-dependent enrichment.
 
+Subset reruns are often smaller than the full matrix. Keep the default annotation term-size floor (`min_term_size=2`) unless you have a specific exploratory reason to change it.
+
 For API details on `subset(...)` and `subset_clusters(...)`, see [Results and Filtering](6_results.md).
 
 ```python

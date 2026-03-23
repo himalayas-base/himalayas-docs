@@ -6,7 +6,7 @@
 
 | Attribute | Type | Description |
 | --- | --- | --- |
-| `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`), plus `fe` and `qval` after `Analysis.finalize()`. |
+| `results.df` | `pd.DataFrame` | Enrichment table (`cluster`, `term`, `k`, `K`, `n`, `N`, `pval`), plus `fe` and `qval` after `Analysis.finalize(...)`. |
 | `results.matrix` | `Matrix \| None` | Matrix attached to the result object, useful for zoom workflows and background reuse. |
 | `results.clusters` | `Clusters \| None` | Cluster assignments and dendrogram metadata attached to the result object. |
 | `results.clusters.unique_clusters` | `np.ndarray` | Sorted cluster ids present in the result context (when clusters are attached). |

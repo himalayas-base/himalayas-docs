@@ -225,7 +225,7 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
 | `max_words` | `int | None` | `6` | Word-based truncation limit for labels. Use `None` to avoid truncation in compressed mode. |
 | `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label and statistic text. |
-| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None` and `"cid"`. |
+| `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None`, `"cid"`, and `"alpha"`. |
 | `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
 | `wrap_width` | `int | None` | `None` | Characters per line when wrapping. |
 | `overflow` | `str` | `"wrap"` | Overflow behavior: `"wrap"` or `"ellipsis"`. |
@@ -258,7 +258,8 @@ Behavior notes:
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
 - `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
 - `label_fields=None` suppresses base label and statistic text.
-- `label_prefix="cid"` can prefix labels even when `"label"` is omitted from `label_fields`.
+- `label_prefix="cid"` or `label_prefix="alpha"` can prefix labels even when `"label"` is omitted from `label_fields`.
+- `label_prefix="alpha"` uses Excel-style indexing (`A.`, `B.`, ..., `Z.`, `AA.`, ...).
 - If `skip_unlabeled=True`, clusters without labels are omitted instead of receiving placeholder text.
 - Placeholder style resolves as `placeholder_color` -> `color` -> default, and `placeholder_alpha` -> `alpha` -> default.
 

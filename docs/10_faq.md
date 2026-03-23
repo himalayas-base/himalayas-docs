@@ -19,6 +19,13 @@ The DataFrame contains non-numeric values. Convert columns to numeric or filter 
 
 None of the annotation labels are present in the matrix. Double-check your identifier system and ensure labels match exactly.
 
+## Annotation terms were dropped unexpectedly
+
+HiMaLAYAS filters term labels to matrix labels, then applies term-size filters in `Annotations(...)`.
+
+- Terms with overlap below `min_term_size` are dropped.
+- Terms above `max_term_size` are dropped when `max_term_size` is set.
+
 ## I get "min_cluster_size exceeds N"
 
 `min_cluster_size` is larger than the number of rows in the matrix. Lower the value or analyze fewer items.
@@ -30,6 +37,15 @@ Common causes:
 - `min_overlap` is too high.
 - Terms are filtered out because they do not overlap with the matrix.
 - Your annotations are too sparse or the matrix is too small.
+
+## How do I choose between `global` and `per_cluster` q-values?
+
+Set scope in `Analysis.finalize(fdr_scope=...)`:
+
+- `fdr_scope="global"` (default): BH across all cluster-term tests in the run.
+- `fdr_scope="per_cluster"`: BH independently within each cluster.
+
+Use `"global"` for full-run interpretation and `"per_cluster"` for within-cluster interpretation.
 
 ## Why do zoomed q-values differ from full-run q-values even with shared background?
 
