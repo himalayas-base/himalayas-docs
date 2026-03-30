@@ -6,7 +6,7 @@ Annotations map categorical terms to labels present in your matrix. HiMaLAYAS fi
 
 ```python
 Annotations(
-    term_to_labels: dict[str, Iterable[str]],
+    term_to_labels: Dict[str, Iterable[str]],
     matrix: Matrix,
     *,
     min_term_size: int = 2,
@@ -18,7 +18,7 @@ Annotations(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `term_to_labels` | `dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, recipes, proteins). |
+| `term_to_labels` | `Dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, recipes, proteins). |
 | `matrix` | `Matrix` | required | Provides the label universe. |
 | `min_term_size` | `int` | `2` | Minimum number of matrix-overlapping labels required for a term to be retained. |
 | `max_term_size` | `int | None` | `None` | Maximum number of matrix-overlapping labels allowed for a term to be retained. |
@@ -40,12 +40,12 @@ Labels must match matrix row labels exactly.
 | Attribute | Type | Description |
 | --- | --- | --- |
 | `annotations.matrix_labels` | `set[str]` | Matrix label universe used to filter incoming annotation labels. |
-| `annotations.term_to_labels` | `dict[str, set[str]]` | Filtered term-to-label mapping retained on the object after dropping labels not present in the matrix. |
+| `annotations.term_to_labels` | `Dict[str, set[str]]` | Filtered term-to-label mapping retained on the object after dropping labels not present in the matrix. |
 
 ## Common Methods
 
 ```python
-Annotations.terms -> list[str]
+Annotations.terms -> List[str]
 Annotations.rebind(matrix: Matrix) -> Annotations
 ```
 
@@ -57,7 +57,7 @@ Annotations.rebind(matrix: Matrix) -> Annotations
 ## `terms`
 
 ```python
-Annotations.terms -> list[str]
+Annotations.terms -> List[str]
 ```
 
 Returns retained annotation terms after overlap filtering.

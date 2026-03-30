@@ -106,8 +106,8 @@ Plotter.plot_matrix(
     outer_lw: float = 1.2,
     outer_color: str = "black",
     gutter_color: str | None = None,
-    figsize: tuple[float, float] | None = None,
-    subplots_adjust: dict[str, float] | None = None,
+    figsize: Tuple[float, float] | None = None,
+    subplots_adjust: Dict[str, float] | None = None,
 ) -> Plotter
 ```
 
@@ -125,7 +125,7 @@ Plotter.plot_matrix(
 | `outer_color` | `str` | `"black"` | Outer border color. |
 | `gutter_color` | `str | None` | `None` | Mask color for edge artifacts in the matrix panel. |
 | `figsize` | `tuple[float, float] | None` | `(9, 7)` | Figure size override. |
-| `subplots_adjust` | `dict[str, float] | None` | `{"left": 0.15, "right": 0.70, "bottom": 0.05, "top": 0.95}` | Figure margins override. |
+| `subplots_adjust` | `Dict[str, float] | None` | `{"left": 0.15, "right": 0.70, "bottom": 0.05, "top": 0.95}` | Figure margins override. |
 
 Use `center` for diverging color scales and `vmin`/`vmax` for explicit limits.
 
@@ -184,11 +184,11 @@ The list below documents the supported keyword arguments and effective defaults.
 ```python
 Plotter.plot_cluster_labels(
     *,
-    overrides: dict[int, str] | None = None,
+    overrides: Dict[int, str] | None = None,
     rank_by: str = "p",
     label_mode: str = "top_term",
-    max_words: int | None = 6,
-    label_fields: tuple[str, ...] | None = ("label", "n", "p"),
+    max_words: int | None = None,
+    label_fields: Tuple[str, ...] | None = ("label", "n", "p"),
     label_prefix: str | None = None,
     wrap_text: bool = True,
     wrap_width: int | None = None,
@@ -220,10 +220,10 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `overrides` | `dict[int, str] | None` | `None` | Per-cluster label overrides (`cluster_id -> label string`). |
+| `overrides` | `Dict[int, str] | None` | `None` | Per-cluster label overrides (`cluster_id -> label string`). |
 | `rank_by` | `str` | `"p"` | Ranking statistic for representative terms. Must be `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"` for internal label generation. |
-| `max_words` | `int | None` | `6` | Word-based truncation limit for labels. Use `None` to avoid truncation in compressed mode. |
+| `max_words` | `int | None` | `None` | Word-based truncation limit for rendered labels. |
 | `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields shown in each label; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label and statistic text. |
 | `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None`, `"cid"`, and `"alpha"`. |
 | `wrap_text` | `bool` | `True` | Enables wrapping logic; wrapping is applied only when `wrap_width` is set. |
@@ -256,6 +256,7 @@ Behavior notes:
 
 - Labels are always generated from the attached `Results` object.
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
+- With `label_mode="compressed"`, `Results.cluster_labels(...)` applies `max_words` during label generation (default `6` unless overridden). `Plotter.plot_cluster_labels(...)` applies additional Plotter-side truncation only when `max_words` is explicitly provided.
 - `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
 - `label_fields=None` suppresses base label and statistic text.
 - `label_prefix="cid"` or `label_prefix="alpha"` can prefix labels even when `"label"` is omitted from `label_fields`.
@@ -343,7 +344,7 @@ Plotter.plot_label_bar(
     values: Mapping[Hashable, Any],
     *,
     mode: str = "categorical",
-    colors: dict[Any, Any] | None = None,
+    colors: Dict[Any, Any] | None = None,
     cmap: str = "viridis",
     vmin: float | None = None,
     vmax: float | None = None,
@@ -361,7 +362,7 @@ Plotter.plot_label_bar(
 | --- | --- | --- | --- |
 | `values` | `Mapping[Hashable, Any]` | required | Row label to category or numeric value. |
 | `mode` | `str` | `"categorical"` | `"categorical"` or `"continuous"`. |
-| `colors` | `dict[Any, Any] | None` | `None` | Category to color mapping for categorical mode. |
+| `colors` | `Dict[Any, Any] | None` | `None` | Category to color mapping for categorical mode. |
 | `cmap` | `str` | `"viridis"` | Colormap for continuous mode. |
 | `vmin` | `float | None` | `None` | Minimum for continuous mode normalization. |
 | `vmax` | `float | None` | `None` | Maximum for continuous mode normalization. |
@@ -424,6 +425,8 @@ Plotter.plot_title(
     font: str | None = None,
     pad: float | None = None,
     color: str | None = None,
+    alpha: float | None = None,
+    **kwargs,
 ) -> Plotter
 ```
 
@@ -434,6 +437,9 @@ Plotter.plot_title(
 | `font` | `str | None` | `None` | Title font family. |
 | `pad` | `float | None` | `15` | Padding above the plot (points). |
 | `color` | `str | None` | `"black"` | Title color. |
+| `alpha` | `float | None` | `None` | Title text alpha. |
+
+`**kwargs` are forwarded to Matplotlib title text kwargs.
 
 ### `plot_matrix_axis_labels`
 
@@ -703,7 +709,16 @@ Plotter.show() -> None
 Renders (if needed) and saves the current plot.
 
 ```python
-Plotter.save(path: str, **kwargs) -> None
+Plotter.save(
+    path: str | PathLike[str],
+    *,
+    dpi: float | None = None,
+    format: str | None = None,
+    bbox_inches: str | None = None,
+    pad_inches: float | None = None,
+    transparent: bool | None = None,
+    **kwargs,
+) -> None
 ```
 
 `**kwargs` are passed to Matplotlib `savefig`.
