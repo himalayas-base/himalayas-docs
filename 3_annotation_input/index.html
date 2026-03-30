@@ -1134,7 +1134,7 @@
 <p>Annotations map categorical terms to labels present in your matrix. HiMaLAYAS filters labels to the matrix universe, then applies term-size filters.</p>
 <h2 id="signature">Signature<a class="headerlink" href="#signature" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Annotations</span><span class="p">(</span>
-</span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">term_to_labels</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+</span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">term_to_labels</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
 </span><span id="__line-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">,</span>
 </span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">*</span><span class="p">,</span>
 </span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">min_term_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
@@ -1154,7 +1154,7 @@
 <tbody>
 <tr>
 <td><code>term_to_labels</code></td>
-<td><code>dict[str, Iterable[str]]</code></td>
+<td><code>Dict[str, Iterable[str]]</code></td>
 <td>required</td>
 <td>Mapping from term to labels (genes, recipes, proteins).</td>
 </tr>
@@ -1203,13 +1203,13 @@ Labels must match matrix row labels exactly.</p>
 </tr>
 <tr>
 <td><code>annotations.term_to_labels</code></td>
-<td><code>dict[str, set[str]]</code></td>
+<td><code>Dict[str, set[str]]</code></td>
 <td>Filtered term-to-label mapping retained on the object after dropping labels not present in the matrix.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="common-methods">Common Methods<a class="headerlink" href="#common-methods" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">terms</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">terms</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 </span><span id="__line-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">rebind</span><span class="p">(</span><span class="n">matrix</span><span class="p">:</span> <span class="n">Matrix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Annotations</span>
 </span></code></pre></div>
 <table>
@@ -1231,7 +1231,7 @@ Labels must match matrix row labels exactly.</p>
 </tbody>
 </table>
 <h2 id="terms"><code>terms</code><a class="headerlink" href="#terms" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">terms</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Annotations</span><span class="o">.</span><span class="n">terms</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 </span></code></pre></div>
 <p>Returns retained annotation terms after overlap filtering.</p>
 <h2 id="rebind"><code>rebind</code><a class="headerlink" href="#rebind" title="Permanent link">&para;</a></h2>

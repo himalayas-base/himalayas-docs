@@ -1131,17 +1131,17 @@
 </tr>
 <tr>
 <td><code>results.clusters.cluster_sizes</code></td>
-<td><code>dict[int, int]</code></td>
+<td><code>Dict[int, int]</code></td>
 <td>Mapping from cluster id to cluster size (when clusters are attached).</td>
 </tr>
 <tr>
 <td><code>results.clusters.cluster_to_labels</code></td>
-<td><code>dict[int, set[Any]]</code></td>
+<td><code>Dict[int, set[Any]]</code></td>
 <td>Mapping from cluster id to member labels (when clusters are attached).</td>
 </tr>
 <tr>
 <td><code>results.clusters.label_to_cluster</code></td>
-<td><code>dict[Any, int]</code></td>
+<td><code>Dict[Any, int]</code></td>
 <td>Mapping from label to cluster id (when clusters are attached).</td>
 </tr>
 </tbody>
@@ -1303,7 +1303,8 @@
 <li>Representative-term selection is deterministic: selected score (<code>pval</code> or <code>qval</code>), then <code>pval</code> (if present), then lexical <code>term</code>.</li>
 <li>In <code>label_mode="compressed"</code>, HiMaLAYAS uses NLTK normalization when available and falls back to regex tokenization otherwise.</li>
 </ul>
-<p><code>Results.cluster_labels(...)</code> is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into <code>Plotter.plot_cluster_labels(...)</code> or <code>plot_dendrogram_condensed(...)</code>; both generate labels internally from the attached <code>Results</code>.</p>
+<p><code>Results.cluster_labels(...)</code> is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into <code>Plotter.plot_cluster_labels(...)</code> or <code>plot_dendrogram_condensed(...)</code>; both generate labels internally from the attached <code>Results</code>.
+With <code>label_mode="compressed"</code>, <code>Results.cluster_labels(...)</code> applies <code>max_words</code> during label generation (default <code>6</code> unless overridden). <code>Plotter.plot_cluster_labels(...)</code> applies additional Plotter-side truncation only when <code>max_words</code> is explicitly provided.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>Filter to significant annotation terms:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">results_sig</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;qval &lt;= 0.05&quot;</span><span class="p">)</span>
