@@ -28,7 +28,7 @@ plot_dendrogram_condensed(
     omit_words: Sequence[str] | None = None,
     label_fields: Sequence[str] | None = ("label", "n", "p"),
     label_prefix: str | None = None,
-    label_overrides: dict[int, str] | None = None,
+    label_overrides: Dict[int, str] | None = None,
     label_color: str = "black",
     label_alpha: float = 1.0,
     placeholder_text: str = "—",
@@ -67,7 +67,7 @@ plot_dendrogram_condensed(
 | `omit_words` | `Sequence[str] | None` | `None` | Words to omit from label text. |
 | `label_fields` | `Sequence[str] | None` | `("label", "n", "p")` | Label fields to include; allowed values are `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. Use `None` to suppress base label and statistic text. |
 | `label_prefix` | `str | None` | `None` | Optional prefix mode for display labels. Supported values are `None`, `"cid"`, and `"alpha"`. |
-| `label_overrides` | `dict[int, str] | None` | `None` | Mapping `cluster_id -> label` for custom names. |
+| `label_overrides` | `Dict[int, str] | None` | `None` | Mapping `cluster_id -> label` for custom names. |
 | `label_color` | `str` | `"black"` | Label text color. |
 | `label_alpha` | `float` | `1.0` | Label text alpha for regular (non-placeholder) labels. |
 | `placeholder_text` | `str` | `"—"` | Placeholder label for unlabeled clusters. |
@@ -115,7 +115,7 @@ CondensedDendrogramPlot
 | --- | --- | --- |
 | `fig` | `matplotlib.figure.Figure` | Rendered figure handle. |
 | `show()` | `() -> None` | Displays the rendered figure. If the backing figure was closed, it is rebuilt automatically from the stored render specification. |
-| `save(path, **kwargs)` | `(str | PathLike[str], **kwargs) -> None` | Saves the rendered figure with current facecolor. If the backing figure was closed, it is rebuilt automatically before saving. |
+| `save(path, *, dpi=None, format=None, bbox_inches=None, pad_inches=None, transparent=None, **kwargs)` | `(str | PathLike[str], ...) -> None` | Saves the rendered figure with current facecolor. If the backing figure was closed, it is rebuilt automatically before saving. |
 
 ## Example
 

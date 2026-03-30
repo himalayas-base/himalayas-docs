@@ -10,9 +10,9 @@
 | `results.matrix` | `Matrix \| None` | Matrix attached to the result object, useful for zoom workflows and background reuse. |
 | `results.clusters` | `Clusters \| None` | Cluster assignments and dendrogram metadata attached to the result object. |
 | `results.clusters.unique_clusters` | `np.ndarray` | Sorted cluster ids present in the result context (when clusters are attached). |
-| `results.clusters.cluster_sizes` | `dict[int, int]` | Mapping from cluster id to cluster size (when clusters are attached). |
-| `results.clusters.cluster_to_labels` | `dict[int, set[Any]]` | Mapping from cluster id to member labels (when clusters are attached). |
-| `results.clusters.label_to_cluster` | `dict[Any, int]` | Mapping from label to cluster id (when clusters are attached). |
+| `results.clusters.cluster_sizes` | `Dict[int, int]` | Mapping from cluster id to cluster size (when clusters are attached). |
+| `results.clusters.cluster_to_labels` | `Dict[int, set[Any]]` | Mapping from cluster id to member labels (when clusters are attached). |
+| `results.clusters.label_to_cluster` | `Dict[Any, int]` | Mapping from label to cluster id (when clusters are attached). |
 
 ## Common Methods
 
@@ -101,6 +101,7 @@ Behavior details:
 - In `label_mode="compressed"`, HiMaLAYAS uses NLTK normalization when available and falls back to regex tokenization otherwise.
 
 `Results.cluster_labels(...)` is an optional post hoc utility for inspection, export, or external workflows. You do not need to pass its output into `Plotter.plot_cluster_labels(...)` or `plot_dendrogram_condensed(...)`; both generate labels internally from the attached `Results`.
+With `label_mode="compressed"`, `Results.cluster_labels(...)` applies `max_words` during label generation (default `6` unless overridden). `Plotter.plot_cluster_labels(...)` applies additional Plotter-side truncation only when `max_words` is explicitly provided.
 
 ## Examples
 
