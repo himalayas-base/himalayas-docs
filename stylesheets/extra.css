@@ -29,3 +29,66 @@
   flex: 1 1 18rem;
   margin: 0;
 }
+
+/* Figure gallery */
+
+.aux-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 0 1rem 0;
+}
+
+.aux-gallery-item {
+  margin: 0;
+}
+
+.aux-gallery-item--light {
+  background: #ffffff;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+}
+
+.aux-gallery-item--dark {
+  background: #000000;
+  padding: 16px;
+}
+
+.aux-gallery-caption {
+  font-size: 0.95rem;
+  text-align: center;
+  margin: 0 0 10px 0;
+  line-height: 1.35;
+}
+
+.aux-gallery-item--light .aux-gallery-caption {
+  color: #222222;
+}
+
+.aux-gallery-item--dark .aux-gallery-caption {
+  color: #f2f2f2;
+}
+
+.aux-gallery-meta {
+  display: block;
+  font-size: 0.86rem;
+}
+
+.aux-gallery-item--light .aux-gallery-meta {
+  color: #555555;
+}
+
+.aux-gallery-item--dark .aux-gallery-meta {
+  color: #d9d9d9;
+}
+
+.aux-gallery-link {
+  display: block;
+  width: 100%;
+}
+
+.aux-gallery-link img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
