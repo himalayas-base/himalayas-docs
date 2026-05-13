@@ -23,6 +23,7 @@ nav:
       - Zoom and Non-Biological Workflows: 9_advanced_workflows.md
   - Reference:
       - FAQ and Troubleshooting: 10_faq.md
+      - Figure Gallery: 11_figure_gallery.md
 
 theme:
   name: material
