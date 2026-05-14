@@ -16,11 +16,11 @@ Browse selected HiMaLAYAS figures across yeast genetic interaction and recipe-by
   </div>
   <div class="aux-gallery-item aux-gallery-item--light">
     <div class="aux-gallery-caption">
-      <strong>Figure 1 Advanced.</strong> Yeast genetic interaction profile similarity matrix with compound classification and row variance tracks.
+      <strong>Figure 1 Extended.</strong> Yeast genetic interaction profile similarity matrix with compound classification and row variance tracks.
       <span class="aux-gallery-meta">Dataset: Costanzo et al. (2016) · Annotation: GO BP (yeast) · ChemGI rail: Piotrowski et al. (2017)</span>
     </div>
     <a class="aux-gallery-link" href="../images/gallery/gi_fig_1_detailed.png" target="_blank" rel="noopener">
-      <img src="../images/gallery/gi_fig_1_detailed.png" alt="Yeast GI profile similarity matrix with additional tracks, Figure 1 Advanced" />
+      <img src="../images/gallery/gi_fig_1_detailed.png" alt="Yeast GI profile similarity matrix with additional tracks, Figure 1 Extended" />
     </a>
   </div>
   <div class="aux-gallery-item aux-gallery-item--light">
@@ -54,7 +54,7 @@ Browse selected HiMaLAYAS figures across yeast genetic interaction and recipe-by
 
 ## Citations
 
-**Figure 1, Figure 1 Advanced, and Supplementary Figure 1**
+**Figure 1, Figure 1 Extended, and Supplementary Figure 1**
 <br>
 Costanzo, M., VanderSluis, B., Koch, E. N., et al. (2016)
 <br>
@@ -62,7 +62,7 @@ _A global genetic interaction network maps a wiring diagram of cellular function
 <br>
 _Science_ 353, aaf1420.
 
-**Figure 1 Advanced** (chemogenomic annotation)
+**Figure 1 Extended** (chemogenomic annotation)
 <br>
 Piotrowski, J. S., Li, S. C., Deshpande, R., et al. (2017)
 <br>
