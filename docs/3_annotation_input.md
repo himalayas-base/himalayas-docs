@@ -106,3 +106,4 @@ annotations = Annotations(country_to_recipes, matrix)
 
 - Terms are filtered by matrix overlap and term size limits.
 - Keep `min_term_size=2` as the default floor for analysis-ready runs.
+- `min_term_size` is independent from `Analysis.enrich(min_overlap=...)`; the two are not kept in sync.

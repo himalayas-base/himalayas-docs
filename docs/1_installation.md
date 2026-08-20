@@ -29,6 +29,10 @@ import himalayas
 print(himalayas.__version__)
 ```
 
+## Required Dependencies
+
+HiMaLAYAS requires `scikit-learn` (used for scoring candidate dendrogram cuts when `linkage_threshold="auto"`). It is installed automatically with `pip install himalayas`.
+
 ## Optional Dependencies
 
 HiMaLAYAS works without optional dependencies. The packages below are optional and control performance or text processing behavior.
