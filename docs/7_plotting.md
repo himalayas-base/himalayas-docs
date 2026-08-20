@@ -126,9 +126,7 @@ Plotter.plot_matrix(
 | `outer_color` | `str` | `"black"` | Outer border color. |
 | `gutter_color` | `str | None` | `None` | Mask color for edge artifacts in the matrix panel. |
 
-Use `center` for diverging color scales and `vmin`/`vmax` for explicit limits.
-
-`plot_matrix(...)` is optional; a matrix-less plot can still render colorbars, legends, label panels, and cluster/label bar tracks. Use `set_figure(...)` to configure figure size and subplot margins.
+Use `center` for diverging color scales and `vmin`/`vmax` for explicit limits. Use `set_figure(...)` to configure figure size and subplot margins.
 
 ### `plot_dendrogram`
 
@@ -337,7 +335,7 @@ Plotter.plot_cluster_labels_compact(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `overrides` | `Dict[int, str] | None` | `None` | Per-cluster label overrides keyed by cluster id. |
-| `cluster_marker` | `str | None` | `None` | Identity marker drawn at the matrix-side marker column, one of `None`, `"cid"`, `"alpha"`. Off by default; the cluster span/line alone is the pointer, and identity lives with the floating label via `label_prefix`. |
+| `cluster_marker` | `str | None` | `None` | Identity marker drawn at the matrix-side marker column, one of `None`, `"cid"`, `"alpha"`. Off by default; identity is shown via the floating label's `label_prefix` instead. |
 | `rank_by` | `str` | `"p"` | Ranking statistic for representative terms, `"p"` or `"q"`. |
 | `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"`. |
 | `max_words` | `int | None` | `None` | Maximum words in rendered display labels. |
@@ -357,7 +355,7 @@ Plotter.plot_cluster_labels_compact(
 | `overflow` | `str` | `"wrap"` | Truncation mode, `"wrap"` or `"ellipsis"`. |
 | `line_shape` | `str | None` | style `compact_line_shape` (`"straight"`) | Leader-line shape, one of `"straight"`, `"curved"`, `"elbow"`. |
 | `line_style` | `str | None` | style `compact_line_style` (`"solid"`) | Leader-line style, one of `"solid"`, `"dashed"`, `"dotted"`. |
-| `cluster_span` | `str | None` | `None` | Matrix-side cluster-extent span, one of `None` or `"line"`, mirroring `plot_cluster_labels(cluster_span=...)`. `"line"` draws a vertical stroke with optional end caps sized by `cluster_span_cap_width`. |
+| `cluster_span` | `str | None` | `None` | Vertical span drawn beside each cluster's row extent, one of `None` or `"line"`; mirrors `plot_cluster_labels(cluster_span=...)`. `"line"` draws a gapped vertical line with optional end caps sized by `cluster_span_cap_width`. |
 | `line_start` | `str | None` | style `compact_line_start` (`"tick"`) | Connector-start point decoration, one of `"tick"`, `"round"`, `"none"`. Drawn only when `cluster_span` is `None`. |
 | `line_end` | `str | None` | style `compact_line_end` (`"tick"`) | Table-side endpoint decoration, one of `"tick"`, `"arrow"`, `"round"`, `"none"`. |
 | `cluster_span_gap` | `float | None` | style `cluster_span_gap` | Row units trimmed from each end of a span, clamped to at most half the cluster's span height. |
@@ -368,7 +366,7 @@ Plotter.plot_cluster_labels_compact(
 | `cluster_span_left_pad` | `float | None` | style `cluster_span_left_pad` | Horizontal space (label-panel axes fraction) between the label-panel track/gutter region and the span centerline. Only applies when `cluster_span` is not `None`. |
 | `cluster_span_right_pad` | `float | None` | style `cluster_span_right_pad` | Horizontal space (label-panel axes fraction) immediately right of the span centerline — the span-to-leader-line-start gap. Only applies when `cluster_span` is not `None`. |
 | `label_left_pad` | `float | None` | style `compact_label_left_pad` (`0.0`) | Horizontal space (label-panel axes fraction) between the floating label column's left edge and the label text. Moves the label text only; the leader line still ends at the connector region's right edge. |
-| `connector_width` | `float | None` | style `compact_bridge_width` (`0.45`) | Width (label-panel axes fraction) reserved for the connector/leader-line region between the cluster span and the floating label column. Must be `> 0`. Widening it lengthens the leader lines and pushes the floating label column right. |
+| `connector_width` | `float | None` | style `compact_bridge_width` (`0.45`) | Width (label-panel axes fraction) reserved for the leader-line region between the cluster span and the floating label column. Must be `> 0`; widening it lengthens the leader lines and pushes the label column right. |
 | `line_color` | `str | None` | style `compact_line_color` | Leader-line color. |
 | `line_lw` | `float | None` | style `compact_line_lw` | Leader-line width. |
 | `line_alpha` | `float | None` | style `compact_line_alpha` | Leader-line opacity. |
@@ -850,4 +848,5 @@ Plotter.save(
 ## Notes
 
 - `Plotter` expects `Results` with layout from `Analysis.finalize(...)`.
+- `plot_matrix(...)` is optional; a matrix-less plot can still render colorbars, legends, label panels, and cluster/label bar tracks.
 - Unit convention: text spacing uses points (`plot_title(pad=...)`, `plot_bar_labels(pad=...)`, `plot_matrix_axis_labels(xlabel_pad=...)`, `plot_row_ticks(pad=...)`, `plot_col_ticks(pad=...)`, `plot_colorbars(label_pad=...)`); layout geometry uses fractions (`height`, `gap`, `hpad`, `vpad`, `left_pad`, `right_pad`, `width`, `axes`, `track_x`, `gutter_width`, `text_pad`). `ylabel_pad` is also a geometry fraction (panel offset).

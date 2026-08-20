@@ -85,5 +85,5 @@ See [Results and Filtering](6_results.md) for examples of filtering on q-values.
 - Providing `background=...` keeps the enrichment universe (`N`, `K`) consistent across full and zoomed analyses, so p-values remain comparable.
 - q-values may still differ across runs because Benjamini-Hochberg FDR is applied to the hypothesis family tested in each run.
 - `fdr_scope="per_cluster"` supports within-cluster interpretation.
-- `min_overlap` is applied independently at three stages: dropping terms whose universe-intersected size falls below the threshold, dropping clusters whose size falls below the threshold, and suppressing individual cluster-term pairs whose measured overlap falls below the threshold.
+- `min_overlap` is applied independently at three stages: filtering terms by universe-intersected size, filtering clusters by size, and suppressing individual cluster-term pairs by measured overlap.
 - Genes with multiple term annotations are tested independently for each term; HiMaLAYAS does not perform Gene Ontology graph-aware redundancy filtering (e.g. parent/child term collapsing or semantic-similarity clustering), so multiple significant terms for a cluster may be hierarchically or semantically related.
