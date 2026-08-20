@@ -69,6 +69,7 @@ plotter.show()
 | [`plotter.plot_dendrogram(...)`](#plot_dendrogram) | Declares a dendrogram layer aligned to matrix rows. |
 | [`plotter.set_label_panel(...)`](#set_label_panel) | Configures shared label-panel geometry for labels and tracks. |
 | [`plotter.plot_cluster_labels(...)`](#plot_cluster_labels) | Declares cluster-level labels generated from attached `Results`. |
+| [`plotter.plot_cluster_labels_compact(...)`](#plot_cluster_labels_compact) | Declares compact radiating cluster labels with leader lines; mutually exclusive with `plot_cluster_labels(...)`. |
 | [`plotter.plot_cluster_bar(...)`](#plot_cluster_bar) | Declares a cluster-level bar track derived from cluster ranking scores. |
 | [`plotter.plot_label_bar(...)`](#plot_label_bar) | Declares a row-level annotation bar track in the label panel. |
 | [`plotter.set_label_track_order(...)`](#track-order) | Sets explicit ordering of registered label-panel tracks. |
@@ -210,9 +211,14 @@ Plotter.plot_cluster_labels(
     boundary_color: str | None = "black",
     boundary_lw: float | None = 0.5,
     boundary_alpha: float | None = 0.6,
-    dendro_boundary_color: str | None = "white",
-    dendro_boundary_lw: float | None = 0.5,
-    dendro_boundary_alpha: float | None = 0.3,
+    cluster_span: str | None = None,
+    cluster_span_color: str | None = None,
+    cluster_span_lw: float | None = None,
+    cluster_span_alpha: float | None = None,
+    cluster_span_gap: float | None = None,
+    cluster_span_cap_width: float | None = None,
+    cluster_span_left_pad: float | None = None,
+    cluster_span_right_pad: float | None = None,
 ) -> Plotter
 ```
 
@@ -246,15 +252,21 @@ Defaults shown here are effective user-facing defaults resolved from internal st
 | `boundary_color` | `str | None` | `"black"` | Cluster boundary color in matrix. |
 | `boundary_lw` | `float | None` | `0.5` | Cluster boundary line width in matrix. |
 | `boundary_alpha` | `float | None` | `0.6` | Cluster boundary alpha in matrix. |
-| `dendro_boundary_color` | `str | None` | `"white"` | Cluster boundary color in dendrogram. |
-| `dendro_boundary_lw` | `float | None` | `0.5` | Dendrogram boundary line width. |
-| `dendro_boundary_alpha` | `float | None` | `0.3` | Dendrogram boundary alpha. |
+| `cluster_span` | `str | None` | `None` | Vertical span drawn beside each cluster's row extent, one of `None` or `"line"`. `None` draws no span (default); `"line"` draws a gapped vertical line with optional end caps sized by `cluster_span_cap_width`. |
+| `cluster_span_color` | `str | None` | style `cluster_span_color` (falls back to `label_sep_color`) | Span line color. |
+| `cluster_span_lw` | `float | None` | style `cluster_span_lw` | Span line width. |
+| `cluster_span_alpha` | `float | None` | style `cluster_span_alpha` | Span line opacity. |
+| `cluster_span_gap` | `float | None` | style `cluster_span_gap` | Row units trimmed from each end of the span, clamped to at most half the cluster's row extent. |
+| `cluster_span_cap_width` | `float | None` | `0.0` | End-cap width (axes fraction). `0` draws a bare line; `>0` draws end caps. |
+| `cluster_span_left_pad` | `float | None` | style `cluster_span_left_pad` | Horizontal space (label-panel axes fraction) between the label-panel track/gutter region and the span centerline. |
+| `cluster_span_right_pad` | `float | None` | style `cluster_span_right_pad` | Horizontal space (label-panel axes fraction) between the span centerline and the label text. |
 
 Use `overrides` to edit labels per cluster. Configure panel geometry with `set_label_panel(...)`.
 
 Behavior notes:
 
 - Labels are always generated from the attached `Results` object.
+- `plot_cluster_labels(...)` and [`plot_cluster_labels_compact(...)`](#plot_cluster_labels_compact) are mutually exclusive in one render; combining both raises an error.
 - Unknown keyword arguments in `plot_cluster_labels(...)` raise `TypeError`.
 - With `label_mode="compressed"`, `Results.cluster_labels(...)` applies `max_words` during label generation (default `6` unless overridden). `Plotter.plot_cluster_labels(...)` applies additional Plotter-side truncation only when `max_words` is explicitly provided.
 - `label_fields` values outside `{ "label", "n", "p", "q", "fe" }` raise `ValueError`.
@@ -272,6 +284,102 @@ Behavior notes:
 - `"q"`: Representative-term BH-FDR q-value (`qval`), formatted as scientific notation.
 - `"fe"`: Representative-term fold enrichment (`fe`), formatted as `FE=<value>`.
 - Field order follows the order you pass in `label_fields` (for example, `("label", "q", "fe")`).
+
+### `plot_cluster_labels_compact`
+
+Declares compact radiating cluster labels: a short marker at each cluster's true vertical center, connected by a leader line to its full label in an equally-spaced floating label column on the right. An alternative to [`plot_cluster_labels(...)`](#plot_cluster_labels) for figures with many or highly size-skewed clusters; the two are mutually exclusive in one render. Supports the same label-panel tracks as `plot_cluster_labels(...)` (`plot_label_bar(...)` and `plot_cluster_bar(...)`).
+
+```python
+Plotter.plot_cluster_labels_compact(
+    *,
+    overrides: Dict[int, str] | None = None,
+    cluster_marker: str | None = None,
+    rank_by: str = "p",
+    label_mode: str = "top_term",
+    max_words: int | None = None,
+    label_fields: Tuple[str, ...] | None = ("label", "n", "p"),
+    label_prefix: str | None = "alpha",
+    font: str | None = None,
+    fontsize: float | None = None,
+    color: str | None = None,
+    alpha: float | None = None,
+    skip_unlabeled: bool = False,
+    placeholder_text: str | None = None,
+    placeholder_color: str | None = None,
+    placeholder_alpha: float | None = None,
+    omit_words: Sequence[str] | None = None,
+    wrap_text: bool = True,
+    wrap_width: int | None = None,
+    overflow: str = "wrap",
+    line_shape: str | None = None,
+    line_style: str | None = None,
+    cluster_span: str | None = None,
+    line_start: str | None = None,
+    line_end: str | None = None,
+    cluster_span_gap: float | None = None,
+    cluster_span_color: str | None = None,
+    cluster_span_lw: float | None = None,
+    cluster_span_alpha: float | None = None,
+    cluster_span_cap_width: float | None = None,
+    cluster_span_left_pad: float | None = None,
+    cluster_span_right_pad: float | None = None,
+    label_left_pad: float | None = None,
+    connector_width: float | None = None,
+    line_color: str | None = None,
+    line_lw: float | None = None,
+    line_alpha: float | None = None,
+    boundary_color: str | None = None,
+    boundary_lw: float | None = None,
+    boundary_alpha: float | None = None,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `overrides` | `Dict[int, str] | None` | `None` | Per-cluster label overrides keyed by cluster id. |
+| `cluster_marker` | `str | None` | `None` | Identity marker drawn at the matrix-side marker column, one of `None`, `"cid"`, `"alpha"`. Off by default; the cluster span/line alone is the pointer, and identity lives with the floating label via `label_prefix`. |
+| `rank_by` | `str` | `"p"` | Ranking statistic for representative terms, `"p"` or `"q"`. |
+| `label_mode` | `str` | `"top_term"` | One of `"top_term"` or `"compressed"`. |
+| `max_words` | `int | None` | `None` | Maximum words in rendered display labels. |
+| `label_fields` | `tuple[str, ...] | None` | `("label", "n", "p")` | Fields to include in floating labels: `"label"`, `"n"`, `"p"`, `"q"`, `"fe"`. `None` suppresses base label/stat text. |
+| `label_prefix` | `str | None` | `"alpha"` | Sole owner of the floating-label identity prefix, one of `None`, `"cid"`, `"alpha"`. |
+| `font` | `str | None` | `None` | Font family for markers and floating labels. |
+| `fontsize` | `float | None` | `None` | Font size for floating label text (points). The marker glyph size defaults independently from style `compact_marker_fontsize`. |
+| `color` | `str | None` | `None` | Floating label text color. |
+| `alpha` | `float | None` | `None` | Floating label text opacity. |
+| `skip_unlabeled` | `bool` | `False` | Omit clusters without a label entirely. |
+| `placeholder_text` | `str | None` | `None` | Text for unlabeled clusters. |
+| `placeholder_color` | `str | None` | `None` | Color override for placeholder labels. |
+| `placeholder_alpha` | `float | None` | `None` | Alpha override for placeholder labels. |
+| `omit_words` | `Sequence[str] | None` | `None` | Words to omit from labels. |
+| `wrap_text` | `bool` | `True` | Whether to wrap long label text. |
+| `wrap_width` | `int | None` | `None` | Characters per wrapped line. |
+| `overflow` | `str` | `"wrap"` | Truncation mode, `"wrap"` or `"ellipsis"`. |
+| `line_shape` | `str | None` | style `compact_line_shape` (`"straight"`) | Leader-line shape, one of `"straight"`, `"curved"`, `"elbow"`. |
+| `line_style` | `str | None` | style `compact_line_style` (`"solid"`) | Leader-line style, one of `"solid"`, `"dashed"`, `"dotted"`. |
+| `cluster_span` | `str | None` | `None` | Matrix-side cluster-extent span, one of `None` or `"line"`, mirroring `plot_cluster_labels(cluster_span=...)`. `"line"` draws a vertical stroke with optional end caps sized by `cluster_span_cap_width`. |
+| `line_start` | `str | None` | style `compact_line_start` (`"tick"`) | Connector-start point decoration, one of `"tick"`, `"round"`, `"none"`. Drawn only when `cluster_span` is `None`. |
+| `line_end` | `str | None` | style `compact_line_end` (`"tick"`) | Table-side endpoint decoration, one of `"tick"`, `"arrow"`, `"round"`, `"none"`. |
+| `cluster_span_gap` | `float | None` | style `cluster_span_gap` | Row units trimmed from each end of a span, clamped to at most half the cluster's span height. |
+| `cluster_span_color` | `str | None` | style `cluster_span_color` (falls back to `label_sep_color`) | Span color, independent of `line_color`. |
+| `cluster_span_lw` | `float | None` | style `cluster_span_lw` | Span line width, independent of `line_lw`. |
+| `cluster_span_alpha` | `float | None` | style `cluster_span_alpha` | Span opacity, independent of `line_alpha`. |
+| `cluster_span_cap_width` | `float | None` | `0.0` | End-cap width (label-panel axes fraction). `0` draws a bare line; `>0` draws end caps. |
+| `cluster_span_left_pad` | `float | None` | style `cluster_span_left_pad` | Horizontal space (label-panel axes fraction) between the label-panel track/gutter region and the span centerline. Only applies when `cluster_span` is not `None`. |
+| `cluster_span_right_pad` | `float | None` | style `cluster_span_right_pad` | Horizontal space (label-panel axes fraction) immediately right of the span centerline — the span-to-leader-line-start gap. Only applies when `cluster_span` is not `None`. |
+| `label_left_pad` | `float | None` | style `compact_label_left_pad` (`0.0`) | Horizontal space (label-panel axes fraction) between the floating label column's left edge and the label text. Moves the label text only; the leader line still ends at the connector region's right edge. |
+| `connector_width` | `float | None` | style `compact_bridge_width` (`0.45`) | Width (label-panel axes fraction) reserved for the connector/leader-line region between the cluster span and the floating label column. Must be `> 0`. Widening it lengthens the leader lines and pushes the floating label column right. |
+| `line_color` | `str | None` | style `compact_line_color` | Leader-line color. |
+| `line_lw` | `float | None` | style `compact_line_lw` | Leader-line width. |
+| `line_alpha` | `float | None` | style `compact_line_alpha` | Leader-line opacity. |
+| `boundary_color` | `str | None` | style `boundary_color` | Matrix cluster-boundary line color. |
+| `boundary_lw` | `float | None` | style `boundary_lw` | Matrix cluster-boundary line width. |
+| `boundary_alpha` | `float | None` | style `boundary_alpha` | Matrix cluster-boundary opacity. |
+
+Behavior notes:
+
+- `plot_cluster_labels(...)` and `plot_cluster_labels_compact(...)` are mutually exclusive in one render; declaring both raises an error.
+- Raises `ValueError` at render time if label-panel track widths/pads and `connector_width` leave no room for the floating label column, or if the span pads overrun `connector_width`.
 
 ## Label Panel Tracks
 
