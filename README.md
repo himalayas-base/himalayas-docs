@@ -4,7 +4,7 @@
 [![pypiv](https://img.shields.io/pypi/v/himalayas.svg)](https://pypi.python.org/pypi/himalayas)
 [![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](LICENSE)
 
-This documentation describes Hierarchical Matrix Layout and Annotation Software (HiMaLAYAS), a framework for post hoc enrichment-based annotation of hierarchically clustered matrices. HiMaLAYAS treats dendrogram-defined clusters as statistical units, tests annotation enrichment, and renders significant annotations alongside the matrix. It supports biological and non-biological domains.
+This documentation describes Hierarchical Matrix Layout and Annotation Software (HiMaLAYAS), a framework for post hoc enrichment-based annotation and visualization of hierarchically clustered matrices. HiMaLAYAS treats dendrogram-defined clusters as statistical units, tests categorical annotations for enrichment, controls multiple testing, and renders significant annotations alongside clusters. It supports biological and non-biological domains.
 
 - **Full Documentation**: [himalayas-base.github.io/himalayas-docs](https://himalayas-base.github.io/himalayas-docs)
 - **Figure Gallery**: [himalayas-base.github.io/himalayas-docs/11_figure_gallery](https://himalayas-base.github.io/himalayas-docs/11_figure_gallery/)
@@ -17,7 +17,7 @@ For a full description of HiMaLAYAS and its applications, see:
 <br>
 Horecka, I., and Röst, H. (2026)
 <br>
-_HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_
+_HiMaLAYAS: enrichment-based annotation and visualization of hierarchically clustered matrices_
 <br>
 _bioRxiv_. [https://www.biorxiv.org/content/10.64898/2026.02.11.705303v2](https://www.biorxiv.org/content/10.64898/2026.02.11.705303v2)
 <br>
@@ -29,15 +29,16 @@ HiMaLAYAS is applied to a hierarchically clustered
 _Saccharomyces cerevisiae_ genetic interaction profile similarity matrix
 (Costanzo _et al_., 2016), focusing on genes with high profile variance.
 Dendrogram-defined clusters were tested for Gene Ontology Biological Process
-(GO BP; Ashburner _et al_., 2000) enrichment, revealing hierarchical
-organization of biological processes.
+(GO BP; Ashburner _et al_., 2000) enrichment, with significant annotations
+rendered alongside clusters.
 
 ![Figure 1](assets/figure_1.png)
 **HiMaLAYAS workflow and application to a hierarchically clustered yeast
 genetic interaction profile similarity matrix (Costanzo _et al_., 2016)**.
-A real-valued matrix and categorical annotations serve as inputs. The matrix is
-cut at a user-defined depth, and each dendrogram-defined cluster is evaluated
-for GO BP enrichment.
+A real-valued matrix and categorical annotations serve as inputs. HiMaLAYAS
+cuts the dendrogram at a user-defined threshold, tests categorical annotations
+for enrichment, controls multiple testing, and renders significant annotations
+alongside clusters.
 
 ## Quickstart
 
@@ -63,7 +64,7 @@ Open `notebooks/quickstart.ipynb` or `notebooks/quickstart_advanced.ipynb` in Ju
 
 Horecka, I., and Röst, H. (2026)
 <br>
-_HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_
+_HiMaLAYAS: enrichment-based annotation and visualization of hierarchically clustered matrices_
 <br>
 _bioRxiv_. [https://www.biorxiv.org/content/10.64898/2026.02.11.705303v2](https://www.biorxiv.org/content/10.64898/2026.02.11.705303v2)
 <br>
