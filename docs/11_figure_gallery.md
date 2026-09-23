@@ -7,15 +7,6 @@ Browse selected HiMaLAYAS example outputs. These examples are illustrative docum
 <div class="aux-gallery">
   <div class="aux-gallery-item aux-gallery-item--light">
     <div class="aux-gallery-caption">
-      <strong>WIOD country-sector input-output example.</strong> Non-biological country-sector input-output matrix annotated by country metadata.
-      <span class="aux-gallery-meta">Dataset: WIOD 2016 release, 2014 table · Annotation: Country metadata</span>
-    </div>
-    <a class="aux-gallery-link" href="../images/gallery/wiod_supp_fig_4_resized.png" target="_blank" rel="noopener">
-      <img src="../images/gallery/wiod_supp_fig_4_resized.png" alt="WIOD country-sector input-output matrix" />
-    </a>
-  </div>
-  <div class="aux-gallery-item aux-gallery-item--light">
-    <div class="aux-gallery-caption">
       <strong>Yeast genetic interaction profile similarity matrix.</strong> Yeast genetic interaction profile similarity matrix with enrichment-guided cluster annotations.
       <span class="aux-gallery-meta">Dataset: Costanzo et al. (2016) · Annotation: GO BP (yeast)</span>
     </div>
@@ -48,6 +39,15 @@ Browse selected HiMaLAYAS example outputs. These examples are illustrative docum
     </div>
     <a class="aux-gallery-link" href="../images/gallery/gi_score.png" target="_blank" rel="noopener">
       <img src="../images/gallery/gi_score.png" alt="Yeast genetic interaction score matrix" />
+    </a>
+  </div>
+  <div class="aux-gallery-item aux-gallery-item--light">
+    <div class="aux-gallery-caption">
+      <strong>WIOD country-sector input-output example.</strong> Non-biological country-sector input-output matrix annotated by country metadata.
+      <span class="aux-gallery-meta">Dataset: WIOD 2016 release, 2014 table · Annotation: Country metadata</span>
+    </div>
+    <a class="aux-gallery-link" href="../images/gallery/wiod_supp_fig_4_resized.png" target="_blank" rel="noopener">
+      <img src="../images/gallery/wiod_supp_fig_4_resized.png" alt="WIOD country-sector input-output matrix" />
     </a>
   </div>
   <div class="aux-gallery-item aux-gallery-item--dark">
