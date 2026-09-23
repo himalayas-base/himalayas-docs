@@ -2,6 +2,8 @@
 
 HiMaLAYAS uses a layered plotting system. Declare layers in order, then render with `show()` or `save()`.
 
+For most use cases, start with the quickstart notebooks and use this page as a method reference when you need a specific layer, track, legend, or export option.
+
 ## Signature
 
 ```python
@@ -20,7 +22,7 @@ Plotter(results: Results) -> Plotter
 from matplotlib.colors import Normalize
 from himalayas.plot import Plotter
 
-# Assumes `vlim`, `gene_essential_map`, and `gene_essential_colors` are prepared upstream.
+# Assumes `vlim`, `essentiality_map`, and `essentiality_colors` are prepared upstream.
 # See `quickstart.html` for the core workflow and `quickstart_advanced.html`
 # for rails, legends, and nested zoom extensions.
 plotter = (
@@ -46,9 +48,9 @@ plotter = (
     )
     .plot_label_bar(
         name="essentiality",
-        values=gene_essential_map,
+        values=essentiality_map,
         mode="categorical",
-        colors=gene_essential_colors,
+        colors=essentiality_colors,
         width=0.04,
         left_pad=0.06,
     )
@@ -435,8 +437,8 @@ characterization_colors = {
     "characterized": "#ffffff",
 }
 
-# Continuous example: row_id -> numeric value (e.g., row variance).
-row_variance = {
+# Continuous example: row_id -> numeric value (e.g., single-mutant fitness).
+single_mutant_fitness = {
     "YLR088W": 0.82,
     "YBR004C": 0.15,
     "YNL127W": 0.67,
@@ -765,17 +767,17 @@ Plotter.plot_label_legends(
 plotter = (
     Plotter(results)
     .plot_label_bar(
-        name="compound_category",
-        values=gene_compound_map,
+        name="essentiality",
+        values=essentiality_map,
         mode="categorical",
-        colors=gene_compound_colors,
+        colors=essentiality_colors,
         missing_color="#ffffff",
         width=0.04,
         left_pad=0.02,
     )
     .add_label_legend(
-        name="compound_category",
-        title="Compound category",
+        name="essentiality",
+        title="Essentiality",
         show_only_present=True,
     )
     .plot_label_legends(

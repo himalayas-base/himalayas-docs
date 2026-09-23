@@ -18,7 +18,7 @@ Annotations(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `term_to_labels` | `Dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, recipes, proteins). |
+| `term_to_labels` | `Dict[str, Iterable[str]]` | required | Mapping from term to labels (genes, sectors, proteins). |
 | `matrix` | `Matrix` | required | Provides the label universe. |
 | `min_term_size` | `int` | `2` | Minimum number of matrix-overlapping labels required for a term to be retained. |
 | `max_term_size` | `int | None` | `None` | Maximum number of matrix-overlapping labels allowed for a term to be retained. |
@@ -86,15 +86,15 @@ with open("data/go_bp_name_to_orfs.json", "r", encoding="utf-8") as fh:
 annotations = Annotations(go_bp, matrix)
 ```
 
-## Example (Country to Recipes)
+## Example (Country to Sectors)
 
 ```python
-country_to_recipes = {
-    "Italy": ["r_001", "r_105", "r_214"],
-    "India": ["r_002", "r_003"],
+country_to_sectors = {
+    "Germany": ["DEU | Manufacturing", "DEU | Transport"],
+    "Japan": ["JPN | Manufacturing", "JPN | Finance"],
 }
 
-annotations = Annotations(country_to_recipes, matrix)
+annotations = Annotations(country_to_sectors, matrix)
 ```
 
 ## Common Errors

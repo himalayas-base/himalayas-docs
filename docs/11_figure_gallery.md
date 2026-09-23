@@ -1,60 +1,69 @@
-# Figure Gallery
+# Example Gallery
 
-Browse selected HiMaLAYAS figures across yeast genetic interaction and recipe-by-ingredient analyses.
+Browse selected HiMaLAYAS example outputs. These examples are illustrative documentation assets; submitted manuscript figure numbering is tracked in the `himalayas-publication` repository.
 
 ## Gallery
 
 <div class="aux-gallery">
   <div class="aux-gallery-item aux-gallery-item--light">
     <div class="aux-gallery-caption">
-      <strong>Figure 1.</strong> Yeast genetic interaction profile similarity matrix with enrichment-guided cluster annotations.
+      <strong>Yeast genetic interaction profile similarity matrix.</strong> Yeast genetic interaction profile similarity matrix with enrichment-guided cluster annotations.
       <span class="aux-gallery-meta">Dataset: Costanzo et al. (2016) · Annotation: GO BP (yeast)</span>
     </div>
     <a class="aux-gallery-link" href="../images/gallery/gi_fig_1.png" target="_blank" rel="noopener">
-      <img src="../images/gallery/gi_fig_1.png" alt="Yeast GI profile similarity matrix, Figure 1" />
+      <img src="../images/gallery/gi_fig_1.png" alt="Yeast genetic interaction profile similarity matrix" />
     </a>
   </div>
   <div class="aux-gallery-item aux-gallery-item--light">
     <div class="aux-gallery-caption">
-      <strong>Figure 1 Extended.</strong> Yeast genetic interaction profile similarity matrix with compound classification and row variance tracks.
-      <span class="aux-gallery-meta">Dataset: Costanzo et al. (2016) · Annotation: GO BP (yeast) · ChemGI rail: Piotrowski et al. (2017)</span>
+      <strong>Yeast genetic interaction profile similarity matrix with row tracks.</strong> Yeast genetic interaction profile similarity matrix with essentiality and single-mutant fitness row tracks.
+      <span class="aux-gallery-meta">Dataset: Costanzo et al. (2016) · Annotation: GO BP (yeast) · Row tracks: essentiality and single-mutant fitness</span>
     </div>
     <a class="aux-gallery-link" href="../images/gallery/gi_fig_1_detailed.png" target="_blank" rel="noopener">
-      <img src="../images/gallery/gi_fig_1_detailed.png" alt="Yeast GI profile similarity matrix with additional tracks, Figure 1 Extended" />
+      <img src="../images/gallery/gi_fig_1_detailed.png" alt="Yeast genetic interaction profile similarity matrix with row tracks" />
     </a>
   </div>
   <div class="aux-gallery-item aux-gallery-item--light">
     <div class="aux-gallery-caption">
-      <strong>Figure 2.</strong> Yeast pan-transcriptome expression matrix.
+      <strong>Yeast pan-transcriptome example.</strong> Yeast pan-transcriptome expression matrix.
       <span class="aux-gallery-meta">Dataset: Caudal et al. (2024) · Annotation: GO BP (yeast)</span>
     </div>
     <a class="aux-gallery-link" href="../images/gallery/yeast_transcriptome.png" target="_blank" rel="noopener">
-      <img src="../images/gallery/yeast_transcriptome.png" alt="Yeast pan-transcriptome expression matrix, Figure 2" />
+      <img src="../images/gallery/yeast_transcriptome.png" alt="Yeast pan-transcriptome expression matrix" />
     </a>
   </div>
   <div class="aux-gallery-item aux-gallery-item--dark">
     <div class="aux-gallery-caption">
-      <strong>Supplementary Figure 1.</strong> Yeast genetic interaction score matrix.
+      <strong>Yeast GI-score example.</strong> Yeast genetic interaction score matrix.
       <span class="aux-gallery-meta">Dataset: Costanzo et al. (2016) · Annotation: GO BP (yeast)</span>
     </div>
-    <a class="aux-gallery-link" href="../images/gallery/gi_supp_fig_1.png" target="_blank" rel="noopener">
-      <img src="../images/gallery/gi_supp_fig_1.png" alt="Yeast GI score matrix, Supplementary Figure 1" />
+    <a class="aux-gallery-link" href="../images/gallery/gi_score.png" target="_blank" rel="noopener">
+      <img src="../images/gallery/gi_score.png" alt="Yeast genetic interaction score matrix" />
     </a>
   </div>
   <div class="aux-gallery-item aux-gallery-item--dark">
     <div class="aux-gallery-caption">
-      <strong>Supplementary Figure 2.</strong> Recipe-by-ingredient similarity matrix annotated by country of origin.
-      <span class="aux-gallery-meta">Dataset: Magomere et al. (2025) · Annotation: Country of origin</span>
+      <strong>WIOD country-sector input-output example.</strong> Non-biological country-sector input-output matrix annotated by country metadata.
+      <span class="aux-gallery-meta">Dataset: WIOD 2016 release, 2014 table · Annotation: Country metadata</span>
     </div>
-    <a class="aux-gallery-link" href="../images/gallery/recipes_supp_fig_2.png" target="_blank" rel="noopener">
-      <img src="../images/gallery/recipes_supp_fig_2.png" alt="Recipe-by-ingredient similarity matrix, Supplementary Figure 2" />
+    <a class="aux-gallery-link" href="../images/gallery/wiod_supp_fig_4_resized.png" target="_blank" rel="noopener">
+      <img src="../images/gallery/wiod_supp_fig_4_resized.png" alt="WIOD country-sector input-output matrix" />
+    </a>
+  </div>
+  <div class="aux-gallery-item aux-gallery-item--dark">
+    <div class="aux-gallery-caption">
+      <strong>World Wide Dishes recipe-ingredient example.</strong> Non-biological recipe-ingredient matrix annotated by country metadata.
+      <span class="aux-gallery-meta">Dataset: World Wide Dishes · Annotation: Country metadata</span>
+    </div>
+    <a class="aux-gallery-link" href="../images/gallery/world_recipes.png" target="_blank" rel="noopener">
+      <img src="../images/gallery/world_recipes.png" alt="World Wide Dishes recipe-ingredient matrix" />
     </a>
   </div>
 </div>
 
 ## Citations
 
-**Figure 1, Figure 1 Extended, and Supplementary Figure 1**
+**Yeast genetic interaction profile similarity, row-track, and GI-score examples**
 <br>
 Costanzo, M., VanderSluis, B., Koch, E. N., et al. (2016)
 <br>
@@ -62,15 +71,7 @@ _A global genetic interaction network maps a wiring diagram of cellular function
 <br>
 _Science_ 353, aaf1420.
 
-**Figure 1 Extended** (chemogenomic annotation)
-<br>
-Piotrowski, J. S., Li, S. C., Deshpande, R., et al. (2017)
-<br>
-_Functional annotation of chemical libraries across diverse biological processes_
-<br>
-_Nature Chemical Biology_ 13, 982–993.
-
-**Figure 2**
+**Yeast pan-transcriptome example**
 <br>
 Caudal, E., Loegler, V., Dutreux, F., et al. (2024)
 <br>
@@ -78,18 +79,26 @@ _Pan-transcriptome reveals a large accessory genome contribution to gene express
 <br>
 _Nature_.
 
-**Supplementary Figure 2**
+**WIOD country-sector input-output example**
 <br>
-Magomere, J., Ishida, S., Afonja, T., et al. (2025)
+Timmer, M. P., Dietzenbacher, E., Los, B., Stehrer, R., and de Vries, G. J. (2015)
 <br>
-_The world wide recipe: a community-centred framework for fine-grained data collection and regional bias operationalisation_
+_An Illustrated User Guide to the World Input–Output Database: the Case of Global Automotive Production_
 <br>
-_Proc. ACM Conf. Fairness, Accountability and Transparency_, 246–282.
+_Review of International Economics_ 23, 575–605.
+
+**World Wide Dishes recipe example**
+<br>
+Magomere, J., Ishida, S., Afonja, T., Salama, A., Kochin, D., Yuehgoh, F., Hamzaoui, I., Sefala, R., Alaagib, A., Dalal, S., Marchegiani, B., Semenova, E., Crais, L., and Mackenzie Hall, S. (2024; revised 2025)
+<br>
+_The World Wide recipe: A community-centred framework for fine-grained data collection and regional bias operationalisation_
+<br>
+_arXiv_ 2406.09496. [https://doi.org/10.48550/arXiv.2406.09496](https://doi.org/10.48550/arXiv.2406.09496)
 
 **Generated with HiMaLAYAS**
 <br>
 Horecka, I., and Röst, H. (2026)
 <br>
-_HiMaLAYAS: enrichment-based annotation of hierarchically clustered matrices_
+_HiMaLAYAS: enrichment-based annotation and visualization of hierarchically clustered matrices_
 <br>
 _bioRxiv_. [https://www.biorxiv.org/content/10.64898/2026.02.11.705303v2](https://www.biorxiv.org/content/10.64898/2026.02.11.705303v2)

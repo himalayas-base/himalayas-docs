@@ -8,10 +8,10 @@ A common pattern is to zoom into one cluster, re-run clustering and enrichment, 
 
 1. Subset the results to one cluster (`results.subset(...)`) or multiple clusters (`results.subset_clusters(...)`).
 2. Rebind annotations to the subset matrix.
-3. Cut the subset dendrogram at a lower depth.
+3. Cut the subset dendrogram at a different threshold.
 4. Re-run enrichment with a background (parent) matrix.
 
-Repeat the analysis at different dendrogram depths to explore depth-dependent enrichment.
+Repeat the analysis at different dendrogram cut thresholds to explore threshold-dependent enrichment.
 
 Subset reruns are often smaller than the full matrix. Keep the default annotation term-size floor (`min_term_size=2`) unless you have a specific exploratory reason to change it.
 
@@ -116,34 +116,35 @@ Then plot with the same `Plotter` pipeline used above.
 
 For a cluster-level summary of the zoomed result, see [Condensed Dendrogram](8_condensed_dendrogram.md).
 
-## Non-Biological Example (Recipes)
+## Non-Biological Example
 
-HiMaLAYAS supports biological and non-biological domains. The recipe example builds an ingredient-by-recipe matrix and annotates clusters by country of origin using a worldwide recipe dataset.
+HiMaLAYAS supports biological and non-biological domains. In Supplementary Figure S4, the non-biological example uses the 2014 World Input-Output Database (WIOD) country-sector input-output matrix and annotates dendrogram-defined clusters with native country metadata.
 
 Key steps:
 
-- Clean and merge near-duplicate ingredient tokens.
-- Build a sparse binary matrix.
-- Filter low-frequency ingredients and very small recipes.
-- Map countries to recipe IDs and run enrichment.
+- Preprocess the WIOD source table into a log1p-scaled intermediate-flow matrix suitable for hierarchical clustering.
+- Keep country-sector row labels that can be mapped back to WIOD country metadata.
+- Build a country-to-country-sector mapping from the metadata.
+- Run enrichment testing and render significant annotations alongside clusters.
 
 ```python
-country_to_recipes = {
-    "India": ["r_001", "r_003"],
-    "Nigeria": ["r_002"],
-    "Mexico": ["r_004", "r_005"],
-}
+country_to_sectors = (
+    country_sector_metadata
+    .groupby("country_name")["country_sector_id"]
+    .apply(list)
+    .to_dict()
+)
 
-matrix = Matrix(ingredient_matrix)
-annotations = Annotations(country_to_recipes, matrix)
+matrix = Matrix(wiod_log1p_intermediate_flow_matrix)
+annotations = Annotations(country_to_sectors, matrix)
 
 analysis = (
     Analysis(matrix, annotations)
     .cluster(
         linkage_method="ward",
         linkage_metric="euclidean",
-        linkage_threshold=7.5,
-        min_cluster_size=15,
+        linkage_threshold="auto",
+        min_cluster_size=20,
     )
     .enrich(min_overlap=2)
     .finalize(col_cluster=True, fdr_scope="global")
@@ -153,3 +154,5 @@ results = analysis.results
 results_sig = results.filter("qval <= 0.05")
 cluster_labels = results_sig.cluster_labels(rank_by="q", label_mode="top_term")
 ```
+
+For the complete reproducible publication workflow, see `supp_fig_4.ipynb` in the `himalayas-publication` repository.
