@@ -622,10 +622,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-country-to-recipes" class="md-nav__link">
+  <a href="#example-country-to-sectors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example (Country to Recipes)
+        Example (Country to Sectors)
       
     </span>
   </a>
@@ -1184,7 +1184,7 @@
 <td><code>term_to_labels</code></td>
 <td><code>Dict[str, Iterable[str]]</code></td>
 <td>required</td>
-<td>Mapping from term to labels (genes, recipes, proteins).</td>
+<td>Mapping from term to labels (genes, sectors, proteins).</td>
 </tr>
 <tr>
 <td><code>matrix</code></td>
@@ -1293,13 +1293,13 @@ Labels must match matrix row labels exactly.</p>
 </span><span id="__line-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
 </span><span id="__line-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">go_bp</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="example-country-to-recipes">Example (Country to Recipes)<a class="headerlink" href="#example-country-to-recipes" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">country_to_recipes</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__line-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="s2">&quot;Italy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_001&quot;</span><span class="p">,</span> <span class="s2">&quot;r_105&quot;</span><span class="p">,</span> <span class="s2">&quot;r_214&quot;</span><span class="p">],</span>
-</span><span id="__line-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="s2">&quot;India&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r_002&quot;</span><span class="p">,</span> <span class="s2">&quot;r_003&quot;</span><span class="p">],</span>
+<h2 id="example-country-to-sectors">Example (Country to Sectors)<a class="headerlink" href="#example-country-to-sectors" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__line-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">country_to_sectors</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__line-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="s2">&quot;Germany&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;DEU | Manufacturing&quot;</span><span class="p">,</span> <span class="s2">&quot;DEU | Transport&quot;</span><span class="p">],</span>
+</span><span id="__line-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="s2">&quot;Japan&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;JPN | Manufacturing&quot;</span><span class="p">,</span> <span class="s2">&quot;JPN | Finance&quot;</span><span class="p">],</span>
 </span><span id="__line-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
 </span><span id="__line-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
-</span><span id="__line-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">country_to_recipes</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+</span><span id="__line-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">annotations</span> <span class="o">=</span> <span class="n">Annotations</span><span class="p">(</span><span class="n">country_to_sectors</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1310,6 +1310,7 @@ Labels must match matrix row labels exactly.</p>
 <ul>
 <li>Terms are filtered by matrix overlap and term size limits.</li>
 <li>Keep <code>min_term_size=2</code> as the default floor for analysis-ready runs.</li>
+<li><code>min_term_size</code> is independent from <code>Analysis.enrich(min_overlap=...)</code>; the two are not kept in sync.</li>
 </ul>
 
 

@@ -1082,16 +1082,17 @@
 
 
 <h1 id="clustering-and-layout">Clustering and Layout<a class="headerlink" href="#clustering-and-layout" title="Permanent link">&para;</a></h1>
-<p>HiMaLAYAS uses hierarchical clustering to organize matrix rows and columns into contiguous regions of related observations. Clusters are defined by cutting the dendrogram at a user-defined depth (distance threshold).</p>
+<p>HiMaLAYAS uses hierarchical clustering to organize matrix rows and columns into contiguous regions of related observations. Clusters are defined by cutting the dendrogram at a user-defined distance threshold.</p>
 <h2 id="signature">Signature<a class="headerlink" href="#signature" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__line-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Analysis</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span>
 </span><span id="__line-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">linkage_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ward&quot;</span><span class="p">,</span>
 </span><span id="__line-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">linkage_metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-</span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">linkage_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
+</span><span id="__line-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">linkage_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
 </span><span id="__line-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="o">*</span><span class="p">,</span>
 </span><span id="__line-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">optimal_ordering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 </span><span id="__line-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">min_cluster_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-</span><span id="__line-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Analysis</span>
+</span><span id="__line-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">merge_small_clusters</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__line-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Analysis</span>
 </span></code></pre></div>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <table>
@@ -1118,9 +1119,9 @@
 </tr>
 <tr>
 <td><code>linkage_threshold</code></td>
-<td><code>float</code></td>
+<td><code>float \| str</code></td>
 <td><code>0.7</code></td>
-<td>Dendrogram cut threshold (depth). Lower gives more clusters, higher gives fewer.</td>
+<td>Dendrogram cut threshold (depth). Lower gives more clusters, higher gives fewer. Pass <code>"auto"</code> to automatically select a threshold instead of specifying one (see <a href="#notes">Notes</a>).</td>
 </tr>
 <tr>
 <td><code>optimal_ordering</code></td>
@@ -1132,7 +1133,13 @@
 <td><code>min_cluster_size</code></td>
 <td><code>int</code></td>
 <td><code>1</code></td>
-<td>Merge small clusters upward until size is met. Values &lt;= 1 disable.</td>
+<td>Minimum cluster size floor. Values &lt;= 1 disable the floor. See <code>merge_small_clusters</code> for how the floor is enforced.</td>
+</tr>
+<tr>
+<td><code>merge_small_clusters</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>If <code>True</code>, merges clusters smaller than <code>min_cluster_size</code> upward along the dendrogram (historical behavior). If <code>False</code>, preserves small dendrogram-cut clusters structurally; <code>min_cluster_size</code> is still applied, but by excluding clusters below it from enrichment reporting rather than merging them away.</td>
 </tr>
 </tbody>
 </table>
@@ -1186,8 +1193,10 @@
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Any method or metric supported by SciPy <code>linkage</code> is valid (see the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html">SciPy linkage docs</a>).</li>
+<li><code>linkage_metric="correlation"</code> requires every row to have non-zero variance, and <code>linkage_metric="cosine"</code> requires every row to have a non-zero L2 norm. Rows that violate this (constant rows for <code>correlation</code>, zero vectors for <code>cosine</code>) raise a <code>ValueError</code>; remove or preprocess the offending rows before clustering.</li>
 <li>When <code>optimal_ordering=False</code>, HiMaLAYAS uses <code>fastcluster</code> if installed and otherwise falls back to SciPy linkage.</li>
-<li><code>min_cluster_size</code> preserves hierarchy by merging undersized clusters into their parent cluster.</li>
+<li><code>linkage_threshold="auto"</code> scores candidate dendrogram cuts and picks the best one, balancing cluster quality against cluster-size diversity; it does not tune <code>linkage_method</code> or <code>linkage_metric</code>. If <code>min_cluster_size &gt; 1</code> and <code>merge_small_clusters=False</code> leave fewer than 2 reportable clusters, selection falls back to the cut with the best reportable coverage and diversity. A <code>ValueError</code> is raised if no threshold is usable.</li>
+<li><code>min_cluster_size</code> sets a size floor for dendrogram-cut clusters; <code>merge_small_clusters</code> controls whether clusters below it are merged upward (default) or excluded from enrichment reporting instead.</li>
 <li>With <code>Analysis.finalize(col_cluster=True)</code>, HiMaLAYAS reuses cached column order for the current linkage settings (<code>linkage_method</code>, <code>linkage_metric</code>, <code>optimal_ordering</code>).</li>
 <li>For large matrices, reuse a single <code>Analysis</code> object when sweeping linkage thresholds.</li>
 <li>For fixed linkage settings (<code>linkage_method</code>, <code>linkage_metric</code>, <code>optimal_ordering</code>), <code>Analysis.cluster(...)</code> reuses cached row linkage.</li>
