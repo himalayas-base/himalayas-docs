@@ -37,6 +37,7 @@ Common causes:
 - `min_overlap` is too high.
 - Terms are filtered out because they do not overlap with the matrix.
 - Your annotations are too sparse or the matrix is too small.
+- With `merge_small_clusters=False`, clusters smaller than `min_cluster_size` are excluded from enrichment reporting by design.
 
 ## How do I choose between `global` and `per_cluster` q-values?
 

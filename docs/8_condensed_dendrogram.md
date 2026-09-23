@@ -16,6 +16,7 @@ plot_dendrogram_condensed(
     sigbar_min_logp: float = 2.0,
     sigbar_max_logp: float = 10.0,
     sigbar_norm: Normalize | None = None,
+    dendrogram_width: float = 0.60,
     sigbar_width: float = 0.06,
     sigbar_height: float = 0.8,
     sigbar_alpha: float = 1.0,
@@ -55,6 +56,7 @@ plot_dendrogram_condensed(
 | `sigbar_min_logp` | `float` | `2.0` | Minimum `-log10(score)` for scaling. |
 | `sigbar_max_logp` | `float` | `10.0` | Maximum `-log10(score)` for scaling. |
 | `sigbar_norm` | `Normalize | None` | `None` | Optional normalization; overrides minimum and maximum scaling. |
+| `dendrogram_width` | `float` | `0.60` | Dendrogram panel width (axes fraction). |
 | `sigbar_width` | `float` | `0.06` | Significance bar width (axes fraction). |
 | `sigbar_height` | `float` | `0.8` | Height of each significance bar relative to row pitch. Must be in `(0, 1]`. |
 | `sigbar_alpha` | `float` | `1.0` | Significance bar alpha. |
@@ -95,6 +97,7 @@ Behavior notes:
 - Placeholder style resolves as `placeholder_color` -> `label_color`, and `placeholder_alpha` -> `label_alpha`.
 - Placeholder styling applies only to unlabeled or placeholder cluster labels.
 - Condensed plotting requires at least two clusters; single-cluster inputs raise a `ValueError`.
+- `dendrogram_width` must be `> 0`; combined with `sigbar_width` and `label_left_pad`, it must leave positive remaining width for the label panel, or a `ValueError` is raised.
 
 `label_fields` reference:
 
