@@ -27,18 +27,18 @@ Submitted to _Bioinformatics Advances_.
 
 HiMaLAYAS is applied to a hierarchically clustered
 _Saccharomyces cerevisiae_ genetic interaction profile similarity matrix
-(Costanzo _et al_., 2016), focusing on genes with high profile variance.
+(Costanzo _et al_., 2016), focusing on 1,053 genes with high profile variance.
 Dendrogram-defined clusters were tested for Gene Ontology Biological Process
-(GO BP; Ashburner _et al_., 2000) enrichment, with significant annotations
-rendered alongside clusters.
+(GO BP; Ashburner _et al_., 2000) enrichment, with top-ranked significant
+annotations rendered alongside clusters.
 
 ![Figure 1](assets/figure_1.png)
 **HiMaLAYAS workflow and application to a hierarchically clustered yeast
 genetic interaction profile similarity matrix (Costanzo _et al_., 2016)**.
 A real-valued matrix and categorical annotations serve as inputs. HiMaLAYAS
-cuts the dendrogram at a user-defined threshold, tests categorical annotations
-for enrichment, controls multiple testing, and renders significant annotations
-alongside clusters.
+hierarchically clusters the matrix, cuts the dendrogram at a user-defined
+distance threshold, tests categorical annotations for enrichment, controls
+multiple testing, and renders significant annotations alongside clusters.
 
 ## Quickstart
 
@@ -72,7 +72,7 @@ Submitted to _Bioinformatics Advances_.
 
 ### Software archive
 
-HiMaLAYAS software for the _bioRxiv_ preprint.
+HiMaLAYAS software archive.
 <br>
 Zenodo. [https://doi.org/10.5281/zenodo.18610373](https://doi.org/10.5281/zenodo.18610373)
 
