@@ -20,6 +20,12 @@
 Results.filter(expr: str, **kwargs: Any) -> Results
 Results.subset(cluster: int) -> Results
 Results.subset_clusters(clusters: Iterable[int]) -> Results
+Results.drop_redundant(
+    annotations: Annotations,
+    *,
+    jaccard: float = 0.5,
+    rank_by: str = "p",
+) -> Results
 Results.cluster_labels(
     *,
     rank_by: str = "p",
@@ -33,6 +39,7 @@ Results.cluster_labels(
 | `results.filter(...)` | Returns a new `Results` filtered by a query expression on `results.df`. |
 | `results.subset(...)` | Returns a single-cluster view for zoom workflows (with subset matrix attached). |
 | `results.subset_clusters(...)` | Returns a multi-cluster view for zoom workflows by taking the union of selected cluster labels. |
+| `results.drop_redundant(...)` | Returns a new `Results` without near-duplicate terms, judged by label overlap within each cluster. |
 | `results.cluster_labels(...)` | Builds one label per cluster for inspection or export. |
 
 ## `filter`
@@ -71,6 +78,31 @@ Returns a multi-cluster view for zoom workflows by taking the union of selected 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `clusters` | `Iterable[int]` | required | Cluster ids to subset. Returns one combined `Results` view with a subset matrix attached. |
+
+## `drop_redundant`
+
+```python
+Results.drop_redundant(
+    annotations: Annotations,
+    *,
+    jaccard: float = 0.5,
+    rank_by: str = "p",
+) -> Results
+```
+
+Returns a new `Results` without near-duplicate terms. Within each cluster, rows are walked from most to least significant, and a term is dropped when a term already kept in that cluster shares enough of its labels with it. Overlap is the Jaccard index, the size of the intersection over the size of the union, computed over each term's labels in the matrix. Enrichment statistics are not recomputed, and rows keep their original order.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `annotations` | `Annotations` | required | Annotations that define each term's labels. |
+| `jaccard` | `float` | `0.5` | Jaccard index, between `0` and `1`, from which a term counts as a repeat of a more significant one. A pair with no shared labels is never a repeat. |
+| `rank_by` | `str` | `"p"` | Statistic that orders terms, `"p"` or `"q"`. Ties break by p-value, then term. `"q"` requires `qval` (run `Analysis.finalize(...)` first). |
+
+Behavior details:
+
+- Terms are compared within one cluster at a time; the same term can be kept in several clusters.
+- Raises `ValueError` if `jaccard` is outside `[0, 1]`, if no matrix is attached, or if a term is not in `annotations`.
+- Works on zoom results: terms are compared by their labels in the current matrix, even when `Annotations` dropped the term for being too small there.
 
 ## `cluster_labels`
 
@@ -123,6 +155,32 @@ Subset to multiple clusters (union view):
 ```python
 zoom_view_multi = results.subset_clusters(clusters=[2, 7, 9])
 zoom_matrix_multi = zoom_view_multi.matrix
+```
+
+Combine a q-value cutoff with a minimum fold enrichment (`filter` uses `DataFrame.query`):
+
+```python
+results_strong = results.filter("qval <= 0.05 and fe >= 2")
+```
+
+Hide near-duplicate terms inside each cluster:
+
+```python
+results_sig = results.filter("qval <= 0.05")
+results_distinct = results_sig.drop_redundant(annotations, jaccard=0.5, rank_by="q")
+
+display(len(results_sig.df), len(results_distinct.df))
+```
+
+Lower `jaccard` removes more terms; `jaccard=1.0` removes only terms with identical labels.
+
+Export the cluster assigned to each label:
+
+```python
+import pandas as pd
+
+cluster_table = pd.Series(results.clusters.label_to_cluster, name="cluster")
+cluster_table.rename_axis("label").to_csv("clusters.tsv", sep="\t")
 ```
 
 Build optional cluster labels for inspection or export:
