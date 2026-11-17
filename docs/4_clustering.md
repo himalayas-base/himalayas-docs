@@ -76,7 +76,8 @@ After clustering, cluster assignments are attached as:
 - When `optimal_ordering=False`, HiMaLAYAS uses `fastcluster` if installed and otherwise falls back to SciPy linkage.
 - `linkage_threshold="auto"` scores candidate dendrogram cuts and picks the best one, balancing cluster quality against cluster-size diversity; it does not tune `linkage_method` or `linkage_metric`. If `min_cluster_size > 1` and `merge_small_clusters=False` leave fewer than 2 reportable clusters, selection falls back to the cut with the best reportable coverage and diversity. A `ValueError` is raised if no threshold is usable.
 - `min_cluster_size` sets a size floor for dendrogram-cut clusters; `merge_small_clusters` controls whether clusters below it are merged upward (default) or excluded from enrichment reporting instead.
-- With `Analysis.finalize(col_cluster=True)`, HiMaLAYAS reuses cached column order for the current linkage settings (`linkage_method`, `linkage_metric`, `optimal_ordering`).
+- With `Analysis.finalize(col_cluster=True)`, HiMaLAYAS reuses cached column order for the current linkage settings (`linkage_method`, `linkage_metric`, `optimal_ordering`). Column clustering uses the same linkage method and metric as the rows and affects display only; no statistic uses it.
+- With `Analysis.finalize(col_cluster=True, col_dendrogram=True)`, the column linkage is kept as well (and cached per linkage settings) so `Plotter.plot_col_dendrogram(...)` can draw the column tree.
 - For large matrices, reuse a single `Analysis` object when sweeping linkage thresholds.
 - For fixed linkage settings (`linkage_method`, `linkage_metric`, `optimal_ordering`), `Analysis.cluster(...)` reuses cached row linkage.
 - Creating a new `Analysis(matrix, annotations)` starts with empty caches.

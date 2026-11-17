@@ -36,6 +36,7 @@ Attaches plotting layout, fold enrichment (`fe`), and BH-FDR q-values to produce
 Analysis.finalize(
     *,
     col_cluster: bool = False,
+    col_dendrogram: bool = False,
     fdr_scope: str = "global",
 ) -> Analysis
 ```
@@ -45,6 +46,7 @@ Analysis.finalize(
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `col_cluster` | `bool` | `False` | Computes a dendrogram-based column order for plotting using the same `linkage_method`, `linkage_metric`, and `optimal_ordering` set in `Analysis.cluster(...)`. |
+| `col_dendrogram` | `bool` | `False` | Also keeps the column linkage on the layout so `Plotter.plot_col_dendrogram(...)` can draw the column tree. Requires `col_cluster=True`; otherwise `ValueError`. The column order is identical with or without it. |
 | `fdr_scope` | `str` | `"global"` | FDR scope. Use `"global"` for full-run correction or `"per_cluster"` for within-cluster correction. |
 
 ## Example
@@ -86,4 +88,4 @@ See [Results and Filtering](6_results.md) for examples of filtering on q-values.
 - q-values may still differ across runs because Benjamini-Hochberg FDR is applied to the hypothesis family tested in each run.
 - `fdr_scope="per_cluster"` supports within-cluster interpretation.
 - `min_overlap` is applied independently at three stages: filtering terms by universe-intersected size, filtering clusters by size, and suppressing individual cluster-term pairs by measured overlap.
-- Genes with multiple term annotations are tested independently for each term; HiMaLAYAS does not perform Gene Ontology graph-aware redundancy filtering (e.g. parent/child term collapsing or semantic-similarity clustering), so multiple significant terms for a cluster may be hierarchically or semantically related.
+- Genes with multiple term annotations are tested independently for each term; HiMaLAYAS does not perform Gene Ontology graph-aware redundancy filtering (e.g. parent/child term collapsing or semantic-similarity clustering), so multiple significant terms for a cluster may be hierarchically or semantically related. To hide near-duplicate terms by label overlap, use [`Results.drop_redundant(...)`](6_results.md#drop_redundant).

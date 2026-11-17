@@ -69,20 +69,23 @@ plotter.show()
 | --- | --- |
 | [`plotter.plot_matrix(...)`](#plot_matrix) | Declares the main matrix heatmap layer. |
 | [`plotter.plot_dendrogram(...)`](#plot_dendrogram) | Declares a dendrogram layer aligned to matrix rows. |
+| [`plotter.plot_col_dendrogram(...)`](#plot_col_dendrogram) | Declares a dendrogram layer aligned to matrix columns, above the matrix. |
+| [`plotter.plot_cut_line(...)`](#plot_cut_line) | Declares a cut line, with optional scissors, on the row dendrogram. |
 | [`plotter.set_label_panel(...)`](#set_label_panel) | Configures shared label-panel geometry for labels and tracks. |
 | [`plotter.plot_cluster_labels(...)`](#plot_cluster_labels) | Declares cluster-level labels generated from attached `Results`. |
 | [`plotter.plot_cluster_labels_compact(...)`](#plot_cluster_labels_compact) | Declares compact radiating cluster labels with leader lines; mutually exclusive with `plot_cluster_labels(...)`. |
 | [`plotter.plot_cluster_bar(...)`](#plot_cluster_bar) | Declares a cluster-level bar track derived from cluster ranking scores. |
 | [`plotter.plot_label_bar(...)`](#plot_label_bar) | Declares a row-level annotation bar track in the label panel. |
+| [`plotter.plot_col_label_bar(...)`](#plot_col_label_bar) | Declares a column-level annotation bar as a strip above the matrix. |
 | [`plotter.set_label_track_order(...)`](#track-order) | Sets explicit ordering of registered label-panel tracks. |
-| [`plotter.plot_bar_labels(...)`](#track-titles) | Declares titles for registered label-panel tracks. |
+| [`plotter.plot_bar_labels(...)`](#track-titles) | Declares titles for label-panel tracks and column label bars. |
 | [`plotter.plot_title(...)`](#plot_title) | Declares a matrix title layer. |
 | [`plotter.plot_matrix_axis_labels(...)`](#plot_matrix_axis_labels) | Declares x-axis and y-axis labels for the matrix panel. |
 | [`plotter.plot_row_ticks(...)`](#plot_row_ticks) | Declares row tick labels for the matrix panel. |
 | [`plotter.plot_col_ticks(...)`](#plot_col_ticks) | Declares column tick labels for the matrix panel. |
 | [`plotter.add_colorbar(...)`](#add_colorbar) | Declares a figure-level colorbar specification. |
 | [`plotter.plot_colorbars(...)`](#plot_colorbars) | Declares layout for the bottom colorbar strip. |
-| [`plotter.add_label_legend(...)`](#add_label_legend) | Declares a categorical legend block for a row-level label bar. |
+| [`plotter.add_label_legend(...)`](#add_label_legend) | Declares a categorical legend block for a row- or column-level label bar. |
 | [`plotter.plot_label_legends(...)`](#plot_label_legends) | Declares layout for categorical legend blocks below the colorbar strip or matrix. |
 | [`plotter.set_figure(...)`](#set_figure) | Configures figure size and subplot margins. |
 | [`plotter.set_background(...)`](#set_background) | Sets figure background color used for display and save. |
@@ -150,6 +153,100 @@ Plotter.plot_dendrogram(
 | `color` | `str | None` | `"#888888"` | Dendrogram line color. |
 | `linewidth` | `float | None` | `1.0` | Dendrogram line width. |
 | `data_pad` | `float` | `0.25` | Expands y-limits to avoid clipping at the top or bottom. |
+
+### `plot_col_dendrogram`
+
+Declares a dendrogram layer aligned to matrix columns, with the root at the top. It needs the column linkage, so finalize the analysis with `col_cluster=True` and `col_dendrogram=True`.
+
+```python
+results = (
+    Analysis(matrix, annotations)
+    .cluster(...)
+    .enrich(...)
+    .finalize(col_cluster=True, col_dendrogram=True)
+    .results
+)
+```
+
+```python
+Plotter.plot_col_dendrogram(
+    *,
+    axes: Sequence[float] | None = None,
+    color: str | None = None,
+    linewidth: float | None = None,
+    data_pad: float = 0.25,
+    height: float | None = None,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `axes` | `Sequence[float] | None` | above the matrix | Dendrogram panel box `[x0, y0, w, h]` in figure fraction. By default the box spans the matrix columns and sits directly above the matrix and any column label bars. |
+| `color` | `str | None` | `"#888888"` | Dendrogram line color. |
+| `linewidth` | `float | None` | `1.0` | Dendrogram line width. |
+| `data_pad` | `float` | `0.25` | Expands x-limits to avoid clipping at the left or right. |
+| `height` | `float | None` | `0.03` | Height of the default box (figure fraction). Ignored when `axes` is set. |
+
+Behavior notes:
+
+- Raises `ValueError` if the results carry no column linkage.
+- The tree uses the same linkage method, metric, and `optimal_ordering` as the rows, and its leaf order is the column order of the matrix.
+- With the default margins, the tree fits in the empty space above the matrix, and so does one column label bar. For a taller tree or more bars, lower the top of the matrix and give the row dendrogram and the label panel the same top, so all three panels end at the same height:
+
+```python
+top = 0.88
+
+plotter = (
+    Plotter(results)
+    .set_figure(subplots_adjust={"left": 0.15, "right": 0.70, "bottom": 0.05, "top": top})
+    .set_label_panel(axes=[0.70, 0.05, 0.29, top - 0.05])
+    .plot_dendrogram(axes=[0.06, 0.05, 0.09, top - 0.05])
+    .plot_col_dendrogram(height=0.08)
+    .plot_matrix(cmap="RdBu_r", center=0)
+    .plot_cluster_labels(rank_by="q")
+)
+```
+
+- `plot_col_ticks(...)` places tick labels at the top by default, where the tree sits. Use `plot_col_ticks(position="bottom")` with a column tree.
+
+### `plot_cut_line`
+
+Declares a vertical cut line on the row dendrogram at the height used to cut the clusters, with optional scissors at its foot. Declare it after `plot_dendrogram(...)`.
+
+```python
+Plotter.plot_cut_line(
+    *,
+    threshold: float | None = None,
+    color: str = "#c0392b",
+    linestyle: str = "--",
+    linewidth: float = 1.0,
+    scissors: bool = True,
+    scissors_size: float = 12.0,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `threshold` | `float | None` | clustering threshold | Dendrogram height at which to draw the line. |
+| `color` | `str` | `"#c0392b"` | Line and scissors color. |
+| `linestyle` | `str` | `"--"` | Matplotlib line style. |
+| `linewidth` | `float` | `1.0` | Line width. |
+| `scissors` | `bool` | `True` | Draws scissors at the foot of the line, in the line color. |
+| `scissors_size` | `float` | `12.0` | Scissors size (points). |
+
+```python
+plotter = (
+    Plotter(results)
+    .plot_dendrogram()
+    .plot_cut_line(color="black", linestyle=":", scissors_size=16)
+    .plot_matrix(cmap="RdBu_r", center=0)
+)
+```
+
+Behavior notes:
+
+- Raises `ValueError` if `plot_dendrogram(...)` was not declared first, or if `scissors_size` is not positive.
+- The scissors hang just below the dendrogram panel. Leave some room under the panel; if the panel sits at the bottom edge of the figure, large scissors can be clipped. Pass `scissors=False` to draw the line alone.
 
 ### `set_label_panel`
 
@@ -481,6 +578,75 @@ Plotter.plot_label_bar(
 | `title` | `str | None` | `None` | Optional track title. |
 | `enabled` | `bool` | `True` | Register the track. |
 
+### `plot_col_label_bar`
+
+Declares a column-level annotation bar as a strip above the matrix. `values` maps a matrix column label to either a category or a number, as `plot_label_bar(...)` does for rows. Strips span the matrix columns in their displayed order, with or without `col_cluster`.
+
+```python
+Plotter.plot_col_label_bar(
+    values: Mapping[Hashable, Any],
+    *,
+    name: str = "col_label_bar",
+    mode: str = "categorical",
+    colors: Dict[Any, Any] | None = None,
+    cmap: str = "viridis",
+    vmin: float | None = None,
+    vmax: float | None = None,
+    missing_color: str | None = None,
+    height: float | None = None,
+    title: str | None = None,
+    title_position: str = "right",
+    enabled: bool = True,
+) -> Plotter
+```
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `values` | `Mapping[Hashable, Any]` | required | Column label to category or numeric value. |
+| `name` | `str` | `"col_label_bar"` | Bar name, also used by `add_label_legend(...)`. Must be unique among column bars. |
+| `mode` | `str` | `"categorical"` | `"categorical"` or `"continuous"`. |
+| `colors` | `Dict[Any, Any] | None` | `None` | Category to color mapping. Required in categorical mode. |
+| `cmap` | `str` | `"viridis"` | Colormap for continuous mode. |
+| `vmin` | `float | None` | `None` | Minimum for continuous mode normalization. |
+| `vmax` | `float | None` | `None` | Maximum for continuous mode normalization. |
+| `missing_color` | `str | None` | `"#eeeeee"` | Color for columns without a value. |
+| `height` | `float | None` | `0.016` | Strip height (figure fraction). |
+| `title` | `str | None` | `None` | Bar title, drawn beside the strip when `plot_bar_labels(...)` is declared. |
+| `title_position` | `str` | `"right"` | Title side: `"left"` or `"right"`. |
+| `enabled` | `bool` | `True` | Registers the bar. Pass `False` to skip it without removing the call. |
+
+```python
+plotter = (
+    Plotter(results)
+    .plot_col_dendrogram()
+    .plot_col_label_bar(
+        essentiality_map,
+        name="essentiality",
+        colors=essentiality_colors,
+        title="Essential",
+    )
+    .plot_col_label_bar(
+        matrix.df.var(axis=0).to_dict(),
+        name="variance",
+        mode="continuous",
+        cmap="Greens",
+        title="Variance",
+    )
+    .plot_bar_labels(fontsize=12)
+    .plot_matrix(cmap="RdBu_r", center=0)
+    .add_label_legend(name="essentiality", title="Essential")
+    .plot_label_legends(gap=0.045)
+)
+```
+
+Behavior notes:
+
+- The first strip sits directly on the matrix. Later strips stack upward in declaration order, and a column dendrogram sits above all of them. See [`plot_col_dendrogram`](#plot_col_dendrogram) for making room.
+- Column bars are display only. They never enter clustering or enrichment.
+- Titles are drawn only when `plot_bar_labels(...)` is declared, the same as for row bars. See [Track Titles](#track-titles).
+- `add_label_legend(...)` can explain a categorical column bar. A legend name that matches both a row bar and a column bar raises `ValueError`; give them different names.
+- Raises `ValueError` for a repeated name, a non-positive `height`, or a `title_position` other than `"left"` or `"right"`. Categorical mode without `colors` raises `TypeError` when the plot is rendered.
+
 ### Track Order
 
 Sets explicit ordering of registered label-panel tracks.
@@ -495,7 +661,7 @@ Plotter.set_label_track_order(order: Sequence[str] | None = None) -> Plotter
 
 ### Track Titles
 
-Declares titles for registered label-panel tracks.
+Declares titles for label-panel tracks and for column label bars. Each bar supplies its text through its `title` argument; the titles are drawn only when `plot_bar_labels(...)` is declared, and this layer sets how they look.
 
 ```python
 Plotter.plot_bar_labels(
@@ -515,7 +681,7 @@ Plotter.plot_bar_labels(
 | `fontsize` | `float` | `10` | Font size for track titles. |
 | `color` | `str | None` | `"black"` | Text color. |
 | `alpha` | `float` | `1.0` | Text alpha. |
-| `pad` | `float` | `2` | Padding in points below the tracks. |
+| `pad` | `float` | `2` | Padding in points: below row tracks, and beside column bars. |
 | `rotation` | `float` | `0` | Text rotation in degrees. |
 
 ## Axes and Titles
@@ -604,7 +770,7 @@ Plotter.plot_row_ticks(
 
 ### `plot_col_ticks`
 
-Declares column tick labels for the matrix panel.
+Declares column tick labels for the matrix panel. With a column dendrogram or column label bars above the matrix, use `position="bottom"`.
 
 ```python
 Plotter.plot_col_ticks(
@@ -699,8 +865,8 @@ Plotter.plot_colorbars(
 
 ### `add_label_legend`
 
-Declares a categorical legend block for a row-level label bar.
-The referenced track must be declared with `plot_label_bar(..., mode="categorical")`.
+Declares a categorical legend block for a row-level or column-level label bar.
+The referenced bar must be declared with `plot_label_bar(..., mode="categorical")` or `plot_col_label_bar(..., mode="categorical")`.
 
 ```python
 Plotter.add_label_legend(
@@ -717,7 +883,7 @@ Plotter.add_label_legend(
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
-| `name` | `str` | required | Name of the row-level categorical track to explain. |
+| `name` | `str` | required | Name of the categorical row or column bar to explain. |
 | `title` | `str | None` | `None` | Legend title override. Falls back to track title, then `name`. |
 | `nrows` | `int | None` | `None` | Legend grid rows. If `None`, inferred from `ncols`. |
 | `ncols` | `int | None` | `None` | Legend grid columns. If `None`, inferred from `nrows`. |
@@ -727,9 +893,10 @@ Plotter.add_label_legend(
 
 Behavior notes:
 
-- Referenced legend `name` must exist and must be a row-level label bar.
-- The referenced track must use `mode="categorical"`.
-- A non-empty category color mapping is required on the referenced track.
+- Referenced legend `name` must exist and must be a row-level label bar or a column-level label bar.
+- A name shared by a row bar and a column bar is ambiguous and raises `ValueError`.
+- The referenced bar must use `mode="categorical"`.
+- A non-empty category color mapping is required on the referenced bar.
 - Duplicate legend declarations for the same `name` raise `ValueError`.
 - Legends with no items after filtering are skipped.
 
@@ -762,6 +929,8 @@ Plotter.plot_label_legends(
 | `fontsize` | `float | None` | `9` | Legend font size. |
 | `font` | `str | None` | `None` | Legend font family. |
 | `color` | `str | None` | `"black"` | Legend text color. |
+
+Colorbar labels hang below the colorbar strip. With the default `gap`, a legend can touch them; raise `gap` (for example `0.045`) when a figure shows both.
 
 ```python
 plotter = (
@@ -850,5 +1019,6 @@ Plotter.save(
 ## Notes
 
 - `Plotter` expects `Results` with layout from `Analysis.finalize(...)`.
+- Column features (`plot_col_dendrogram(...)`, `plot_col_label_bar(...)`) draw above the matrix. Titles for row and column bars appear only when `plot_bar_labels(...)` is declared.
 - `plot_matrix(...)` is optional; a matrix-less plot can still render colorbars, legends, label panels, and cluster/label bar tracks.
 - Unit convention: text spacing uses points (`plot_title(pad=...)`, `plot_bar_labels(pad=...)`, `plot_matrix_axis_labels(xlabel_pad=...)`, `plot_row_ticks(pad=...)`, `plot_col_ticks(pad=...)`, `plot_colorbars(label_pad=...)`); layout geometry uses fractions (`height`, `gap`, `hpad`, `vpad`, `left_pad`, `right_pad`, `width`, `axes`, `track_x`, `gutter_width`, `text_pad`). `ylabel_pad` is also a geometry fraction (panel offset).
