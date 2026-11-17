@@ -45,14 +45,18 @@ Labels must match matrix row labels exactly.
 ## Common Methods
 
 ```python
+Annotations.from_gmt(path, matrix, *, min_term_size=2, max_term_size=None) -> Annotations
 Annotations.terms -> List[str]
 Annotations.rebind(matrix: Matrix) -> Annotations
+Annotations.to_gmt(path) -> None
 ```
 
 | Method | Description |
 | --- | --- |
+| `Annotations.from_gmt(path, matrix, ...)` | Builds an `Annotations` object from a GMT gene-set file. |
 | `annotations.terms` | Returns retained annotation terms after overlap filtering. |
 | `annotations.rebind(matrix)` | Returns a new `Annotations` object aligned to a new matrix label universe (useful for zoom and subset workflows). |
+| `annotations.to_gmt(path)` | Writes the retained terms to a GMT file. |
 
 ## `terms`
 
@@ -73,6 +77,37 @@ Returns a new `Annotations` object aligned to a new matrix label universe.
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
 | `matrix` | `Matrix` | required | New matrix whose label universe will be used to re-filter terms. |
+
+## `from_gmt`
+
+```python
+Annotations.from_gmt(
+    path: str | PathLike,
+    matrix: Matrix,
+    *,
+    min_term_size: int = 2,
+    max_term_size: int | None = None,
+) -> Annotations
+```
+
+Builds an `Annotations` object from a GMT gene-set file, the format used by MSigDB and most enrichment tools. Each line holds a term name, a description, and the term's labels, separated by tabs. The description is ignored, and blank lines are skipped.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `path` | `str | PathLike` | required | Path to the GMT file. |
+| `matrix` | `Matrix` | required | Provides the label universe. |
+| `min_term_size` | `int` | `2` | Same as in `Annotations(...)`. |
+| `max_term_size` | `int | None` | `None` | Same as in `Annotations(...)`. |
+
+Raises `ValueError` for a line without a name, a description, and at least one label, for a repeated term name, and for a file with no terms.
+
+## `to_gmt`
+
+```python
+Annotations.to_gmt(path: str | PathLike) -> None
+```
+
+Writes the retained terms to a GMT file. Each description is `-`, and the labels of each term are sorted. Only labels present in the matrix are written. Raises `ValueError` if a term or label contains a tab or a line break, which GMT cannot hold.
 
 ## Example (GO Biological Process)
 
@@ -97,10 +132,23 @@ country_to_sectors = {
 annotations = Annotations(country_to_sectors, matrix)
 ```
 
+## Example (GMT File)
+
+```python
+from himalayas import Annotations
+
+annotations = Annotations.from_gmt("data/go_bp.gmt", matrix)
+
+# Save the terms that remain after filtering to the matrix.
+annotations.to_gmt("outputs/go_bp_in_matrix.gmt")
+```
+
 ## Common Errors
 
 - `Labels for term ... must be an iterable of labels` if a term maps to a string.
 - `No annotation terms overlap matrix labels` if none of the labels match the matrix.
+- `Line N: a GMT line needs a name, a description, and labels` if a GMT line is missing a field.
+- `Line N: duplicate term ...` if a GMT file repeats a term name.
 
 ## Notes
 
