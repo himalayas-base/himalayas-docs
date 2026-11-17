@@ -96,4 +96,32 @@ condensed = plot_dendrogram_condensed(results)
 condensed.show()
 ```
 
+## My bar titles do not appear
+
+Titles are drawn only when `plotter.plot_bar_labels(...)` is declared. Each bar supplies its text through `title=`, and `plot_bar_labels(...)` turns the titles on and sets their font, size, and offset. This applies to row bars (`plot_label_bar`) and column bars (`plot_col_label_bar`).
+
+## I get "plot_col_dendrogram() requires Analysis.finalize(col_cluster=True, col_dendrogram=True)"
+
+The column tree needs the column linkage, which is kept only on request. Finalize with both flags:
+
+```python
+analysis.finalize(col_cluster=True, col_dendrogram=True)
+```
+
+## The column dendrogram or column bars are cut off or crowded
+
+By default they sit in the empty space above the matrix, which fits the tree or one bar. For more, lower the top of the matrix and give the row dendrogram and label panel the same top. See [`plot_col_dendrogram`](7_plotting.md#plot_col_dendrogram).
+
+## The legend overlaps the colorbar labels
+
+Colorbar labels hang below the colorbar strip. Raise `gap` in `plot_label_legends(...)`, for example `plot_label_legends(gap=0.045)`.
+
+## Results differ slightly between installs on tied data
+
+When distances tie exactly, as in 0/1 matrices, the merge order is not unique, and SciPy and `fastcluster` can break ties differently. Tree shape and cluster boundaries can then differ between installs. Continuous data rarely ties. Pin the same environment, or install the `speed` extra everywhere, when exact reproducibility matters.
+
+## How do I load gene sets from a GMT file?
+
+Use `Annotations.from_gmt("terms.gmt", matrix)`. See [Annotation Input](3_annotation_input.md#from_gmt).
+
 If you still have issues, open an issue in the repository with a minimal reproducible example.
