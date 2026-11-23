@@ -9,8 +9,8 @@ This documentation describes Hierarchical Matrix Layout and Annotation Software 
 - **Full Documentation**: [himalayas-base.github.io/himalayas-docs](https://himalayas-base.github.io/himalayas-docs)
 - **Figure Gallery**: [himalayas-base.github.io/himalayas-docs/11_figure_gallery](https://himalayas-base.github.io/himalayas-docs/11_figure_gallery/)
 - **Try in Browser (Binder)**:
-  - Quickstart: [![Launch Quickstart in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
-  - Advanced Quickstart: [![Launch Advanced Quickstart in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart_advanced.ipynb)
+  - Quickstart: [![Launch Quickstart in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/v0.0.17?filepath=notebooks/quickstart.ipynb)
+  - Advanced Quickstart: [![Launch Advanced Quickstart in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/v0.0.17?filepath=notebooks/quickstart_advanced.ipynb)
 - **Source Code**: [github.com/himalayas-base/himalayas](https://github.com/himalayas-base/himalayas)
 
 For a full description of HiMaLAYAS and its applications, see:
@@ -42,21 +42,42 @@ multiple testing, and renders significant annotations alongside clusters.
 
 ## Quickstart
 
+Example inputs are bundled in `notebooks/data`: the [yeast matrix](notebooks/data/gi_pcc_sampled.tsv) and matching [GO BP annotations](notebooks/data/go_bp_name_to_orfs.json). Run the loading examples from `notebooks/`, where these files resolve as `data/...`. In this development checkout, the [basic quickstart](notebooks/quickstart.ipynb#Annotate-the-same-clusters-with-other-GO-categories) also compares BP, CC and MF on the same clusters using the bundled [CC](notebooks/data/go_cc_name_to_orfs.json) and [MF](notebooks/data/go_mf_name_to_orfs.json) mappings; see their [provenance](notebooks/data/go_cc_mf_provenance.md).
+
 **Try in Browser (Binder)**
 
-- [Launch Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
-- [Launch Advanced Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart_advanced.ipynb)
+- [Launch Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/v0.0.17?filepath=notebooks/quickstart.ipynb)
+- [Launch Advanced Quickstart in Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/v0.0.17?filepath=notebooks/quickstart_advanced.ipynb)
 
 **Local Run**
 
 ```bash
-pip install himalayas jupyter
-git clone https://github.com/himalayas-base/himalayas-docs.git
+git clone --branch v0.0.17 https://github.com/himalayas-base/himalayas-docs.git
 cd himalayas-docs
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+cd notebooks
 jupyter notebook
 ```
 
-Open `notebooks/quickstart.ipynb` or `notebooks/quickstart_advanced.ipynb` in Jupyter.
+Open `quickstart.ipynb` or `quickstart_advanced.ipynb` in Jupyter. The kernel working directory must be `notebooks/` so the bundled `data/` files resolve.
+
+### Tutorial dependency and HTML builds
+
+These development tutorials require the 0.0.17 APIs, including `drop_redundant`. Until 0.0.17 is published, `requirements.txt` installs the immutable source snapshot `f824e7f8447519ead93995742eb0aa0a7e483d32` instead of assuming an unpublished PyPI release exists. This snapshot includes the tutorial APIs and reviewed background and plotting fixes. Binder uses the same requirements. Remote launch links target the `v0.0.17` documentation branch and require that branch and the source commit to be available on GitHub.
+
+For local development, first install the requirements above, then run `python -m pip install --no-deps -e ../himalayas` from the documentation repository root to use the sibling library checkout. Confirm the selected source with `python -c "import himalayas; print(himalayas.__version__, himalayas.__file__)"`.
+
+After the release is published, replace the source requirement with `himalayas==0.0.17` and rerun both notebooks before regenerating HTML. The published version must supply all tutorial APIs.
+
+From the documentation repository root, execute and save both notebooks with Jupyter (using the `notebooks/` working directory), then run:
+
+```bash
+make quickstarts-html
+```
+
+This target converts saved outputs; it does not execute notebooks. Validate both notebooks through their final optional sections before converting. `SAVE_FIGURES=False` keeps execution from creating local figure exports. A successful local run does not verify the hosted Binder build.
 
 ## Citation
 

@@ -54,7 +54,7 @@ DF = pd.DataFrame(
 
 ## Example
 
-Load a matrix from file and create a `Matrix` object.
+Load a matrix from file and create a `Matrix` object. The [example yeast matrix](https://raw.githubusercontent.com/himalayas-base/himalayas-docs/v0.0.17/notebooks/data/gi_pcc_sampled.tsv) and matching [GO BP annotations](https://raw.githubusercontent.com/himalayas-base/himalayas-docs/v0.0.17/notebooks/data/go_bp_name_to_orfs.json) are bundled in `himalayas-docs/notebooks/data`. Run this example from `himalayas-docs/notebooks`, or adjust the path to your copy of the files.
 
 ```python
 import pandas as pd

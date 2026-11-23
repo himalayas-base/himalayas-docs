@@ -4,8 +4,8 @@
 
 Use either notebook based on depth:
 
-- Quickstart: [HTML](quickstart.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
-- Advanced Quickstart: [HTML](quickstart_advanced.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart_advanced.ipynb)
+- Quickstart: [HTML](quickstart.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/v0.0.17?filepath=notebooks/quickstart.ipynb)
+- Advanced Quickstart: [HTML](quickstart_advanced.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/v0.0.17?filepath=notebooks/quickstart_advanced.ipynb)
 
 ## I get "Matrix labels must be unique"
 

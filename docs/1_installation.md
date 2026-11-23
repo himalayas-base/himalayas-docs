@@ -22,6 +22,10 @@ For development, use an editable install instead:
 pip install -e .
 ```
 
+## Development Tutorials
+
+The tutorials on the `v0.0.17` documentation branch use APIs added after 0.0.16. Clone that documentation branch and install its `requirements.txt`, which pins an immutable HiMaLAYAS source commit until 0.0.17 is released. Start Jupyter in `notebooks/` so the bundled data paths resolve. See the [repository instructions](https://github.com/himalayas-base/himalayas-docs/tree/v0.0.17#quickstart) for local source overrides and HTML regeneration. Installing the current PyPI release alone does not select this development tutorial environment.
+
 ## Verify Installation
 
 ```python

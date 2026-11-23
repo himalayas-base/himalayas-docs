@@ -29,6 +29,8 @@ Analysis.cluster(
 
 ## Example
 
+Choose the cut on the scale of your preprocessed matrix and distance metric. Inspect the dendrogram and cluster sizes over nearby thresholds to see whether groups split or merge in ways relevant to the analysis. Set `min_cluster_size` to the smallest group you intend to interpret; a higher floor can merge fine structure into larger clusters, or leave small clusters untested when `merge_small_clusters=False`. The example values below are not universal defaults.
+
 ```python
 analysis = Analysis(matrix, annotations).cluster(
     linkage_method="ward",
@@ -71,10 +73,10 @@ After clustering, cluster assignments are attached as:
 
 ## Notes
 
-- Any method or metric supported by SciPy `linkage` is valid (see the [SciPy linkage docs](https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html)).
+- Use a compatible method/metric combination supported by [SciPy linkage](https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html). `ward`, `centroid` and `median` require Euclidean distances; use `linkage_metric="euclidean"` with these methods. `single`, `complete`, `average` and `weighted` can use other supported distances, such as `correlation`, `cosine` or `cityblock`.
 - `linkage_metric="correlation"` requires every row to have non-zero variance, and `linkage_metric="cosine"` requires every row to have a non-zero L2 norm. Rows that violate this (constant rows for `correlation`, zero vectors for `cosine`) raise a `ValueError`; remove or preprocess the offending rows before clustering.
 - When `optimal_ordering=False`, HiMaLAYAS uses `fastcluster` if installed and otherwise falls back to SciPy linkage.
-- `linkage_threshold="auto"` scores candidate dendrogram cuts and picks the best one, balancing cluster quality against cluster-size diversity; it does not tune `linkage_method` or `linkage_metric`. If `min_cluster_size > 1` and `merge_small_clusters=False` leave fewer than 2 reportable clusters, selection falls back to the cut with the best reportable coverage and diversity. A `ValueError` is raised if no threshold is usable.
+- `linkage_threshold="auto"` scores candidate dendrogram cuts and picks the best one, balancing cluster quality against cluster-size diversity; it does not tune `linkage_method` or `linkage_metric`. This is a cut-selection heuristic, not an objectively optimal biological partition. If `min_cluster_size > 1` and `merge_small_clusters=False` leave fewer than 2 reportable clusters, selection falls back to the cut with the best reportable coverage and diversity. A `ValueError` is raised if no threshold is usable.
 - `min_cluster_size` sets a size floor for dendrogram-cut clusters; `merge_small_clusters` controls whether clusters below it are merged upward (default) or excluded from enrichment reporting instead.
 - With `Analysis.finalize(col_cluster=True)`, HiMaLAYAS reuses cached column order for the current linkage settings (`linkage_method`, `linkage_metric`, `optimal_ordering`). Column clustering uses the same linkage method and metric as the rows and affects display only; no statistic uses it.
 - With `Analysis.finalize(col_cluster=True, col_dendrogram=True)`, the column linkage is kept as well (and cached per linkage settings) so `Plotter.plot_col_dendrogram(...)` can draw the column tree.

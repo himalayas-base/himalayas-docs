@@ -1,6 +1,9 @@
-himalayas==0.0.16
+# Development tutorials use an immutable source snapshot with the 0.0.17 APIs.
+# After release, replace this source requirement with himalayas==0.0.17.
+himalayas @ git+https://github.com/himalayas-base/himalayas.git@f824e7f8447519ead93995742eb0aa0a7e483d32
 numpy
 pandas
 scipy
 matplotlib
 jupyter
+nbconvert

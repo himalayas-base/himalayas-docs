@@ -21,8 +21,8 @@ This documentation walks through installation, workflows, and examples using HiM
 
 ## Notebook Walkthrough
 
-- Quickstart: [HTML](quickstart.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart.ipynb)
-- Advanced Quickstart: [HTML](quickstart_advanced.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/main?filepath=notebooks/quickstart_advanced.ipynb)
+- Quickstart: [HTML](quickstart.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/v0.0.17?filepath=notebooks/quickstart.ipynb)
+- Advanced Quickstart: [HTML](quickstart_advanced.html) | [Binder](https://mybinder.org/v2/gh/himalayas-base/himalayas-docs/v0.0.17?filepath=notebooks/quickstart_advanced.ipynb)
 
 ## Core Workflow
 

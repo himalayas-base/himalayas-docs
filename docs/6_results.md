@@ -90,7 +90,7 @@ Results.drop_redundant(
 ) -> Results
 ```
 
-Returns a new `Results` without near-duplicate terms. Within each cluster, rows are walked from most to least significant, and a term is dropped when a term already kept in that cluster shares enough of its labels with it. Overlap is the Jaccard index, the size of the intersection over the size of the union, computed over each term's labels in the matrix. Enrichment statistics are not recomputed, and rows keep their original order.
+Returns a new `Results` without near-duplicate terms. Within each cluster, rows are walked from most to least significant, and a term is dropped when a term already kept in that cluster shares enough of its labels with it. Overlap is the Jaccard index, the size of the intersection over the size of the union, computed over each term's labels in the matrix. Enrichment statistics are not recomputed, and rows keep their original order. This filters overlapping memberships; it does not use the GO graph or measure GO semantic similarity.
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -182,6 +182,23 @@ import pandas as pd
 cluster_table = pd.Series(results.clusters.label_to_cluster, name="cluster")
 cluster_table.rename_axis("label").to_csv("clusters.tsv", sep="\t")
 ```
+
+Retrieve the genes contributing to a cluster-term result, using nonempty finalized `results` and the `annotations` used for that run:
+
+```python
+import pandas as pd
+
+row = results.df.iloc[0]
+cluster_genes = set(results.clusters.cluster_to_labels[int(row["cluster"])])
+term_members = annotations.labels_for_universe(results.matrix.labels)
+genes = sorted(cluster_genes & term_members[row["term"]])
+assert len(genes) == int(row["k"])
+
+pd.DataFrame({"gene": genes}).to_csv("contributing_genes.tsv", sep="\t", index=False)
+print(row["term"], len(genes))
+```
+
+`labels_for_universe` resolves source memberships without reapplying size filters. This also handles terms tested with a larger background that are absent from the locally filtered `annotations.term_to_labels`. For zoom results, use the annotations supplied to that zoom. The exported file contains only the cluster's genes contributing to that term, rather than every gene annotated to it.
 
 Build optional cluster labels for inspection or export:
 

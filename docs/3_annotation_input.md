@@ -33,7 +33,7 @@ term_to_labels = {
 ```
 
 Each key is an annotation term, and each value is a list of matrix label IDs.
-Labels must match matrix row labels exactly.
+Labels must match matrix row labels exactly. Terms can come from other GO categories, pathway memberships, protein complexes, cell-type markers, or experimental metadata; the input remains a term-to-label mapping. The [basic quickstart comparison](quickstart.html#Annotate-the-same-clusters-with-other-GO-categories) applies BP, CC and MF to the same yeast clusters.
 
 ## Common Attributes
 
@@ -72,7 +72,7 @@ Returns retained annotation terms after overlap filtering.
 Annotations.rebind(matrix: Matrix) -> Annotations
 ```
 
-Returns a new `Annotations` object aligned to a new matrix label universe.
+Returns a new `Annotations` object aligned to a new matrix label universe. Rebinding starts from the currently visible terms and memberships, so repeated subsets preserve stepwise term selection. Original source memberships for those candidate terms remain available for enrichment with an explicit larger background. A term dropped from the visible mapping cannot become a candidate for a later rebind.
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -110,6 +110,8 @@ Annotations.to_gmt(path: str | PathLike) -> None
 Writes the retained terms to a GMT file. Each description is `-`, and the labels of each term are sorted. Only labels present in the matrix are written. Raises `ValueError` if a term or label contains a tab or a line break, which GMT cannot hold.
 
 ## Example (GO Biological Process)
+
+Use the [bundled BP mapping](https://raw.githubusercontent.com/himalayas-base/himalayas-docs/v0.0.17/notebooks/data/go_bp_name_to_orfs.json) with the matrix loaded in [Matrix Input](2_matrix_input.md#example). Run from `himalayas-docs/notebooks` so `data/` points to the bundled inputs.
 
 ```python
 import json

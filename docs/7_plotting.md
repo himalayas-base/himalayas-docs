@@ -63,6 +63,26 @@ plotter = (
 plotter.show()
 ```
 
+To show both statistics, use the finalized `results` from your analysis:
+
+```python
+from himalayas.plot import Plotter
+
+results_sig = results.filter("qval <= 0.05")
+plotter = (
+    Plotter(results_sig)
+    .plot_matrix(cmap="RdBu_r", center=0)
+    .plot_cluster_labels(
+        rank_by="q",
+        label_mode="top_term",
+        label_fields=("label", "p", "q"),
+    )
+)
+plotter.show()
+```
+
+Here `p` is the representative term's raw hypergeometric p-value and `q` is its BH-adjusted p-value from `finalize()`. `rank_by="q"` selects the representative term by q-value; `label_fields` controls which statistics are shown. Use `("label", "q")` for q-values alone. The default label fields remain `("label", "n", "p")`.
+
 ## Common Methods
 
 | Method | Description |
@@ -519,7 +539,7 @@ Plotter.plot_cluster_bar(
 
 Declares a row-level annotation bar track in the label panel.
 
-`values` is a mapping from matrix row id to either a category label or a numeric value.
+`values` is a mapping from matrix row id to either a category label or a numeric value. These post hoc row tracks add context such as essentiality or single-mutant fitness alongside each gene, without changing clustering or enrichment.
 Row-level label tracks can render without `plot_cluster_labels(...)`.
 
 ```python
